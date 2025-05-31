@@ -5,6 +5,9 @@ import rateLimit from 'express-rate-limit'
 import cors from "cors"
 import morgan from "morgan"
 import express from "express"
+import { ConnectDB } from "./db/db.js"
+
+ConnectDB()
 
 const app = express()
 
