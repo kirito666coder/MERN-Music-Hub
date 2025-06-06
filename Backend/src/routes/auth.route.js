@@ -5,11 +5,11 @@ import { GoogleCallBack } from "../controllers/auth.controller.js";
 
 const AuthRoute = Router()
 
-app.get('/google',
+AuthRoute.get('/google',
     passport.authenticate('google',{scope:['profile']})
 )
 
-app.get('/google/callback',
+AuthRoute.get('/google/callback',
     passport.authenticate('google',{session:false}),
     GoogleCallBack
 )
