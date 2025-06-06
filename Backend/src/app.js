@@ -8,6 +8,7 @@ import express from "express"
 import { ConnectDB } from "./db/db.js"
 import compression from "compression"
 import cookieParser from "cookie-parser"
+import passport from "passport"
 
 ConnectDB()
 
@@ -29,6 +30,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(compression())
 app.use(cookieParser())
+app.use(passport.initialize())
 
 app.get('/health',(req,res)=>{
     res.status(200).json({
