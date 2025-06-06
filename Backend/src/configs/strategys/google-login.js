@@ -9,5 +9,16 @@ export const google = (passport)=>{
          clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
     callbackURL: "http://localhost:300/api/auth/google/callback"
-    }))
+    },
+     function(accessToken, refreshToken, profile, cb){
+        try {
+            
+            
+            return cb (null,user)
+        } catch (error) {
+            return cb (null , error)
+        }
+     }
+
+))
 }
