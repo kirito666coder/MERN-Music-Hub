@@ -1,7 +1,7 @@
 import UserModel from "../Models/user.model.js"
 
 
-export default createUser = async ()=>{
+export default createUser = async ({email,providerName,providerId,profile})=>{
 
     const query = {
         $or:[
@@ -18,5 +18,10 @@ export default createUser = async ()=>{
         }
     }
 
-    const user = await UserModel.findOneAndUpdate()
+    const user = await UserModel.findOneAndUpdate(query,update,{
+        upsert:true,
+        new:true,
+    })
+
+    return user;
 }
