@@ -7,7 +7,7 @@ import morgan from "morgan"
 import express from "express"
 import compression from "compression"
 import cookieParser from "cookie-parser"
-import passport from "passport"
+import passport from "./configs/passport.js"
 
 import { ConnectDB } from "./db/db.js"
 

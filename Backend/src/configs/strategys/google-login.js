@@ -9,13 +9,13 @@ export const google = (passport)=>{
     passport.use(new GoogleStrategy({
          clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:300/api/auth/google/callback"
+    callbackURL: "http://localhost:3000/api/auth/google/callback"
     },
      async function(accessToken, refreshToken, profile, cb){
         try {
 
             const user = await createUser({
-                email:profile.email[0].value,
+                email:profile.emails[0].value,
                 providerId:profile.id,
                 providerName:'googleId',
                 profile

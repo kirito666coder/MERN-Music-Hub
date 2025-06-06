@@ -1,7 +1,7 @@
 import UserModel from "../Models/user.model.js"
 
 
-export default createUser = async ({email,providerName,providerId,profile})=>{
+const createUser = async ({email,providerName,providerId,profile})=>{
 
     const query = {
         $or:[
@@ -25,3 +25,5 @@ export default createUser = async ({email,providerName,providerId,profile})=>{
 
     return user;
 }
+
+export default createUser;
