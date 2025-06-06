@@ -6,7 +6,7 @@ import { GoogleCallBack } from "../controllers/auth.controller.js";
 const AuthRoute = Router()
 
 AuthRoute.get('/google',
-    passport.authenticate('google',{scope:['profile']})
+    passport.authenticate('google',{scope:['profile','email']})
 )
 
 AuthRoute.get('/google/callback',
