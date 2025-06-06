@@ -1,15 +1,23 @@
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
-import UserModel from '../Models/user.model.js'
+import UserModel from '../../Models/user.model.js'
+
+const cookieExtractor = (req) => {
+  let token = null;
+  if (req && req.cookies) {
+    token = req.cookies['token'];
+  }
+  return token;
+}
 
 const opts = {
   jwtFromRequest: ExtractJwt.fromExtractors([
     ExtractJwt.fromAuthHeaderAsBearerToken(),
-    ExtractJwt.fromCookie('token')  // to extract from cookie if you want
+    cookieExtractor
   ]),
   secretOrKey: process.env.JWT_SECRET
 }
 
-export default (passport) => {
+export const passportJwt = (passport) => {
   passport.use(
     new JwtStrategy(opts, async (jwt_payload, done) => {
       try {
