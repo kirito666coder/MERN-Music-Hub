@@ -1,9 +1,10 @@
+import GoogleLoginButton from "../components/LogInpageComponents/GoogleLoginButton"
 
 
 const Login = () => {
   return (
     <div>
-      
+      <GoogleLoginButton/>
     </div>
   )
 }
