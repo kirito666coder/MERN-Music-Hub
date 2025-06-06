@@ -5,10 +5,13 @@ import rateLimit from 'express-rate-limit'
 import cors from "cors"
 import morgan from "morgan"
 import express from "express"
-import { ConnectDB } from "./db/db.js"
 import compression from "compression"
 import cookieParser from "cookie-parser"
 import passport from "passport"
+
+import { ConnectDB } from "./db/db.js"
+
+import AllRoutes from "./routes/all.route.js"
 
 ConnectDB()
 
@@ -38,5 +41,7 @@ app.get('/health',(req,res)=>{
         message:"Server is running!"
     })
 })
+
+app.use('/api',AllRoutes)
 
 export default app;

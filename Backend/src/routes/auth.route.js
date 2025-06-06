@@ -1,12 +1,7 @@
 
-import { Route } from "express";
+import { Router } from "express";
 
-const route = Route()
+const AuthRoute = Router()
 
-route.post('/register')
 
-route.post('/log-in')
-
-route.post('/log-out')
-
-export default route;
+export default AuthRoute;
