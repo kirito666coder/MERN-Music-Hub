@@ -1,7 +1,7 @@
 
 import { Router } from "express";
 import passport from "passport";
-import { GoogleCallBack } from "../controllers/auth.controller.js";
+import { GoogleCallBack, profileController } from "../controllers/auth.controller.js";
 
 const AuthRoute = Router()
 
@@ -16,7 +16,7 @@ AuthRoute.get('/google/callback',
 
 AuthRoute.get('/profile',
     passport.authenticate('jwt',{session:false}),
-    
+    profileController
 )
 
 export default AuthRoute;
