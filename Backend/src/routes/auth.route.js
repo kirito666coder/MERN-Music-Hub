@@ -14,4 +14,9 @@ AuthRoute.get('/google/callback',
     GoogleCallBack
 )
 
+AuthRoute.get('/profile',
+    passport.authenticate('jwt',{session:false}),
+    
+)
+
 export default AuthRoute;
