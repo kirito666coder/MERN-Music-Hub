@@ -5,7 +5,7 @@ export const GoogleCallBack = (req, res) => {
         const user = req.user;
 
         if (!user) {
-            res.status(401).json({ message: "Authentication failed" })
+           return res.status(401).json({ message: "Authentication failed" })
         }
 
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: "24h" })
@@ -16,7 +16,8 @@ export const GoogleCallBack = (req, res) => {
             sameSite: "strict",
             maxAge: 24 * 60 * 60 * 1000
         })
-
+      
+        res.status(200).json({user})
     } catch (error) {
         res.status(500).json({ message: 'internal server error during Google Login' })
     }
