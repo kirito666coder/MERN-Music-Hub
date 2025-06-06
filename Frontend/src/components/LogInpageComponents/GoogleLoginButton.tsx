@@ -1,12 +1,12 @@
 
 const GoogleLoginButton = () => {
     const handleLogin = ()=>{
-        window.location.href = `${}`
+        window.location.href = `${import.meta.env.VITE_BACKEND_URL}/api/auth/google`
     }
   return (
-    <div>
-      
-    </div>
+    <button onClick={handleLogin}>
+     Login with Google
+    </button>
   )
 }
 
