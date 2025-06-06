@@ -1,5 +1,5 @@
 import GoogleStrategy from 'passport-google-oauth20'
-
+import createUser  from '../../services/userCreate.service.js'
 
 export const google = (passport)=>{
 
@@ -14,7 +14,12 @@ export const google = (passport)=>{
      async function(accessToken, refreshToken, profile, cb){
         try {
 
-            const user = 
+            const user = await createUser({
+                email:profile.email[0].value,
+                providerId:profile.id,
+                providerName:'googleId',
+                profile
+            })
             
             return cb (null,user)
         } catch (error) {
