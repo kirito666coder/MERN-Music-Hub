@@ -22,3 +22,7 @@ export const GoogleCallBack = (req, res) => {
         res.status(500).json({ message: 'internal server error during Google Login' })
     }
 }
+
+export const profileController = (req,res) =>{
+    res.status(200).json({message:"Authorized",user:req.user})
+}
