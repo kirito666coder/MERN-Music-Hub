@@ -1,5 +1,6 @@
 import GoogleStrategy from 'passport-google-oauth20'
 
+
 export const google = (passport)=>{
 
     const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID
@@ -10,9 +11,10 @@ export const google = (passport)=>{
     clientSecret: GOOGLE_CLIENT_SECRET,
     callbackURL: "http://localhost:300/api/auth/google/callback"
     },
-     function(accessToken, refreshToken, profile, cb){
+     async function(accessToken, refreshToken, profile, cb){
         try {
-            
+
+            const user = 
             
             return cb (null,user)
         } catch (error) {
