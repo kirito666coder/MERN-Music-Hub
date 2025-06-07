@@ -1,7 +1,8 @@
 import axios from "axios"
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE.BACKEND_URL
+    baseURL: import.meta.env.VITE.BACKEND_URL,
+    withCredentials:true,
 })
 
 export const GetUserApi = async ()=>{
