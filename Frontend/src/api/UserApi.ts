@@ -2,7 +2,7 @@ import axios from "axios"
 import type { User } from "../types/user";
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE.BACKEND_URL,
+    baseURL: import.meta.env.VITE_BACKEND_URL,
     withCredentials: true,
 })
 
