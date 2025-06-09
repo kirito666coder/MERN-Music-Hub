@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { GetUserApi } from "../../api/UserApi";
 import type { User } from "../../types/user";
 
@@ -26,3 +26,16 @@ const initialState:UserState={
     loading:false,
     error:null,
 }
+
+const userSlice = createSlice({
+    name:'user',
+    initialState,
+    reducers:{
+        logout:(state) =>{
+            state.user = null
+        },
+        setUser:(state,action:PayloadAction<User>)=>{
+         state.user = action.payload
+        },
+    },
+})
