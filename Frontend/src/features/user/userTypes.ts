@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GetUserApi } from "../../api/UserApi";
+import type { User } from "../../types/user";
 
 
 export const fetchUser = createAsyncThunk(
@@ -13,3 +14,11 @@ export const fetchUser = createAsyncThunk(
         }
     }
 )
+
+interface UserState {
+    user:User|null,
+    loading:boolean,
+    error:string|null
+}
+
+
