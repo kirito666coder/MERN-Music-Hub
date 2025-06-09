@@ -16,7 +16,8 @@ export const GoogleCallBack = (req, res) => {
             sameSite: "strict",
             maxAge: 24 * 60 * 60 * 1000
         })
-      
+        
+        res.redirect(`${process.env.CLIENT_URL}`);
         res.status(200).json({user})
     } catch (error) {
         res.status(500).json({ message: 'internal server error during Google Login' })
@@ -24,5 +25,5 @@ export const GoogleCallBack = (req, res) => {
 }
 
 export const profileController = (req,res) =>{
-    res.status(200).json({message:"Authorized",user:req.user})
+   return res.status(200).json({message:"Authorized",user:req.user})
 }
