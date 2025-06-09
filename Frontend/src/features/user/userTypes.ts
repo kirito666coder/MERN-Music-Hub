@@ -21,4 +21,8 @@ interface UserState {
     error:string|null
 }
 
-
+const initialState:UserState={
+    user:null,
+    loading:false,
+    error:null,
+}
