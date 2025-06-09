@@ -2,13 +2,16 @@ import { Route, Routes } from "react-router-dom"
 import Login from "../pages/Login"
 import Home from "../pages/home"
 import PrivateRoute from "../components/auth/PrivateRoute"
+import PublicRoute from "../components/auth/PublicRoute"
 
 
 const AppRoutes = () => {
   return (
     <Routes>
         <Route path="/login" element={
+          <PublicRoute>
             <Login/>
+          </PublicRoute>
         }/>
 
         <Route path="/" element={
