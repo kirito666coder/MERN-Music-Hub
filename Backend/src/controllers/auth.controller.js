@@ -25,5 +25,5 @@ export const GoogleCallBack = (req, res) => {
 }
 
 export const profileController = (req,res) =>{
-   return res.status(200).json({message:"Authorized",user:req.user})
+   return res.status(200).json({user:req.user})
 }
