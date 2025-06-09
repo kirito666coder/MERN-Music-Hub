@@ -38,4 +38,19 @@ const userSlice = createSlice({
          state.user = action.payload
         },
     },
+    extraReducers:(builder) =>{
+        builder
+        .addCase(fetchUser.pending, (state)=>{
+            state.loading = true
+            state.error = null
+        })
+        .addCase(fetchUser.fulfilled, (state,action)=>{
+            state.loading = false
+            state.user= action.payload
+        })
+        .addCase(fetchUser.rejected, (state,action)=>{
+            state.loading = false
+            state.error = action.payload as string
+        })
+    }
 })
