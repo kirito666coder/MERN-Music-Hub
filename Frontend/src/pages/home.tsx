@@ -1,7 +1,7 @@
 import HeaderForGigScreens from "../components/home/HeaderForGigScreens"
 
 
-const home = () => {
+const Home = () => {
   return (
     <>
       <header>
@@ -11,4 +11,4 @@ const home = () => {
   )
 }
 
-export default home
+export default Home
