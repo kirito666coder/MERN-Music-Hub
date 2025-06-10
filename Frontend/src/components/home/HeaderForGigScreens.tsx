@@ -9,6 +9,7 @@ const HeaderForGigScreens = () => {
         </i>
         <span className="text-sky-400 font-normal">Music</span>
       </h1>
+
     </div>
   )
 }
