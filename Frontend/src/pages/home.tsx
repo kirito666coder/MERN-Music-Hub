@@ -1,10 +1,13 @@
+import HeaderForGigScreens from "../components/home/HeaderForGigScreens"
 
 
 const home = () => {
   return (
-    <div>
-      Home page
-    </div>
+    <>
+      <header>
+        <HeaderForGigScreens/>
+      </header>
+    </>
   )
 }
 
