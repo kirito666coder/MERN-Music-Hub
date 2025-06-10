@@ -8,8 +8,8 @@ interface searchInterface {
   id:string,
 }
 export default function SearchBar() {
-  const fixedOptions = '';
-  const [value, setValue] = React.useState();
+  const fixedOptions:searchInterface[] = [];
+  const [value, setValue] = React.useState<searchInterface[]>();
 
 
   return (
