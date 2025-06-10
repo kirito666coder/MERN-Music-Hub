@@ -3,10 +3,11 @@ import Chip from '@mui/material/Chip';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-export default function FixedTags() {
-  const fixedOptions = [top100Films[6]];
-  const [value, setValue] = React.useState([...fixedOptions, top100Films[13]]);
+export default function SearchBar() {
+  const fixedOptions = '';
+  const [value, setValue] = React.useState();
 
+  
   return (
     <Autocomplete
       multiple
@@ -19,14 +20,14 @@ export default function FixedTags() {
         ]);
       }}
       options={top100Films}
-      getOptionLabel={(option) => option.title}
+      getOptionLabel={(option) => option?.title}
       renderValue={(values, getItemProps) =>
         values.map((option, index) => {
           const { key, ...itemProps } = getItemProps({ index });
           return (
             <Chip
               key={key}
-              label={option.title}
+              label={option?.title}
               {...itemProps}
               disabled={fixedOptions.includes(option)}
             />
@@ -35,20 +36,17 @@ export default function FixedTags() {
       }
       style={{ width: 500 }}
       renderInput={(params) => (
-        <TextField {...params} label="Fixed tag" placeholder="Favorites" />
+        <TextField {...params} label="Search here" placeholder="Favorites" />
       )}
     />
   );
 }
 
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
-  { title: 'The Shawshank Redemption', year: 1994 },
+  { title: 'The Shawshank Redemption', year: 1994, },
   { title: 'The Godfather', year: 1972 },
   { title: 'The Godfather: Part II', year: 1974 },
   { title: 'The Dark Knight', year: 2008 },
   { title: '12 Angry Men', year: 1957 },
   { title: "Schindler's List", year: 1993 },
-  { title: 'Pulp Fiction', year: 1994 },
-  
 ];
