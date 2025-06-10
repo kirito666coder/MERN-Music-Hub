@@ -40,7 +40,7 @@ export default function SearchBar() {
       }
       style={{ width: 500 }}
       renderInput={(params) => (
-        <TextField {...params} label="Search here" placeholder="Favorites" />
+        <TextField {...params} label="Search here" placeholder="Popular Ones" />
       )}
     />
   );
