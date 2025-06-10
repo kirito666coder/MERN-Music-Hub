@@ -3,11 +3,15 @@ import Chip from '@mui/material/Chip';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
+interface searchInterface {
+  title:string,
+  id:string,
+}
 export default function SearchBar() {
   const fixedOptions = '';
   const [value, setValue] = React.useState();
 
-  
+
   return (
     <Autocomplete
       multiple
@@ -43,10 +47,8 @@ export default function SearchBar() {
 }
 
 const top100Films = [
-  { title: 'The Shawshank Redemption', year: 1994, },
-  { title: 'The Godfather', year: 1972 },
-  { title: 'The Godfather: Part II', year: 1974 },
-  { title: 'The Dark Knight', year: 2008 },
-  { title: '12 Angry Men', year: 1957 },
-  { title: "Schindler's List", year: 1993 },
+  { title: 'The Shawshank Redemption', id:'112' },
+  { title: 'The Godfather', id:'113' },
+  { title: 'The Godfather: Part II', id:'114' },
+  
 ];
