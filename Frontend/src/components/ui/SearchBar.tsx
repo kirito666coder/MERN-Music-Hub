@@ -11,6 +11,12 @@ interface searchInterface {
 
 // Styled TextField to remove border and outline
 const CustomTextField = styled(TextField)({
+    '& label': {
+    color: '#6a7282', 
+  },
+  '& label.Mui-focused': {
+    color: '#6a7282', 
+  },
   '& .MuiOutlinedInput-root': {
     borderRadius: 9999, 
     backgroundColor: '', 
@@ -35,8 +41,9 @@ export default function SearchBar() {
   const [value, setValue] = React.useState<searchInterface[]>([]);
 
   return (
+      <div className='flex'>
     <Autocomplete
-    className='bg-gray-300 rounded-full'
+    className='bg-gray-300 rounded-l-full'
       multiple
       id="fixed-tags-demo"
       value={value}
@@ -63,6 +70,10 @@ export default function SearchBar() {
         <CustomTextField {...params} label="Search here" placeholder="Popular Ones" />
       )}
     />
+   <button className='h-14 pr-4 rounded-r-full bg-gray-300'>
+    Search
+   </button>
+    </div>
   );
 }
 
