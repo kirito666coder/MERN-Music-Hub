@@ -1,4 +1,4 @@
-import SearchBar from "../ui/SearchBar"
+import SearchBar from "./homeComponents/SearchBar"
 
 
 const HeaderForGigScreens = () => {
