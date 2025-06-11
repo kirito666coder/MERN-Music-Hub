@@ -1,8 +1,14 @@
+import { useSelector } from "react-redux"
+import type { RootState } from "../../../app/store"
 
 const Profile = () => {
+    const {user} = useSelector((state:RootState)=>state.user)
   return (
-    <div className="bg-gray-500 h-12 w-12 rounded-full">
-      <img src="" alt="Profile" />
+    <div>
+      <img 
+      src={`${user?.image}`} 
+      alt="Profile"
+      referrerPolicy="no-referrer"  className="h-12 w-12 rounded-full"/>
     </div>
   )
 }
