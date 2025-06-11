@@ -5,7 +5,7 @@ import SearchBar from "./homeComponents/SearchBar"
 import SettingsLogo from "./homeComponents/SettingsLogo"
 
 
-const HeaderForGigScreens = () => {
+const HeaderForBigScreens = () => {
   return (
     <div className="p-2 flex justify-around items-center gap-2 max-w-screen">
       <Logo/>
@@ -19,4 +19,4 @@ const HeaderForGigScreens = () => {
   )
 }
 
-export default HeaderForGigScreens
+export default HeaderForBigScreens

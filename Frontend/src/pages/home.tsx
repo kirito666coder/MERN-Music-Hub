@@ -1,11 +1,11 @@
-import HeaderForGigScreens from "../components/home/HeaderForGigScreens"
+import HeaderForBigScreens from "../components/home/HeaderForBigScreens"
 
 
 const Home = () => {
   return (
     <>
       <header>
-        <HeaderForGigScreens/>
+        <HeaderForBigScreens/>
       </header>
     </>
   )
