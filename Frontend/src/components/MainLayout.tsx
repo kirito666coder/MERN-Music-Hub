@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom"
 import HeaderForBigScreens from "./Headers/HeaderForBigScreens"
 import HeaderForSmallScreens from "./Headers/HeaderForSmallScreens"
 
@@ -11,6 +12,7 @@ const MainLayout = () => {
       <nav>
 
       </nav>
+      <Outlet/>
     </div>
   )
 }
