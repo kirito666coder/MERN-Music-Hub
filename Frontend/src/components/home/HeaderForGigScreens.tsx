@@ -1,5 +1,6 @@
 import Logo from "./homeComponents/Logo"
 import NotificationLogo from "./homeComponents/NotificationLogo"
+import Profile from "./homeComponents/Profile"
 import SearchBar from "./homeComponents/SearchBar"
 import SettingsLogo from "./homeComponents/SettingsLogo"
 
@@ -12,6 +13,7 @@ const HeaderForGigScreens = () => {
       <div>
         <NotificationLogo/>
         <SettingsLogo/>
+        <Profile/>
       </div>
     </div>
   )
