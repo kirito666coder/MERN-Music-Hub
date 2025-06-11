@@ -1,8 +1,8 @@
-import Logo from "./homeComponents/Logo"
-import NotificationLogo from "./homeComponents/NotificationLogo"
-import Profile from "./homeComponents/Profile"
-import SearchBar from "./homeComponents/SearchBar"
-import SettingsLogo from "./homeComponents/SettingsLogo"
+import Logo from "../home/homeComponents/Logo"
+import NotificationLogo from "../home/homeComponents/NotificationLogo"
+import Profile from "../home/homeComponents/Profile"
+import SearchBar from "../home/homeComponents/SearchBar"
+import SettingsLogo from "../home/homeComponents/SettingsLogo"
 
 
 const HeaderForBigScreens = () => {

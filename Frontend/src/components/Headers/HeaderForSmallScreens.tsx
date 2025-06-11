@@ -1,6 +1,6 @@
-import Logo from "./homeComponents/Logo"
-import NotificationLogo from "./homeComponents/NotificationLogo"
-import Profile from "./homeComponents/Profile"
+import Logo from "../home/homeComponents/Logo"
+import NotificationLogo from "../home/homeComponents/NotificationLogo"
+import Profile from "../home/homeComponents/Profile"
 
 const HeaderForSmallScreens = () => {
   return (

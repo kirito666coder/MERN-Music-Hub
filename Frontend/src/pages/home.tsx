@@ -1,5 +1,5 @@
-import HeaderForBigScreens from "../components/home/HeaderForBigScreens"
-import HeaderForSmallScreens from "../components/home/HeaderForSmallScreens"
+import HeaderForBigScreens from "../components/Headers/HeaderForBigScreens"
+import HeaderForSmallScreens from "../components/Headers/HeaderForSmallScreens"
 
 
 const Home = () => {
@@ -9,6 +9,9 @@ const Home = () => {
         <HeaderForBigScreens/>
         <HeaderForSmallScreens/>
       </header>
+      <nav>
+
+      </nav>
     </>
   )
 }
