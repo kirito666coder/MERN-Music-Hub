@@ -6,8 +6,19 @@ const MainLayout = () => {
   return (
     <>
       <Header/>
+      
+      <div className="flex flex-col md:flex-row">
+        
+        <nav className="order-2 md:order-1 w-full md:w-64">
       <NavBar/>
+        </nav>
+
+        <main className="flex-1 order-1 md:order-2">
       <Outlet/>
+        </main>
+        
+      </div>
+
     </>
   )
 }
