@@ -1,8 +1,8 @@
 
 const Profile = () => {
   return (
-    <div>
-      
+    <div className="bg-gray-500 h-12 w-12 rounded-full">
+      <img src="" alt="Profile" />
     </div>
   )
 }
