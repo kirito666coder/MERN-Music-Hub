@@ -41,7 +41,7 @@ export default function SearchBar() {
   const [value, setValue] = React.useState<searchInterface[]>([]);
 
   return (
-    <div className="flex w-[60%]">
+    <div className="flex w-[60%] h-13">
       <Autocomplete
         className="bg-gray-100 rounded-l-full w-full"
         multiple
@@ -77,7 +77,7 @@ export default function SearchBar() {
           <CustomTextField {...params} label="Search here" placeholder="Popular Ones" />
         )}
       />
-      <button className="h-14 pr-4 rounded-r-full bg-gray-100 text-gray-500">
+      <button className="h-13 pr-4 rounded-r-full bg-gray-100 text-gray-500">
         Search
       </button>
     </div>
