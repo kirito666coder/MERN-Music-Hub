@@ -3,6 +3,7 @@ import Login from "../pages/Login"
 import Home from "../pages/home"
 import PrivateRoute from "../components/auth/PrivateRoute"
 import PublicRoute from "../components/auth/PublicRoute"
+import MainLayout from "../components/MainLayout"
 
 
 const AppRoutes = () => {
@@ -14,12 +15,14 @@ const AppRoutes = () => {
           </PublicRoute>
         }/>
 
+        <Route element={<MainLayout/>}>
         <Route path="/" element={
           <PrivateRoute>
             <Home/>
           </PrivateRoute>
         }/>
 
+        </Route>
 
     </Routes>
   )
