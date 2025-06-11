@@ -15,12 +15,13 @@ const AppRoutes = () => {
           </PublicRoute>
         }/>
 
-        <Route element={<MainLayout/>}>
-        <Route path="/" element={
+        <Route element={
           <PrivateRoute>
-            <Home/>
+          <MainLayout/>
           </PrivateRoute>
-        }/>
+          }>
+            
+        <Route path="/" element={<Home/>}/>
 
         </Route>
 
