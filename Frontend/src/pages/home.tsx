@@ -5,13 +5,7 @@ import HeaderForSmallScreens from "../components/Headers/HeaderForSmallScreens"
 const Home = () => {
   return (
     <>
-      <header>
-        <HeaderForBigScreens/>
-        <HeaderForSmallScreens/>
-      </header>
-      <nav>
-
-      </nav>
+      
     </>
   )
 }
