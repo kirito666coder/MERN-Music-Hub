@@ -4,7 +4,7 @@ import HeaderForSmallScreens from "./Headers/HeaderForSmallScreens"
 
 const MainLayout = () => {
   return (
-    <div>
+    <>
       <header>
         <HeaderForBigScreens/>
         <HeaderForSmallScreens/>
@@ -13,7 +13,7 @@ const MainLayout = () => {
 
       </nav>
       <Outlet/>
-    </div>
+    </>
   )
 }
 
