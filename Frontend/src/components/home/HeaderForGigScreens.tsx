@@ -7,10 +7,10 @@ import SettingsLogo from "./homeComponents/SettingsLogo"
 
 const HeaderForGigScreens = () => {
   return (
-    <div className="p-2 flex justify-around items-center gap-2">
+    <div className="p-2 flex justify-around items-center gap-2 max-w-screen">
       <Logo/>
       <SearchBar/>
-      <div>
+      <div className="flex gap-3">
         <NotificationLogo/>
         <SettingsLogo/>
         <Profile/>
