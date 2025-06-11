@@ -43,7 +43,7 @@ export default function SearchBar() {
   return (
       <div className='flex w-[60%]'>
     <Autocomplete
-    className='bg-gray-300 rounded-l-full w-full'
+    className='bg-gray-100 rounded-l-full w-full'
       multiple
       id="fixed-tags-demo"
       value={value}
@@ -70,7 +70,7 @@ export default function SearchBar() {
         <CustomTextField {...params} label="Search here" placeholder="Popular Ones" />
       )}
     />
-   <button className='h-14 pr-4 rounded-r-full bg-gray-300'>
+   <button className='h-14 pr-4 rounded-r-full bg-gray-100 text-gray-500'>
     Search
    </button>
     </div>
