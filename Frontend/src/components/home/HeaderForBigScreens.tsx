@@ -7,7 +7,7 @@ import SettingsLogo from "./homeComponents/SettingsLogo"
 
 const HeaderForBigScreens = () => {
   return (
-    <div className="p-2 flex justify-around items-center gap-2 max-w-screen">
+    <div className="p-2 hidden md:flex justify-around items-center gap-2 max-w-screen">
       <Logo/>
       <SearchBar/>
       <div className="flex justify-center items-center gap-5 lg:gap-8">
