@@ -1,4 +1,5 @@
 import HeaderForBigScreens from "../components/home/HeaderForBigScreens"
+import HeaderForSmallScreens from "../components/home/HeaderForSmallScreens"
 
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <>
       <header>
         <HeaderForBigScreens/>
+        <HeaderForSmallScreens/>
       </header>
     </>
   )
