@@ -6,10 +6,10 @@ const MainLayout = () => {
   return (
     <>
       <Header/>
-      
-      <div className="flex flex-col md:flex-row">
+
+      <div className="flex flex-col md:flex-row h-[91vh]">
         
-        <nav className="order-2 md:order-1 w-full md:w-64">
+        <nav className="order-2 md:order-1 w-full md:w-64 md:h-full">
       <NavBar/>
         </nav>
 

@@ -53,7 +53,7 @@ export default function SearchBar() {
           ...newValue.filter((option) => !fixedOptions.includes(option)),
         ]);
       }}
-      options={top100Films}
+      options={search}
       getOptionLabel={(option) => option?.title}
       renderTags={(values, getTagProps) =>
         values.map((option, index) => (
@@ -77,7 +77,7 @@ export default function SearchBar() {
   );
 }
 
-const top100Films = [
+const search = [
   { title: 'The Shawshank Redemption', id: '112' },
   { title: 'The Godfather', id: '113' },
   { title: 'The Godfather: Part II', id: '114' },

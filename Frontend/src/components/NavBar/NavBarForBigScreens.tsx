@@ -1,8 +1,8 @@
 
 const NavBarForBigScreens = () => {
   return (
-    <div>
-      
+    <div className="bg-red-400 h-[100%]">
+      ss
     </div>
   )
 }
