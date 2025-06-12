@@ -8,11 +8,11 @@ const NavBarForBigScreens = () => {
   return (
     <div className="h-[100%] md:flex md:justify-center md:items-center">
       
-      <ul className="flex flex-row md:flex-col justify-around md:justify-center items-center md:h-[60%] rounded-full md:w-[80%] bg-blue-500">
+      <ul className="flex flex-row md:flex-col justify-around items-center md:h-[50%] rounded-full md:w-[80%] bg-gray-100 h-16">
         <NavItem to="/" label="Home" icon={<SongIconSvg/>}/>
         <NavItem to="/" label="Genre" icon={<SpeakericonSvg/>}/>
         <NavItem to="/" label="My Library" icon={<LibraryiconSvg/>}/>
-        <NavItem to="/" label="Liked Songs" icon={<LikeIconSvg/>}/>
+        <NavItem to="/" label="Liked" icon={<LikeIconSvg/>}/>
       </ul>
 
     </div>
