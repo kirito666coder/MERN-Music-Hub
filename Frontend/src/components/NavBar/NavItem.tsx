@@ -1,4 +1,9 @@
 
+interface NavItemProps{
+    to:string,
+    label:string
+}
+
 const NavItem = () => {
   return (
     <div>
