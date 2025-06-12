@@ -6,9 +6,9 @@ import NavItem from "./NavItem"
 
 const NavBarForBigScreens = () => {
   return (
-    <div className="bg-red-400 h-[100%]">
+    <div className="h-[100%] md:flex md:justify-center md:items-center">
       
-      <ul className="flex flex-row md:flex-col justify-around md:justify-center items-center md:h-[60%] rounded-full bg-blue-500">
+      <ul className="flex flex-row md:flex-col justify-around md:justify-center items-center md:h-[60%] rounded-full md:w-[80%] bg-blue-500">
         <NavItem to="/" label="Home" icon={<SongIconSvg/>}/>
         <NavItem to="/" label="Genre" icon={<SpeakericonSvg/>}/>
         <NavItem to="/" label="My Library" icon={<LibraryiconSvg/>}/>
