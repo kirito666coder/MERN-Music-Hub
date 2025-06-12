@@ -1,9 +1,21 @@
 
 const LikeIconSvg = () => {
   return (
-    <div>
-      
-    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none">
+  <defs>
+    <linearGradient id="grayBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d1d5db" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+  </defs>
+
+  <path
+    fill="url(#grayBlue)"
+    d="M12 21c-.5 0-1-.2-1.4-.6C6 16.2 3 13.3 3 9.8 3 7.3 5 5.3 7.5 5.3c1.6 0 3.2.9 4.1 2.3
+       .9-1.4 2.5-2.3 4.1-2.3C18.9 5.3 21 7.3 21 9.8c0 3.5-3 6.4-7.6 10.6-.4.4-.9.6-1.4.6z"
+  />
+</svg>
+
   )
 }
 
