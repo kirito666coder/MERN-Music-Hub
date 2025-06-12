@@ -1,3 +1,7 @@
+import LibraryiconSvg from "../../icons/LibraryiconSvg"
+import LikeIconSvg from "../../icons/LikeIconSvg"
+import SongIconSvg from "../../icons/SongIconSvg"
+import SpeakericonSvg from "../../icons/SpeakericonSvg"
 import NavItem from "./NavItem"
 
 const NavBarForBigScreens = () => {
@@ -5,10 +9,10 @@ const NavBarForBigScreens = () => {
     <div className="bg-red-400 h-[100%]">
       
       <ul>
-        <NavItem to="/" label="Home"/>
-        <NavItem to="/" label="Genre"/>
-        <NavItem to="/" label="My Library"/>
-        <NavItem to="/" label="Liked Songs"/>
+        <NavItem to="/" label="Home" icon={<SongIconSvg/>}/>
+        <NavItem to="/" label="Genre" icon={<SpeakericonSvg/>}/>
+        <NavItem to="/" label="My Library" icon={<LibraryiconSvg/>}/>
+        <NavItem to="/" label="Liked Songs" icon={<LikeIconSvg/>}/>
       </ul>
 
     </div>
