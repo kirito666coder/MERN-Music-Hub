@@ -1,12 +1,12 @@
 
-const SongIconSvg = () => {
+const SongIconSvg = ({active}:{active?:boolean}) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
   stroke="currentColor" className="w-9 h-9">
   <defs>
     <linearGradient id="musicGradient" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#d1d5db" /> 
-      <stop offset="100%" stop-color="#3b82f6" /> 
+      <stop offset="100%" stop-color={`${active?"#3b82f6":""}`} /> 
     </linearGradient>
   </defs>
   <path stroke="url(#musicGradient)" stroke-linecap="round" stroke-linejoin="round"
