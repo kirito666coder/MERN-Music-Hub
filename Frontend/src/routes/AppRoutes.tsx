@@ -21,7 +21,10 @@ const AppRoutes = () => {
           </PrivateRoute>
           }>
             
-        <Route path="/" element={<Home/>}/>
+        <Route index element={<Home/>}/>
+        <Route path="/genre" element={<Home/>}/>
+        <Route path="/library" element={<Home/>}/>
+        <Route path="/liked" element={<Home/>}/>
 
         </Route>
 
