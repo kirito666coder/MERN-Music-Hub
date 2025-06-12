@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom"
+import NavItem from "./NavItem"
 
 const NavBarForBigScreens = () => {
   return (
     <div className="bg-red-400 h-[100%]">
       
       <ul>
-        <Link to={'/'}><li>home</li></Link>
-        <Link to={'/'}><li>Genre</li></Link>
-        <Link to={'/'}><li>my Libary</li></Link>
-        <Link to={'/'}><li>lied songs</li></Link>
+        <NavItem to="/" label="Home"/>
+        <NavItem to="/" label="Genre"/>
+        <NavItem to="/" label="My Library"/>
+        <NavItem to="/" label="Liked Songs"/>
       </ul>
 
     </div>
