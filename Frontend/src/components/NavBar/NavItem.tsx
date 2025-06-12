@@ -4,7 +4,7 @@ interface NavItemProps{
     label:string
 }
 
-const NavItem = () => {
+const NavItem = ({to,label}:NavItemProps) => {
   return (
     <div>
       
