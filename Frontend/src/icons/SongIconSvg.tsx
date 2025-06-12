@@ -2,7 +2,7 @@
 const SongIconSvg = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-  stroke="currentColor" className="w-12 h-12">
+  stroke="currentColor" className="w-9 h-9">
   <defs>
     <linearGradient id="musicGradient" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#d1d5db" /> 
