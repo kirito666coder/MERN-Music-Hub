@@ -1,11 +1,11 @@
 
-const SpeakericonSvg = () => {
+const SpeakericonSvg = ({active}:{active?:boolean}) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 64 64">
   <defs>
     <linearGradient id="grayBlue" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#d1d5db"/>
-      <stop offset="100%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color={`${active?"#3b82f6":""}`}/>
     </linearGradient>
   </defs>
 
