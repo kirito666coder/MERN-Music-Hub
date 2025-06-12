@@ -8,7 +8,7 @@ const NavBarForBigScreens = () => {
   return (
     <div className="bg-red-400 h-[100%]">
       
-      <ul>
+      <ul className="flex flex-row md:flex-col">
         <NavItem to="/" label="Home" icon={<SongIconSvg/>}/>
         <NavItem to="/" label="Genre" icon={<SpeakericonSvg/>}/>
         <NavItem to="/" label="My Library" icon={<LibraryiconSvg/>}/>
