@@ -18,9 +18,9 @@ const TrandingNewHits = () => {
 
             <div className=" w-full flex  justify-end gap-1">
                  <img src="./assets/image.jpg" alt="image" className="w-39 h-full object-cover grayscale hover:grayscale-0 transition-all duration-300" />
-                 <img src="./assets/image.jpg" alt="image" className="w-30 h-full object-cover hidden md:block grayscale hover:grayscale-0 transition-all duration-300" />
-                 <img src="./assets/image.jpg" alt="image" className="w-50 h-full object-cover hidden md:block grayscale hover:grayscale-0 transition-all duration-300" />
-                 <img src="./assets/image.jpg" alt="image" className="w-35 h-full object-cover hidden md:block grayscale hover:grayscale-0 transition-all duration-300" />
+                 <img src="./assets/image1.jpg" alt="image" className="w-30 h-full object-cover hidden md:block grayscale hover:grayscale-0 transition-all duration-300" />
+                 <img src="./assets/image2.jpg" alt="image" className="w-50 h-full object-cover hidden md:block grayscale hover:grayscale-0 transition-all duration-300" />
+                 <img src="./assets/image3.jpg" alt="image" className="w-35 h-full object-cover hidden md:block grayscale hover:grayscale-0 transition-all duration-300" />
 
             </div>
 
