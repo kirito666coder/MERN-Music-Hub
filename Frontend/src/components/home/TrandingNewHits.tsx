@@ -2,8 +2,8 @@ import LikeButton from "../icons/LikeButton"
 
 const TrandingNewHits = () => {
     return (
-        <div className="bg-gradient-to-br from-cyan-800/90  via-cyan-950 to-cyan-950 mx-2.5 mt-4 rounded-md h-40">
-            <div className="px-8 text-white">
+        <div className="bg-gradient-to-br from-cyan-800/90  via-cyan-950 to-cyan-950 mx-2.5 mt-4 rounded-md h-40 flex justify-between">
+            <div className="px-8 text-white w-full">
                 <h2 className=" text-xs pt-3 opacity-70">Tranding New Hit</h2>
                 <h1 className="text-4xl font-bold pt-3">Lovely</h1>
                 <h3 className="font-semibold text-sm pt-2">Billie Eilish</h3>
@@ -14,6 +14,10 @@ const TrandingNewHits = () => {
                 </button>
                   <LikeButton/>
                   </div>
+            </div>
+
+            <div className="bg-red-400 w-full">
+                 
             </div>
 
         </div>
