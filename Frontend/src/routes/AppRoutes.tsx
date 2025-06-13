@@ -4,6 +4,9 @@ import Home from "../pages/home"
 import PrivateRoute from "../components/auth/PrivateRoute"
 import PublicRoute from "../components/auth/PublicRoute"
 import MainLayout from "../components/MainLayout"
+import Genre from "../pages/Genre"
+import Library from "../pages/Library"
+import LikedSong from "../pages/LikedSong"
 
 
 const AppRoutes = () => {
@@ -22,9 +25,9 @@ const AppRoutes = () => {
           }>
             
         <Route index element={<Home/>}/>
-        <Route path="/genre" element={<Home/>}/>
-        <Route path="/library" element={<Home/>}/>
-        <Route path="/liked" element={<Home/>}/>
+        <Route path="/genre" element={<Genre/>}/>
+        <Route path="/library" element={<Library/>}/>
+        <Route path="/liked" element={<LikedSong/>}/>
 
         </Route>
 
