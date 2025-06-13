@@ -1,8 +1,9 @@
+import TrandingNewHits from "@/components/home/TrandingNewHits"
 
 const Home = () => {
   return (
     <>
-      <h1>home page</h1>
+      <TrandingNewHits/>
     </>
   )
 }
