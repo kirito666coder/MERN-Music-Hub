@@ -2,7 +2,7 @@ import LikeButton from "../icons/LikeButton"
 
 const TrandingNewHits = () => {
     return (
-        <div className="bg-gradient-to-br from-cyan-800/90  via-cyan-950 to-cyan-950 mx-2.5 mt-4 rounded-md h-40 flex justify-between">
+        <div className="bg-gradient-to-br from-cyan-800/90  via-cyan-950 to-cyan-950 mx-2.5 mt-4 rounded-md h-40 flex justify-between overflow-hidden">
             <div className="px-8 text-white w-full">
                 <h2 className=" text-xs pt-3 opacity-70">Tranding New Hit</h2>
                 <h1 className="text-4xl font-bold pt-3">Lovely</h1>
@@ -16,9 +16,11 @@ const TrandingNewHits = () => {
                   </div>
             </div>
 
-            <div className="bg-red-400 w-full">
-                 <img src="./assets/image.jpg" alt="image" />
-                 <img src="./assets/image.jpg" alt="image" />
+            <div className=" w-full flex  justify-end gap-1">
+                 <img src="./assets/image.jpg" alt="image" className="w-35 h-full object-cover grayscale hover:grayscale-0 transition-all duration-300" />
+                 <img src="./assets/image.jpg" alt="image" className="w-30 h-full object-cover hidden md:block grayscale hover:grayscale-0 transition-all duration-300" />
+                 <img src="./assets/image.jpg" alt="image" className="w-50 h-full object-cover hidden md:block grayscale hover:grayscale-0 transition-all duration-300" />
+                 <img src="./assets/image.jpg" alt="image" className="w-35 h-full object-cover hidden md:block grayscale hover:grayscale-0 transition-all duration-300" />
 
             </div>
 
