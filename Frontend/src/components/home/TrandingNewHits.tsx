@@ -1,4 +1,4 @@
-import LikeIconSvg from "@/icons/LikeIconSvg"
+import LikeIconSvg from "@/components/icons/LikeIconSvg"
 
 const TrandingNewHits = () => {
     return (

@@ -1,7 +1,7 @@
-import LibraryiconSvg from "../../icons/LibraryiconSvg"
-import LikeIconSvg from "../../icons/LikeIconSvg"
-import SongIconSvg from "../../icons/SongIconSvg"
-import SpeakericonSvg from "../../icons/SpeakericonSvg"
+import LibraryiconSvg from "../icons/LibraryiconSvg"
+import LikeIconSvg from "../icons/LikeIconSvg"
+import SongIconSvg from "../icons/SongIconSvg"
+import SpeakericonSvg from "../icons/SpeakericonSvg"
 import NavItem from "./NavItem"
 
 const NavBarForBigScreens = () => {
