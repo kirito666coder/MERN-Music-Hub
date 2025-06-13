@@ -1,7 +1,7 @@
 
 const Logo = () => {
     return (
-        <h1 className="text-gray-500 text-xl font-bold flex gap-0.5">
+        <h1 className="text-rose-400 text-xl font-bold flex gap-0.5">
             <i>
                 Hello
             </i>
