@@ -17,7 +17,9 @@ const TrandingNewHits = () => {
             </div>
 
             <div className="bg-red-400 w-full">
-                 
+                 <img src="./assets/image.jpg" alt="image" />
+                 <img src="./assets/image.jpg" alt="image" />
+
             </div>
 
         </div>
