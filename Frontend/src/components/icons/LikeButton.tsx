@@ -2,7 +2,7 @@
 const LikeButton = ({Liked}:{Liked?:boolean}) => {
     const gradientId = "likeGradient" + (Liked ? "-active" : "-inactive")
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
             <defs>
                 <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
                     <stop offset="0%" stopColor={Liked ? "#f43f5e" : "currentColor"} />
