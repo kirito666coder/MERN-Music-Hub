@@ -6,8 +6,8 @@ const SongIconSvg = ({ active }: { active?: boolean }) => {
       stroke="currentColor" className="w-9 h-9">
       <defs>
         <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor={active ? "#f43f5e" : ""} />
-          <stop offset="100%" stopColor={active ? "#3b82f6" : ""} />
+          <stop offset="0%" stopColor={active ? "#f43f5e" : "currentColor"} />
+          <stop offset="100%" stopColor={active ? "#3b82f6" : "currentColor"} />
         </linearGradient>
       </defs>
       <path stroke={`url(#${gradientId})`} strokeLinecap="round" strokeLinejoin="round"
