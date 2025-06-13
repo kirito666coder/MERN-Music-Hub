@@ -5,7 +5,7 @@ const LibraryiconSvg = ({ active }: { active?: boolean }) => {
     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 64 64">
       <defs>
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#d1d5db" />
+         <stop offset="0%" stopColor={active ? "#f43f5e" : ""} />
           <stop offset="100%" stopColor={active ? "#3b82f6" : ""} />
         </linearGradient>
       </defs>

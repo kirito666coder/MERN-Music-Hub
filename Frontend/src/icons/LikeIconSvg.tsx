@@ -6,7 +6,7 @@ const LikeIconSvg = ({active}:{active?:boolean}) => {
     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none">
   <defs>
     <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#d1d5db" />
+     <stop offset="0%" stopColor={active ? "#f43f5e" : ""} />
       <stop offset="100%" stop-color={`${active?"#3b82f6":""}`} />
     </linearGradient>
   </defs>
