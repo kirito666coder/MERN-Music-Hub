@@ -16,7 +16,7 @@ const TrandingNewHits = () => {
                   </div>
             </div>
 
-                 <h4 className="text-lg font-semibold opacity-90 absolute bottom-5 left-[48%] " >6Million Plays</h4>
+                 <h4 className="text-lg font-semibold opacity-90 absolute bottom-5 left-[48%] text-white" >6Million Plays</h4>
 
             <div className=" w-full flex  justify-end gap-1 ">
                  <img src="./assets/image.jpg" alt="image" className="w-39 h-full object-cover grayscale hover:grayscale-0 transition-all duration-300" />
