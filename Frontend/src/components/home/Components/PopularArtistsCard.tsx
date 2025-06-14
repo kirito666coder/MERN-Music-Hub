@@ -1,3 +1,4 @@
+import PlayButtonForPopulareARtistsCardAndItFroPopularArtists from "./PlayButtonForPopulareARtistsCardAndItFroPopularArtists"
 
 const PopularArtistsCard = () => {
   return (
@@ -20,7 +21,7 @@ const PopularArtistsCard = () => {
 
 
             <div className=" flex justify-center items-center border-4  h-15 w-15 rounded-full mr-0.5">
-              play
+              <PlayButtonForPopulareARtistsCardAndItFroPopularArtists/>
             </div>
 
 
