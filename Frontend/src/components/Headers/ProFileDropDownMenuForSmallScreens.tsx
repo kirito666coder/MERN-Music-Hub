@@ -8,14 +8,17 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Profile from "../MainLayoutComponents/Profile"
 import { useTheme } from "@/components/theme-provider"
+import { useSelector } from "react-redux"
+import type { RootState } from "@/app/store"
 
 const ProFileDropDownMenuForSmallScreens = () => {
+    const {user} = useSelector((state:RootState)=>state.user)
     const {setTheme} = useTheme()
     return (
         <DropdownMenu>
             <DropdownMenuTrigger><Profile/></DropdownMenuTrigger>
             <DropdownMenuContent>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuLabel>Hi {user?.name}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Profile</DropdownMenuItem>
                 <DropdownMenuItem>Settings</DropdownMenuItem>
