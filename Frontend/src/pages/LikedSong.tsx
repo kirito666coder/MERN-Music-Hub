@@ -2,7 +2,9 @@
 const LikedSong = () => {
   return (
     <div>
-      Liked songs
+      <div className="flex justify-center items-center text-2xl font-bold">
+      <h2>Liked songs</h2>
+      </div>
     </div>
   )
 }
