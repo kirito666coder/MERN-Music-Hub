@@ -13,7 +13,7 @@ const MainLayout = () => {
       <NavBar/>
         </nav>
 
-        <main className="flex-1 order-1 md:order-2">
+        <main className="flex-1 order-1 md:order-2 overflow-y-scroll [scrollbar-width:0] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
       <Outlet/>
         </main>
         
