@@ -1,3 +1,4 @@
+import PopularSongsCarForPopularSongsSection from "./Components/PopularSongsCarForPopularSongsSection"
 
 const PopularSongs = () => {
   return (
@@ -8,7 +9,7 @@ const PopularSongs = () => {
       </div>
       
       <div>
-        
+        <PopularSongsCarForPopularSongsSection/>
       </div>
 
     </div>
