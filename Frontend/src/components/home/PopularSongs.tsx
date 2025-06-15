@@ -8,7 +8,7 @@ const PopularSongs = () => {
       <span className="font-semibold opacity-55 cursor-pointer">See All</span>
       </div>
       
-      <div className="mx-4 h-40 w-[95%] md:w-[98%] overflow-x-scroll overflow-y-hidden flex flex-row gap-3 scroll-smooth  [scrollbar-width:0] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+      <div className="mx-4 h-60 w-[95%] md:w-[98%] overflow-x-scroll overflow-y-hidden flex flex-row gap-3 scroll-smooth  [scrollbar-width:0] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         <PopularSongsCarForPopularSongsSection/>
         <PopularSongsCarForPopularSongsSection/>
         <PopularSongsCarForPopularSongsSection/>
