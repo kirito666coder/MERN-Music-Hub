@@ -1,11 +1,12 @@
 
 const Logo = () => {
     return (
-        <h1 className="text-rose-400 text-xl font-bold flex gap-0.5">
+        <h1 className=" bg-gradient-to-br from-[#f43f5e] to-[#0062ff] bg-clip-text text-transparent text-xl font-bold flex gap-0.5">
             <i>
                 Hello
             </i>
-            <span className="text-sky-400 font-normal">Music</span>
+            <span className=" font-normal">Music</span>
+
         </h1>
     )
 }
