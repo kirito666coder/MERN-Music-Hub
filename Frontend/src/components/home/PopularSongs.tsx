@@ -6,6 +6,11 @@ const PopularSongs = () => {
       <h3 className="text-2xl font-bold">Popular Songs</h3>
       <span className="font-semibold opacity-55 cursor-pointer">See All</span>
       </div>
+      
+      <div>
+        
+      </div>
+
     </div>
   )
 }
