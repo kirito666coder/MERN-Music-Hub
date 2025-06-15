@@ -8,7 +8,7 @@ const PopularSongs = () => {
       <span className="font-semibold opacity-55 cursor-pointer">See All</span>
       </div>
       
-      <div>
+      <div className="mx-2.5">
         <PopularSongsCarForPopularSongsSection/>
       </div>
 
