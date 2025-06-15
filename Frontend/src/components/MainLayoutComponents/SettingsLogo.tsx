@@ -2,6 +2,7 @@ const SettingsLogo = () => {
   return (
     <div>
       <svg
+        className=" cursor-pointer"
         width="30px"
         height="30px"
         viewBox="0 0 24 24"

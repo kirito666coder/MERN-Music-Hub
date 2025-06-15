@@ -5,6 +5,7 @@ const NotificationLogo = () => {
     <div>
       {messages > 0 ? (
         <svg
+          className=" cursor-pointer"
           fill="currentColor"
           width="30px"
           height="30px"
@@ -16,6 +17,7 @@ const NotificationLogo = () => {
         </svg>
       ) : (
         <svg
+          className=" cursor-pointer"
           width="30px"
           height="30px"
           viewBox="0 0 24 24"

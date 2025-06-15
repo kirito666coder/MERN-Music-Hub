@@ -4,7 +4,7 @@ import type { RootState } from "../../app/store"
 const Profile = () => {
     const {user} = useSelector((state:RootState)=>state.user)
   return (
-    <div>
+    <div className=" cursor-pointer">
       <img 
       src={`${user?.image}`} 
       alt="Profile"
