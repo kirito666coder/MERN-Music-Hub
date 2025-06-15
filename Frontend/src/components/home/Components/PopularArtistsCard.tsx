@@ -9,7 +9,7 @@ const PopularArtistsCard = () => {
           
           
           <div className="flex  gap-2.5 items-center h-full border-2 ">
-        <img src="./assets/image.jpg" alt="" className=" w-15 h-15 rounded-full object-cover " />
+        <img src="./assets/image.jpg" alt="" className=" cursor-pointer w-15 h-15 rounded-full object-cover " />
             <div>
             <h3 className="text-2xl font-bold">Billie Eilish</h3>
              <h5 className="text-md font-bold">
