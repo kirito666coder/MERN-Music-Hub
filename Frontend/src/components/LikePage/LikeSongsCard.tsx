@@ -1,5 +1,8 @@
+import LikeButton from "../icons/LikeButton"
 
 const LikeSongsCard = () => {
+
+  
   return (
     <div className="bg-gradient-to-br  from-[#ff788f] to-[#70a4f7] dark:from-[#c4213c] dark:to-[#1770ff] h-20 w-full rounded-md flex items-center">
       <div className=" flex justify-center items-center gap-2">
@@ -9,13 +12,13 @@ const LikeSongsCard = () => {
         <div className="flex gap-2  font-semibold ">
           <span>artistname</span>
           <span>plays 9M</span>
-          <span>Likes 7M</span>
+          <span className="flex"><LikeButton Liked={false}/> 7M</span>
         </div>
 
       </div>
 
       </div>
-      
+
     </div>
   )
 }
