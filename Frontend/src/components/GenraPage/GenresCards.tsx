@@ -1,7 +1,7 @@
 
 const GenresCards = () => {
   return (
-    <div>
+    <div className="bg-white  h-80 w-[99%] ">
       
     </div>
   )
