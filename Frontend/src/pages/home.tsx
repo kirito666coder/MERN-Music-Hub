@@ -1,3 +1,4 @@
+import AllNewSongs from "@/components/home/AllNewSongs"
 import PopularArtists from "@/components/home/PopularArtists"
 import PopularSongs from "@/components/home/PopularSongs"
 import TrandingNewHits from "@/components/home/TrandingNewHits"
@@ -8,6 +9,7 @@ const Home = () => {
       <TrandingNewHits/>
       <PopularArtists/>
       <PopularSongs/>
+      <AllNewSongs/>
     </>
   )
 }
