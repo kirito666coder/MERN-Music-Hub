@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Logo from "../MainLayoutComponents/Logo"
 import NotificationLogo from "../MainLayoutComponents/NotificationLogo"
 import Profile from "../MainLayoutComponents/Profile"
@@ -15,7 +16,11 @@ const HeaderForBigScreens = () => {
         <NotificationLogo/>
         <ModeToggle/>
         <SettingsLogo/>
+        
+        <Link to={"/profile"}>
         <Profile/>
+        </Link>
+        
       </div>
     </div>
   )
