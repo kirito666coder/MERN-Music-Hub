@@ -1,5 +1,5 @@
-import PlayButton from "../Buttons/PlayButton"
-import LikeButton from "../icons/LikeButton"
+import PlayButton from "../../Buttons/PlayButton"
+import LikeButton from "../../icons/LikeButton"
 
 const LikeSongsCard = () => {
 

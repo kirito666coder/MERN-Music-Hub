@@ -1,4 +1,4 @@
-import LikeList from "@/components/LikePage/LikeList"
+import LikeList from "@/components/Page/LikePage/LikeList"
 
 const LikedSong = () => {
   return (
