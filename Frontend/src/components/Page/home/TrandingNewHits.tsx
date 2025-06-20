@@ -1,4 +1,4 @@
-import LikeButton from "../icons/LikeButton"
+import LikeButton from "../../icons/LikeButton"
 
 const TrandingNewHits = () => {
     return (

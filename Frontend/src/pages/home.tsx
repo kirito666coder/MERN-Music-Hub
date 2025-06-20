@@ -1,7 +1,7 @@
-import AllNewSongs from "@/components/home/AllNewSongs"
-import PopularArtists from "@/components/home/PopularArtists"
-import PopularSongs from "@/components/home/PopularSongs"
-import TrandingNewHits from "@/components/home/TrandingNewHits"
+import AllNewSongs from "@/components/Page/home/AllNewSongs"
+import PopularArtists from "@/components/Page/home/PopularArtists"
+import PopularSongs from "@/components/Page/home/PopularSongs"
+import TrandingNewHits from "@/components/Page/home/TrandingNewHits"
 
 const Home = () => {
   return (
