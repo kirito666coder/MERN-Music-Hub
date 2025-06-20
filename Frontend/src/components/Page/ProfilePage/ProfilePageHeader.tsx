@@ -11,7 +11,7 @@ const ProfilePageHeader = () => {
        </div>
     </div>
     <p className=" h-10 w-[90%] rounded-2xl border-2 mx-auto mt-5 flex items-center px-3 py-1">Bio</p>
-     
+     <button className="h-10 w-[90%] rounded-2xl border-3 mx-auto mt-5 flex items-center justify-center py-5 dark:hover:bg-gray-700 dark:bg-gray-800 cursor-pointer bg-gray-300 hover:bg-gray-200">Edit Profile</button>
     </div>
   )
 }
