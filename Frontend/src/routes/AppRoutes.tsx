@@ -7,6 +7,7 @@ import MainLayout from "../components/MainLayout"
 import Genre from "../pages/Genre"
 import Library from "../pages/Library"
 import LikedSong from "../pages/LikedSong"
+import Profile from "@/pages/Profile"
 
 
 const AppRoutes = () => {
@@ -28,7 +29,7 @@ const AppRoutes = () => {
         <Route path="/genre" element={<Genre/>}/>
         <Route path="/library" element={<Library/>}/>
         <Route path="/liked" element={<LikedSong/>}/>
-
+        <Route path="/Profile" element={<Profile/>}/>
         </Route>
 
     </Routes>
