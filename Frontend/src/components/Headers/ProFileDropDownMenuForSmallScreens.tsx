@@ -10,6 +10,7 @@ import Profile from "../MainLayoutComponents/Profile"
 import { useTheme } from "@/components/theme-provider"
 import { useSelector } from "react-redux"
 import type { RootState } from "@/app/store"
+import { Link } from "react-router-dom"
 
 const ProFileDropDownMenuForSmallScreens = () => {
     const { user } = useSelector((state: RootState) => state.user)
@@ -24,7 +25,11 @@ const ProFileDropDownMenuForSmallScreens = () => {
                     </h1>
                 {user?.name}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>
+                    <Link to={"/profile"}>
+                    Profile
+                    </Link>
+                    </DropdownMenuItem>
                 <DropdownMenuItem>Settings</DropdownMenuItem>
                 <DropdownMenuLabel className="border-b-1 pt-4 text-md">Theme</DropdownMenuLabel>
                 <DropdownMenuItem
