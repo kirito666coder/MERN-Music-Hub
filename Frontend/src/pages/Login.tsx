@@ -1,5 +1,4 @@
-import GoogleLoginButton from "../components/LogInpageComponents/GoogleLoginButton"
-
+import GoogleLoginButton from "@/components/Page/LogInpageComponents/GoogleLoginButton"
 
 const Login = () => {
   return (
