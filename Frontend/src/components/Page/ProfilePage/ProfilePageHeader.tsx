@@ -10,7 +10,8 @@ const ProfilePageHeader = () => {
         <h3 className="text-sm font-semibold">Email Address</h3>
        </div>
     </div>
-
+    <p className=" h-10 w-[90%] rounded-2xl border-2 mx-auto mt-5 flex items-center px-3 py-1">Bio</p>
+     
     </div>
   )
 }
