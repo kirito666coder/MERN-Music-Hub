@@ -5,6 +5,7 @@ import Profile from "../MainLayoutComponents/Profile"
 import SearchBar from "../MainLayoutComponents/SearchBar"
 import SettingsLogo from "../MainLayoutComponents/SettingsLogo"
 import { ModeToggle } from "../ui/mode-toggle"
+import ProfileNavBar from "../Page/ProfilePage/ProfileNavBar"
 
 
 const HeaderForBigScreens = () => {
@@ -16,7 +17,7 @@ const HeaderForBigScreens = () => {
       <Logo/>
       {
         shouldHide ?(
-          <h1>nothing</h1>
+          <ProfileNavBar/>
         ):(
           <SearchBar/>
         )

@@ -1,8 +1,8 @@
 
 const ProfileNavBar = () => {
   return (
-    <div>
-      
+    <div className="w-[60%]">
+      Profile Navbar
     </div>
   )
 }
