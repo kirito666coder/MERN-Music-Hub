@@ -2,7 +2,7 @@
 
 const ProfilePageHeader = () => {
   return (
-    <div className="border-b-2 md:border-b-0 md:border-r-2 pb-5">
+    <div className="border-b-2 md:border-b-0 md:border-r-2 pb-5 md:mt-[37%]">
     <div className=" h-40 md:h-75 w-[90%] mx-auto flex items-center md:flex-col gap-3">
       <div className=" h-35 w-35 rounded-full bg-white md:h-60 md:w-60"></div>
        <div className="md:flex-col md:h-10 md:w-full">
