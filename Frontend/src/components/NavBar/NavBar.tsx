@@ -1,9 +1,9 @@
-import NavBarForBigScreens from "./NavBarList"
+import NavBarList from "./NavBarList"
 
 const NavBar = () => {
   return (
     <>
-      <NavBarForBigScreens/>
+      <NavBarList/>
     </>
   )
 }

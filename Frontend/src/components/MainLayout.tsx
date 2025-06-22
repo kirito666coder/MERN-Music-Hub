@@ -9,7 +9,7 @@ const MainLayout = () => {
 
       <div className="flex flex-col md:flex-row h-[91vh]">
         
-        <nav className="order-2 md:order-1 w-full md:w-35 md:h-full">
+        <nav className="order-2 md:order-1   md:h-full">
       <NavBar/>
         </nav>
 
