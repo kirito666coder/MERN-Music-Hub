@@ -1,4 +1,5 @@
-import GenresList from "@/components/GenraPage/GenresList"
+import GenresList from "@/components/Page/GenraPage/GenresList"
+
 
 const Genre = () => {
   return (
