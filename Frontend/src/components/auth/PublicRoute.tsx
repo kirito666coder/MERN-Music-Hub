@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom"
 const PublicRoute = ({children}:{children:JSX.Element}) => {
   const {user,loading} = useSelector((state:RootState)=>state.user)
   
-  if(loading) return loading
+  if(loading) return  <div>Loading...</div>
 
   return !user ? children : <Navigate to="/"/>
   

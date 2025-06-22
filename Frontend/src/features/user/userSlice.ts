@@ -23,7 +23,7 @@ interface UserState {
 
 const initialState:UserState={
     user:null,
-    loading:false,
+    loading:true,
     error:null,
 }
 
