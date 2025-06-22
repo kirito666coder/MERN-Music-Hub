@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import Logo from "../MainLayoutComponents/Logo"
 import NotificationLogo from "../MainLayoutComponents/NotificationLogo"
 import Profile from "../MainLayoutComponents/Profile"
@@ -8,10 +8,19 @@ import { ModeToggle } from "../ui/mode-toggle"
 
 
 const HeaderForBigScreens = () => {
+  const location = useLocation();
+  const shouldHide = location.pathname.startsWith('/profile')
+
   return (
     <div className="p-2 hidden md:flex justify-around items-center gap-2 max-w-screen">
       <Logo/>
-      <SearchBar/>
+      {
+        shouldHide ?(
+          <h1>nothing</h1>
+        ):(
+          <SearchBar/>
+        )
+      }
       <div className="flex justify-center items-center gap-5 lg:gap-8">
         <NotificationLogo/>
         <ModeToggle/>
