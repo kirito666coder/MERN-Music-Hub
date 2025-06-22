@@ -15,9 +15,9 @@ const AllNewSongCard = () => {
         </div>
 
       </div>
-      <button className=" absolute group-hover:bottom-2.5 right-2 bottom-[-100px] transition-all duration-300 ">
+      <div className=" absolute group-hover:bottom-2.5 right-2 bottom-[-100px] transition-all duration-300 ">
         <PlayButton/>
-      </button>
+      </div>
       </div>
 
     </div>
