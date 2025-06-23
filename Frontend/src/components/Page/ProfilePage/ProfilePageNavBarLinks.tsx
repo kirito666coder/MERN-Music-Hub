@@ -11,8 +11,8 @@ const ProfilePageNavBarLinks = ({to,label,icon}:ProfileNavbarProps) => {
 
     const isActive = location.pathname == to
   return (
-    <li>
-        <Link to={to} className={` ${isActive ? "text-rose-200" : ""} 
+    <li className="">
+        <Link to={to} className={` ${isActive ? "border-b-4 dark:border-b-blue-300 border-b-blue-600 px-1 py-1.5" : ""} 
     font-medium md:ml-2`}>
         <span>{icon}</span>
         <span>{label}</span>
