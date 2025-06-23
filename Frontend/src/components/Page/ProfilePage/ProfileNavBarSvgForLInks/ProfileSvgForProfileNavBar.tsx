@@ -11,7 +11,7 @@ const ProfileSvgForProfileNavBar = ({ active }: { active?: boolean }) => {
       viewBox="0 0 24 24"
       strokeWidth="2.5"
       stroke={`url(#${gradientId})`}
-      className="w-7 h-7 md:w-9 md:h-9"
+      className="w-7 h-7 "
     >
       <defs>
         <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
