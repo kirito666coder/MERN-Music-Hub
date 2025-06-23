@@ -32,6 +32,7 @@ const AppRoutes = () => {
         
         <Route path="/Profile" element={<Profile/>}>
         <Route index element={<div>hello</div>}/>
+        <Route path="/Profile/addSongs" element={<div>ho</div>}/>
         </Route>
         
         </Route>
