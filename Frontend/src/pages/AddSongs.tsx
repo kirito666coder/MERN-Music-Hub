@@ -14,6 +14,10 @@ const AddSongPage = () => {
     isPublic: true,
   });
 
+  const [audioFile, setAudioFile] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState("");
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -22,9 +26,20 @@ const AddSongPage = () => {
     });
   };
 
+  const handleAudioChange = (e) => {
+    const file = e.target.files[0];
+    setAudioFile(file);
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImageFile(file);
+    setImagePreview(URL.createObjectURL(file));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitting:", formData);
+    console.log("Submitting:", { ...formData, audioFile, imageFile });
     // TODO: Add actual API logic
   };
 
@@ -107,6 +122,35 @@ const AddSongPage = () => {
             onChange={handleChange}
             className="w-full border border-gray-300 rounded px-3 py-2"
           />
+        </div>
+
+        {/* Audio Upload */}
+        <div className="md:col-span-2">
+          <label className="block font-semibold mb-1">Upload Song (Audio)</label>
+          <input
+            type="file"
+            accept="audio/*"
+            onChange={handleAudioChange}
+            className="w-full"
+          />
+        </div>
+
+        {/* Cover Image Upload */}
+        <div className="md:col-span-2">
+          <label className="block font-semibold mb-1">Upload Cover Image</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="w-full"
+          />
+          {imagePreview && (
+            <img
+              src={imagePreview}
+              alt="Preview"
+              className="mt-2 w-32 h-32 object-cover rounded"
+            />
+          )}
         </div>
 
         {/* Tags */}
