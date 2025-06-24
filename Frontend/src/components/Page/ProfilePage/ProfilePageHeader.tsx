@@ -7,7 +7,7 @@ const ProfilePageHeader = () => {
   const highResImage = user?.image?.replace('=s96-c', '=s400-c');
 
   return (
-    <div className=" h-[90vh] md:flex justify-center items-center">
+    <div className=" md:h-[90vh] md:flex justify-center items-center">
     <div className="border-b-2 md:border-b-0 md:border-r-2 pb-5 ]">
       <div className=" h-40 md:h-75 w-[90%] mx-auto flex items-center md:flex-col gap-3">
         <div className="h-35 w-35 md:h-60 md:w-60 rounded-full bg-white overflow-hidden">

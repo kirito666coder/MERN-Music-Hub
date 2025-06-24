@@ -11,7 +11,7 @@ const Profile = () => {
             <div className="md:w-[25%]">
                 <ProfilePageHeader />
             </div>
-            <div className="md:w-[75%">
+            <div className="md:w-[75%]">
                 <Outlet/>
             </div>
         </div>
