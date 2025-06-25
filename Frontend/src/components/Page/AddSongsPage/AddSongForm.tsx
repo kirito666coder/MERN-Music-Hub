@@ -1,7 +1,23 @@
 import { useState } from "react";
+import type { ChangeEvent ,FormEvent } from "react";
+
+
+interface SongFormData {
+  title: string;
+  artist: string;
+  album: string;
+  genre: string;
+  language: string;
+  releaseDate: string;
+  lyrics: string;
+  description: string;
+  tags: string;
+  isPublic: boolean;
+  mood: string;
+}
 
 const AddSongForm = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<SongFormData>({
     title: "",
     artist: "",
     album: "",
@@ -15,39 +31,46 @@ const AddSongForm = () => {
     mood: "none",
   });
 
-  const [audioFile, setAudioFile] = useState(null);
-  const [imageFile, setImageFile] = useState(null);
-  const [imagePreview, setImagePreview] = useState("");
-  const [duration, setDuration] = useState(0); // in seconds
+  const [audioFile, setAudioFile] = useState<File | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string>("");
+  const [duration, setDuration] = useState<number>(0);
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
+ const handleChange = (
+  e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+) => {
+  const { name, value } = e.target;
 
-  const handleAudioChange = (e) => {
-    const file = e.target.files[0];
+  const isCheckbox = (target: EventTarget): target is HTMLInputElement =>
+    (target as HTMLInputElement).type === "checkbox";
+
+  setFormData((prev) => ({
+    ...prev,
+    [name]: isCheckbox(e.target) ? (e.target as HTMLInputElement).checked : value,
+  }));
+};
+
+
+  const handleAudioChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (file) {
       setAudioFile(file);
       const audio = new Audio(URL.createObjectURL(file));
       audio.onloadedmetadata = () => {
-        setDuration(Math.floor(audio.duration)); // store in seconds
+        setDuration(Math.floor(audio.duration));
       };
     }
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (file) {
       setImageFile(file);
       setImagePreview(URL.createObjectURL(file));
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     const songData = {
@@ -60,38 +83,51 @@ const AddSongForm = () => {
     };
 
     console.log("Submitting:", songData);
-    // You would send this to the backend via FormData
+    // Send to backend
   };
+
+  const renderLabel = (label: string, isRequired?: boolean) => (
+    <label className="block font-semibold mb-1">
+      {label}
+      {isRequired && (
+        <span className="ml-1 bg-gradient-to-br from-[#f43f5e] to-[#0062ff] text-transparent bg-clip-text font-bold">
+          *
+        </span>
+      )}
+    </label>
+  );
 
   return (
     <div className="max-w-4xl mx-auto p-4">
       <h1 className="text-2xl font-bold mb-6">Add New Song</h1>
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Basic Inputs */}
-        {[
-          ["title", "Title"],
-          ["artist", "Artist"],
+        {/* Basic Fields */}
+        {([
+          ["title", "Title", true],
+          ["artist", "Artist", true],
           ["album", "Album"],
           ["genre", "Genre (comma separated)"],
           ["language", "Language"],
-          ["releaseDate", "Release Date", "date"]
-        ].map(([name, label, type = "text"]) => (
-          <div key={name}>
-            <label className="block font-semibold mb-1">{label}</label>
-            <input
-              type={type}
-              name={name}
-              value={formData[name]}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded px-3 py-2"
-              required={["title", "artist"].includes(name)}
-            />
-          </div>
-        ))}
+          ["releaseDate", "Release Date", false, "date"]
+        ] as [keyof SongFormData, string, boolean?, string?][]).map(
+          ([name, label, isRequired = false, type = "text"]) => (
+            <div key={name}>
+              {renderLabel(label, isRequired)}
+              <input
+                type={type}
+                name={name}
+                value={formData[name] as string}
+                onChange={handleChange}
+                className="w-full border border-gray-300 rounded px-3 py-2"
+                required={isRequired}
+              />
+            </div>
+          )
+        )}
 
-        {/* Audio Upload */}
+        {/* Audio File */}
         <div className="md:col-span-2">
-          <label className="block font-semibold mb-1">Upload Song (Audio)</label>
+          {renderLabel("Upload Song (Audio)", true)}
           <input
             type="file"
             accept="audio/*"
@@ -104,9 +140,9 @@ const AddSongForm = () => {
           )}
         </div>
 
-        {/* Image Upload */}
+        {/* Cover Image */}
         <div className="md:col-span-2">
-          <label className="block font-semibold mb-1">Upload Cover Image</label>
+          {renderLabel("Upload Cover Image", true)}
           <input
             type="file"
             accept="image/*"
@@ -125,7 +161,7 @@ const AddSongForm = () => {
 
         {/* Tags */}
         <div className="md:col-span-2">
-          <label className="block font-semibold mb-1">Tags (comma separated)</label>
+          {renderLabel("Tags (comma separated)")}
           <input
             type="text"
             name="tags"
@@ -135,9 +171,9 @@ const AddSongForm = () => {
           />
         </div>
 
-        {/* Mood Selector */}
+        {/* Mood */}
         <div>
-          <label className="block font-semibold mb-1">Mood</label>
+          {renderLabel("Mood")}
           <select
             name="mood"
             value={formData.mood}
@@ -145,7 +181,7 @@ const AddSongForm = () => {
             className="w-full border border-gray-300 rounded px-3 py-2"
           >
             {["none", "happy", "sad", "chill", "energetic", "romantic", "angry"].map((mood) => (
-              <option key={mood} className=" dark:text-white dark:bg-black" value={mood}>
+              <option key={mood} className="dark:text-white dark:bg-black" value={mood}>
                 {mood.charAt(0).toUpperCase() + mood.slice(1)}
               </option>
             ))}
@@ -154,7 +190,7 @@ const AddSongForm = () => {
 
         {/* Description */}
         <div className="md:col-span-2">
-          <label className="block font-semibold mb-1">Description</label>
+          {renderLabel("Description")}
           <textarea
             name="description"
             value={formData.description}
@@ -166,7 +202,7 @@ const AddSongForm = () => {
 
         {/* Lyrics */}
         <div className="md:col-span-2">
-          <label className="block font-semibold mb-1">Lyrics</label>
+          {renderLabel("Lyrics")}
           <textarea
             name="lyrics"
             value={formData.lyrics}
