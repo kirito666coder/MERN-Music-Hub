@@ -10,9 +10,14 @@ type ApiResponse ={
   song:SongFormData
 }
 
-export const AddSongApi = async (): Promise<ApiResponse | null>=>{
+export const AddSongApi = async (song:SongFormData): Promise<ApiResponse | null>=>{
      try{
-         const res = await api.post<ApiResponse>('/api/song/addsong')
+        console.log(song)
+         const res = await api.post<ApiResponse>('/api/song/addsong',
+            {
+                song:song
+            }
+         )
          const data = res?.data
          return data
         }catch(error){

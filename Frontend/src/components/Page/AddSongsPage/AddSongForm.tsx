@@ -69,8 +69,6 @@ const AddSongForm = () => {
       imageFile,
     };
 
-    console.log("Submitting:", songData);
-    
     const song = await AddSongApi(songData)
  
     console.log("song" ,song)
