@@ -2,6 +2,7 @@ import type { SongFormData } from "@/types/user";
 import { useState } from "react";
 import type { ChangeEvent ,FormEvent } from "react";
 import { renderLabel } from "./HandlerForAddSongForm";
+import { AddSongApi } from "@/api/SongApi";
 
 const AddSongForm = () => {
   const [formData, setFormData] = useState<SongFormData>({
@@ -56,7 +57,7 @@ const AddSongForm = () => {
     }
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     const songData = {
@@ -69,7 +70,11 @@ const AddSongForm = () => {
     };
 
     console.log("Submitting:", songData);
-    // Send to backend
+    
+    const song = await AddSongApi(songData)
+ 
+    console.log("song" ,song)
+
   };
 
  
