@@ -4,11 +4,11 @@ import { Outlet } from "react-router-dom"
 
 const Profile = () => {
     return (
-        <div className=" md:flex">
+        <div className=" md:flex relative">
             <div className=" flex md:hidden">
             <ProfileNavBar/>
             </div>
-            <div className="md:w-[25%]">
+            <div className="md:w-[25%] md:h-[90vh] md:sticky top-0 left-0">
                 <ProfilePageHeader />
             </div>
             <div className="md:w-[75%]">
