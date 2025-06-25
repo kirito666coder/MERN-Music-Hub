@@ -1,128 +1,93 @@
 import { useState } from "react";
 
 const AddSongForm = () => {
-     const [formData, setFormData] = useState({
-        title: "",
-        artist: "",
-        album: "",
-        genre: "",
-        language: "",
-        releaseDate: "",
-        lyrics: "",
-        description: "",
-        tags: "",
-        isPublic: true,
-      });
-    
-      const [audioFile, setAudioFile] = useState(null);
-      const [imageFile, setImageFile] = useState(null);
-      const [imagePreview, setImagePreview] = useState("");
-    
-      const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setFormData({
-          ...formData,
-          [name]: type === "checkbox" ? checked : value,
-        });
+  const [formData, setFormData] = useState({
+    title: "",
+    artist: "",
+    album: "",
+    genre: "",
+    language: "",
+    releaseDate: "",
+    lyrics: "",
+    description: "",
+    tags: "",
+    isPublic: true,
+    mood: "none",
+  });
+
+  const [audioFile, setAudioFile] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState("");
+  const [duration, setDuration] = useState(0); // in seconds
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  const handleAudioChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setAudioFile(file);
+      const audio = new Audio(URL.createObjectURL(file));
+      audio.onloadedmetadata = () => {
+        setDuration(Math.floor(audio.duration)); // store in seconds
       };
-    
-      const handleAudioChange = (e) => {
-        const file = e.target.files[0];
-        setAudioFile(file);
-      };
-    
-      const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        setImageFile(file);
-        setImagePreview(URL.createObjectURL(file));
-      };
-    
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Submitting:", { ...formData, audioFile, imageFile });
-        
-      };
-    
+    }
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      setImagePreview(URL.createObjectURL(file));
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const songData = {
+      ...formData,
+      genre: formData.genre.split(",").map((g) => g.trim()),
+      tags: formData.tags.split(",").map((t) => t.trim()),
+      duration,
+      audioFile,
+      imageFile,
+    };
+
+    console.log("Submitting:", songData);
+    // You would send this to the backend via FormData
+  };
+
   return (
-        <div className="max-w-4xl mx-auto p-4">
+    <div className="max-w-4xl mx-auto p-4">
       <h1 className="text-2xl font-bold mb-6">Add New Song</h1>
-      <form
-        onSubmit={handleSubmit}
-        className="grid grid-cols-1 md:grid-cols-2 gap-4"
-      >
-        {/* Title */}
-        <div>
-          <label className="block font-semibold mb-1">Title</label>
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-            required
-          />
-        </div>
-
-        {/* Artist */}
-        <div>
-          <label className="block font-semibold mb-1">Artist</label>
-          <input
-            type="text"
-            name="artist"
-            value={formData.artist}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-            required
-          />
-        </div>
-
-        {/* Album */}
-        <div>
-          <label className="block font-semibold mb-1">Album</label>
-          <input
-            type="text"
-            name="album"
-            value={formData.album}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-          />
-        </div>
-
-        {/* Genre */}
-        <div>
-          <label className="block font-semibold mb-1">Genre</label>
-          <input
-            type="text"
-            name="genre"
-            value={formData.genre}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-          />
-        </div>
-
-        {/* Language */}
-        <div>
-          <label className="block font-semibold mb-1">Language</label>
-          <input
-            type="text"
-            name="language"
-            value={formData.language}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-          />
-        </div>
-
-        {/* Release Date */}
-        <div>
-          <label className="block font-semibold mb-1">Release Date</label>
-          <input
-            type="date"
-            name="releaseDate"
-            value={formData.releaseDate}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-          />
-        </div>
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Basic Inputs */}
+        {[
+          ["title", "Title"],
+          ["artist", "Artist"],
+          ["album", "Album"],
+          ["genre", "Genre (comma separated)"],
+          ["language", "Language"],
+          ["releaseDate", "Release Date", "date"]
+        ].map(([name, label, type = "text"]) => (
+          <div key={name}>
+            <label className="block font-semibold mb-1">{label}</label>
+            <input
+              type={type}
+              name={name}
+              value={formData[name]}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded px-3 py-2"
+              required={["title", "artist"].includes(name)}
+            />
+          </div>
+        ))}
 
         {/* Audio Upload */}
         <div className="md:col-span-2">
@@ -134,9 +99,12 @@ const AddSongForm = () => {
             className="w-full"
             required
           />
+          {duration > 0 && (
+            <p className="text-sm text-gray-500 mt-1">Duration: {duration} sec</p>
+          )}
         </div>
 
-        {/* Cover Image Upload */}
+        {/* Image Upload */}
         <div className="md:col-span-2">
           <label className="block font-semibold mb-1">Upload Cover Image</label>
           <input
@@ -167,6 +135,23 @@ const AddSongForm = () => {
           />
         </div>
 
+        {/* Mood Selector */}
+        <div>
+          <label className="block font-semibold mb-1">Mood</label>
+          <select
+            name="mood"
+            value={formData.mood}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded px-3 py-2"
+          >
+            {["none", "happy", "sad", "chill", "energetic", "romantic", "angry"].map((mood) => (
+              <option key={mood} className=" dark:text-white dark:bg-black" value={mood}>
+                {mood.charAt(0).toUpperCase() + mood.slice(1)}
+              </option>
+            ))}
+          </select>
+        </div>
+
         {/* Description */}
         <div className="md:col-span-2">
           <label className="block font-semibold mb-1">Description</label>
@@ -176,7 +161,7 @@ const AddSongForm = () => {
             onChange={handleChange}
             className="w-full border border-gray-300 rounded px-3 py-2"
             rows={3}
-          ></textarea>
+          />
         </div>
 
         {/* Lyrics */}
@@ -188,7 +173,7 @@ const AddSongForm = () => {
             onChange={handleChange}
             className="w-full border border-gray-300 rounded px-3 py-2"
             rows={5}
-          ></textarea>
+          />
         </div>
 
         {/* Public Toggle */}
@@ -213,7 +198,7 @@ const AddSongForm = () => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default AddSongForm
+export default AddSongForm;
