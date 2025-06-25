@@ -26,6 +26,36 @@ const UserSchema = new Schema({
         unique:true,
         sparse:true,
     },
+     isVerified: {
+    type: Boolean,
+    default: false,
+  },
+  role: {
+    type: String,
+    enum: ["user", "artist", "admin"],
+    default: "user",
+  },
+  bio: {
+    type: String,
+    default: "",
+  },
+  location: {
+    type: String,
+    default: "",
+  },
+  socialLinks: {
+    type: Map,
+    of: String,
+    default: {},
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 })
 
 const UserModel = model('user',UserSchema)
