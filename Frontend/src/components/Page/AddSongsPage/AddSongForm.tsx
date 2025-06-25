@@ -1,20 +1,6 @@
+import type { SongFormData } from "@/types/user";
 import { useState } from "react";
 import type { ChangeEvent ,FormEvent } from "react";
-
-
-interface SongFormData {
-  title: string;
-  artist: string;
-  album: string;
-  genre: string;
-  language: string;
-  releaseDate: string;
-  lyrics: string;
-  description: string;
-  tags: string;
-  isPublic: boolean;
-  mood: string;
-}
 
 const AddSongForm = () => {
   const [formData, setFormData] = useState<SongFormData>({
@@ -49,7 +35,6 @@ const AddSongForm = () => {
     [name]: isCheckbox(e.target) ? (e.target as HTMLInputElement).checked : value,
   }));
 };
-
 
   const handleAudioChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

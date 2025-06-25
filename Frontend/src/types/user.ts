@@ -7,3 +7,19 @@ export type User = {
     googleId?: string;
     facebookId?: string;
 };
+
+
+
+export interface SongFormData {
+  title: string;
+  artist: string;
+  album: string;
+  genre: string;
+  language: string;
+  releaseDate: string;
+  lyrics: string;
+  description: string;
+  tags: string;
+  isPublic: boolean;
+  mood: string;
+}
