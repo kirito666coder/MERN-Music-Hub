@@ -15,6 +15,7 @@ AuthRoute.get('/google/callback',
 )
 
 AuthRoute.get('/profile',
+     passport.authenticate('jwt', { session: false }),
     profileController
 )
 
