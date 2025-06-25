@@ -206,7 +206,7 @@ const AddSongForm = () => {
         <div className="md:col-span-2">
           <button
             type="submit"
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
+            className="bg-gradient-to-br from-[#f43f5e] to-[#0062ff] opacity-80 hover:opacity-100 text-white font-bold py-2 px-4 rounded w-full"
           >
             Upload Song
           </button>
