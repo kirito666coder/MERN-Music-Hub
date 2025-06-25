@@ -1,6 +1,7 @@
 import type { SongFormData } from "@/types/user";
 import { useState } from "react";
 import type { ChangeEvent ,FormEvent } from "react";
+import { renderLabel } from "./HandlerForAddSongForm";
 
 const AddSongForm = () => {
   const [formData, setFormData] = useState<SongFormData>({
@@ -71,16 +72,7 @@ const AddSongForm = () => {
     // Send to backend
   };
 
-  const renderLabel = (label: string, isRequired?: boolean) => (
-    <label className="block font-semibold mb-1">
-      {label}
-      {isRequired && (
-        <span className="ml-1 bg-gradient-to-br from-[#f43f5e] to-[#0062ff] text-transparent bg-clip-text font-bold">
-          *
-        </span>
-      )}
-    </label>
-  );
+ 
 
   return (
     <div className="max-w-4xl mx-auto p-4">
