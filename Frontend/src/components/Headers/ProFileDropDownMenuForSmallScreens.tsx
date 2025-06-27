@@ -23,21 +23,23 @@ const ProFileDropDownMenuForSmallScreens = () => {
                     <h1 className="text-lg font-bold bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] bg-clip-text text-transparent hover:brightness-110 transition-all duration-300">
                         hi
                     </h1>
-                {user?.name}</DropdownMenuLabel>
+                    {user?.name}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                    <Link to={"/profile"}>
-                    Profile
-                    </Link>
+                <Link to={"/profile"}>
+                    <DropdownMenuItem className="cursor-pointer">
+                        Profile
                     </DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
+                </Link>
+                <DropdownMenuItem className="cursor-pointer">Settings</DropdownMenuItem>
                 <DropdownMenuLabel className="border-b-1 pt-4 text-md">Theme</DropdownMenuLabel>
                 <DropdownMenuItem
+                className="cursor-pointer"
                     onClick={() => {
                         setTheme("light")
                     }}
                 >Light</DropdownMenuItem>
                 <DropdownMenuItem
+                className="cursor-pointer"
                     onClick={() => {
                         setTheme("dark")
                     }}
