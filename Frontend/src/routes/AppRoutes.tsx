@@ -9,6 +9,7 @@ import Library from "../pages/Library"
 import LikedSong from "../pages/LikedSong"
 import Profile from "@/pages/Profile"
 import AddSongPage from "@/pages/AddSongs"
+import Setting from "@/pages/Setting"
 
 
 const AppRoutes = () => {
@@ -35,6 +36,8 @@ const AppRoutes = () => {
         <Route index element={<div>hello</div>}/>
         <Route path="/Profile/addSongs" element={<AddSongPage/>}/>
         </Route>
+
+        <Route path="/settings" element={<Setting/>}/>
         
         </Route>
 
