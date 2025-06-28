@@ -25,7 +25,9 @@ const HeaderForBigScreens = () => {
       <div className="flex justify-center items-center gap-5 lg:gap-8">
         <NotificationLogo/>
         <ModeToggle/>
+        <Link to={'/settings'}>
         <SettingsLogo/>
+        </Link>
         
         <Link to={"/profile"}>
         <Profile/>
