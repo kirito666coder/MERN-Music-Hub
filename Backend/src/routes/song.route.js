@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { AddSongController } from "../controllers/song.controller.js";
+import { AddSongController, GetAllSongControllere } from "../controllers/song.controller.js";
 import multer from 'multer'
 
 const SongRouter = Router()
@@ -16,5 +16,8 @@ SongRouter.post('/addSong',
 
     ]),
     AddSongController)
+
+
+SongRouter.get("/getAllSongs",GetAllSongControllere)
 
 export default SongRouter;

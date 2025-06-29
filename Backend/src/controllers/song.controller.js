@@ -27,3 +27,7 @@ export const AddSongController = async (req, res) => {
         res.status(500).json({ message: "Something went wrong", error })
      }
 };
+
+export const GetAllSongControllere = async (req,res) =>{
+  
+}
