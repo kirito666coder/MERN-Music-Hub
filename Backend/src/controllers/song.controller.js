@@ -24,10 +24,12 @@ export const AddSongController = async (req, res) => {
       const imageDataUrl = bufferToDataURL(imageFile.buffer,imageFile.mimetype);
       const imageUpload = await cloudinary.uploader.upload(imageDataUrl,{
         resource_type:"image",
-        folder:"songs/audio"
+        folder:"songs/image"
       })
 
-      
+
+      console.log(imageUpload.secure_url)
+      console.log(audioUpload.secure_url)
 
 
      } catch (error) {
