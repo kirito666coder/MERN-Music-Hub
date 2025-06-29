@@ -1,4 +1,5 @@
 import { audioUpload, imageUpload } from "../services/cloudinaryUpload.service.js";
+import { AddSong } from "../services/songAdd.service.js";
 
 export const AddSongController = async (req, res) => {
      try {
@@ -18,11 +19,9 @@ export const AddSongController = async (req, res) => {
       const data = req.body;
 
 
-      
+      const song = await AddSong(userId, data, audioUrl, imageUrl)
 
-      console.log(a)
-      console.log(userId)
-
+     res.status(201).json(song)
 
      } catch (error) {
         res.status(500).json({ message: "Something went wrong", error })
