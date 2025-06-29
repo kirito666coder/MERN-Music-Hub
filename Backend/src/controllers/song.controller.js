@@ -1,3 +1,4 @@
+import { audioUpload, imageUpload } from "../services/cloudinaryUpload.service.js";
 
 export const AddSongController = async (req, res) => {
      try {
@@ -8,10 +9,11 @@ export const AddSongController = async (req, res) => {
         return res.status(400).json({message:"Audio and image files are required."})
       }
 
-      
+      const audioUrl = await audioUpload(audioFile)
+      const imageUrl = await imageUpload(imageFile)
 
-      console.log(imageUpload.secure_url)
-      console.log(audioUpload.secure_url)
+      console.log(audioUrl)
+      console.log(imageUrl)
 
 
      } catch (error) {
