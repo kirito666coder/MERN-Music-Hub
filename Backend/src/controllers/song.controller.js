@@ -1,14 +1,36 @@
+import cloudinary from "../configs/cloudinary/cloudinary.config.js";
 
 const bufferToDataURL = (fileBuffer,mimetype) =>{
   const base64 = fileBuffer.toString('base64');
   return `data:${mimetype};base64,${base64}`
 }
 
-// src/controllers/song.controller.js
-export const AddSongController = (req, res) => {
-  console.log("📝 Form Fields:", req.body);
-  console.log("🎧 Audio File:", req.files?.["audioFile"]?.[0]);
-  console.log("🖼️ Image File:", req.files?.["imageFile"]?.[0]);
 
-  res.status(200).json({ message: "File and form received!" });
+export const AddSongController = async (req, res) => {
+     try {
+      const audioFile = req.files.audioFile?.[0];
+      const imageFile = req.files.imageFile?.[0];
+
+      if(!audioFile || !imageFile){
+        return res.status(400).json({message:"Audio and image files are required."})
+      }
+
+      const audioDataUrl = bufferToDataURL(audioFile.buffer,audioFile.mimetype);
+      const audioUpload = await cloudinary.uploader.upload(audioDataUrl,{
+        resource_type:'video',
+        folder:'songs/audio'
+      })
+
+      const imageDataUrl = bufferToDataURL(imageFile.buffer,imageFile.mimetype);
+      const imageUpload = await cloudinary.uploader.upload(imageDataUrl,{
+        resource_type:"image",
+        folder:"songs/audio"
+      })
+
+      
+
+
+     } catch (error) {
+      
+     }
 };
