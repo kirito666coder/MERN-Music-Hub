@@ -11,6 +11,7 @@ export const audioUpload = async(audioFile)=>{
         resource_type:'video',
         folder:'songs/audio'
       })
+      return audioUpload.secure_url;
 }
 
 export const imageUpload = async(imageFile)=>{
@@ -19,4 +20,6 @@ export const imageUpload = async(imageFile)=>{
         resource_type:"image",
         folder:"songs/image"
       })
+
+      return imageUpload.secure_url;
 }

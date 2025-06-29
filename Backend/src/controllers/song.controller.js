@@ -8,6 +8,8 @@ export const AddSongController = async (req, res) => {
         return res.status(400).json({message:"Audio and image files are required."})
       }
 
+      
+
       console.log(imageUpload.secure_url)
       console.log(audioUpload.secure_url)
 
