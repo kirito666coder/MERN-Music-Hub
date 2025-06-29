@@ -6,7 +6,11 @@ const bufferToDataURL = (fileBuffer,mimetype) =>{
 }
 
 export const audioUpload = ()=>{
-    
+     const audioDataUrl = bufferToDataURL(audioFile.buffer,audioFile.mimetype);
+      const audioUpload = await cloudinary.uploader.upload(audioDataUrl,{
+        resource_type:'video',
+        folder:'songs/audio'
+      })
 }
 
 export const imageUpload = ()=>{

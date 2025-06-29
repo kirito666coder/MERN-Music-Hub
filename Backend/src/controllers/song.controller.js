@@ -8,11 +8,7 @@ export const AddSongController = async (req, res) => {
         return res.status(400).json({message:"Audio and image files are required."})
       }
 
-      const audioDataUrl = bufferToDataURL(audioFile.buffer,audioFile.mimetype);
-      const audioUpload = await cloudinary.uploader.upload(audioDataUrl,{
-        resource_type:'video',
-        folder:'songs/audio'
-      })
+     
 
       const imageDataUrl = bufferToDataURL(imageFile.buffer,imageFile.mimetype);
       const imageUpload = await cloudinary.uploader.upload(imageDataUrl,{
