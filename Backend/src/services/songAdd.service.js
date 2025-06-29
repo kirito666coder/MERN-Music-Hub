@@ -1,10 +1,11 @@
-import SongModel from "../Models/song.model";
-import UserModel from "../Models/user.model"
+import mongoose from "mongoose";
+import SongModel from "../Models/song.model.js";
+import UserModel from "../Models/user.model.js"
 
 export const AddSong = async ({ userId, data, audioUrl, imageUrl }) => {
 
     if (!userId || !data || !audioUrl || !imageUrl) {
-        throw new Error("some fields are mesing")
+        throw new Error("some fields are missing")
     }
 
     if (!mongoose.Types.ObjectId.isValid(userId)) {
