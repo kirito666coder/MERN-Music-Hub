@@ -12,9 +12,9 @@ export const AddSongController = async (req, res) => {
       const audioUrl = await audioUpload(audioFile)
       const imageUrl = await imageUpload(imageFile)
 
-      console.log(audioUrl)
-      console.log(imageUrl)
-
+      const user = req.user;
+      const userId = user._id;
+      console.log(userId)
 
      } catch (error) {
         res.status(500).json({ message: "Something went wrong", error })

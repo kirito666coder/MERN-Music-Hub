@@ -1,6 +1,11 @@
 import {model, Schema} from 'mongoose'
 
 const SongSchema = new Schema({
+    userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   title: {
     type: String,
     required: true,
@@ -46,11 +51,6 @@ const SongSchema = new Schema({
   },
   coverUrl: {
     type: String,
-    required: true,
-  },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
     required: true,
   },
   tags: {
