@@ -1,4 +1,3 @@
-import SongModel from "../Models/song.model.js";
 import { audioUpload, imageUpload } from "../services/cloudinaryUpload.service.js";
 import { AddSong, getAllSongs } from "../services/songAdd.service.js";
 
@@ -32,7 +31,9 @@ export const AddSongController = async (req, res) => {
 export const GetAllSongControllere = async (req,res) =>{
   try {
     const songs = await getAllSongs()
+    console.log(songs)
+   res.status(200).json(songs)
   } catch (error) {
-    res.status(500).json({message:"Internal server Error"})
+    res.status(500).json({message:"Internal server Error",error})
   } 
 }

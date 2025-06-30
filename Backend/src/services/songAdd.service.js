@@ -66,4 +66,6 @@ export const getAllSongs = async ()=>{
     if(!song){
         throw new Error('Error in finding songs')
     }
+
+    return song;
 }
