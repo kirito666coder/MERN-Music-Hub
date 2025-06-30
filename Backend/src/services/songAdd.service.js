@@ -61,9 +61,9 @@ export const AddSong = async ({ userId, data, audioUrl, imageUrl }) => {
 }
 
 export const getAllSongs = async ()=>{    
-    const song = await SongModel.find()
+    const song = await SongModel.find().sort({createdAt:-1}).limit(10);
     
-    if(!song){
+    if(!song || song.length === 0){
         throw new Error('Error in finding songs')
     }
 
