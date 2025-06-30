@@ -47,3 +47,14 @@ export const AddSongApi = async (song: SongFormData): Promise<SongFormData | nul
     return null;
   }
 };
+
+
+export const GetAllSongApi = async ():Promise<SongFormData | null> =>{
+  try {
+    const res = await api.get("/api/song/getAllSongs")
+    return res.data
+  } catch (error) {
+    console.log("Not Get any songs",error)
+    return null;
+  }
+}

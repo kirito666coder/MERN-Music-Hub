@@ -31,7 +31,6 @@ export const AddSongController = async (req, res) => {
 export const GetAllSongControllere = async (req,res) =>{
   try {
     const songs = await getAllSongs()
-    console.log(songs)
    res.status(200).json(songs)
   } catch (error) {
     res.status(500).json({message:"Internal server Error",error})
