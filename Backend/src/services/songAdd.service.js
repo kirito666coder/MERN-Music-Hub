@@ -60,6 +60,10 @@ export const AddSong = async ({ userId, data, audioUrl, imageUrl }) => {
     return newSong;
 }
 
-export const getAllSongs = async ()=>{
+export const getAllSongs = async ()=>{    
+    const song = await SongModel.find()
     
+    if(!song){
+        throw new Error('Error in finding songs')
+    }
 }
