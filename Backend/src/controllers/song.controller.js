@@ -1,6 +1,6 @@
 import SongModel from "../Models/song.model.js";
 import { audioUpload, imageUpload } from "../services/cloudinaryUpload.service.js";
-import { AddSong } from "../services/songAdd.service.js";
+import { AddSong, getAllSongs } from "../services/songAdd.service.js";
 
 export const AddSongController = async (req, res) => {
      try {

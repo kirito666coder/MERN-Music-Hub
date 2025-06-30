@@ -59,3 +59,7 @@ export const AddSong = async ({ userId, data, audioUrl, imageUrl }) => {
 
     return newSong;
 }
+
+export const getAllSongs = async ()=>{
+    
+}
