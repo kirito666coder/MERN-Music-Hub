@@ -29,5 +29,9 @@ export const AddSongController = async (req, res) => {
 };
 
 export const GetAllSongControllere = async (req,res) =>{
-  
+  try {
+    
+  } catch (error) {
+    res.status(500).json({message:"Internal server Error"})
+  } 
 }
