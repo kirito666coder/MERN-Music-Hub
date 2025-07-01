@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { AddSongController, GetAllSongControllere } from "../controllers/song.controller.js";
+import { AddSongController, GetAllSongControllere, GetStreamSongController } from "../controllers/song.controller.js";
 import multer from 'multer'
 
 const SongRouter = Router()

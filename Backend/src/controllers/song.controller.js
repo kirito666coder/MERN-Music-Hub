@@ -36,3 +36,8 @@ export const GetAllSongControllere = async (req,res) =>{
     res.status(500).json({message:"Internal server Error",error})
   } 
 }
+
+
+export const GetStreamSongController = async ()=>{
+  
+}
