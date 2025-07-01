@@ -20,7 +20,7 @@ const AddSongForm = () => {
   });
 
   const [audioFile, setAudioFile] = useState<File | null>(null);
-  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [coverUrl, setcoverUrl] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>("");
   const [duration, setDuration] = useState<number>(0);
 
@@ -52,7 +52,7 @@ const AddSongForm = () => {
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setImageFile(file);
+      setcoverUrl(file);
       setImagePreview(URL.createObjectURL(file));
     }
   };
@@ -66,7 +66,7 @@ const AddSongForm = () => {
       tags: formData.tags.split(",").map((t) => t.trim()),
       duration,
       audioFile,
-      imageFile,
+      coverUrl,
     };
 
     const song = await AddSongApi(songData)

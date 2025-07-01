@@ -16,8 +16,8 @@ export const audioUpload = async(audioFile)=>{
       return audioUpload.public_id;
 }
 
-export const imageUpload = async(imageFile)=>{
- const imageDataUrl = bufferToDataURL(imageFile.buffer,imageFile.mimetype);
+export const imageUpload = async(coverUrl)=>{
+ const imageDataUrl = bufferToDataURL(coverUrl.buffer,coverUrl.mimetype);
       const imageUpload = await cloudinary.uploader.upload(imageDataUrl,{
         resource_type:"image",
         folder:"songs/image"

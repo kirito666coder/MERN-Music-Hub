@@ -31,8 +31,8 @@ export const AddSongApi = async (song: SongFormData): Promise<SongFormData | nul
       formData.append("audioFile", song.audioFile);
     }
 
-    if (song.imageFile) {
-      formData.append("imageFile", song.imageFile);
+    if (song.coverUrl) {
+      formData.append("coverUrl", song.coverUrl);
     }
 
     const res = await api.post("/api/song/addsong", formData, {

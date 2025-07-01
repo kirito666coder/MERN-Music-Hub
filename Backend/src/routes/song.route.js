@@ -12,7 +12,7 @@ const upload = multer({
 SongRouter.post('/addSong',
     upload.fields([
         { name: "audioFile", maxCount: 1 },
-        { name: "imageFile", maxCount: 1 },
+        { name: "coverUrl", maxCount: 1 },
 
     ]),
     AddSongController)

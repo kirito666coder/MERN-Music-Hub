@@ -4,14 +4,14 @@ import { AddSong, findSong, getAllSongs } from "../services/songAdd.service.js";
 export const AddSongController = async (req, res) => {
      try {
       const audioFile = req.files.audioFile?.[0];
-      const imageFile = req.files.imageFile?.[0];
+      const coverUrl = req.files.coverUrl?.[0];
 
-      if(!audioFile || !imageFile){
+      if(!audioFile || !coverUrl){
         return res.status(400).json({message:"Audio and image files are required."})
       }
 
       const audioUrl = await audioUpload(audioFile)
-      const imageUrl = await imageUpload(imageFile)
+      const imageUrl = await imageUpload(coverUrl)
 
       const user = req.user;
       const userId = user._id;
