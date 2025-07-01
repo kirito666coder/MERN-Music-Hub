@@ -58,3 +58,13 @@ export const GetAllSongApi = async ():Promise<SongFormData[] | null> =>{
     return null;
   }
 }
+
+
+export const GetSong = async ({songId})=>{
+  try {
+    const res = await api.get(`/api/song/stream/${songId}`)
+    return res.data
+  } catch (error) {
+    return null
+  }
+}
