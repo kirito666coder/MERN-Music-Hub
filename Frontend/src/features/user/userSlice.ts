@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { GetUserApi } from "../../api/UserApi";
 import type { User } from "@/types/user";
+import type { AxiosError } from "axios";
 
 
 export const fetchUser = createAsyncThunk(
@@ -9,8 +10,9 @@ export const fetchUser = createAsyncThunk(
         try{
           const user = await GetUserApi()
           return user
-        }catch(error:any){
-            return thunkApi.rejectWithValue(error.response?.data|| 'Failed to fetch User')
+        }catch(error:unknown){
+            const err = error as AxiosError<{message?:string}>;
+            return thunkApi.rejectWithValue(err.response?.data|| 'Failed to fetch User')
         }
     }
 )
