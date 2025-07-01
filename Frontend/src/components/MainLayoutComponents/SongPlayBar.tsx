@@ -1,7 +1,7 @@
 
 const SongPlayBar = () => {
   return (
-    <div>
+    <div className="h-15 w-full bg-white">
       
     </div>
   )
