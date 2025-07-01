@@ -13,7 +13,7 @@ export const audioUpload = async(audioFile)=>{
         folder:'songs/audio',
         type:"authenticated",
       })
-      return audioUpload.public_url;
+      return audioUpload.public_id;
 }
 
 export const imageUpload = async(imageFile)=>{
@@ -23,5 +23,5 @@ export const imageUpload = async(imageFile)=>{
         folder:"songs/image"
       })
 
-      return imageUpload.public_url;
+      return imageUpload.public_id;
 }

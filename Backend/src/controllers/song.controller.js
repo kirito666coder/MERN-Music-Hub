@@ -12,7 +12,7 @@ export const AddSongController = async (req, res) => {
 
       const audioUrl = await audioUpload(audioFile)
       const imageUrl = await imageUpload(imageFile)
-
+      
       const user = req.user;
       const userId = user._id;
 
@@ -42,4 +42,6 @@ export const GetStreamSongController = async (req,res)=>{
     const {songId} = req.params;
 
     const song = await findSong(songId)
+
+    
 }
