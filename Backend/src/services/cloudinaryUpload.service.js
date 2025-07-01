@@ -10,9 +10,10 @@ export const audioUpload = async(audioFile)=>{
      const audioDataUrl = bufferToDataURL(audioFile.buffer,audioFile.mimetype);
       const audioUpload = await cloudinary.uploader.upload(audioDataUrl,{
         resource_type:'video',
-        folder:'songs/audio'
+        folder:'songs/audio',
+        type:"authenticated",
       })
-      return audioUpload.secure_url;
+      return audioUpload.public_url;
 }
 
 export const imageUpload = async(imageFile)=>{
@@ -22,5 +23,5 @@ export const imageUpload = async(imageFile)=>{
         folder:"songs/image"
       })
 
-      return imageUpload.secure_url;
+      return imageUpload.public_url;
 }
