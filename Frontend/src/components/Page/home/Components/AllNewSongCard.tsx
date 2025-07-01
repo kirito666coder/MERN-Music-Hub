@@ -15,9 +15,9 @@ const AllNewSongCard = ({song}:Props) => {
       <div className="">
         <h3 className="text-xl font-bold ">{song.title}</h3>
         <div className="flex gap-2  font-semibold ">
-          <span>artistname</span>
-          <span>plays 9M</span>
-          <span className="flex"><LikeButton Liked={false}/> 7M</span>
+          <span>{song.artist}</span>
+          <span>{song.plays}</span>
+          <span className="flex"><LikeButton Liked={false}/>{song.likes}</span>
         </div>
 
       </div>

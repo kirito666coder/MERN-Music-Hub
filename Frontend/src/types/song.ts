@@ -1,7 +1,7 @@
 
 
 export interface SongFormData {
-  _id:string;
+  _id: string;
   title: string;
   artist: string;
   album: string;
@@ -15,5 +15,12 @@ export interface SongFormData {
   mood: string;
   duration: number;
   audioFile: File | null;
- coverUrl: File | null;
+  coverUrl: File | null;
+  createdAt: string;
+  likes: number;
+  plays: number;
+  downloads: number;
+  userId: string;
+  visibility: string;
 }
+
