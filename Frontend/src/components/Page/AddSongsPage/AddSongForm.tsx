@@ -19,7 +19,7 @@ const AddSongForm = () => {
     mood: "none",
   });
 
-  const [audioFile, setAudioFile] = useState<File | null>(null);
+  const [audioUrl, setaudioUrl] = useState<File | null>(null);
   const [coverUrl, setcoverUrl] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>("");
   const [duration, setDuration] = useState<number>(0);
@@ -41,7 +41,7 @@ const AddSongForm = () => {
   const handleAudioChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setAudioFile(file);
+      setaudioUrl(file);
       const audio = new Audio(URL.createObjectURL(file));
       audio.onloadedmetadata = () => {
         setDuration(Math.floor(audio.duration));
@@ -65,7 +65,7 @@ const AddSongForm = () => {
       genre: formData.genre.split(",").map((g) => g.trim()),
       tags: formData.tags.split(",").map((t) => t.trim()),
       duration,
-      audioFile,
+      audioUrl,
       coverUrl,
     };
 

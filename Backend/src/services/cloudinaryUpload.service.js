@@ -6,8 +6,8 @@ const bufferToDataURL = (fileBuffer,mimetype) =>{
   return `data:${mimetype};base64,${base64}`
 }
 
-export const audioUpload = async(audioFile)=>{
-     const audioDataUrl = bufferToDataURL(audioFile.buffer,audioFile.mimetype);
+export const audioUpload = async(audioUrl)=>{
+     const audioDataUrl = bufferToDataURL(audioUrl.buffer,audioUrl.mimetype);
       const audioUpload = await cloudinary.uploader.upload(audioDataUrl,{
         resource_type:'video',
         folder:'songs/audio',

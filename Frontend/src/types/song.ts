@@ -14,7 +14,7 @@ export interface SongFormData {
   isPublic: boolean;
   mood: string;
   duration: number;
-  audioFile: File | null;
+  audioUrl: File | null;
   coverUrl: File | null;
   createdAt: string;
   likes: number;

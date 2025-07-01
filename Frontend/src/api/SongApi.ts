@@ -27,8 +27,8 @@ export const AddSongApi = async (song: SongFormData): Promise<SongFormData | nul
     song.tags.forEach((t) => formData.append("tags", t));
 
     // Append files
-    if (song.audioFile) {
-      formData.append("audioFile", song.audioFile);
+    if (song.audioUrl) {
+      formData.append("audioUrl", song.audioUrl);
     }
 
     if (song.coverUrl) {
