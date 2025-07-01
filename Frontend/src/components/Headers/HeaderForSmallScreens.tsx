@@ -4,7 +4,7 @@ import ProFileDropDownMenuForSmallScreens from "./ProFileDropDownMenuForSmallScr
 
 const HeaderForSmallScreens = () => {
   return (
-    <div className="p-2 md:hidden flex justify-between px-5 items-center gap-2 max-w-screen">
+    <div className="p-2.5 md:hidden flex justify-between px-5 items-center gap-2 max-w-screen">
       <NotificationLogo/>
       <Logo/>
       <ProFileDropDownMenuForSmallScreens/>
