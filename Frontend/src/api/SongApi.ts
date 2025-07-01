@@ -67,9 +67,10 @@ interface SongStreamResponse {
 
 export const GetSong = async ({songId}:{songId:string}):Promise<SongStreamResponse | null>=>{
   try {
-    const res = await api.get(`/api/song/stream/${songId}`)
+    const res = await api.get<SongStreamResponse>(`/api/song/stream/${songId}`)
     return res.data
   } catch (error) {
+    console.log("Not Get any song Url",error)
     return null
   }
 }
