@@ -11,6 +11,7 @@ export type User = {
 
 
 export interface SongFormData {
+  _id:string;
   title: string;
   artist: string;
   album: string;
