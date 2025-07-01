@@ -1,4 +1,4 @@
-import { audioUpload, imageUpload } from "../services/cloudinaryUpload.service.js";
+import { audioUpload, getSongUrl, imageUpload } from "../services/cloudinaryUpload.service.js";
 import { AddSong, findSong, getAllSongs } from "../services/songAdd.service.js";
 
 export const AddSongController = async (req, res) => {
@@ -12,7 +12,7 @@ export const AddSongController = async (req, res) => {
 
       const audioUrl = await audioUpload(audioFile)
       const imageUrl = await imageUpload(imageFile)
-      
+
       const user = req.user;
       const userId = user._id;
 
@@ -43,5 +43,5 @@ export const GetStreamSongController = async (req,res)=>{
 
     const song = await findSong(songId)
 
-    
+    getSongUrl(song)
 }

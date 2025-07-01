@@ -25,3 +25,8 @@ export const imageUpload = async(imageFile)=>{
 
       return imageUpload.secure_url;
 }
+
+
+export const getSongUrl = ()=>{
+  
+}
