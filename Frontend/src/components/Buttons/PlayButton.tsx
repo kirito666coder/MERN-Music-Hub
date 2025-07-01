@@ -8,8 +8,13 @@ type Props ={
 const PlayButton = ({song}:Props) => {
 
   const HandelPlaysong = async()=>{
-    const ausioUrl = await GetSong({songId:song._id})
-    console.log(ausioUrl)
+    const audioUrl = await GetSong({songId:song._id})
+
+    const audio = new Audio(audioUrl?.songurl)
+
+    audio.play().catch((err)=>{
+      console.error("playback failed",err)
+    })
   }
 
   return (
