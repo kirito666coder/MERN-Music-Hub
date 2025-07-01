@@ -10,7 +10,7 @@ export const AddSongController = async (req, res) => {
         return res.status(400).json({message:"Audio and image files are required."})
       }
 
-      const audioUrl = await audioUpload(audioUrl)
+      const songUrl = await audioUpload(audioUrl)
       const imageUrl = await imageUpload(coverUrl)
 
       const user = req.user;
@@ -19,7 +19,7 @@ export const AddSongController = async (req, res) => {
       const data = req.body;
 
 
-      const song = await AddSong({userId, data, audioUrl, imageUrl})
+      const song = await AddSong({userId, data, songUrl, imageUrl})
 
      res.status(201).json(song)
 

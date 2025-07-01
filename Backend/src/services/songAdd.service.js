@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import SongModel from "../Models/song.model.js";
 import UserModel from "../Models/user.model.js"
 
-export const AddSong = async ({ userId, data, audioUrl, imageUrl }) => {
+export const AddSong = async ({ userId, data, songUrl, imageUrl }) => {
 
-    if (!userId || !data || !audioUrl || !imageUrl) {
+    if (!userId || !data || !songUrl || !imageUrl) {
         throw new Error("some fields are missing")
     }
 
@@ -49,7 +49,7 @@ export const AddSong = async ({ userId, data, audioUrl, imageUrl }) => {
         lyrics: lyrics || '',
         description: description || "",
         releaseDate: releaseDate || new Date(),
-        audioUrl,
+        audioUrl:songUrl,
         coverUrl: imageUrl,
         tags: tags || [],
         isPublic: isPublic != undefined ? isPublic : true,
