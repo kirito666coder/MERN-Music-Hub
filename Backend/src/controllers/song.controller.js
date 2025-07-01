@@ -39,9 +39,21 @@ export const GetAllSongControllere = async (req,res) =>{
 
 
 export const GetStreamSongController = async (req,res)=>{
+  try {
+    
     const {songId} = req.params;
-
+    
     const song = await findSong(songId)
+    
+    const songurl = await getSongUrl(song)
+    
+    if(!songurl){
+      return res.status(400).json({message:"not find song url"})
+    }
 
-    getSongUrl(song)
+    res.status(200).json(songurl)
+    
+  } catch (error) {
+    res.status(500).json({message:"Internal server Error",error})
+  }
 }

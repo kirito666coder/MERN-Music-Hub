@@ -31,7 +31,7 @@ export const getSongUrl = ({song})=>{
   const signedUrl = cloudinary.url(song.audioUrl,{
     type:"authenticated",
     sign_url:true,
-    expires_at: Math.floor(Date.now()/1000) + 60,
+    expires_at: Math.floor(Date.now()/1000) + 300,
     resource_type:"video",
     secure:true,
   })
