@@ -60,7 +60,12 @@ export const GetAllSongApi = async ():Promise<SongFormData[] | null> =>{
 }
 
 
-export const GetSong = async ({songId})=>{
+interface SongStreamResponse {
+  audioUrl:string;
+}
+
+
+export const GetSong = async ({songId}:{songId:string}):Promise<SongStreamResponse | null>=>{
   try {
     const res = await api.get(`/api/song/stream/${songId}`)
     return res.data
