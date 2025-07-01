@@ -76,8 +76,8 @@ export const findSong = async ({songId})=>{
     if(!mongoose.Types.ObjectId.isValid(songId)){
         throw new Error ('Invalid songId')
     }
-
-    const song = await SongModel.findById({songId})
+    
+    const song = await SongModel.findById(songId)
 
     if(!song){
         throw new Error('Song not find')

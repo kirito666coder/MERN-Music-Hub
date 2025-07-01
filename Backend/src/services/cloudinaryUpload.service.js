@@ -28,6 +28,7 @@ export const imageUpload = async(coverUrl)=>{
 
 
 export const getSongUrl = ({song})=>{
+  console.log(song)
   const signedUrl = cloudinary.url(song.audioUrl,{
     type:"authenticated",
     sign_url:true,

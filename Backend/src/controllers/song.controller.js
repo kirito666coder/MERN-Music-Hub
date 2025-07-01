@@ -42,10 +42,11 @@ export const GetStreamSongController = async (req,res)=>{
   try {
     
     const {songId} = req.params;
+   
+    const song = await findSong({songId})
     
-    const song = await findSong(songId)
-    
-    const songurl = await getSongUrl(song)
+    const songurl = await getSongUrl({song})
+    console.log(songurl)
     
     if(!songurl){
       return res.status(400).json({message:"not find song url"})
