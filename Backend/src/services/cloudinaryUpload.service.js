@@ -23,5 +23,5 @@ export const imageUpload = async(imageFile)=>{
         folder:"songs/image"
       })
 
-      return imageUpload.public_id;
+      return imageUpload.secure_url;
 }
