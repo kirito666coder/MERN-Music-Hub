@@ -8,7 +8,8 @@ type Props ={
 const PlayButton = ({song}:Props) => {
 
   const HandelPlaysong = async()=>{
-    const ausioUrl = await GetSong(song?.audioUrl)
+    const ausioUrl = await GetSong({songId:song._id})
+    console.log(ausioUrl)
   }
 
   return (
