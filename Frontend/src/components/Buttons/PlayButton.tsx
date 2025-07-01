@@ -1,3 +1,4 @@
+import { GetSong } from "@/api/SongApi"
 import type { SongFormData } from "@/types/song"
 
 type Props ={
@@ -5,6 +6,10 @@ type Props ={
 }
 
 const PlayButton = ({song}:Props) => {
+
+  const HandelPlaysong = async()=>{
+    const ausioUrl = await GetSong(song?.audioUrl)
+  }
 
   return (
     <button
