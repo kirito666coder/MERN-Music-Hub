@@ -1,7 +1,7 @@
 import { GetAllSongApi } from "@/api/SongApi"
 import AllNewSongCard from "./Components/AllNewSongCard"
 import { useEffect, useState } from "react"
-import type { SongFormData } from "@/types/user"
+import type { SongFormData } from "@/types/song"
 
 const AllNewSongs = () => {
   

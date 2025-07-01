@@ -1,4 +1,4 @@
-import type { SongFormData } from "@/types/user";
+import type { SongFormData } from "@/types/song";
 import axios from "axios";
 
 const api = axios.create({

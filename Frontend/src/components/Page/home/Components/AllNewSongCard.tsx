@@ -1,6 +1,6 @@
 import PlayButton from "@/components/Buttons/PlayButton"
 import LikeButton from "@/components/icons/LikeButton"
-import type { SongFormData } from "@/types/user"
+import type { SongFormData } from "@/types/song"
 
 type Props={
   song:SongFormData
