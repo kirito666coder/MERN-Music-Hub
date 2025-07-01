@@ -1,5 +1,5 @@
 import { audioUpload, imageUpload } from "../services/cloudinaryUpload.service.js";
-import { AddSong, getAllSongs } from "../services/songAdd.service.js";
+import { AddSong, findSong, getAllSongs } from "../services/songAdd.service.js";
 
 export const AddSongController = async (req, res) => {
      try {
