@@ -38,6 +38,8 @@ export const GetAllSongControllere = async (req,res) =>{
 }
 
 
-export const GetStreamSongController = async ()=>{
-  
+export const GetStreamSongController = async (req,res)=>{
+    const {songId} = req.params;
+
+    const song = await findSong(songId)
 }
