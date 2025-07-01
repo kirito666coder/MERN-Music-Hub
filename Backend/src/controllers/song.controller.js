@@ -51,7 +51,7 @@ export const GetStreamSongController = async (req,res)=>{
       return res.status(400).json({message:"not find song url"})
     }
 
-    res.status(200).json(songurl)
+    res.status(200).json({songurl})
     
   } catch (error) {
     res.status(500).json({message:"Internal server Error",error})
