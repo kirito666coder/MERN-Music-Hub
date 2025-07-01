@@ -22,7 +22,7 @@ const AllNewSongCard = ({song}:Props) => {
 
       </div>
       <div className=" absolute group-hover:bottom-2.5 right-2 bottom-[-100px] transition-all duration-300 ">
-        <PlayButton/>
+        <PlayButton song={song}/>
       </div>
       </div>
 
