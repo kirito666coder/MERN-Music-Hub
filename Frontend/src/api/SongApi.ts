@@ -49,7 +49,7 @@ export const AddSongApi = async (song: SongFormData): Promise<SongFormData | nul
 };
 
 
-export const GetAllSongApi = async ():Promise<SongFormData | null> =>{
+export const GetAllSongApi = async ():Promise<SongFormData[] | null> =>{
   try {
     const res = await api.get("/api/song/getAllSongs")
     return res.data

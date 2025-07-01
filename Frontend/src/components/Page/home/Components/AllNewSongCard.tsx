@@ -1,7 +1,8 @@
 import PlayButton from "@/components/Buttons/PlayButton"
 import LikeButton from "@/components/icons/LikeButton"
 
-const AllNewSongCard = () => {
+const AllNewSongCard = ({song}:Props) => {
+  console.log(song)
   return (
       <div className="bg-gradient-to-br  from-[#ff788f] to-[#70a4f7] dark:from-[#c4213c] dark:to-[#1770ff] h-20 w-full rounded-md flex items-center relative group overflow-hidden">
       <div className=" ml-2 flex justify-between items-center gap-2  ">
