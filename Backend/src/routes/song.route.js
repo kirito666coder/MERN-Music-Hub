@@ -18,6 +18,11 @@ SongRouter.post('/addSong',
     AddSongController)
 
 
-SongRouter.get("/getAllSongs",GetAllSongControllere)
+SongRouter.get("/getAllSongs",
+    GetAllSongControllere)
+
+SongRouter.get('/stream/:songId',
+    GetStreamSongController
+)
 
 export default SongRouter;
