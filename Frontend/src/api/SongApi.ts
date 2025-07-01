@@ -61,7 +61,7 @@ export const GetAllSongApi = async ():Promise<SongFormData[] | null> =>{
 
 
 interface SongStreamResponse {
-  audioUrl:string;
+songurl:string;
 }
 
 
