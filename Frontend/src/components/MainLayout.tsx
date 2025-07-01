@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom"
 import Header from "./Headers/Header"
 import NavBar from "./NavBar/NavBar"
+import SongPlayBar from "./MainLayoutComponents/SongPlayBar"
 
 const MainLayout = () => {
   return (
@@ -17,7 +18,7 @@ const MainLayout = () => {
           <div className="flex-1 overflow-y-auto scroll-smooth [scrollbar-width:0] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
       <Outlet/>
           </div>
-         <div className="bg-red-700 h-20 w-full "></div>
+         <SongPlayBar/>
         </main>
         
       </div>
