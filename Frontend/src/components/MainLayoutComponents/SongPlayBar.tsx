@@ -2,7 +2,7 @@ import SongPlayBarSongLogoAndTital from "./SongPlayBarComponents/SongPlayBarSong
 
 const SongPlayBar = () => {
   return (
-    <div className="h-17 w-full bg-white flex justify-center items-center">
+    <div className="h-19 w-full bg-white flex justify-center items-center">
       <div className="w-1/3">
       <SongPlayBarSongLogoAndTital/>
       </div>
