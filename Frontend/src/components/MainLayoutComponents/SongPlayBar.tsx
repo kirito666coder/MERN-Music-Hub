@@ -1,3 +1,4 @@
+import SongPlayBarSongControlers from "./SongPlayBarComponents/SongPlayBarSongControlers"
 import SongPlayBarSongLogoAndTital from "./SongPlayBarComponents/SongPlayBarSongLogoAndTital"
 
 const SongPlayBar = () => {
@@ -7,7 +8,7 @@ const SongPlayBar = () => {
       <SongPlayBarSongLogoAndTital/>
       </div>
       <div className="w-3/10 md:w-4/10">
- 
+       <SongPlayBarSongControlers/>
       </div>
       <div className="w-3/10">
   
