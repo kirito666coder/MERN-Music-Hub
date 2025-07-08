@@ -7,12 +7,10 @@ const SongPlayBar = () => {
       <div className="w-4/10 md:w-3/10">
       <SongPlayBarSongLogoAndTital/>
       </div>
-      <div className="w-3/10 md:w-4/10">
+      <div className="w-6/10 md:w-7/10 h-full">
        <SongPlayBarSongControlers/>
       </div>
-      <div className="w-3/10">
-  
-      </div>
+      
     </div>
   )
 }
