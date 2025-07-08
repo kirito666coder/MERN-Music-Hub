@@ -1,5 +1,15 @@
+import { GradientIconButton } from "@/components/Buttons/GradientIconButton";
+import { useState } from "react";
 import { FaPlay, FaPause, FaForward, FaBackward } from "react-icons/fa";
+
 const SongPlayBarSongControlers = () => {
+const [isPlaying, setIsPlaying] = useState(false)
+const [togglePlay, settogglePlay] = useState(false)
+
+const handleNext = () => {
+  console.log("Next song")
+}
+
   return (
     <div className="w-full h-full flex justify-center items-center">
      <div className="w-4/5 h-full bg-red-400">

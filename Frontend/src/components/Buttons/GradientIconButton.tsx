@@ -1,4 +1,11 @@
-const GradientIconButton = ({ onClick, children }) => (
+import React from "react";
+
+interface GradientIconButtonProps {
+    onClick?:()=> void;
+    children: React.ReactNode;
+}
+
+export const GradientIconButton:React.FC<GradientIconButtonProps> = ({ onClick, children }) => (
     <button
       onClick={onClick}
       className="cursor-pointer w-13 h-13 flex items-center justify-center rounded-full border-2 border-white 
@@ -8,3 +15,4 @@ const GradientIconButton = ({ onClick, children }) => (
     </button>
   );
   
+
