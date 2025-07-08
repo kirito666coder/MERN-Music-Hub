@@ -3,11 +3,18 @@ import SongPlayBarSongLogoAndTital from "./SongPlayBarComponents/SongPlayBarSong
 
 const SongPlayBar = () => {
   return (
-    <div className="h-19 w-full bg-black flex justify-center items-center">
-      <div className="w-4/10 md:w-3/10">
+    <div className=" h-19 w-full bg-black flex justify-center items-center relative">
+
+       <div className="z-1 absolute top-[-28px] w-full md:hidden overflow-hidden flex justify-center">
+  <h5 className="text-xl truncate max-w-[90%] bg-black rounded-t-3xl px-5 font-semibold">
+    ldsfld hdlsf ldsfldlkl
+  </h5>
+</div>
+
+      <div className="w-2/10 z-10">
       <SongPlayBarSongLogoAndTital/>
       </div>
-      <div className="w-6/10 md:w-7/10 h-full">
+      <div className="w-8/10  h-full z-10 ">
        <SongPlayBarSongControlers/>
       </div>
       
