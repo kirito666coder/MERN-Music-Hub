@@ -1,9 +1,28 @@
-
+import { FaPlay, FaPause, FaForward, FaBackward } from "react-icons/fa";
 const SongPlayBarSongControlers = () => {
   return (
-    <div className="bg-red-500 w-full h-full flex justify-center items-center">
-     <div className="w-4/5 h-full bg-yellow-400">
-      main
+    <div className="w-full h-full flex justify-center items-center">
+     <div className="w-4/5 h-full bg-red-400">
+     <div className="flex items-center gap-4">
+  {/* Previous Button */}
+  <GradientIconButton onClick={() => console.log("Previous song")}>
+    <FaBackward className="w-6 h-6 fill-white" />
+  </GradientIconButton>
+
+  {/* Play/Pause Button */}
+  <GradientIconButton onClick={togglePlay}>
+    {isPlaying ? (
+      <FaPause className="w-6 h-6 fill-white" />
+    ) : (
+      <FaPlay className="w-6 h-6 fill-white" />
+    )}
+  </GradientIconButton>
+
+  {/* Next Button */}
+  <GradientIconButton onClick={handleNext}>
+    <FaForward className="w-6 h-6 fill-white" />
+  </GradientIconButton>
+</div>
      </div>
 
 
