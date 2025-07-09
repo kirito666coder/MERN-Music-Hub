@@ -1,5 +1,7 @@
 import { GetSong } from "@/api/SongApi"
+import { setSong } from "@/features/song/songSlice"
 import type { SongFormData } from "@/types/song"
+import { useDispatch } from "react-redux"
 
 type Props ={
   song:SongFormData
@@ -7,14 +9,12 @@ type Props ={
 
 const PlayButton = ({song}:Props) => {
 
+  const dispatch = useDispatch();
+
   const HandelPlaysong = async()=>{
     const audioUrl = await GetSong({songId:song._id})
 
-    const audio = new Audio(audioUrl?.songurl)
-
-    audio.play().catch((err)=>{
-      console.error("playback failed",err)
-    })
+    dispatch(setSong(audioUrl?.songurl))
   }
 
   return (
