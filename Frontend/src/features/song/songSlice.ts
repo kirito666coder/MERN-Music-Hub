@@ -19,8 +19,8 @@ const songSlice = createSlice({
     name:"song",
     initialState,
     reducers:{
-        setSong:(state,action:PayloadAction<string>)=>{
-            state.audioFile = action.payload;
+        setSong:(state,action:PayloadAction<string | null | undefined>)=>{
+            state.audioFile = action.payload ?? null;
             state.currentTime = 0;
             state.duration = 0;
             state.isPlaying = false;
