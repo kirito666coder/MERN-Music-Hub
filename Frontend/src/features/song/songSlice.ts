@@ -2,6 +2,9 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 interface songStats{
     audioFile:string|null;
+    title:string|null;
+    artist:string|null;
+    coverImage:string|null;
     isPlaying:boolean;
     currentTime:number;
     duration:number;
@@ -9,6 +12,9 @@ interface songStats{
 
 const initialState:songStats={
     audioFile:null,
+    title:null,
+    artist:null,
+    coverImage:null,
     isPlaying:false,
     currentTime:0,
     duration:0,
@@ -24,6 +30,11 @@ const songSlice = createSlice({
             state.currentTime = 0;
             state.duration = 0;
             state.isPlaying = false;
+        },
+        setSongDetails:(state,action:PayloadAction<{title:string |null;artist:string|null;coverImage:string|null}>)=>{
+            state.title = action.payload.title;
+            state.artist = action.payload.artist;
+            state.coverImage = action.payload.coverImage;
         },
         togglePlay:(state) =>{
             state.isPlaying = !state.isPlaying;
@@ -42,6 +53,7 @@ const songSlice = createSlice({
 
 export const {
     setSong,
+    setSongDetails,
     togglePlay,
     setIsPlaying,
     setCurrentTime,

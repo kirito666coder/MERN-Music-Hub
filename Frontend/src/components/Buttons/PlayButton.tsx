@@ -15,7 +15,7 @@ const PlayButton = ({song}:Props) => {
     try {
       const audioUrl = await GetSong({ songId: song._id });
 
-     
+     console.log(song)
       if (audioUrl?.songurl) {
         dispatch(setSong(audioUrl?.songurl));
         dispatch(setIsPlaying(true))
