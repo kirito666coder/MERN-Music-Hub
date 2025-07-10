@@ -40,7 +40,7 @@ const GlobalAudioPlayer = () => {
     const handleLoadedMetadata = () =>{
         dispatch(setDuration(audio.duration))
     }
-    const handleTimeUpadate = () =>{
+    const handleTimeUpdate = () =>{
         dispatch(setCurrentTime(audio.currentTime))
     }
     const handleEnded = () =>{
