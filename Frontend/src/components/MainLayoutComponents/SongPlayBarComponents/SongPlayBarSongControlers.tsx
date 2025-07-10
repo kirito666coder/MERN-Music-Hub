@@ -1,7 +1,6 @@
 import type { RootState } from "@/app/store";
 import { GradientIconButton } from "@/components/Buttons/GradientIconButton";
-import { setCurrentTime, setIsPlaying } from "@/features/song/songSlice";
-import { useState } from "react";
+import { setCurrentTime, setIsPlaying, setVolume } from "@/features/song/songSlice";
 import { FaPlay, FaPause, FaForward, FaBackward, FaMinus, FaPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,7 +8,7 @@ const SongPlayBarSongControlers = () => {
 
   const dispatch = useDispatch();
   const { isPlaying, duration, currentTime } = useSelector((state: RootState) => state.song)
-  const [volume, setvolume] = useState(50)
+  const volume = useSelector((state:RootState)=>state.song.volume)
 
 
   const progress = duration?(currentTime/duration)*100:0;
@@ -85,7 +84,7 @@ const SongPlayBarSongControlers = () => {
           <div className="flex md:hidden items-center gap-2 text-white">
             {/* Decrease */}
             <button
-              onClick={() => setvolume((v) => Math.max(0, v - 10))}
+             onClick={() => dispatch(setVolume(Math.max(0, volume - 10)))}
               className="p-2 rounded-full border-2 border-white 
                bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] 
                hover:brightness-110 transition-all duration-300"
@@ -101,7 +100,7 @@ const SongPlayBarSongControlers = () => {
 
             {/* Increase */}
             <button
-              onClick={() => setvolume((v) => Math.min(100, v + 10))}
+             onClick={() => dispatch(setVolume(Math.min(100, volume + 10)))}
               className="p-2 rounded-full border-2 border-white 
                bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] 
                hover:brightness-110 transition-all duration-300"
@@ -119,7 +118,7 @@ const SongPlayBarSongControlers = () => {
               min="0"
               max="100"
               value={volume}
-              onChange={(e) => setvolume(Number(e.target.value))}
+              onChange={(e) => dispatch(setVolume(Number(e.target.value)))}
               className="appearance-none w-[120px] h-2 
           bg-gradient-to-r from-[#f43f5e] to-[#3b82f6] 
           rounded-lg
