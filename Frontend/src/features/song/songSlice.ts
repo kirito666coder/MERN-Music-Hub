@@ -8,6 +8,7 @@ interface songStats{
     isPlaying:boolean;
     currentTime:number;
     duration:number;
+    volume:number;
 }
 
 const initialState:songStats={
@@ -18,6 +19,7 @@ const initialState:songStats={
     isPlaying:false,
     currentTime:0,
     duration:0,
+    volume:50,
 };
 
 
@@ -35,6 +37,9 @@ const songSlice = createSlice({
             state.title = action.payload.title;
             state.artist = action.payload.artist;
             state.coverImage = action.payload.coverImage;
+        },
+        setVolume:(state,action:PayloadAction<number>)=>{
+            state.volume = action.payload;
         },
         togglePlay:(state) =>{
             state.isPlaying = !state.isPlaying;
@@ -58,6 +63,7 @@ export const {
     setIsPlaying,
     setCurrentTime,
     setDuration,
+    setVolume,
 }= songSlice.actions;
 
 export default songSlice.reducer;
