@@ -1,5 +1,5 @@
 import { GetSong } from "@/api/SongApi"
-import { setIsPlaying, setSong } from "@/features/song/songSlice"
+import { setIsPlaying, setSong, setSongDetails } from "@/features/song/songSlice"
 import type { SongFormData } from "@/types/song"
 import { useDispatch } from "react-redux"
 
@@ -18,6 +18,15 @@ const PlayButton = ({song}:Props) => {
      console.log(song)
       if (audioUrl?.songurl) {
         dispatch(setSong(audioUrl?.songurl));
+        dispatch(setSongDetails({
+          title: song.title ?? null,
+          artist: song.artist ?? null,
+          coverImage: song.coverUrl
+            ? typeof song.coverUrl === "string"
+              ? song.coverUrl
+              : URL.createObjectURL(song.coverUrl)
+            : null
+        }))
         dispatch(setIsPlaying(true))
       } else {
         console.error("Song URL not found!");
