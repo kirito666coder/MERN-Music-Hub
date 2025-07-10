@@ -10,56 +10,60 @@ const GlobalAudioPlayer = () => {
      
 
     useEffect(() => {
-    const audio = audioRef.current;
-    if(audio&&audioFile){
-        audio.src = audioFile;
-        audio.load();
-        if(isPlaying){
-            audio.play().catch(console.error)
+        console.log("audioFile in Redux:", audioFile)
+        const audio = audioRef.current;
+        if(audio && audioFile){
+          console.log("Loading new audio src:", audioFile);
+          audio.src = audioFile;
+          audio.load();
+          if(isPlaying){
+            console.log("Auto playing after load");
+            audio.play().catch(err => console.error("Play failed:", err));
+          }
         }
-    }
-    }, [audioFile])
-
-
-    useEffect(() => {
-    const audio = audioRef.current;
-    if(!audio) return;
-
-    if(isPlaying){
-        audio.play().catch(console.error)
-    }else{
-        audio.pause();
-    }
-    }, [isPlaying])
-    
-
-    useEffect(() => {
-    const audio = audioRef.current;
-    if(!audio) return;
-
-    const handleLoadedMetadata = () =>{
-        dispatch(setDuration(audio.duration))
-    }
-    const handleTimeUpdate = () =>{
-        dispatch(setCurrentTime(audio.currentTime))
-    }
-    const handleEnded = () =>{
-        dispatch(setIsPlaying(false))
-    }
-
-    audio.addEventListener("loadedmetadata", handleLoadedMetadata);
-    audio.addEventListener("timeupdate", handleTimeUpdate);
-    audio.addEventListener("ended", handleEnded);
-
-    return () => {
-      audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
-      audio.removeEventListener("timeupdate", handleTimeUpdate);
-      audio.removeEventListener("ended", handleEnded);
-    };
-
-
-    }, [dispatch])
-    
+      }, [audioFile])
+      
+      useEffect(() => {
+        console.log("isPlaying changed:", isPlaying)
+        const audio = audioRef.current;
+        if(audio){
+          if(isPlaying){
+            console.log("Playing audio");
+            audio.play().catch(err => console.error("Play failed:", err));
+          } else {
+            console.log("Pausing audio");
+            audio.pause();
+          }
+        }
+      }, [isPlaying])
+      
+      useEffect(() => {
+        const audio = audioRef.current;
+        if(!audio) return;
+      
+        const handleLoadedMetadata = () => {
+          console.log("Loaded metadata, duration:", audio.duration)
+          dispatch(setDuration(audio.duration))
+        }
+        const handleTimeUpdate = () => {
+          dispatch(setCurrentTime(audio.currentTime))
+        }
+        const handleEnded = () => {
+          console.log("Audio ended");
+          dispatch(setIsPlaying(false))
+        }
+      
+        audio.addEventListener("loadedmetadata", handleLoadedMetadata);
+        audio.addEventListener("timeupdate", handleTimeUpdate);
+        audio.addEventListener("ended", handleEnded);
+      
+        return () => {
+          audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
+          audio.removeEventListener("timeupdate", handleTimeUpdate);
+          audio.removeEventListener("ended", handleEnded);
+        };
+      }, [dispatch])
+      
     
 
     return <audio ref={audioRef} />;

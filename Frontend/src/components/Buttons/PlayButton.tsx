@@ -17,7 +17,7 @@ const PlayButton = ({song}:Props) => {
 
      
       if (audioUrl?.songurl) {
-        dispatch(setSong(audioUrl.songurl));
+        dispatch(setSong(audioUrl?.songurl));
         dispatch(setIsPlaying(true))
       } else {
         console.error("Song URL not found!");

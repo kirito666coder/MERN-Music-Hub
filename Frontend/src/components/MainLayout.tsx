@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom"
 import Header from "./Headers/Header"
 import NavBar from "./NavBar/NavBar"
 import SongPlayBar from "./MainLayoutComponents/SongPlayBar"
+import GlobalAudioPlayer from "@/features/song/GlobalAudioPlayer"
 
 const MainLayout = () => {
   return (
@@ -22,7 +23,7 @@ const MainLayout = () => {
         </main>
         
       </div>
-
+        <GlobalAudioPlayer/>
     </>
   )
 }
