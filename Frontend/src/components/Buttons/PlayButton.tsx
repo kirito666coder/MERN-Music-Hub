@@ -1,5 +1,5 @@
 import { GetSong } from "@/api/SongApi"
-import { setSong } from "@/features/song/songSlice"
+import { setIsPlaying, setSong } from "@/features/song/songSlice"
 import type { SongFormData } from "@/types/song"
 import { useDispatch } from "react-redux"
 
@@ -12,9 +12,19 @@ const PlayButton = ({song}:Props) => {
   const dispatch = useDispatch();
 
   const HandelPlaysong = async()=>{
-    const audioUrl = await GetSong({songId:song._id})
+    try {
+      const audioUrl = await GetSong({ songId: song._id });
 
-    dispatch(setSong(audioUrl?.songurl))
+     
+      if (audioUrl?.songurl) {
+        dispatch(setSong(audioUrl.songurl));
+        dispatch(setIsPlaying(true))
+      } else {
+        console.error("Song URL not found!");
+      }
+    } catch (err) {
+      console.error("Error fetching song:", err);
+    }
   }
 
   return (
