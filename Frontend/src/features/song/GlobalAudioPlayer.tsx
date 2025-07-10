@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { setCurrentTime, setDuration, setIsPlaying } from "./songSlice";
 
 const GlobalAudioPlayer = () => {
-    const {audioFile, isPlaying,volume} = useSelector((state:RootState)=> state.song)
+    const {audioFile, isPlaying,volume,currentTime} = useSelector((state:RootState)=> state.song)
     const dispatch = useDispatch();
     const audioRef = useRef<HTMLAudioElement| null>(null);
      
@@ -71,6 +71,17 @@ const GlobalAudioPlayer = () => {
           console.log("Volume set to:", volume);
         }
       }, [volume]);
+
+      useEffect(() => {
+        const audio = audioRef.current;
+        if (audio) {
+          if (Math.abs(audio.currentTime - currentTime) > 0.3) {
+            console.log("Seeking audio to:", currentTime);
+            audio.currentTime = currentTime;
+          }
+        }
+      }, [currentTime]);
+      
 
     return <audio ref={audioRef} />;
 }
