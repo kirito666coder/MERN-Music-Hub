@@ -1,4 +1,4 @@
-import type { SongFormData } from "@/types/user";
+import type { SongFormData } from "@/types/song";
 import { useState } from "react";
 import type { ChangeEvent ,FormEvent } from "react";
 import { renderLabel } from "./HandlerForAddSongForm";
@@ -9,12 +9,12 @@ const AddSongForm = () => {
     title: "",
     artist: "",
     album: "",
-    genre: "",
+    genre: [],
     language: "",
     releaseDate: "",
     lyrics: "",
     description: "",
-    tags: "",
+    tags:[],
     isPublic: true,
     mood: "none",
   });
