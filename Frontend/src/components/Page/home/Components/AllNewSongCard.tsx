@@ -1,9 +1,9 @@
 import PlayButton from "@/components/Buttons/PlayButton"
 import LikeButton from "@/components/icons/LikeButton"
-import type { SongFormData } from "@/types/song"
+import type { SongData } from "@/types/song"
 
 type Props={
-  song:SongFormData
+  song:SongData
 }
 
 const AllNewSongCard = ({song}:Props) => {

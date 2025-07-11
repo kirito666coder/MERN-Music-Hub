@@ -1,10 +1,10 @@
 import { GetSong } from "@/api/SongApi"
 import { setIsPlaying, setSong, setSongDetails } from "@/features/song/songSlice"
-import type { SongFormData } from "@/types/song"
+import type { SongData } from "@/types/song"
 import { useDispatch } from "react-redux"
 
 type Props ={
-  song:SongFormData
+  song:SongData
 }
 
 const PlayButton = ({song}:Props) => {

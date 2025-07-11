@@ -1,6 +1,6 @@
 
 
-export interface SongFormData {
+export interface SongData {
   _id: string;
   title: string;
   artist: string;
@@ -14,8 +14,8 @@ export interface SongFormData {
   isPublic: boolean;
   mood: string;
   duration: number;
-  audioUrl: File | null |string;
-  coverUrl: File | null |string;
+  audioUrl: null |string;
+  coverUrl: null |string;
   createdAt: string;
   likes: number;
   plays: number;

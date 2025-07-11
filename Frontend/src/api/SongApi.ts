@@ -1,4 +1,4 @@
-import type { SongFields } from "@/types/song";
+import type { SongFields,SongData } from "@/types/song";
 import axios from "axios";
 
 const api = axios.create({
@@ -49,7 +49,7 @@ export const AddSongApi = async (song: SongFields): Promise<SongFields | null> =
 };
 
 
-export const GetAllSongApi = async ():Promise<SongFormData[] | null> =>{
+export const GetAllSongApi = async ():Promise<SongData[] | null> =>{
   try {
     const res = await api.get("/api/song/getAllSongs")
     return res.data

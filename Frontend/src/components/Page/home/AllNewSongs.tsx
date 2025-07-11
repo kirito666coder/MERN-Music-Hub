@@ -1,14 +1,14 @@
 import { GetAllSongApi } from "@/api/SongApi"
 import AllNewSongCard from "./Components/AllNewSongCard"
 import { useEffect, useState } from "react"
-import type { SongFormData } from "@/types/song"
+import type { SongData } from "@/types/song"
 
 const AllNewSongs = () => {
   
-  const [AllSongs, setAllSongs] = useState<SongFormData[] | null>(null)
+  const [AllSongs, setAllSongs] = useState<SongData[] | null>(null)
   
   const getAllNewSongs = async ()=>{
-  const allsongs:SongFormData[] | null = await GetAllSongApi()
+  const allsongs:SongData[] | null = await GetAllSongApi()
   setAllSongs(allsongs??[])
 }
 
