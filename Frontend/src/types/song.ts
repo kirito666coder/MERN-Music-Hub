@@ -25,7 +25,6 @@ export interface SongFormData {
 }
 
 
-// @/types/song.ts
 export interface SongFormFields {
   title: string;
   artist: string;
@@ -38,6 +37,22 @@ export interface SongFormFields {
   tags: string[];
   isPublic: boolean;
   mood: string;
-  audioUrl: File | null;    // user uploads file
-  coverUrl: File | null;    // user uploads file
 }
+export interface SongFields {
+  title: string;
+  artist: string;
+  album: string;
+  genre: string[];
+  language: string;
+  releaseDate: string;
+  lyrics: string;
+  description: string;
+  tags: string[];
+  isPublic: boolean;
+  mood: string;
+  duration: number;
+  audioUrl: File | null;   // required
+  coverUrl: File | null;   // required
+}
+
+

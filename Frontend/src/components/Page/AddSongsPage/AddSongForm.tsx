@@ -1,11 +1,11 @@
-import type { SongFormData } from "@/types/song";
+import type { SongFormFields } from "@/types/song";
 import { useState } from "react";
 import type { ChangeEvent ,FormEvent } from "react";
 import { renderLabel } from "./HandlerForAddSongForm";
 import { AddSongApi } from "@/api/SongApi";
 
 const AddSongForm = () => {
-  const [formData, setFormData] = useState<SongFormData>({
+  const [formData, setFormData] = useState<SongFormFields>({
     title: "",
     artist: "",
     album: "",
@@ -62,8 +62,8 @@ const AddSongForm = () => {
 
     const songData = {
       ...formData,
-      genre: formData.genre.split(",").map((g) => g.trim()),
-      tags: formData.tags.split(",").map((t) => t.trim()),
+      genre: formData.genre,
+      tags: formData.tags,
       duration,
       audioUrl,
       coverUrl,
@@ -89,7 +89,7 @@ const AddSongForm = () => {
           ["genre", "Genre (comma separated)"],
           ["language", "Language"],
           ["releaseDate", "Release Date", false, "date"]
-        ] as [keyof SongFormData, string, boolean?, string?][]).map(
+        ] as [keyof SongFormFields, string, boolean?, string?][]).map(
           ([name, label, isRequired = false, type = "text"]) => (
             <div key={name}>
               {renderLabel(label, isRequired)}

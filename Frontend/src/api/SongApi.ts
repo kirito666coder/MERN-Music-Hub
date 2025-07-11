@@ -1,4 +1,4 @@
-import type { SongFormData } from "@/types/song";
+import type { SongFields } from "@/types/song";
 import axios from "axios";
 
 const api = axios.create({
@@ -6,7 +6,7 @@ const api = axios.create({
   withCredentials: true,
 });
 
-export const AddSongApi = async (song: SongFormData): Promise<SongFormData | null> => {
+export const AddSongApi = async (song: SongFields): Promise<SongFields | null> => {
   try {
     const formData = new FormData();
 
