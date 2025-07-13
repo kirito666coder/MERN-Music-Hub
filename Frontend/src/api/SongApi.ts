@@ -1,4 +1,4 @@
-import type { SongFields,SongData } from "@/types/song";
+import type { SongFields, SongData } from "@/types/song";
 import axios from "axios";
 
 const api = axios.create({
@@ -49,38 +49,43 @@ export const AddSongApi = async (song: SongFields): Promise<SongFields | null> =
 };
 
 
-export const GetAllSongApi = async ():Promise<SongData[] | null> =>{
+export const GetAllSongApi = async (): Promise<SongData[] | null> => {
   try {
     const res = await api.get("/api/song/getAllSongs")
     return res.data
   } catch (error) {
-    console.log("Not Get any songs",error)
+    console.log("Not Get any songs", error)
     return null;
   }
 }
 
 
 interface SongStreamResponse {
-songurl:string;
+  songurl: string;
 }
 
 
-export const GetSong = async ({songId}:{songId:string}):Promise<SongStreamResponse | null>=>{
+export const GetSong = async ({ songId }: { songId: string }): Promise<SongStreamResponse | null> => {
   try {
     const res = await api.get<SongStreamResponse>(`/api/song/stream/${songId}`)
     return res.data
   } catch (error) {
-    console.log("Not Get any song Url",error)
+    console.log("Not Get any song Url", error)
     return null;
   }
 }
 
-export const SearchArtistApi = async (value)=>{
+interface artistSearch {
+  _id: string,
+  name: string,
+}
+
+export const SearchArtistApi = async (value:string):Promise<artistSearch[]|null> => {
   try {
     const res = await api.get(`/api/artists?search=${encodeURIComponent(value)}`)
-    return res;
+    console.log(res.data)
+    return res.data;
   } catch (error) {
     return null;
   }
-
 }
