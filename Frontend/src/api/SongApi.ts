@@ -71,6 +71,16 @@ export const GetSong = async ({songId}:{songId:string}):Promise<SongStreamRespon
     return res.data
   } catch (error) {
     console.log("Not Get any song Url",error)
-    return null
+    return null;
   }
+}
+
+export const SearchArtistApi = async (value)=>{
+  try {
+    const res = await api.get(`/api/artists?search=${encodeURIComponent(value)}`)
+    return res;
+  } catch (error) {
+    return null;
+  }
+
 }
