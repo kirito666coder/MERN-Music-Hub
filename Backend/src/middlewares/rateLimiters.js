@@ -8,7 +8,7 @@ export const ratelimiter =  rateLimit({
 
 export const searchArtistLimiter = rateLimit({
     windowMs: 1 * 60 * 1000, 
-    max: 200,        
+    max: 250,        
     message: {
       success: false,
       message: "Too many search requests, please slow down."
