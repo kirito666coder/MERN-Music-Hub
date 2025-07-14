@@ -13,4 +13,8 @@ AllRoutes.use('/song',
     passport.authenticate('jwt', { session: false }),
     SongRouter)
 
+AllRoutes.use('/artist',
+    passport.authenticate('jwt', { session: false }),
+)
+
 export default AllRoutes;
