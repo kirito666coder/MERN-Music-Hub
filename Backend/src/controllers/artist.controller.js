@@ -1,6 +1,5 @@
 
 
-
-export const SearchArtistController = () =>{
+export const SearchArtistController = (req,res) =>{
 
 }
