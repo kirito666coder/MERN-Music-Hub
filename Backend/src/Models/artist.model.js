@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose'
+import { model, Schema } from 'mongoose'
 
 const ArtistSchema = new Schema({
     name:{
@@ -23,3 +23,7 @@ const ArtistSchema = new Schema({
         default:Date.now,
     },
 });
+
+const ArtistModel = model("Artist",ArtistSchema)
+
+export default ArtistModel;
