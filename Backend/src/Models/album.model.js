@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 
 
 const AlbumSchema = new Schema({
@@ -39,3 +39,6 @@ const AlbumSchema = new Schema({
         default:Date.now,
     },
 });
+
+const AlbumModel = model('Album',AlbumSchema);
+export default AlbumModel;
