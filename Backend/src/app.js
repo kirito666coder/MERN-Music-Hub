@@ -1,9 +1,9 @@
 
 import "dotenv/config"
 import helmet from 'helmet'
-import rateLimit from 'express-rate-limit'
 import cors from "cors"
 import morgan from "morgan"
+import { ratelimiter } from "./middlewares/rateLimiters.js"
 import express from "express"
 import compression from "compression"
 import cookieParser from "cookie-parser"
@@ -18,11 +18,7 @@ ConnectDB()
 const app = express()
 
 app.use(helmet())
-app.use(rateLimit({
-    windowMs: 1 * 60 * 1000,
-    max: 100,
-    message:"Too many requests from this IP, please try again later."
-}))
+app.use(ratelimiter)
 app.use(cors({
     origin: "http://localhost:5173",
     credentials: true
