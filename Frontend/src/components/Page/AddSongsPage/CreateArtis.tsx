@@ -74,7 +74,15 @@ const CreateArtist = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-6 rounded-xl border shadow space-y-6">
-      <h2 className="text-2xl font-bold mb-2 text-center">Create Artist Profile</h2>
+      <div className="text-center space-y-1">
+  <h2 className="text-3xl font-extrabold bg-gradient-to-br from-[#f43f5e] to-[#0062ff] text-transparent bg-clip-text">
+    Create Your Artist Profile
+  </h2>
+  <p className="text-gray-500 dark:text-gray-400 text-sm">
+    Share your style, tell your story & start uploading your own tracks 🎵
+  </p>
+</div>
+
       
       <form onSubmit={handleSubmit} className="space-y-5">
         {([
