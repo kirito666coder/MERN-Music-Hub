@@ -24,5 +24,11 @@ export const SearchArtistController = async (req,res) =>{
 }
 
 export const CreateArtistController = async (req,res) =>{
-    
+    try {
+        const data = req.body;
+        console.log(data)
+    } catch (error) {
+        console.error("Error searching artists:", error);
+        res.status(500).json({ message: "Server error" });
+    }
 }
