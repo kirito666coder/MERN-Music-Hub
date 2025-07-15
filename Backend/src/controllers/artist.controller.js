@@ -1,5 +1,5 @@
 import ArtistModel from "../Models/artist.model.js";
-import { CreateArtistService } from "../services/artist.service.js";
+import { CreateArtistService, IsArtistTrue } from "../services/artist.service.js";
 import { imageUpload } from "../services/cloudinaryUpload.service.js";
 
 
@@ -43,9 +43,11 @@ export const CreateArtistController = async (req,res) =>{
             return res.status(400).json({message:"Fall to make artist try again.."})
         }
 
-        const makeIsArtistTrue = await 
+        const makeIsArtistTrue = await IsArtistTrue({userId:user._id})
 
+        console.log(makeIsArtistTrue)
         
+        res.status(200).json({artist})
     } catch (error) {
         console.error("Error searching artists:", error);
         res.status(500).json({ message: "Server error" });

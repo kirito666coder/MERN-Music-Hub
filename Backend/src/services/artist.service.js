@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import ArtistModel from "../Models/artist.model.js";
 import UserModel from "../Models/user.model.js";
 
@@ -28,4 +29,17 @@ export const CreateArtistService = async ({data,finalPhoto,userId})=>{
     })
 
     return artist;
+}
+
+export const IsArtistTrue = async ({userId})=>{
+    try {
+        const updateUser = await UserModel.findByIdAndUpdate(
+            userId,
+            {isArtist:true},
+            {new:true}
+        );
+        return updateUser;
+    } catch (error) {
+        throw new Error("Failed to update user as artist");
+    }
 }
