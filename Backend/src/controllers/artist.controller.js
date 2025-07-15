@@ -1,4 +1,5 @@
 import ArtistModel from "../Models/artist.model.js";
+import { CreateArtistService } from "../services/artist.service.js";
 import { imageUpload } from "../services/cloudinaryUpload.service.js";
 
 
@@ -34,9 +35,9 @@ export const CreateArtistController = async (req,res) =>{
 
         const finalPhoto = artistPhoto?artistPhoto:profilePhoto;
 
-        
+        const artist = await CreateArtistService({data,finalPhoto})
 
-        console.log(finalPhoto)
+        console.log(artist)
 
         console.log(data)
     } catch (error) {
