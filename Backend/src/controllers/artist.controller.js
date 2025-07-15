@@ -26,6 +26,9 @@ export const SearchArtistController = async (req,res) =>{
 export const CreateArtistController = async (req,res) =>{
     try {
         const data = req.body;
+        const photo = req.files.photo?.[0];
+
+        console.log(photo)
         console.log(data)
     } catch (error) {
         console.error("Error searching artists:", error);

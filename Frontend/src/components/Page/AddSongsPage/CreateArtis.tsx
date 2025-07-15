@@ -46,20 +46,19 @@ const CreateArtist = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
+  
     const genresArray = formData.genres.split(',').map(g => g.trim()).filter(Boolean)
-
-    const formDataToSend = new FormData()
-    formDataToSend.append('name', formData.name)
-    formDataToSend.append('bio', formData.bio)
-    formDataToSend.append('genres', JSON.stringify(genresArray))
-    formDataToSend.append('location', formData.location)
-    if (photoFile) formDataToSend.append('photo', photoFile)
-
+  
     try {
-      const res = await CreateArtisApi(formDataToSend)
-
-      if (res.ok) {
+      const res = await CreateArtisApi({
+        name: formData.name,
+        bio: formData.bio,
+        genres: genresArray,
+        location: formData.location,
+        photo: photoFile ?? undefined,
+      })
+  
+      if (res) {
         console.log('Artist created successfully')
         // reset form or redirect
       } else {
@@ -69,7 +68,7 @@ const CreateArtist = () => {
       console.error('Error:', err)
     }
   }
-
+  
   return (
     <div className="max-w-2xl mx-auto p-6 rounded-xl border shadow space-y-6">
       <div className="text-center space-y-1">

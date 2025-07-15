@@ -16,12 +16,19 @@ const api = axios.create({
     }
   }
 
-export const CreateArtisApi = async (formDataToSend:CreateArtistPayload):Promise<Artist | null>=>{
+  export const CreateArtisApi = async (payload: CreateArtistPayload): Promise<Artist | null> => {
     try {
-        const res = await api.post('/api/artist/create',formDataToSend)
-        console.log(res.data)
-        return res.data;
+      const formData = new FormData()
+      formData.append('name', payload.name)
+      formData.append('bio', payload.bio)
+      formData.append('genres', JSON.stringify(payload.genres))
+      formData.append('location', payload.location)
+      if (payload.photo) formData.append('photo', payload.photo)
+  
+      const res = await api.post('/api/artist/create', formData)
+      return res.data
     } catch (error) {
-        return null
+      console.error('API error:', error)
+      return null
     }
-}
+  }
