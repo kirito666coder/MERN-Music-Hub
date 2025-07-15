@@ -22,3 +22,7 @@ export const SearchArtistController = async (req,res) =>{
         res.status(500).json({ message: "Server error" });
     }
 }
+
+export const CreateArtistController = async (req,res) =>{
+    
+}
