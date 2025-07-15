@@ -2,7 +2,8 @@ import type { SongFormFields } from "@/types/song";
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { renderLabel } from "./HandlerForAddSongForm";
-import { AddSongApi, SearchArtistApi } from "@/api/SongApi";
+import { AddSongApi } from "@/api/SongApi";
+import { SearchArtistApi } from "@/api/ArtistApi";
 
 const AddSongForm = () => {
   const [formData, setFormData] = useState<SongFormFields>({
@@ -89,7 +90,7 @@ const AddSongForm = () => {
     if (value.length >= 2) {
       try {
         const res = await SearchArtistApi(value)
-        const data = await res?.json();
+        const data = res;
         setArtistSuggestions(data);
       } catch (error) {
         console.error("Artist search error:", error);

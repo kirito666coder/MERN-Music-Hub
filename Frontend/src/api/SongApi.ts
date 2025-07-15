@@ -74,18 +74,3 @@ export const GetSong = async ({ songId }: { songId: string }): Promise<SongStrea
     return null;
   }
 }
-
-interface artistSearch {
-  _id: string,
-  name: string,
-}
-
-export const SearchArtistApi = async (value:string):Promise<artistSearch[]|null> => {
-  try {
-    const res = await api.get(`/api/artist/search?search=${encodeURIComponent(value)}`)
-    console.log(res.data)
-    return res.data;
-  } catch (error) {
-    return null;
-  }
-}
