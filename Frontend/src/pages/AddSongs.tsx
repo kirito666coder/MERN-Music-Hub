@@ -1,6 +1,8 @@
 import type { RootState } from "@/app/store"
 import AddSongForm from "@/components/Page/AddSongsPage/AddSongForm"
+import CreateArtis from "@/components/Page/AddSongsPage/CreateArtis"
 import { useSelector } from "react-redux"
+
 
 const AddSongs = () => {
   const {user} = useSelector((state:RootState) =>state.user)
@@ -10,7 +12,7 @@ const AddSongs = () => {
         user?.isArtist ?(
           <AddSongForm/>
         ):(
-          <div>hello</div>
+           <CreateArtis/>
         )
       }
     </div>
