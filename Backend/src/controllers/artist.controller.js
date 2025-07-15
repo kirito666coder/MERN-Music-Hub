@@ -1,4 +1,5 @@
 import ArtistModel from "../Models/artist.model.js";
+import { imageUpload } from "../services/cloudinaryUpload.service.js";
 
 
 export const SearchArtistController = async (req,res) =>{
@@ -27,8 +28,16 @@ export const CreateArtistController = async (req,res) =>{
     try {
         const data = req.body;
         const photo = req.files.photo?.[0];
+        const profilePhoto = req.user.image;
+        
+        const artistPhoto = await imageUpload(photo)
 
-        console.log(photo)
+        const finalPhoto = artistPhoto?artistPhoto:profilePhoto;
+
+        
+
+        console.log(finalPhoto)
+
         console.log(data)
     } catch (error) {
         console.error("Error searching artists:", error);
