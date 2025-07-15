@@ -29,13 +29,13 @@ export const CreateArtistController = async (req,res) =>{
     try {
         const data = req.body;
         const photo = req.files.photo?.[0];
-        const profilePhoto = req.user.image;
+        const user = req.user;
         
         const artistPhoto = await imageUpload(photo)
 
-        const finalPhoto = artistPhoto?artistPhoto:profilePhoto;
+        const finalPhoto = artistPhoto?artistPhoto:user.image;
 
-        const artist = await CreateArtistService({data,finalPhoto})
+        const artist = await CreateArtistService({data,finalPhoto,userId:user._id})
 
         console.log(artist)
 
