@@ -19,3 +19,13 @@ interface artistSearch {
       return null;
     }
   }
+
+export const CreateArtisApi = async (formDataToSend)=>{
+    try {
+        const res = await api.post('/api/artist/create',formDataToSend)
+        console.log(res.data)
+        return res.data;
+    } catch (error) {
+        return null
+    }
+}

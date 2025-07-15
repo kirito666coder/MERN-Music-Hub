@@ -1,3 +1,4 @@
+import { CreateArtisApi } from '@/api/ArtistApi'
 import { useState } from 'react'
 
 // keep your renderLabel
@@ -56,10 +57,7 @@ const CreateArtist = () => {
     if (photoFile) formDataToSend.append('photo', photoFile)
 
     try {
-      const res = await fetch('/api/artist', {
-        method: 'POST',
-        body: formDataToSend,
-      })
+      const res = await CreateArtisApi(formDataToSend)
 
       if (res.ok) {
         console.log('Artist created successfully')
