@@ -12,7 +12,7 @@ const UserSchema = new Schema({
     },
     image:String,
     isArtist:{
-      type:String,
+      type:Boolean,
       default:false,
     },
     googleId:{
@@ -60,7 +60,7 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-})
+},{timestamps:true})
 
 const UserModel = model('user',UserSchema)
 export default UserModel;
