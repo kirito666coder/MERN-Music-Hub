@@ -11,6 +11,10 @@ const UserSchema = new Schema({
         unique:true,
     },
     image:String,
+    isArtist:{
+      type:String,
+      default:false,
+    },
     googleId:{
         type:String,
         unique:true,
