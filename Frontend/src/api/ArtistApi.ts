@@ -1,4 +1,4 @@
-import type { artistSearch } from "@/types/artist";
+import type { Artist, artistSearch, CreateArtistPayload } from "@/types/artist";
 import axios from "axios";
 
 const api = axios.create({
@@ -16,7 +16,7 @@ const api = axios.create({
     }
   }
 
-export const CreateArtisApi = async (formDataToSend)=>{
+export const CreateArtisApi = async (formDataToSend:CreateArtistPayload):Promise<Artist | null>=>{
     try {
         const res = await api.post('/api/artist/create',formDataToSend)
         console.log(res.data)
