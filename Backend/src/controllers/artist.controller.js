@@ -39,7 +39,13 @@ export const CreateArtistController = async (req,res) =>{
 
         console.log(artist)
 
-        console.log(data)
+        if(!artist){
+            return res.status(400).json({message:"Fall to make artist try again.."})
+        }
+
+        const makeIsArtistTrue = await 
+
+        
     } catch (error) {
         console.error("Error searching artists:", error);
         res.status(500).json({ message: "Server error" });
