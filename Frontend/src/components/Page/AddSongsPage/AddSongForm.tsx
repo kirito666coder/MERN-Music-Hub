@@ -84,21 +84,21 @@ const AddSongForm = () => {
 
   };
 
-  const handleArtistChange = async (e:ChangeEvent<HTMLInputElement>) => {
+  const handleArtistChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setFormData((prev) => ({ ...prev, artist: value }));
 
     if (value.length >= 2) {
       try {
         const res = await SearchArtistApi(value)
-        setArtistSuggestions(res??[]);
+        setArtistSuggestions(res ?? []);
         console.log(res)
       } catch (error) {
         console.error("Artist search error:", error);
         setArtistSuggestions([]);
       }
     } else {
-      setArtistSuggestions([]); 
+      setArtistSuggestions([]);
     }
   };
 
@@ -118,9 +118,9 @@ const AddSongForm = () => {
 
 
   useEffect(() => {
-    console.log(artistSuggestions,'this is data')
+    console.log(artistSuggestions, 'this is data')
   }, [artistSuggestions])
-  
+
 
   return (
     <div className="max-w-4xl mx-auto p-4">
@@ -152,21 +152,29 @@ const AddSongForm = () => {
 
                   {/* Artist suggestions */}
                   {artistSuggestions.length > 0 && (
-                    <ul className="absolute z-10 w-full bg-white border rounded shadow mt-1 max-h-48 overflow-auto">
+                    <ul className="absolute z-10 w-full dark:text-white dark:bg-black bg-white text-black  border rounded-xl shadow-lg mt-1 max-h-60 overflow-auto">
                       {artistSuggestions.map((artist) => (
                         <li
                           key={artist._id}
                           onClick={() => {
-                            setFormData((prev) => ({ ...prev, artist: artist.name }));
+                            setFormData((prev) => ({ ...prev, artist: artist._id }));
                             setArtistSuggestions([]);
                           }}
-                          className="cursor-pointer px-3 py-2 hover:bg-gray-200"
+                          className="flex items-center gap-3 px-3 py-2 cursor-pointer hover:bg-zinc-900 transition-colors"
                         >
-                          {artist.name}
+                          <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+                            <img
+                              src={artist.photoUrl}
+                              alt={artist.name}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <span className="truncate font-medium ">{artist.name}</span>
                         </li>
                       ))}
                     </ul>
                   )}
+
                 </>
               ) : name === "album" ? (
                 <>
@@ -180,7 +188,7 @@ const AddSongForm = () => {
                   />
 
                   {showAlbumOptions && (
-                    <div className="absolute z-10 w-full  border border-gray-300 bg-black rounded shadow mt-1 max-h-60 overflow-auto">
+                    <div className="absolute z-10 w-full  border border-gray-300 dark:text-white dark:bg-black bg-white text-black rounded shadow mt-1 max-h-60 overflow-auto">
 
                       {/* Top bar with close button */}
                       <div className="flex justify-end p-1">
