@@ -1,26 +1,15 @@
 import { CreateArtisApi } from '@/api/ArtistApi'
 import { useState } from 'react'
+import { renderLabel } from './HandlerForAddSongForm'
+import type { ArtistFormFields } from '@/types/artist'
+import { useDispatch } from 'react-redux'
+import { updateIsArtist } from '@/features/user/userSlice'
 
-// keep your renderLabel
-export const renderLabel = (label: string, isRequired?: boolean) => (
-  <label className="block font-semibold mb-1">
-    {label}
-    {isRequired && (
-      <span className="ml-1 bg-gradient-to-br from-[#f43f5e] to-[#0062ff] text-transparent bg-clip-text font-bold">
-        *
-      </span>
-    )}
-  </label>
-)
-
-type ArtistFormFields = {
-  name: string
-  bio: string
-  genres: string
-  location: string
-}
 
 const CreateArtist = () => {
+
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState<ArtistFormFields>({
     name: '',
     bio: '',
@@ -60,7 +49,7 @@ const CreateArtist = () => {
   
       if (res) {
         console.log('Artist created successfully')
-        // reset form or redirect
+        dispatch( updateIsArtist(true))
       } else {
         console.error('Failed to create artist')
       }

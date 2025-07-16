@@ -1,4 +1,9 @@
-
+export type ArtistFormFields = {
+  name: string
+  bio: string
+  genres: string
+  location: string
+}
 
 export interface artistSearch {
     _id: string,

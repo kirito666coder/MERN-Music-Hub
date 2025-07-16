@@ -39,6 +39,11 @@ const userSlice = createSlice({
         setUser:(state,action:PayloadAction<User>)=>{
          state.user = action.payload
         },
+        updateIsArtist:(state,action:PayloadAction<boolean>)=>{
+            if (state.user) {
+                state.user.isArtist = action.payload;
+              }
+        },
     },
     extraReducers:(builder) =>{
         builder
@@ -57,5 +62,5 @@ const userSlice = createSlice({
     }
 })
 
-export const {logout,setUser} = userSlice.actions
+export const {logout,setUser,updateIsArtist} = userSlice.actions
 export default userSlice.reducer
