@@ -1,9 +1,10 @@
 import type { SongFormFields } from "@/types/song";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { renderLabel } from "./HandlerForAddSongForm";
 import { AddSongApi } from "@/api/SongApi";
 import { SearchArtistApi } from "@/api/ArtistApi";
+import type { artistSearch } from "@/types/artist";
 
 const AddSongForm = () => {
   const [formData, setFormData] = useState<SongFormFields>({
@@ -25,7 +26,7 @@ const AddSongForm = () => {
   const [imagePreview, setImagePreview] = useState<string>("");
   const [duration, setDuration] = useState<number>(0);
 
-  const [artistSuggestions, setArtistSuggestions] = useState<{ _id: string, name: string }[]>([]);
+  const [artistSuggestions, setArtistSuggestions] = useState<artistSearch[]>([]);
 
 
   const [albumSuggestions, setAlbumSuggestions] = useState<{ _id: string, name: string }[]>([]);
@@ -90,14 +91,14 @@ const AddSongForm = () => {
     if (value.length >= 2) {
       try {
         const res = await SearchArtistApi(value)
-        const data = res;
-        setArtistSuggestions(data);
+        setArtistSuggestions(res??[]);
+        console.log(res)
       } catch (error) {
         console.error("Artist search error:", error);
         setArtistSuggestions([]);
       }
     } else {
-      setArtistSuggestions([]); // clear suggestions if too short
+      setArtistSuggestions([]); 
     }
   };
 
@@ -115,6 +116,11 @@ const AddSongForm = () => {
     }
   };
 
+
+  useEffect(() => {
+    console.log(artistSuggestions,'this is data')
+  }, [artistSuggestions])
+  
 
   return (
     <div className="max-w-4xl mx-auto p-4">

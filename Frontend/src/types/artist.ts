@@ -6,8 +6,9 @@ export type ArtistFormFields = {
 }
 
 export interface artistSearch {
+  photoUrl:string,
+  name: string,
     _id: string,
-    name: string,
   }
 
 
