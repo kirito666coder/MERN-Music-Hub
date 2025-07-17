@@ -1,10 +1,5 @@
 import type { Artist, artistSearch, CreateArtistPayload } from "@/types/artist";
-import axios from "axios";
-
-const api = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL,
-  withCredentials: true,
-});
+import api from "./util/Api";
   
   export const SearchArtistApi = async (value:string):Promise<artistSearch[]|null> => {
     try {
