@@ -3,7 +3,6 @@ import SongModel from "../Models/song.model.js";
 import UserModel from "../Models/user.model.js"
 
 export const AddSong = async ({ userId, data, songUrl, imageUrl }) => {
-
     if (!userId || !data || !songUrl || !imageUrl) {
         throw new Error("some fields are missing")
     }
@@ -17,7 +16,8 @@ export const AddSong = async ({ userId, data, songUrl, imageUrl }) => {
     if (!user) {
         throw new Error("user not found")
     }
-
+    
+    
     const {
         title,
         artist,
@@ -33,17 +33,21 @@ export const AddSong = async ({ userId, data, songUrl, imageUrl }) => {
         visibility,
         mood,
     } = data;
-
     if (!title || !artist || !duration) {
         throw new Error("Title, artist, and duration are required");
     }
 
+    if (!mongoose.Types.ObjectId.isValid(artist)) {
+        throw new Error("Invalid artist id");
+    }
+    
+    
     const newSong = await SongModel.create({
         userId,
         title,
         artist,
         duration,
-        album: album || 'Single',
+        album: album && mongoos.Types.ObjectId.isValid(album) ? album : undefined,
         genre: genre || [],
         language: language || "Unknown",
         lyrics: lyrics || '',
@@ -52,10 +56,11 @@ export const AddSong = async ({ userId, data, songUrl, imageUrl }) => {
         audioUrl:songUrl,
         coverUrl: imageUrl,
         tags: tags || [],
-        isPublic: isPublic != undefined ? isPublic : true,
+        isPublic: isPublic === 'true',
         visibility: visibility || "public",
         mood: mood || 'none',
     })
+
 
     return newSong;
 }

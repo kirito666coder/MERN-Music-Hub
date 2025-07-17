@@ -3,24 +3,26 @@ import { AddSong, findSong, getAllSongs } from "../services/songAdd.service.js";
 
 export const AddSongController = async (req, res) => {
      try {
-      const audioUrl = req.files.audioUrl?.[0];
-      const coverUrl = req.files.coverUrl?.[0];
-
-      if(!audioUrl || !coverUrl){
-        return res.status(400).json({message:"Audio and image files are required."})
-      }
+      
+       const audioUrl = req.files.audioUrl?.[0];
+       const coverUrl = req.files.coverUrl?.[0];
+       
+       if(!audioUrl || !coverUrl){
+         return res.status(400).json({message:"Audio and image files are required."})
+        }
+        
 
       const songUrl = await audioUpload(audioUrl)
       const imageUrl = await imageUpload(coverUrl)
-
+      
       const user = req.user;
       const userId = user._id;
 
       const data = req.body;
 
-
+       
       const song = await AddSong({userId, data, songUrl, imageUrl})
-
+     
      res.status(201).json(song)
 
      } catch (error) {
@@ -31,6 +33,7 @@ export const AddSongController = async (req, res) => {
 export const GetAllSongControllere = async (req,res) =>{
   try {
     const songs = await getAllSongs()
+    console.log(songs)
    res.status(200).json(songs)
   } catch (error) {
     res.status(500).json({message:"Internal server Error",error})
