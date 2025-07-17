@@ -61,7 +61,7 @@ export const AddSong = async ({ userId, data, songUrl, imageUrl }) => {
 }
 
 export const getAllSongs = async ()=>{    
-    const song = await SongModel.find().sort({createdAt:-1}).limit(10);
+    const song = await SongModel.find().sort({createdAt:-1}).limit(10).populate('artist').populate('album','name');
     
     if(!song || song.length === 0){
         throw new Error('Error in finding songs')
@@ -77,7 +77,7 @@ export const findSong = async ({songId})=>{
         throw new Error ('Invalid songId')
     }
     
-    const song = await SongModel.findById(songId)
+    const song = await SongModel.findById(songId).populate('artist').populate('album','name')
 
     if(!song){
         throw new Error('Song not find')
