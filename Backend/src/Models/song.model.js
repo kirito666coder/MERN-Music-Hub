@@ -1,4 +1,4 @@
-import {model, Schema} from 'mongoose'
+import {model, Schema, Types} from 'mongoose'
 
 const SongSchema = new Schema({
     userId: {
@@ -12,12 +12,14 @@ const SongSchema = new Schema({
     trim: true,
   },
   artist: {
-    type: String,
+    type: Types.ObjectId,
+    ref:'Artist',
     required: true,
     trim: true,
   },
   album: {
-    type: String,
+    type: Types.ObjectId,
+    ref:'Album',
     trim: true,
     default: "Single"
   },
