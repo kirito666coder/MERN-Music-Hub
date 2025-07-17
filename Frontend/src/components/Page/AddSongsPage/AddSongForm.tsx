@@ -27,7 +27,7 @@ const AddSongForm = () => {
   const [duration, setDuration] = useState<number>(0);
 
   const [artistSuggestions, setArtistSuggestions] = useState<artistSearch[]>([]);
-
+  const [artistName, setartistName] = useState('')
 
   const [albumSuggestions, setAlbumSuggestions] = useState<{ _id: string, name: string }[]>([]);
   const [showAlbumOptions, setShowAlbumOptions] = useState(false);
@@ -105,7 +105,7 @@ const AddSongForm = () => {
 
   const handleShowAllAlbums = async () => {
     try {
-      const res = await fetch('/api/albums'); // adjust endpoint if needed
+      const res = await fetch('/api/albums'); 
       const data = await res.json();
       setAlbumSuggestions(data);
       setShowAlbumOptions(true);
@@ -144,7 +144,7 @@ const AddSongForm = () => {
                   <input
                     type="text"
                     name="artist"
-                    value={formData.artist}
+                    value={artistName}
                     onChange={handleArtistChange}
                     className="w-full border border-gray-300 rounded px-3 py-2"
                     required={isRequired}
@@ -158,6 +158,7 @@ const AddSongForm = () => {
                           key={artist._id}
                           onClick={() => {
                             setFormData((prev) => ({ ...prev, artist: artist._id }));
+                            setartistName(artist.name)
                             setArtistSuggestions([]);
                           }}
                           className="flex items-center gap-3 px-3 py-2 cursor-pointer hover:bg-zinc-900 transition-colors"
