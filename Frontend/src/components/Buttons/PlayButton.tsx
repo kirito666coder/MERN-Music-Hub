@@ -20,7 +20,7 @@ const PlayButton = ({song}:Props) => {
         dispatch(setSong(audioUrl?.songurl));
         dispatch(setSongDetails({
           title: song.title ?? null,
-          artist: song.artist ?? null,
+          artist: song.artist.name ?? null,
           coverImage: song.coverUrl
             ? typeof song.coverUrl === "string"
               ? song.coverUrl
