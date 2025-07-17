@@ -30,8 +30,8 @@ export interface Album {
 export interface SongData {
   _id: string;
   title: string;
-  artist: string;
-  album: string;
+  artist: Artist;
+  album: Album;
   genre: string[];
   language: string;
   releaseDate: string;
