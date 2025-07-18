@@ -17,7 +17,6 @@ export const AddSong = async ({ userId, data, songUrl, imageUrl }) => {
         throw new Error("user not found")
     }
     
-    
     const {
         title,
         artist,
@@ -36,10 +35,11 @@ export const AddSong = async ({ userId, data, songUrl, imageUrl }) => {
     if (!title || !artist || !duration) {
         throw new Error("Title, artist, and duration are required");
     }
-
+    
     if (!mongoose.Types.ObjectId.isValid(artist)) {
         throw new Error("Invalid artist id");
     }
+    
     
     
     const newSong = await SongModel.create({

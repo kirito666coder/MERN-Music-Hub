@@ -1,31 +1,38 @@
 import cloudinary from "../configs/cloudinary/cloudinary.config.js";
+import streamifier from "streamifier";
 
+export const audioUpload = async (audioFile) => {
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      {
+        resource_type: 'video',
+        folder: 'songs/audio',
+        type: "authenticated",
+      },
+      (error, result) => {
+        if (error) return reject(error);
+        resolve(result.public_id);
+      }
+    );
+    streamifier.createReadStream(audioFile.buffer).pipe(uploadStream);
+  });
+};
 
-const bufferToDataURL = (fileBuffer,mimetype) =>{
-  const base64 = fileBuffer.toString('base64');
-  return `data:${mimetype};base64,${base64}`
-}
-
-export const audioUpload = async(audioUrl)=>{
-     const audioDataUrl = bufferToDataURL(audioUrl.buffer,audioUrl.mimetype);
-      const audioUpload = await cloudinary.uploader.upload(audioDataUrl,{
-        resource_type:'video',
-        folder:'songs/audio',
-        type:"authenticated",
-      })
-      return audioUpload.public_id;
-}
-
-export const imageUpload = async(coverUrl)=>{
- const imageDataUrl = bufferToDataURL(coverUrl.buffer,coverUrl.mimetype);
-      const imageUpload = await cloudinary.uploader.upload(imageDataUrl,{
-        resource_type:"image",
-        folder:"songs/image"
-      })
-
-      return imageUpload.secure_url;
-}
-
+export const imageUpload = async (imageFile) => {
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      {
+        resource_type: "image",
+        folder: "songs/image"
+      },
+      (error, result) => {
+        if (error) return reject(error);
+        resolve(result.secure_url);
+      }
+    );
+    streamifier.createReadStream(imageFile.buffer).pipe(uploadStream);
+  });
+};
 
 export const getSongUrl = ({song})=>{
   console.log(song)
