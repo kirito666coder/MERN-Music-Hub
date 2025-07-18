@@ -5,6 +5,7 @@ import SongRouter from "./song.route.js";
 import passport from "passport";
 import ArtistRouder from "./artist.route.js";
 import { ratelimiter } from "../middlewares/rateLimiters.js";
+import AlbumRouter from "./album.route.js";
 
 
 const AllRoutes = Router()
@@ -21,5 +22,9 @@ AllRoutes.use('/song',
 AllRoutes.use('/artist',
     passport.authenticate('jwt', { session: false }),
     ArtistRouder)
+
+AllRoutes.use('album',
+    passport.authenticate('jwt', { session: false }),
+    AlbumRouter)
 
 export default AllRoutes;
