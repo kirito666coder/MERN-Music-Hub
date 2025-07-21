@@ -1,3 +1,4 @@
+import AlbumModel from "../Models/album.model.js";
 
 
 export const CreateAlbumService = async ({data,artistId}) =>{
@@ -14,6 +15,16 @@ export const CreateAlbumService = async ({data,artistId}) =>{
     }
 
     try {
+    
+    const album = await AlbumModel.create({
+        title:data.title,
+        artistId,
+        coverUrl,
+        description:data.description,
+        genres:data.genres,
+    })
+
+    return album;
         
     } catch (error) {
         throw new Error ('Failled to create album ')
