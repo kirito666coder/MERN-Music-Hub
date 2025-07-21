@@ -32,6 +32,15 @@ export const CreateArtistService = async ({data,finalPhoto,userId})=>{
 }
 
 export const IsArtistTrue = async ({userId})=>{
+
+    if (!userId) {
+        throw new Error("userId is missing")
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+        throw new Error("Invalid user ID");
+    }
+
     try {
         const updateUser = await UserModel.findByIdAndUpdate(
             userId,
@@ -42,4 +51,25 @@ export const IsArtistTrue = async ({userId})=>{
     } catch (error) {
         throw new Error("Failed to update user as artist");
     }
+}
+
+export const FindArtistService = async ({userId})=>{
+
+    if (!userId) {
+        throw new Error("userId is missing")
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+        throw new Error("Invalid user ID");
+    }
+
+    try {
+        const user = await findById((userId))
+
+        return user;
+    } catch (error) {
+        throw new Error("Failed to get artist");
+    }
+
+
 }
