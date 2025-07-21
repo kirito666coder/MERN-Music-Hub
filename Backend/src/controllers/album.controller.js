@@ -1,3 +1,4 @@
+import { CreateAlbumService } from "../services/album.service.js";
 
 
 
@@ -10,7 +11,7 @@ export const createAlbumController = (req, res) => {
         }
 
 
-        const album = 
+        const album = CreateAlbumService({data,})
 
 
 
