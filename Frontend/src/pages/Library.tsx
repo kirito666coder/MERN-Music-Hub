@@ -1,8 +1,9 @@
+import AddLibrarypage from "@/components/Page/LibraryPage/AddLibrarypage"
 
 const Library = () => {
   return (
     <div>
-      Library
+      <AddLibrarypage/>
     </div>
   )
 }
