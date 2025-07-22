@@ -42,5 +42,14 @@ export const findIsAlbumNameisTaken = async ({data,artistId})=>{
 }
 
 export const yourAllAlbumsService = async ({userId})=>{
+    if (!userId) {
+        throw new Error("data is missing")
+    }
     
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+        throw new Error("Invalid user ID");
+    }
+
+    const albums = await AlbumModel.find({})
+
 }

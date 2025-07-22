@@ -41,6 +41,9 @@ export const getYourAlbumsController = async (req,res) =>{
 
         const user = req.user;
 
+        if(!user){
+            return res.status(400).json({message:"user not find"})
+        }
 
         const albums = await yourAllAlbumsService({userId:user._id})
 
