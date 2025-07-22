@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import AlbumModel from "../Models/album.model.js";
 
 
-export const CreateAlbumService = async ({data,artistId}) =>{
+export const CreateAlbumService = async ({data,artistId,coverUrl}) =>{
 
     if (!artistId) {
         throw new Error("ArtistID is missing")
@@ -19,7 +19,7 @@ export const CreateAlbumService = async ({data,artistId}) =>{
         const album = await AlbumModel.create({
             title:data.title,
             artistId,
-            // coverUrl,
+            coverUrl,
             description:data.description,
             genres:data.genres,
         })
