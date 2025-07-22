@@ -75,16 +75,15 @@ export const FindArtistService = async ({userId})=>{
 }
 
 export const FindArtistWithArtistId = async ({artistId})=>{
-    
     if(!artistId){
         throw new Error("ArtistId not found")
     }
-
+    
     if(!mongoose.Types.ObjectId.isValid(artistId)){
         throw new Error("ArtistID is not valid")
     }
-
-    const artist = await ArtistModel.findById({artistId})
+   
+    const artist = await ArtistModel.findById(artistId)
 
     return artist;
 }

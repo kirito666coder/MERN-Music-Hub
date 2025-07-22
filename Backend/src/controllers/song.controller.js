@@ -1,4 +1,4 @@
-import { FindArtistService } from "../services/artist.service.js";
+import { FindArtistWithArtistId } from "../services/artist.service.js";
 import { audioUpload, getSongUrl, imageUpload } from "../services/cloudinaryUpload.service.js";
 import { AddSong, findSong, getAllSongs } from "../services/songAdd.service.js";
 
@@ -20,7 +20,7 @@ export const AddSongController = async (req, res) => {
         
         console.log(data.artist)
 
-        const isValidArtistId = await FindArtistService({artist:data.artist})
+        const isValidArtistId = await FindArtistWithArtistId({artistId:data.artist})
 
         console.log(isValidArtistId)
         
