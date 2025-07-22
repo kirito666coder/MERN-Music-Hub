@@ -1,3 +1,4 @@
+import { CreateAlbumApi } from '@/api/Album';
 import React, { useState } from 'react';
 
 function AddLibraryPage() {
@@ -43,10 +44,7 @@ function AddLibraryPage() {
     if (coverFile) data.append('cover', coverFile);
 
     try {
-      const res = await fetch('/api/albums', {
-        method: 'POST',
-        body: data,
-      });
+      const res = await CreateAlbumApi(data);
 
       if (res.ok) {
         alert('Album created!');
