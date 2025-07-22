@@ -1,5 +1,5 @@
 import { CreateAlbumService, findIsAlbumNameisTaken, yourAllAlbumsService } from "../services/album.service.js";
-import { FindArtistService } from "../services/artist.service.js";
+import { FindArtistService, FindArtistWithArtistId } from "../services/artist.service.js";
 import { imageUpload } from "../services/cloudinaryUpload.service.js";
 
 
@@ -45,7 +45,9 @@ export const getYourAlbumsController = async (req,res) =>{
             return res.status(400).json({message:"user not find"})
         }
 
-        const albums = await yourAllAlbumsService({userId:user._id})
+        const artist = await FindArtistWithArtistId({userId:user._id})
+
+        const albums = await yourAllAlbumsService({artistId:artist._id})
 
         res.status(200).json({albums})
         
