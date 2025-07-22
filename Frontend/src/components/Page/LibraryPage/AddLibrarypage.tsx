@@ -1,16 +1,16 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function AddLibraryPage() {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     genres: '',
   });
-  const [coverFile, setCoverFile] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState(null);
+  const [coverFile, setCoverFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
-  const handleChange = (e) => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement |HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -18,17 +18,17 @@ function AddLibraryPage() {
     }));
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setCoverFile(file);
+  const handleFileChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (file) {
+      setCoverFile(file);
       setPreviewUrl(URL.createObjectURL(file));
     } else {
       setPreviewUrl(null);
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:React.FormEvent) => {
     e.preventDefault();
 
     if (!formData.title.trim()) {
