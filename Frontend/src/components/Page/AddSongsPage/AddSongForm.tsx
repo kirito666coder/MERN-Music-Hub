@@ -115,12 +115,19 @@ const AddSongForm = () => {
 
     const songData = {
       ...formData,
-      genre: formData.genre,
-      tags: formData.tags,
+      genre: typeof formData.genre === 'string'
+      ? formData.genre.split(',').map(g => g.trim()).filter(Boolean)
+      : formData.genre,
+    tags: typeof formData.tags === 'string'
+      ? formData.tags.split(',').map(t => t.trim()).filter(Boolean)
+      : formData.tags,
       duration,
       audioUrl,
       coverUrl,
     };
+     
+
+    console.log(songData.tags)
 
     const song = await AddSongApi(songData)
 

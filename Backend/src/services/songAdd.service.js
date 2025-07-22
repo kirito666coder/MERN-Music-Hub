@@ -35,11 +35,15 @@ export const AddSong = async ({ userId, data, songUrl, imageUrl }) => {
     if (!title || !artist || !duration) {
         throw new Error("Title, artist, and duration are required");
     }
+    console.log(data)
     
     if (!mongoose.Types.ObjectId.isValid(artist)) {
         throw new Error("Invalid artist id");
     }
-    
+
+    if (!mongoose.Types.ObjectId.isValid(album)) {
+        throw new Error("Invalid album id");
+    }
     
     
     const newSong = await SongModel.create({
@@ -47,7 +51,7 @@ export const AddSong = async ({ userId, data, songUrl, imageUrl }) => {
         title,
         artist,
         duration,
-        album: album && mongoose.Types.ObjectId.isValid(album) ? album : undefined,
+        album: album,
         genre: genre || [],
         language: language || "Unknown",
         lyrics: lyrics || '',

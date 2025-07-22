@@ -56,12 +56,12 @@ export interface SongFormFields {
   title: string;
   artist: string;
   album: string;
-  genre: string[];
+  genre: string|string[];
   language: string;
   releaseDate: string;
   lyrics: string;
   description: string;
-  tags: string[];
+  tags: string|string[];
   isPublic: boolean;
   mood: string;
 }
