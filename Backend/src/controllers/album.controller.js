@@ -14,9 +14,10 @@ export const createAlbumController = async (req, res) => {
         const user = req.user;
 
         const artistId = await FindArtistService({userId:user._id})
-
-
+       
+        
         const album = await CreateAlbumService({data,artistId})
+        console.log(album)
 
         res.status(200).json({album})
 

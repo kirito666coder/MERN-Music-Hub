@@ -58,14 +58,14 @@ export const FindArtistService = async ({userId})=>{
     if (!userId) {
         throw new Error("userId is missing")
     }
-
+    
     if (!mongoose.Types.ObjectId.isValid(userId)) {
         throw new Error("Invalid user ID");
     }
-
+    
     try {
-        const user = await findById((userId))
-
+        const user = await ArtistModel.findOne({userId})
+        
         return user;
     } catch (error) {
         throw new Error("Failed to get artist");
