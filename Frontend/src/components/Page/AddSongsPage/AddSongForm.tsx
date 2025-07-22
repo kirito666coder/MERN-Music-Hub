@@ -32,6 +32,7 @@ const AddSongForm = () => {
   const [artistName, setartistName] = useState('')
 
   const [albumSuggestions, setAlbumSuggestions] = useState<Album[]>([]);
+  const [albumName, setalbumName] = useState('')
   const [showAlbumOptions, setShowAlbumOptions] = useState(false);
 
   const navigate = useNavigate()
@@ -196,7 +197,7 @@ const AddSongForm = () => {
                 <input
                   type="text"
                   name="album"
-                  value={formData.album}           
+                  value={albumName}           
                   readOnly                          
                   onFocus={handleShowAllAlbums}    
                   className="w-full border border-gray-300 rounded px-3 py-2 cursor-pointer"
@@ -213,7 +214,8 @@ const AddSongForm = () => {
                           <li
                             key={album._id}
                             onClick={() => {
-                              setFormData((prev) => ({ ...prev, album: album.title }));
+                              setFormData((prev) => ({ ...prev, album: album._id }));
+                              setalbumName(album.title)
                               setShowAlbumOptions(false);
                             }}
                             className="cursor-pointer px-3 py-2 font-semibold hover:bg-accent/40"
