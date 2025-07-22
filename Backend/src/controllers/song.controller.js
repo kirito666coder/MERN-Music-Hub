@@ -18,22 +18,24 @@ export const AddSongController = async (req, res) => {
         
         const data = req.body;
         
-        console.log(data.artist)
 
         const isValidArtistId = await FindArtistWithArtistId({artistId:data.artist})
 
-        console.log(isValidArtistId)
+        if(!isValidArtistId){
+          res.status(400).json({message:"Artist not found"})
+        }
         
 
-      // const songUrl = await audioUpload(audioUrl)
-      // const imageUrl = await imageUpload(coverUrl)
+      const songUrl = await audioUpload(audioUrl)
+      const imageUrl = await imageUpload(coverUrl)
        
-      // const song = await AddSong({userId, data, songUrl, imageUrl})
+      const song = await AddSong({userId, data, songUrl, imageUrl})
      
-     res.status(201).json()
+     res.status(201).json(song)
 
      } catch (error) {
-        res.status(500).json({ message: "Something went wrong", error })
+      console.log(error)
+        res.status(500).json({ message: error.message})
      }
 };
 

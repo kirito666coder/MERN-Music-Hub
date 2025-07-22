@@ -80,7 +80,7 @@ export const FindArtistWithArtistId = async ({artistId})=>{
     }
     
     if(!mongoose.Types.ObjectId.isValid(artistId)){
-        throw new Error("ArtistID is not valid")
+        throw new Error("Artist not found")
     }
    
     const artist = await ArtistModel.findById(artistId)

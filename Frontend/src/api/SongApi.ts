@@ -1,7 +1,8 @@
 import type { SongFields, SongData } from "@/types/song";
 import api from "./util/Api";
+import type { ApiError } from "@/types/album";
 
-export const AddSongApi = async (song: SongFields): Promise<SongFields | null> => {
+export const AddSongApi = async (song: SongFields): Promise<SongFields | ApiError> => {
   try {
     const formData = new FormData();
 
@@ -37,9 +38,11 @@ export const AddSongApi = async (song: SongFields): Promise<SongFields | null> =
     });
 
     return res.data;
-  } catch (error) {
-    console.error("Upload failed:", error);
-    return null;
+  } catch (error:any) {
+    if (error.response && error.response.data) {
+      return { error: true, message: error.response.data.message };
+    }
+    return { error: true, message: 'Something went wrong' };
   }
 };
 
