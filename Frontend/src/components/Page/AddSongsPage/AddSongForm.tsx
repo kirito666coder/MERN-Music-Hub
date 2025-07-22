@@ -66,24 +66,6 @@ const AddSongForm = () => {
     }
   };
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    const songData = {
-      ...formData,
-      genre: formData.genre,
-      tags: formData.tags,
-      duration,
-      audioUrl,
-      coverUrl,
-    };
-
-    const song = await AddSongApi(songData)
-
-    console.log("song", song)
-
-  };
-
   const handleArtistChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setFormData((prev) => ({ ...prev, artist: value }));
@@ -102,10 +84,13 @@ const AddSongForm = () => {
     }
   };
 
+  useEffect(() => {
+    console.log(artistSuggestions, 'this is data')
+  }, [artistSuggestions])
 
   const handleShowAllAlbums = async () => {
     try {
-      const res = await fetch('/api/albums'); 
+      const res = await fetch('/api/albums');
       const data = await res.json();
       setAlbumSuggestions(data);
       setShowAlbumOptions(true);
@@ -117,9 +102,23 @@ const AddSongForm = () => {
   };
 
 
-  useEffect(() => {
-    console.log(artistSuggestions, 'this is data')
-  }, [artistSuggestions])
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    const songData = {
+      ...formData,
+      genre: formData.genre,
+      tags: formData.tags,
+      duration,
+      audioUrl,
+      coverUrl,
+    };
+
+    const song = await AddSongApi(songData)
+
+    console.log("song", song)
+
+  };
 
 
   return (
