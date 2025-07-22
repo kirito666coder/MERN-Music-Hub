@@ -1,8 +1,10 @@
 import api from "./util/Api";
 
-export const CreateAlbumApi = (formData:FormData):Promise<null> =>{
+export const CreateAlbumApi = async (formData:FormData) =>{
     try {
-        console.log(formData)
+        const res = await api.post('/api/album/create',formData)
+        console.log(res)
+        return res
     } catch (error) {
         return null;
     }

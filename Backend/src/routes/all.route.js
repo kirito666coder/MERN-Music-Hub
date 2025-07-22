@@ -23,7 +23,7 @@ AllRoutes.use('/artist',
     passport.authenticate('jwt', { session: false }),
     ArtistRouder)
 
-AllRoutes.use('album',
+AllRoutes.use('/album',
     passport.authenticate('jwt', { session: false }),
     AlbumRouter)
 
