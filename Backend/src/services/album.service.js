@@ -40,3 +40,7 @@ export const findIsAlbumNameisTaken = async ({data,artistId})=>{
         throw new Error ('Failled to create album')
     }
 }
+
+export const yourAllAlbumsService = async ({userId})=>{
+    
+}

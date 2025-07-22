@@ -1,4 +1,4 @@
-import { CreateAlbumService, findIsAlbumNameisTaken } from "../services/album.service.js";
+import { CreateAlbumService, findIsAlbumNameisTaken, yourAllAlbumsService } from "../services/album.service.js";
 import { FindArtistService } from "../services/artist.service.js";
 import { imageUpload } from "../services/cloudinaryUpload.service.js";
 
@@ -37,5 +37,16 @@ export const createAlbumController = async (req, res) => {
 }
 
 export const getYourAlbumsController = async (req,res) =>{
-    
+    try {
+
+        const user = req.user;
+
+
+        const albums = await yourAllAlbumsService({userId:user._id})
+
+        res.status(200).json({albums})
+        
+    } catch (error) {
+        req.status(500).json({message:"Interal server error"})
+    }
 }
