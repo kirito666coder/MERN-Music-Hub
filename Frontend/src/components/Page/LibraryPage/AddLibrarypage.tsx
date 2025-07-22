@@ -1,4 +1,4 @@
-import { CreateAlbumApi } from '@/api/Album';
+import { CreateAlbumApi } from '@/api/AlbumApi';
 import React, { useState } from 'react';
 
 function AddLibraryPage() {
@@ -45,20 +45,22 @@ function AddLibraryPage() {
 
     try {
       const res = await CreateAlbumApi(data);
-      console.log(res)
-      if (res.status===201) {
+      console.log(res);
+    
+      if ('error' in res) {
+        alert(res.message); 
+      } else {
         alert('Album created!');
         setShowModal(false);
         setFormData({ title: '', description: '', genres: '' });
         setCoverFile(null);
         setPreviewUrl(null);
-      } else {
-        alert('Failed to create album');
       }
     } catch (err) {
       console.error(err);
       alert('Error creating album');
     }
+    
   };
 
   return (

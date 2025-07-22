@@ -18,15 +18,16 @@ export const createAlbumController = async (req, res) => {
         if (existingAlbum) {
             return res.status(400).json({ message: "An album with this name already exists" })
         }
-       
-        const coverUrl = await imageUpload(cover)
+        let coverUrl;
+       if(cover){
+           coverUrl = await imageUpload(cover)
+        }
 
         if (!data) {
             return res.status(400).json({ message: "data is Empty! Please try again" })
         }
 
         const album = await CreateAlbumService({ data, artistId, coverUrl })
-        console.log(album)
 
         res.status(201).json({ album })
 
