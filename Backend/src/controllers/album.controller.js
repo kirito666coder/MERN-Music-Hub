@@ -1,4 +1,4 @@
-import { CreateAlbumService } from "../services/album.service.js";
+import { CreateAlbumService, findIsAlbumNameisTaken } from "../services/album.service.js";
 import { FindArtistService } from "../services/artist.service.js";
 import { imageUpload } from "../services/cloudinaryUpload.service.js";
 
@@ -9,23 +9,28 @@ export const createAlbumController = async (req, res) => {
         const data = req.body;
         const cover = req.files.cover?.[0]
 
-        const coverUrl = await imageUpload(cover)
-
-        if(!data){
-            return res.status(400).json({message:"data is Empty! Please try again"})
-        }
-
         const user = req.user;
 
-        const artistId = await FindArtistService({userId:user._id})
-       
-        
-        const album = await CreateAlbumService({data,artistId,coverUrl})
+        const artistId = await FindArtistService({ userId: user._id })
+
+        const existingAlbum = findIsAlbumNameisTaken({ data, artistId })
+
+        if (existingAlbum) {
+            return res.status(400).json({ message: "An album with this name already exists" })
+        }
+
+        const coverUrl = await imageUpload(cover)
+
+        if (!data) {
+            return res.status(400).json({ message: "data is Empty! Please try again" })
+        }
+
+        const album = await CreateAlbumService({ data, artistId, coverUrl })
         console.log(album)
 
-        res.status(200).json({album})
+        res.status(200).json({ album })
 
     } catch (error) {
-    res.status(500).json({message:"Internal server error",error})
+        res.status(500).json({ message: "Internal server error", error })
     }
 }

@@ -31,3 +31,12 @@ export const CreateAlbumService = async ({data,artistId,coverUrl}) =>{
         throw new Error ('Failled to create album ')
     }
 }
+
+export const findIsAlbumNameisTaken = async ({data,artistId})=>{
+    try {
+       const album = await AlbumModel.findOne({artistId,title:data.title.trim()})
+       return album;
+    } catch (error) {
+        throw new Error ('Failled to create album')
+    }
+}
