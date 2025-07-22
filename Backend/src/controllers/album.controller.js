@@ -35,3 +35,7 @@ export const createAlbumController = async (req, res) => {
         res.status(500).json({ message: "Internal server error", error })
     }
 }
+
+export const getYourAlbumsController = async (req,res) =>{
+    
+}
