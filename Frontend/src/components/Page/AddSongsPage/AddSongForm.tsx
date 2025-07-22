@@ -1,10 +1,11 @@
-import type { SongFormFields } from "@/types/song";
+import type { Album, SongFormFields } from "@/types/song";
 import { useEffect, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { renderLabel } from "./HandlerForAddSongForm";
 import { AddSongApi } from "@/api/SongApi";
 import { SearchArtistApi } from "@/api/ArtistApi";
 import type { artistSearch } from "@/types/artist";
+import { getAllAlbumsApi } from "@/api/AlbumApi";
 
 const AddSongForm = () => {
   const [formData, setFormData] = useState<SongFormFields>({
@@ -29,7 +30,7 @@ const AddSongForm = () => {
   const [artistSuggestions, setArtistSuggestions] = useState<artistSearch[]>([]);
   const [artistName, setartistName] = useState('')
 
-  const [albumSuggestions, setAlbumSuggestions] = useState<{ _id: string, name: string }[]>([]);
+  const [albumSuggestions, setAlbumSuggestions] = useState<Album[]>([]);
   const [showAlbumOptions, setShowAlbumOptions] = useState(false);
 
 
@@ -90,9 +91,15 @@ const AddSongForm = () => {
 
   const handleShowAllAlbums = async () => {
     try {
-      const res = await fetch('/api/albums');
-      const data = await res.json();
-      setAlbumSuggestions(data);
+      const res = await getAllAlbumsApi()
+
+      if (Array.isArray(res)) {
+        setAlbumSuggestions(res);
+        console.log(res)     
+      } else {
+        console.error("API error:", res);   
+        setAlbumSuggestions([]);           
+      }
       setShowAlbumOptions(true);
     } catch (error) {
       console.error("Album fetch error:", error);
@@ -198,12 +205,12 @@ const AddSongForm = () => {
                           <li
                             key={album._id}
                             onClick={() => {
-                              setFormData((prev) => ({ ...prev, album: album.name }));
+                              setFormData((prev) => ({ ...prev, album: album.title }));
                               setShowAlbumOptions(false);
                             }}
                             className="cursor-pointer px-3 py-2 hover:bg-gray-200"
                           >
-                            {album.name}
+                            {album.title}
                           </li>
                         ))
                       ) : (
