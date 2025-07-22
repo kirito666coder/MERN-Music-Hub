@@ -1,8 +1,8 @@
 import api from "./util/Api";
 
-export const CreateAlbumApi = ({data}):Promise<null> =>{
+export const CreateAlbumApi = (formData:FormData):Promise<null> =>{
     try {
-        console.log(data)
+        console.log(formData)
     } catch (error) {
         return null;
     }
