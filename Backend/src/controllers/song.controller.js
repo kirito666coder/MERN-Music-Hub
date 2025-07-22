@@ -1,3 +1,4 @@
+import { FindArtistService } from "../services/artist.service.js";
 import { audioUpload, getSongUrl, imageUpload } from "../services/cloudinaryUpload.service.js";
 import { AddSong, findSong, getAllSongs } from "../services/songAdd.service.js";
 
@@ -12,20 +13,24 @@ export const AddSongController = async (req, res) => {
         }
         
         
+        const user = req.user;
+        const userId = user._id;
+        
+        const data = req.body;
+        
+        console.log(data.artist)
 
-      const songUrl = await audioUpload(audioUrl)
-      const imageUrl = await imageUpload(coverUrl)
-      
-      const user = req.user;
-      const userId = user._id;
-      
-      const data = req.body;
-     
+        const isValidArtistId = await FindArtistService({artist:data.artist})
 
+        console.log(isValidArtistId)
+        
+
+      // const songUrl = await audioUpload(audioUrl)
+      // const imageUrl = await imageUpload(coverUrl)
        
-      const song = await AddSong({userId, data, songUrl, imageUrl})
+      // const song = await AddSong({userId, data, songUrl, imageUrl})
      
-     res.status(201).json(song)
+     res.status(201).json()
 
      } catch (error) {
         res.status(500).json({ message: "Something went wrong", error })

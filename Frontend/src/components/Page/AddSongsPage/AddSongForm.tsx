@@ -87,7 +87,7 @@ const AddSongForm = () => {
   const handleArtistChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setFormData((prev) => ({ ...prev, artist: value }));
-
+    setartistName(value)
     if (value.length >= 2) {
       try {
         const res = await SearchArtistApi(value)
