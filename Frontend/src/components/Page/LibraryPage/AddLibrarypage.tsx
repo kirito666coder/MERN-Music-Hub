@@ -11,7 +11,7 @@ function AddLibraryPage() {
   const [coverFile, setCoverFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
-  const handleChange = (e:React.ChangeEvent<HTMLInputElement |HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -19,7 +19,7 @@ function AddLibraryPage() {
     }));
   };
 
-  const handleFileChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setCoverFile(file);
@@ -29,7 +29,7 @@ function AddLibraryPage() {
     }
   };
 
-  const handleSubmit = async (e:React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!formData.title.trim()) {
@@ -46,9 +46,9 @@ function AddLibraryPage() {
     try {
       const res = await CreateAlbumApi(data);
       console.log(res);
-    
+
       if ('error' in res) {
-        alert(res.message); 
+        alert(res.message);
       } else {
         alert('Album created!');
         setShowModal(false);
@@ -60,21 +60,25 @@ function AddLibraryPage() {
       console.error(err);
       alert('Error creating album');
     }
-    
+
   };
 
   return (
     <div className="p-4">
       <button
         onClick={() => setShowModal(true)}
-        className="px-4 py-2 rounded bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] hover:opacity-90 transition"
+        className="flex flex-col items-center justify-center w-40 h-40 rounded-lg bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] text-white hover:opacity-90 transition"
       >
-        ➕ Add Album
+        <div className="flex flex-col items-center justify-center w-34 h-34 border-2 border-dashed border-white rounded-lg">
+          <span className="text-7xl">+</span>
+          <span className="mt-2 text-sm">Add Album</span>
+        </div>
       </button>
 
+
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center overflow-y-auto">
-          <div className="relative w-full lg:max-w-[80%] md:max-w-[75%] mx-4 my-8 p-6 rounded-xl shadow-lg max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 flex items-center justify-center overflow-y-auto ">
+          <div className="relative w-full lg:max-w-[80%] md:max-w-[75%] mx-4 my-8 p-6 rounded-xl shadow-lg dark:shadow-black max-h-[90vh] overflow-y-auto bg-white/60 dark:bg-black/60">
             <button
               onClick={() => setShowModal(false)}
               className="absolute top-2 right-3"
@@ -136,7 +140,7 @@ function AddLibraryPage() {
                   </button>
                   <button
                     type="submit"
-                    className="px-4 py-2 rounded bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] hover:opacity-90 transition"
+                    className="px-4 py-2 rounded bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] hover:opacity-90 transition text-white"
                   >
                     Add
                   </button>
