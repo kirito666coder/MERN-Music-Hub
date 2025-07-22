@@ -134,6 +134,31 @@ const AddSongForm = () => {
 
     console.log("song", song)
 
+    if ('error' in song) {
+      alert(song.message);
+    } else {
+      alert("Song created successfully!");
+
+      setFormData({
+        title: "",
+        artist: "",
+        album: "",
+        genre: [],
+        language: "",
+        releaseDate: "",
+        lyrics: "",
+        description: "",
+        tags: [],
+        isPublic: true,
+        mood: "none",
+      });
+      setaudioUrl(null);
+      setcoverUrl(null);
+      setImagePreview("");
+      setartistName("");
+      setalbumName("");
+    }
+
   };
 
 
