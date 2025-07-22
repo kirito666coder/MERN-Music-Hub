@@ -178,68 +178,66 @@ const AddSongForm = () => {
                 </>
               ) : name === "album" ? (
                 <>
-                  <input
-                    type="text"
-                    name="album"
-                    value={formData.album}
-                    onChange={handleChange}
-                    onFocus={handleShowAllAlbums} // show albums when input is focused
-                    className="w-full border border-gray-300 rounded px-3 py-2 "
-                  />
-
-                  {showAlbumOptions && (
-                    <div className="absolute z-10 w-full  border border-gray-300 dark:text-white dark:bg-black bg-white text-black rounded shadow mt-1 max-h-60 overflow-auto">
-
-                      {/* Top bar with close button */}
-                      <div className="flex justify-end p-1">
-                        <button
-                          type="button"
-                          onClick={() => setShowAlbumOptions(false)}
-                          className=" text-sm"
-                        >
-                          ✕
-                        </button>
-                      </div>
-
-                      {/* Album list */}
-                      <ul>
-                        {albumSuggestions.length > 0 ? (
-                          albumSuggestions.map((album) => (
-                            <li
-                              key={album._id}
-                              onClick={() => {
-                                setFormData((prev) => ({ ...prev, album: album.name }));
-                                setShowAlbumOptions(false);
-                              }}
-                              className="cursor-pointer px-3 py-2 hover:bg-gray-200 "
-                            >
-                              {album.name}
-                            </li>
-                          ))
-                        ) : (
-                          <li className="px-3 py-1 ">
-                            You don’t have any albums yet.
+                <input
+                  type="text"
+                  name="album"
+                  value={formData.album}           
+                  readOnly                          
+                  onFocus={handleShowAllAlbums}    
+                  className="w-full border border-gray-300 rounded px-3 py-2 cursor-pointer"
+                  placeholder="Select an album"
+                />
+              
+                {showAlbumOptions && (
+                  <div className="absolute z-10 w-full border border-gray-300 dark:text-white dark:bg-black bg-white text-black rounded shadow mt-1">
+              
+                    {/* Album list area */}
+                    <ul className="max-h-60 overflow-y-auto custom-scroll">
+                      {albumSuggestions.length > 0 ? (
+                        albumSuggestions.map((album) => (
+                          <li
+                            key={album._id}
+                            onClick={() => {
+                              setFormData((prev) => ({ ...prev, album: album.name }));
+                              setShowAlbumOptions(false);
+                            }}
+                            className="cursor-pointer px-3 py-2 hover:bg-gray-200"
+                          >
+                            {album.name}
                           </li>
-                        )}
-                      </ul>
-
-                      {/* Always show create button */}
-                      <div className="border-t ">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            console.log("Create new album clicked");
-                            setShowAlbumOptions(false);
-                          }}
-                          className="w-full text-left px-3 py-2 text-blue-600 dark:text-blue-400  rounded-b"
-                        >
-                          + Create New Album
-                        </button>
-                      </div>
+                        ))
+                      ) : (
+                        <li className="px-3 py-2">
+                          You don’t have any albums yet.
+                        </li>
+                      )}
+                    </ul>
+              
+                    {/* Always show create & cancel buttons */}
+                    <div className="border-t flex flex-row justify-between">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          console.log("Create new album clicked");
+                          setShowAlbumOptions(false);
+                          // open modal here!
+                        }}
+                        className="w-fit text-left px-3 py-2 text-blue-600 dark:text-blue-400 hover:underline"
+                      >
+                        <span className="text-xl">+ </span>
+                         Create New Album
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setShowAlbumOptions(false)}
+                        className="w-fit text-left px-3 py-2 text-red-600 dark:text-red-400 hover:underline"
+                      >
+                        Cancel ✕ 
+                      </button>
                     </div>
-                  )}
-                </>
-
+                  </div>
+                )}
+              </>              
               ) : (
                 <input
                   type={type}
