@@ -6,6 +6,7 @@ import { AddSongApi } from "@/api/SongApi";
 import { SearchArtistApi } from "@/api/ArtistApi";
 import type { artistSearch } from "@/types/artist";
 import { getAllAlbumsApi } from "@/api/AlbumApi";
+import { useNavigate } from "react-router-dom";
 
 const AddSongForm = () => {
   const [formData, setFormData] = useState<SongFormFields>({
@@ -33,7 +34,8 @@ const AddSongForm = () => {
   const [albumSuggestions, setAlbumSuggestions] = useState<Album[]>([]);
   const [showAlbumOptions, setShowAlbumOptions] = useState(false);
 
-
+  const navigate = useNavigate()
+  
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
@@ -198,7 +200,7 @@ const AddSongForm = () => {
                   <div className="absolute z-10 w-full border border-gray-300 dark:text-white dark:bg-black bg-white text-black rounded shadow mt-1">
               
                     {/* Album list area */}
-                    <ul className="max-h-60 overflow-y-auto custom-scroll">
+                    <ul className="max-h-60 overflow-y-auto custom-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ">
                       {albumSuggestions.length > 0 ? (
                         albumSuggestions.map((album) => (
                           <li
@@ -207,9 +209,14 @@ const AddSongForm = () => {
                               setFormData((prev) => ({ ...prev, album: album.title }));
                               setShowAlbumOptions(false);
                             }}
-                            className="cursor-pointer px-3 py-2 hover:bg-gray-200"
+                            className="cursor-pointer px-3 py-2 font-semibold hover:bg-accent/40"
                           >
+                            <div className=" flex  gap-2">
+                            <span>
+                              <img src={album.coverUrl} alt="" className="h-8 w-8 rounded-xs" />
+                            </span>
                             {album.title}
+                            </div>
                           </li>
                         ))
                       ) : (
@@ -224,7 +231,7 @@ const AddSongForm = () => {
                       <button
                         type="button"
                         onClick={() => {
-                          console.log("Create new album clicked");
+                          navigate('/library')
                           setShowAlbumOptions(false);
                           // open modal here!
                         }}
