@@ -47,7 +47,7 @@ export const AddSong = async ({ userId, data, songUrl, imageUrl }) => {
         title,
         artist,
         duration,
-        album: album && mongoos.Types.ObjectId.isValid(album) ? album : undefined,
+        album: album && mongoose.Types.ObjectId.isValid(album) ? album : undefined,
         genre: genre || [],
         language: language || "Unknown",
         lyrics: lyrics || '',

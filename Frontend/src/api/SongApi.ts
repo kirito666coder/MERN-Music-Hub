@@ -42,7 +42,7 @@ export const AddSongApi = async (song: SongFields): Promise<SongFields | ApiErro
     if (error.response && error.response.data) {
       return { error: true, message: error.response.data.message };
     }
-    return { error: true, message: 'Something went wrong' };
+    return error;
   }
 };
 
