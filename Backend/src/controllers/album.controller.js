@@ -13,12 +13,12 @@ export const createAlbumController = async (req, res) => {
 
         const artistId = await FindArtistService({ userId: user._id })
 
-        const existingAlbum = findIsAlbumNameisTaken({ data, artistId })
+        const existingAlbum = await findIsAlbumNameisTaken({ data, artistId })
 
         if (existingAlbum) {
             return res.status(400).json({ message: "An album with this name already exists" })
         }
-
+       
         const coverUrl = await imageUpload(cover)
 
         if (!data) {
@@ -28,7 +28,7 @@ export const createAlbumController = async (req, res) => {
         const album = await CreateAlbumService({ data, artistId, coverUrl })
         console.log(album)
 
-        res.status(200).json({ album })
+        res.status(201).json({ album })
 
     } catch (error) {
         res.status(500).json({ message: "Internal server error", error })

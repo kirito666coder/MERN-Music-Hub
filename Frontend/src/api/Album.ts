@@ -6,6 +6,6 @@ export const CreateAlbumApi = async (formData:FormData) =>{
         console.log(res)
         return res
     } catch (error) {
-        return null;
+        return error;
     }
 }

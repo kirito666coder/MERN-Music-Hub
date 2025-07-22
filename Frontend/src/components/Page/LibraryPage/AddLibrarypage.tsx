@@ -45,8 +45,8 @@ function AddLibraryPage() {
 
     try {
       const res = await CreateAlbumApi(data);
-
-      if (res.ok) {
+      console.log(res)
+      if (res.status===201) {
         alert('Album created!');
         setShowModal(false);
         setFormData({ title: '', description: '', genres: '' });
