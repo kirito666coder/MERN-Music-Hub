@@ -93,12 +93,11 @@ const AddSongForm = () => {
     try {
       const res = await getAllAlbumsApi()
 
-      if (Array.isArray(res)) {
-        setAlbumSuggestions(res);
-        console.log(res)     
+      if (res && 'albums' in res && Array.isArray(res.albums)) {
+        setAlbumSuggestions(res.albums);
       } else {
-        console.error("API error:", res);   
-        setAlbumSuggestions([]);           
+        console.error("API error:", res);
+        setAlbumSuggestions([]);
       }
       setShowAlbumOptions(true);
     } catch (error) {
