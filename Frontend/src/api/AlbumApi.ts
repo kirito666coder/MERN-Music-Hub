@@ -14,3 +14,17 @@ export const CreateAlbumApi = async (formData:FormData):Promise<Album|ApiError> 
           return { error: true, message: 'Something went wrong' };
     }
 }
+
+export const getAllAlbumsApi = async ():Promise<Album|ApiError> =>{
+    try {
+        const res = await api.get('/api/album/youralbum')
+        console.log(res)
+        return res.data as Album
+    } catch (error:any) {
+        if (error.response && error.response.data) {
+            return { error: true, message: error.response.data.message };
+          }
+          return { error: true, message: 'Something went wrong' };
+    }
+}
+
