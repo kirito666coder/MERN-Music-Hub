@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { createAlbumController, getYourAlbumsController } from '../controllers/album.controller.js';
+import { createAlbumController, getAlbumController, getYourAlbumsController } from '../controllers/album.controller.js';
 import multer from 'multer';
 
 const AlbumRouter = Router();
@@ -16,6 +16,8 @@ AlbumRouter.post('/create',
      createAlbumController)
 
 
-AlbumRouter.get('/youralbum',getYourAlbumsController)     
+AlbumRouter.get('/youralbum',getYourAlbumsController)  
+
+AlbumRouter.get('/getAlbum',getAlbumController)
 
 export default AlbumRouter;
