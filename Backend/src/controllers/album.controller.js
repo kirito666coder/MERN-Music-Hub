@@ -57,5 +57,17 @@ export const getYourAlbumsController = async (req,res) =>{
 }
 
 export const getAlbumController = async (req,res) =>{
-    
+    try {
+
+        const albumId = req.params.id;
+
+        if(!albumId){
+            return res.status(200).json({message:'Album not found'})
+        }
+
+        
+        
+    } catch (error) {
+        res.status(500).json({message:"Internal server error"})
+    }
 }
