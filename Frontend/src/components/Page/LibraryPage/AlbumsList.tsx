@@ -1,3 +1,4 @@
+import { getAllAlbumsApi } from "@/api/AlbumApi";
 
 const albums = [
   {
@@ -81,6 +82,22 @@ const albums = [
 ];
 
 const AlbumsList = () => {
+    const handleShowAllAlbums = async () => {
+        try {
+          const res = await getAllAlbumsApi()
+    
+          if (res && 'albums' in res && Array.isArray(res.albums)) {
+            console.log(albums)
+          } else {
+            console.error("API error:", res);
+           
+          }
+         
+        } catch (error) {
+          console.error("Album fetch error:", error);
+        }
+      };
+    
   return (
     <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 ">
       {albums.map((album) => (

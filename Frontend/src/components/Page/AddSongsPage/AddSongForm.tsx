@@ -98,6 +98,7 @@ const AddSongForm = () => {
 
       if (res && 'albums' in res && Array.isArray(res.albums)) {
         setAlbumSuggestions(res.albums);
+        console.log(res)
       } else {
         console.error("API error:", res);
         setAlbumSuggestions([]);

@@ -50,7 +50,7 @@ export const yourAllAlbumsService = async ({artistId})=>{
         throw new Error("Invalid user ID");
     }
 
-    const albums = await AlbumModel.find({artistId})
+    const albums = await AlbumModel.find({artistId}).populate('artistId').lean()
 
     return albums;
 
