@@ -55,3 +55,17 @@ export const yourAllAlbumsService = async ({artistId})=>{
     return albums;
 
 }
+
+export const findSingalAlbumService = async ({artistId})=>{
+    if (!artistId) {
+        throw new Error("data is missing")
+    }
+    
+    if (!mongoose.Types.ObjectId.isValid(artistId)) {
+        throw new Error("Invalid user ID");
+    }
+
+    const album = await AlbumModel.findById(artistId)
+
+    return album;
+}
