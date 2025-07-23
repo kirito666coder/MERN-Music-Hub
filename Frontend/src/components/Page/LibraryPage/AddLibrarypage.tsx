@@ -67,9 +67,9 @@ function AddLibraryPage() {
     <div className="p-4">
       <button
         onClick={() => setShowModal(true)}
-        className="flex flex-col items-center justify-center w-40 h-40 rounded-lg bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] text-white hover:opacity-90 transition"
+        className="flex flex-col items-center justify-center w-[100%] h-40 rounded-lg bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] text-white hover:opacity-90 transition z-40"
       >
-        <div className="flex flex-col items-center justify-center w-34 h-34 border-2 border-dashed border-white rounded-lg">
+        <div className="flex flex-col items-center justify-center w-[96%] md:w-[98%] h-34 border-2 border-dashed border-white rounded-lg">
           <span className="text-7xl">+</span>
           <span className="mt-2 text-sm">Add Album</span>
         </div>
@@ -77,17 +77,17 @@ function AddLibraryPage() {
 
 
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center overflow-y-auto ">
-          <div className="relative w-full lg:max-w-[80%] md:max-w-[75%] mx-4 my-8 p-6 rounded-xl shadow-lg dark:shadow-black max-h-[90vh] overflow-y-auto bg-white/60 dark:bg-black/60">
+        <div className="fixed inset-0 flex items-center justify-center overflow-y-auto z-50 bg-white/30 dark:bg-black/30">
+          <div className="relative w-full lg:max-w-[80%] md:max-w-[75%] mx-4 my-8 p-6 rounded-xl shadow-lg dark:shadow-black max-h-[90vh] overflow-y-auto bg-white/70 dark:bg-black/70 backdrop-blur-2xl">
             <button
               onClick={() => setShowModal(false)}
-              className="absolute top-2 right-3"
+              className="absolute top-2 right-3 hover:text-red-500"
             >
               ✕
             </button>
             <h2 className="text-xl font-semibold mb-4">Create New Album</h2>
 
-            <form onSubmit={handleSubmit} className="grid grid-cols-2 md:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="grid grid-cols-2 md:grid-cols-2 gap-4 ">
               <div className="space-y-4">
                 <div>
                   <label className="block mb-1">
@@ -134,7 +134,7 @@ function AddLibraryPage() {
                   <button
                     type="button"
                     onClick={() => setShowModal(false)}
-                    className="px-3 py-1 rounded border"
+                    className="px-3 py-1 rounded border hover:border-red-500 hover:text-red-500"
                   >
                     Cancel
                   </button>
@@ -167,6 +167,7 @@ function AddLibraryPage() {
           </div>
         </div>
       )}
+
     </div>
   );
 }
