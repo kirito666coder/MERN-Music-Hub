@@ -1,4 +1,4 @@
-import { CreateAlbumService, findIsAlbumNameisTaken, yourAllAlbumsService } from "../services/album.service.js";
+import { CreateAlbumService, findIsAlbumNameisTaken, findSingalAlbumService, yourAllAlbumsService } from "../services/album.service.js";
 import { FindArtistService } from "../services/artist.service.js";
 import { imageUpload } from "../services/cloudinaryUpload.service.js";
 
@@ -19,8 +19,8 @@ export const createAlbumController = async (req, res) => {
             return res.status(400).json({ message: "An album with this name already exists" })
         }
         let coverUrl;
-       if(cover){
-           coverUrl = await imageUpload(cover)
+        if (cover) {
+            coverUrl = await imageUpload(cover)
         }
 
         if (!data) {
@@ -36,38 +36,45 @@ export const createAlbumController = async (req, res) => {
     }
 }
 
-export const getYourAlbumsController = async (req,res) =>{
+export const getYourAlbumsController = async (req, res) => {
     try {
 
         const user = req.user;
-       
-        if(!user){
-            return res.status(400).json({message:"user not find"})
+
+        if (!user) {
+            return res.status(400).json({ message: "user not find" })
         }
 
-        const artist = await FindArtistService({userId:user._id})
+        const artist = await FindArtistService({ userId: user._id })
 
-        const albums = await yourAllAlbumsService({artistId:artist._id})
+        const albums = await yourAllAlbumsService({ artistId: artist._id })
 
-        res.status(200).json({albums})
-        
+        res.status(200).json({ albums })
+
     } catch (error) {
-        res.status(500).json({message:"Interal server error"})
+        res.status(500).json({ message: "Interal server error" })
     }
 }
 
-export const getAlbumController = async (req,res) =>{
+export const getAlbumController = async (req, res) => {
     try {
 
         const albumId = req.params.id;
 
-        if(!albumId){
-            return res.status(200).json({message:'Album not found'})
+        if (!albumId) {
+            return res.status(400).json({ message: 'Album not found' })
         }
 
-        
-        
+        const album = await findSingalAlbumService({ albumId })
+
+        if (!album) {
+            return res.status(400).json({ message: 'Album not found' })
+        }
+
+        res.status(200).json({album})
+
+
     } catch (error) {
-        res.status(500).json({message:"Internal server error"})
+        res.status(500).json({ message: "Internal server error" })
     }
 }

@@ -56,16 +56,16 @@ export const yourAllAlbumsService = async ({artistId})=>{
 
 }
 
-export const findSingalAlbumService = async ({artistId})=>{
-    if (!artistId) {
+export const findSingalAlbumService = async ({albumId})=>{
+    if (!albumId) {
         throw new Error("data is missing")
     }
     
-    if (!mongoose.Types.ObjectId.isValid(artistId)) {
+    if (!mongoose.Types.ObjectId.isValid(albumId)) {
         throw new Error("Invalid user ID");
     }
 
-    const album = await AlbumModel.findById(artistId)
+    const album = await AlbumModel.findById(albumId).populate('artistId').lean()
 
     return album;
 }
