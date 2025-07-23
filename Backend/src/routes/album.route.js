@@ -18,6 +18,6 @@ AlbumRouter.post('/create',
 
 AlbumRouter.get('/youralbum',getYourAlbumsController)  
 
-AlbumRouter.get('/getAlbum/:id',getAlbumController)
+AlbumRouter.get('/getalbum/:id',getAlbumController)
 
 export default AlbumRouter;
