@@ -31,9 +31,9 @@ const AlbumsList = () => {
      handleShowAllAlbums()
       }, [])
 
-      const handleClick = (album) =>{
-        const slug = slugify(album.title, { lower: true });
-        navigate(`/library/album/${slug}-${album._id}`);
+      const handleClick = ({albumName,albumId}:{albumName:string,albumId:string}) =>{
+        const slug = slugify(albumName, { lower: true });
+        navigate(`/library/album/${slug}-${albumId}`);
       }
       
     
@@ -41,7 +41,7 @@ const AlbumsList = () => {
     <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 ">
       {albums.map((album) => (
         <div
-          onClick={()=>handleClick(album)}
+          onClick={()=>handleClick({albumName:album.title,albumId:album._id})}
           key={album._id}
           className=" rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] hover:scale-105 transition-transform"
         >
