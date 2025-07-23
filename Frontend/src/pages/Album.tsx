@@ -2,7 +2,7 @@
 const Album = () => {
   return (
     <div>
-      
+      hello
     </div>
   )
 }
