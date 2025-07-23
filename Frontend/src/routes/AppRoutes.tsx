@@ -31,9 +31,8 @@ const AppRoutes = () => {
         <Route index element={<Home/>}/>
         <Route path="/genre" element={<Genre/>}/>
         
-        <Route path="/library" element={<Library/>}>
-        <Route path="/library/Album" element={<Album/>}/>
-        </Route>
+        <Route path="/library" element={<Library/>}/>
+        <Route path="/library/album/:slugAndId" element={<Album/>}/>
         
         <Route path="/liked" element={<LikedSong/>}/>
         

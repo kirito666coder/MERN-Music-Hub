@@ -1,11 +1,14 @@
 import { getAllAlbumsApi } from "@/api/AlbumApi";
 import type { Album } from "@/types/album";
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import slugify from 'slugify';
 
 const AlbumsList = () => {
 
     const [albums, setalbums] = useState<Album[]>([])
+
+    const navigate = useNavigate();
 
     const handleShowAllAlbums = async () => {
         try {
@@ -27,12 +30,18 @@ const AlbumsList = () => {
       useEffect(() => {
      handleShowAllAlbums()
       }, [])
+
+      const handleClick = (album) =>{
+        const slug = slugify(album.title, { lower: true });
+        navigate(`/library/album/${slug}-${album._id}`);
+      }
       
     
   return (
     <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 ">
       {albums.map((album) => (
         <div
+          onClick={()=>handleClick(album)}
           key={album._id}
           className=" rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] hover:scale-105 transition-transform"
         >

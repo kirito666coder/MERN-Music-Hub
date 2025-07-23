@@ -1,5 +1,6 @@
 import AddLibrarypage from "@/components/Page/LibraryPage/AddLibrarypage"
 import AlbumsList from "@/components/Page/LibraryPage/AlbumsList"
+import { Outlet } from "react-router-dom"
 
 const Library = () => {
   return (
@@ -10,6 +11,7 @@ const Library = () => {
     <div className=" z-10">
       <AlbumsList/>
     </div>
+    <Outlet/>
     </div>
   )
 }
