@@ -1,93 +1,19 @@
 import { getAllAlbumsApi } from "@/api/AlbumApi";
+import type { Album } from "@/types/album";
+import { useEffect, useState } from "react";
 
-const albums = [
-  {
-    id: 1,
-    title: 'Summer Vibes',
-    artist: 'DJ Sunset',
-    coverUrl: './assets/image.jpg',
-  },
-  {
-    id: 2,
-    title: 'Chill Beats',
-    artist: 'Lo-Fi Boy',
-    coverUrl: './assets/image.jpg',
-  },
-  {
-    id: 2,
-    title: 'Chill Beats',
-    artist: 'Lo-Fi Boy',
-    coverUrl: './assets/image.jpg',
-  },
-  {
-    id: 2,
-    title: 'Chill Beats',
-    artist: 'Lo-Fi Boy',
-    coverUrl: './assets/image.jpg',
-  },
-  {
-    id: 2,
-    title: 'Chill Beats',
-    artist: 'Lo-Fi Boy',
-    coverUrl: './assets/image.jpg',
-  },
-  {
-    id: 2,
-    title: 'Chill Beats',
-    artist: 'Lo-Fi Boy',
-    coverUrl: './assets/image.jpg',
-  },
-  {
-    id: 2,
-    title: 'Chill Beats',
-    artist: 'Lo-Fi Boy',
-    coverUrl: './assets/image.jpg',
-  },
-  {
-    id: 2,
-    title: 'Chill Beats',
-    artist: 'Lo-Fi Boy',
-    coverUrl: './assets/image.jpg',
-  },
-  {
-    id: 2,
-    title: 'Chill Beats',
-    artist: 'Lo-Fi Boy',
-    coverUrl: './assets/image.jpg',
-  },
-  {
-    id: 2,
-    title: 'Chill Beats',
-    artist: 'Lo-Fi Boy',
-    coverUrl: './assets/image.jpg',
-  },
-  {
-    id: 2,
-    title: 'Chill Beats',
-    artist: 'Lo-Fi Boy',
-    coverUrl: './assets/image.jpg',
-  },
-  {
-    id: 2,
-    title: 'Chill Beats',
-    artist: 'Lo-Fi Boy',
-    coverUrl: './assets/image.jpg',
-  },
-  {
-    id: 3,
-    title: 'Night Drive',
-    artist: 'Synthwave',
-    coverUrl: './assets/image.jpg',
-  },
-];
 
 const AlbumsList = () => {
+
+    const [albums, setalbums] = useState<Album[]>([])
+
     const handleShowAllAlbums = async () => {
         try {
           const res = await getAllAlbumsApi()
     
           if (res && 'albums' in res && Array.isArray(res.albums)) {
             console.log(albums)
+            setalbums(res.albums)
           } else {
             console.error("API error:", res);
            
@@ -97,12 +23,17 @@ const AlbumsList = () => {
           console.error("Album fetch error:", error);
         }
       };
+
+      useEffect(() => {
+     handleShowAllAlbums()
+      }, [])
+      
     
   return (
     <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 ">
       {albums.map((album) => (
         <div
-          key={album.id}
+          key={album._id}
           className=" rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] hover:scale-105 transition-transform"
         >
           <img
@@ -112,7 +43,7 @@ const AlbumsList = () => {
           />
           <div className="p-4 text-white">
             <h2 className="text-lg font-semibold">{album.title}</h2>
-            <p className="text-sm opacity-90">{album.artist}</p>
+            <p className="text-sm opacity-90">{album.artistId.name}</p>
           </div>
         </div>
       ))}

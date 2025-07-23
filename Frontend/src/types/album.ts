@@ -3,7 +3,7 @@ import type { Artist } from "./artist";
 export interface Album {
     _id: string;
     title: string;
-    artistId: string |Artist;
+    artistId: Artist;
     coverUrl: string;
     description: string;
     releaseDate: string;
