@@ -1,8 +1,9 @@
+import type { Artist } from "./artist";
 
 export interface Album {
     _id: string;
     title: string;
-    artistId: string;
+    artistId: string |Artist;
     coverUrl: string;
     description: string;
     releaseDate: string;
