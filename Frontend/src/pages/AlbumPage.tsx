@@ -90,7 +90,7 @@ const AlbumPage = () => {
     >
       {/* Cover thumbnail */}
       <img
-        src={song.coverUrl || "https://via.placeholder.com/40"}
+        src={song.coverUrl}
         alt={song.title}
         className="w-12 h-12 rounded object-cover shadow"
       />

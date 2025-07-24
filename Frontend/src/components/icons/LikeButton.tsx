@@ -1,24 +1,30 @@
+import { useId } from "react";
 
-const LikeButton = ({Liked}:{Liked?:boolean}) => {
-    const gradientId = "likeGradient" + (Liked ? "-active" : "-inactive")
-    return (
-        <svg
-        className=" cursor-pointer"
-        xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
-            <defs>
-                <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor={Liked ? "#f43f5e" : "currentColor"} />
-                    <stop offset="100%" stop-color={`${Liked ? "#3b82f6" : "currentColor"}`} />
-                </linearGradient>
-            </defs>
+const LikeButton = ({ Liked }: { Liked?: boolean }) => {
+  const id = useId(); // unique per render
+  const gradientId = `likeGradient-${Liked ? "active" : "inactive"}-${id}`;
 
-            <path
-                fill={`url(#${gradientId})`}
-                d="M12 21c-.5 0-1-.2-1.4-.6C6 16.2 3 13.3 3 9.8 3 7.3 5 5.3 7.5 5.3c1.6 0 3.2.9 4.1 2.3
-       .9-1.4 2.5-2.3 4.1-2.3C18.9 5.3 21 7.3 21 9.8c0 3.5-3 6.4-7.6 10.6-.4.4-.9.6-1.4.6z"
-            />
-        </svg>
-    )
-}
+  return (
+    <svg
+      className="cursor-pointer"
+      xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
+      <defs>
+        <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor={Liked ? "#f43f5e" : "#ffffff"} />
+          <stop offset="100%" stopColor={Liked ? "#3b82f6" : "#ffffff"} />
+        </linearGradient>
+      </defs>
 
-export default LikeButton
+      <path
+        fill={`url(#${gradientId})`}
+        d="M12 21c-.5 0-1-.2-1.4-.6C6 16.2 3 13.3 3 9.8 
+           3 7.3 5 5.3 7.5 5.3c1.6 0 3.2.9 4.1 2.3
+           .9-1.4 2.5-2.3 4.1-2.3C18.9 5.3 21 7.3 21 9.8
+           c0 3.5-3 6.4-7.6 10.6-.4.4-.9.6-1.4.6z"
+      />
+    </svg>
+  );
+};
+
+export default LikeButton;
+
