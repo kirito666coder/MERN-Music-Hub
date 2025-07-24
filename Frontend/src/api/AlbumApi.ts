@@ -1,6 +1,6 @@
-import type { Album } from "@/types/song";
+
 import api from "./util/Api";
-import type { ApiError } from "@/types/album";
+import type { Album, ApiError } from "@/types/album";
 
 export const CreateAlbumApi = async (formData:FormData):Promise<Album|ApiError> =>{
     try {
@@ -30,7 +30,7 @@ export const getAllAlbumsApi = async ():Promise<Album|ApiError> =>{
 
 export const getAlbumApi = async ({albumId}:{albumId:string}):Promise<Album|ApiError> =>{
     try {
-        const res = await api.get(`/api/album/getalbum/:${albumId}`)
+        const res = await api.get(`/api/album/getalbum/${albumId}`)
         return res.data
     } catch (error:any) {
         if (error.response && error.response.data) {

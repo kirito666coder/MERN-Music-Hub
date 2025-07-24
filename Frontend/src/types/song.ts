@@ -1,31 +1,5 @@
-export interface Artist {
-  _id: string;
-  userId: string;               
-  name: string;
-  bio: string;
-  photoUrl: string;
-  genres: string[];
-  socialLinks: { [key: string]: string };
-  location: string;
-  isVerified: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface Album {
-  _id: string;
-  title: string;
-  artist: string;            
-  coverUrl: string;
-  description: string;
-  releaseDate: string;
-  genres: string[];
-  songs: string[];             
-  createdAt: string;
-  updatedAt: string;
-}
-
-
+import type { Album } from "./album";
+import type { Artist } from "./artist";
 
 export interface SongData {
   _id: string;

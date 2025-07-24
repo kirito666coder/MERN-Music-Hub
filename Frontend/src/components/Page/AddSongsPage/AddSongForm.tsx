@@ -1,4 +1,4 @@
-import type { Album, SongFormFields } from "@/types/song";
+import type {SongFormFields } from "@/types/song";
 import { useEffect, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { renderLabel } from "./HandlerForAddSongForm";
@@ -7,6 +7,7 @@ import { SearchArtistApi } from "@/api/ArtistApi";
 import type { artistSearch } from "@/types/artist";
 import { getAllAlbumsApi } from "@/api/AlbumApi";
 import { useNavigate } from "react-router-dom";
+import type { Album } from "@/types/album";
 
 const AddSongForm = () => {
   const [formData, setFormData] = useState<SongFormFields>({
