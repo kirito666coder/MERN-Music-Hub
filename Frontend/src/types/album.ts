@@ -1,5 +1,12 @@
 import type { Artist } from "./artist";
-import type { SongData } from "./song";
+
+export interface PopulatedSong {
+  _id: string;
+  title: string;
+  coverUrl: string;
+  likes: number;
+  plays: number;
+}
 
 export interface Album {
     _id: string;
@@ -9,7 +16,7 @@ export interface Album {
     description: string;
     releaseDate: string;
     genres: string[];
-    songs: SongData[]; 
+    songs: PopulatedSong[]; 
     createdAt: string;
   }
   

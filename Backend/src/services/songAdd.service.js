@@ -83,7 +83,7 @@ export const AddsongInAlbum = async({song})=>{
         throw new Error ('Failed to add song in album')
     }
 
-    const addsongAlbum = AlbumModel.findByIdAndUpdate(album,
+    const updatedAlbum = AlbumModel.findByIdAndUpdate(album,
         {$addToSet:{songs:_id}},
         {new:true}
     );
@@ -92,7 +92,7 @@ export const AddsongInAlbum = async({song})=>{
         throw new Error('Album not found or failed to add song');
       }
 
-    return addsongAlbum;
+    return updatedAlbum;
 }
 
 export const getAllSongs = async ()=>{    

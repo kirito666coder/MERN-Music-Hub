@@ -85,11 +85,7 @@ const SongSchema = new Schema({
     enum: ["happy", "sad", "chill", "energetic", "romantic", "angry", "none"],
     default: "none"
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  }
-});
+},{timestamps:true});
 
 
 

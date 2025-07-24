@@ -65,7 +65,13 @@ export const findSingalAlbumService = async ({albumId})=>{
         throw new Error("Invalid user ID");
     }
 
-    const album = await AlbumModel.findById(albumId).populate('artistId').lean()
+    const album = await AlbumModel.findById(albumId)
+    .populate('artistId')
+    .populate({
+        path:'songs',
+        select:'coverUrl title likes plays'
+    })
+    .lean()
 
     return album;
 }
