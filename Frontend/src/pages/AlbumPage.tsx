@@ -43,14 +43,14 @@ const AlbumPage = () => {
         <img
           src={album?.coverUrl}
           alt={album?.title}
-          className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-lg shadow-md"
+          className="w-90 h-100 md:w-90 md:h-100 object-cover rounded-lg shadow-md"
         />
 
         <div className="flex-1">
           <h1 className="text-2xl md:text-4xl font-bold mb-2">{album?.title}</h1>
           <div className="flex items-center gap-2 mb-2">
             <img
-              src={album?.artistId?.photoUrl || "https://via.placeholder.com/40"}
+              src={album?.artistId?.photoUrl}
               alt={album?.artistId?.name}
               className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover"
             />
