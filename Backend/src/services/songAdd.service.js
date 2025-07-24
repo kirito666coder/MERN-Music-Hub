@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import SongModel from "../Models/song.model.js";
 import UserModel from "../Models/user.model.js"
+import AlbumModel from "../Models/album.model.js"
 
 export const AddSong = async ({ userId, data, songUrl, imageUrl }) => {
     if (!userId || !data || !songUrl || !imageUrl) {
@@ -67,6 +68,31 @@ export const AddSong = async ({ userId, data, songUrl, imageUrl }) => {
 
 
     return newSong;
+}
+
+export const AddsongInAlbum = async({song})=>{
+    if(!song){
+        throw new Error ('Failed to add song in album')
+    }
+    const {
+       album,
+       _id,
+    } = song
+
+    if(!album || !_id){
+        throw new Error ('Failed to add song in album')
+    }
+
+    const addsongAlbum = AlbumModel.findByIdAndUpdate(album,
+        {$addToSet:{songs:_id}},
+        {new:true}
+    );
+
+    if (!updatedAlbum) {
+        throw new Error('Album not found or failed to add song');
+      }
+
+    return addsongAlbum;
 }
 
 export const getAllSongs = async ()=>{    

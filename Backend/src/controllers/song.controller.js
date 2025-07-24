@@ -1,6 +1,6 @@
 import { FindArtistWithArtistId } from "../services/artist.service.js";
 import { audioUpload, getSongUrl, imageUpload } from "../services/cloudinaryUpload.service.js";
-import { AddSong, findSong, getAllSongs } from "../services/songAdd.service.js";
+import { AddSong, AddsongInAlbum, findSong, getAllSongs } from "../services/songAdd.service.js";
 
 export const AddSongController = async (req, res) => {
      try {
@@ -30,6 +30,8 @@ export const AddSongController = async (req, res) => {
       const imageUrl = await imageUpload(coverUrl)
        
       const song = await AddSong({userId, data, songUrl, imageUrl})
+
+      const AddsongonAlbum = await AddsongInAlbum({song})
      
      res.status(201).json(song)
 
