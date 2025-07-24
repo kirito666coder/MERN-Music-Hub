@@ -1,4 +1,5 @@
 import type { Artist } from "./artist";
+import type { SongData } from "./song";
 
 export interface Album {
     _id: string;
@@ -8,7 +9,7 @@ export interface Album {
     description: string;
     releaseDate: string;
     genres: string[];
-    songs: string[]; 
+    songs: SongData[]; 
     createdAt: string;
   }
   
