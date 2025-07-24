@@ -1,6 +1,6 @@
 import { getAlbumApi } from "@/api/AlbumApi";
 import type { Album } from "@/types/album";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 
 const AlbumPage = () => {
@@ -21,15 +21,21 @@ const AlbumPage = () => {
         setalbum(null);
       } else {
         setalbum(data);
+        console.log(data)
       }
     } catch (error) {
       setalbum(null)
     }
   }
 
+  useEffect(() => {
+    GetAlbumData()
+  }, [])
+  
+
   return (
     <div>
-      hello
+      {album?.title}
     </div>
   )
 }

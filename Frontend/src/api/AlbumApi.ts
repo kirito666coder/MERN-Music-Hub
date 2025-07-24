@@ -31,7 +31,7 @@ export const getAllAlbumsApi = async ():Promise<Album|ApiError> =>{
 export const getAlbumApi = async ({albumId}:{albumId:string}):Promise<Album|ApiError> =>{
     try {
         const res = await api.get(`/api/album/getalbum/${albumId}`)
-        return res.data
+        return res.data.album
     } catch (error:any) {
         if (error.response && error.response.data) {
             return { error: true, message: error.response.data.message };
