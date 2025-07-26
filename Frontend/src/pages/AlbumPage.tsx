@@ -1,3 +1,4 @@
+import { FaPlay} from "react-icons/fa";
 import { getAlbumApi } from "@/api/AlbumApi";
 import PlayButton from "@/components/Buttons/PlayButton";
 import LikeButton from "@/components/icons/LikeButton";
@@ -101,10 +102,10 @@ const AlbumPage = () => {
 
       {/* Song info */}
       <div className="flex-1">
-        <div className="font-medium truncate">{song.title}</div>
-        <div className="flex gap-2 text-xs text-gray-500">
-          <span className="flex justify-center items-center gap-0.5"><LikeButton/> {song.likes}</span>
-          <span>▶️ {song.plays}</span>
+        <div className="font-semibold truncate text-lg">{song.title}</div>
+        <div className="flex gap-3 text-xs text-gray-500">
+          <span className="flex justify-center items-center gap-0.5 text-[17px] text-white"><LikeButton/> {song.likes}</span>
+          <span className="flex justify-center items-center text-[17px] text-white gap-1.5"> <FaPlay/>{song.plays}</span>
         </div>
       </div>
 
