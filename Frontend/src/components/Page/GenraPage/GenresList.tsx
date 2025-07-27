@@ -38,14 +38,14 @@ const GenresList = () => {
   return (
     <div className="px-6 py-8">
       <div className="text-center mb-10">
-        <h1 className="text-4xl font-extrabold text-white mb-2">Discover by Vibe</h1>
-        <p className="text-gray-400 text-lg">
+        <h1 className="text-4xl font-extrabold mb-2">Discover by Vibe</h1>
+        <p className="text-lg">
           Browse your favorite <span className="text-pink-500">genres</span> and match your <span className="text-blue-400">mood</span>
         </p>
       </div>
 
       {/* Genres Section */}
-      <h2 className="text-2xl font-bold mb-4 text-white">🎵 Genres</h2>
+      <h2 className="text-2xl font-bold mb-4">🎵 Genres</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
         {genresData.map((genre) => (
           <GenresCards key={genre.name} genre={genre} />
@@ -53,7 +53,7 @@ const GenresList = () => {
       </div>
 
       {/* Moods Section */}
-      <h2 className="text-2xl font-bold mb-4 text-white">😊 Moods</h2>
+      <h2 className="text-2xl font-bold mb-4">😊 Moods</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {moodsData.map((mood) => (
           <MoodCard key={mood.name} mood={mood} />
