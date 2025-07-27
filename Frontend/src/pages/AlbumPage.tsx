@@ -91,7 +91,7 @@ const AlbumPage = () => {
   {album?.songs.map((song, idx) => (
     <li
       key={idx}
-      className="flex items-center gap-4 p-2 rounded  transition border-red-500 border-2 "
+      className="flex items-center gap-4 p-2 rounded  transition border-2 "
     >
       {/* Cover thumbnail */}
       <img
