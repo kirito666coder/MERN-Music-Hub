@@ -1,66 +1,85 @@
 import type { SongData } from "@/types/song";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-interface songStats{
-    audioFile:string|null;
-    title:string|null;
-    artist:string|null;
-    coverImage:string|null;
-    isPlaying:boolean;
-    currentTime:number;
-    duration:number;
-    volume:number;
+interface songStats {
+    audioFile: string | null;
+    title: string | null;
+    artist: string | null;
+    coverImage: string | null;
+    isPlaying: boolean;
+    currentTime: number;
+    duration: number;
+    volume: number;
 
-    queue:SongData[];
-    currentIndex:number;
-    playingFrom:{type: "album";albumId:string} | {type:"single"} | null;
+    queue: SongData[];
+    currentIndex: number;
+    playingFrom: { type: "album"; albumId: string } | { type: "single" } | null;
 }
 
-const initialState:songStats={
-    audioFile:null,
-    title:null,
-    artist:null,
-    coverImage:null,
-    isPlaying:false,
-    currentTime:0,
-    duration:0,
-    volume:50,
-    queue:[],
-    currentIndex:0,
-    playingFrom:null,
+const initialState: songStats = {
+    audioFile: null,
+    title: null,
+    artist: null,
+    coverImage: null,
+    isPlaying: false,
+    currentTime: 0,
+    duration: 0,
+    volume: 50,
+    queue: [],
+    currentIndex: 0,
+    playingFrom: null,
 };
 
 
 const songSlice = createSlice({
-    name:"song",
+    name: "song",
     initialState,
-    reducers:{
-        setSong:(state,action:PayloadAction<string | null | undefined>)=>{
+    reducers: {
+        setSong: (state, action: PayloadAction<string | null | undefined>) => {
             state.audioFile = action.payload ?? null;
             state.currentTime = 0;
             state.duration = 0;
             state.isPlaying = false;
         },
-        setSongDetails:(state,action:PayloadAction<{title:string |null;artist:string|null;coverImage:string|null}>)=>{
+        setSongDetails: (state, action: PayloadAction<{ title: string | null; artist: string | null; coverImage: string | null }>) => {
             state.title = action.payload.title;
             state.artist = action.payload.artist;
             state.coverImage = action.payload.coverImage;
         },
-        setVolume:(state,action:PayloadAction<number>)=>{
+        setVolume: (state, action: PayloadAction<number>) => {
             state.volume = action.payload;
         },
-        togglePlay:(state) =>{
+        togglePlay: (state) => {
             state.isPlaying = !state.isPlaying;
         },
-        setIsPlaying:(state,action:PayloadAction<boolean>) =>{
+        setIsPlaying: (state, action: PayloadAction<boolean>) => {
             state.isPlaying = action.payload;
         },
-        setCurrentTime:(state,action:PayloadAction<number>) =>{
+        setCurrentTime: (state, action: PayloadAction<number>) => {
             state.currentTime = action.payload;
         },
-        setDuration:(state,action:PayloadAction<number>) =>{
+        setDuration: (state, action: PayloadAction<number>) => {
             state.duration = action.payload;
-        }
+        },
+        setQueue: (state, action: PayloadAction<SongData[]>) => {
+            state.queue = action.payload;
+        },
+        setCurrentIndex: (state, action: PayloadAction<number>) => {
+            state.currentIndex = action.payload;
+        },
+        setPlayingFrom: (state, action: PayloadAction<{ type: "album"; albumId: string } | { type: "single" } | null>) => {
+            state.playingFrom = action.payload;
+        },
+        nextSong: (state) => {
+            if (state.currentIndex < state.queue.length - 1) {
+                state.currentIndex += 1;
+            }
+        },
+        prevSong: (state) => {
+            if (state.currentIndex > 0) {
+                state.currentIndex -= 1;
+            }
+        },
     }
 })
 
@@ -72,6 +91,11 @@ export const {
     setCurrentTime,
     setDuration,
     setVolume,
-}= songSlice.actions;
+    setQueue,
+    setCurrentIndex,
+    setPlayingFrom,
+    nextSong,
+    prevSong,
+} = songSlice.actions;
 
 export default songSlice.reducer;
