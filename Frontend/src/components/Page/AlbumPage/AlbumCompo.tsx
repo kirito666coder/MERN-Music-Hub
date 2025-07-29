@@ -5,7 +5,7 @@ import LikeButton from "@/components/icons/LikeButton";
 import type { Album } from "@/types/album";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-const Album = () => {
+const AlbumCompo = () => {
   
     const [album, setalbum] = useState<Album|null>(null)
     const {slugAndId} = useParams();
@@ -124,4 +124,4 @@ const Album = () => {
     );
 }
 
-export default Album
+export default AlbumCompo
