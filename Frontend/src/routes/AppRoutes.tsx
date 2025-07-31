@@ -11,6 +11,7 @@ import Profile from "@/pages/Profile"
 import AddSongPage from "@/pages/AddSongs"
 import Setting from "@/pages/Setting"
 import AlbumPage from "@/pages/AlbumPage"
+import Notification from "@/pages/Notification"
 
 
 const AppRoutes = () => {
@@ -42,6 +43,7 @@ const AppRoutes = () => {
         </Route>
 
         <Route path="/settings" element={<Setting/>}/>
+        <Route path="/notification" element={<Notification/>}/>
         
         </Route>
 

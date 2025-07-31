@@ -2,7 +2,7 @@
 const Notification = () => {
   return (
     <div>
-      
+      this is notification page
     </div>
   )
 }
