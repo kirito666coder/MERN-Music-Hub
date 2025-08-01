@@ -3,6 +3,7 @@ import { GradientIconButton } from "@/components/Buttons/GradientIconButton";
 import { setCurrentTime, setIsPlaying, setVolume } from "@/features/song/songSlice";
 import { FaPlay, FaPause, FaForward, FaBackward, FaMinus, FaPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import usePlayerControls from "./Handlers/handlers";
 
 const SongPlayBarSongControlers = () => {
 
@@ -20,7 +21,7 @@ const SongPlayBarSongControlers = () => {
   };
 
 
-  
+ const {handleNext,handlePrev} =  usePlayerControls()
 
 
 
@@ -29,7 +30,7 @@ const SongPlayBarSongControlers = () => {
       <div className="w-6/8 h-full flex flex-col justify-center items-center  px-4">
         {/* Control Buttons */}
         <div className="flex items-center gap-4">
-          <GradientIconButton onClick={() => console.log("Previous song")}>
+          <GradientIconButton onClick={() => console.log(handlePrev)}>
             <FaBackward className="w-6 h-6 fill-white" />
           </GradientIconButton>
 
@@ -41,7 +42,7 @@ const SongPlayBarSongControlers = () => {
             )}
           </GradientIconButton>
 
-          <GradientIconButton onClick={() => console.log("Next song")}>
+          <GradientIconButton onClick={() => console.log(handleNext)}>
             <FaForward className="w-6 h-6 fill-white" />
           </GradientIconButton>
         </div>
