@@ -1,10 +1,10 @@
 import { FaPlay} from "react-icons/fa";
 import { getAlbumApi } from "@/api/AlbumApi";
-import PlayButton from "@/components/Buttons/PlayButton";
 import LikeButton from "@/components/icons/LikeButton";
 import type { Album } from "@/types/album";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
+import AlbumPlaysongButton from "./AlbumPlaysongButton";
 const AlbumCompo = () => {
   
     const [album, setalbum] = useState<Album|null>(null)
@@ -111,8 +111,12 @@ const AlbumCompo = () => {
         </div>
   
         {/* Optional: play button */}
-        <div className="p-2 rounded-full hover:bg-gray-200 hover:scale-105 transition">
-          <PlayButton/>
+        <div
+         onClick={()=>{
+          console.log('click outside album playsong button')
+         }}
+         className="p-2 rounded-full hover:bg-gray-200 hover:scale-105 transition">
+         <AlbumPlaysongButton/>
         </div>
       </li>
     ))}
