@@ -2,8 +2,24 @@ import type { Album } from "@/types/album"
 import { FaPlay} from "react-icons/fa";
 import LikeButton from "@/components/icons/LikeButton";
 import AlbumPlaysongButton from "./AlbumPlaysongButton";
+import { useDispatch } from "react-redux";
+import { setCurrentIndex, setPlayingFrom, setQueue } from "@/features/song/songSlice";
+import type { SongData } from "@/types/song";
+import { playSongByIndex } from "@/utils/PlaySongByIndex";
 
 const AlbumSongPlayCard = ({album}:{album:Album}) => {
+
+  const dispatch = useDispatch();
+
+  const handlePlayAlbum = async (album:Album)=>{
+    if(!album.songs || album.songs.length === 0) return;
+     console.log(album)
+     console.log(album.songs)
+    dispatch(setQueue(album.songs ));
+    dispatch(setCurrentIndex(0));
+    dispatch(setPlayingFrom({type:'album',albumId:album._id}));
+    await playSongByIndex(album.songs,0,dispatch)
+  }
   return (
     <>
        {album?.songs.map((song, idx) => (
@@ -30,7 +46,7 @@ const AlbumSongPlayCard = ({album}:{album:Album}) => {
         {/* Optional: play button */}
         <div
          onClick={()=>{
-          console.log('click outside album playsong button')
+         handlePlayAlbum(album)
          }}
          className="p-2 rounded-full hover:bg-gray-200 hover:scale-105 transition">
          <AlbumPlaysongButton/>

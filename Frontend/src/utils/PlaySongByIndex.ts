@@ -16,7 +16,9 @@ export const playSongByIndex = async (
     try {
         const audioUrl = await GetSong({songId:song._id})
         if(audioUrl?.songurl){
-            dispatch(setSong(audioUrl.songurl))
+            // dispatch(setSong(audioUrl.songurl))
+            dispatch(setSong(`${audioUrl.songurl}?t=${Date.now()}`));
+
             dispatch(setSongDetails({
                 title: song.title ?? null,
                 artist: song.artist?.name ?? null,
