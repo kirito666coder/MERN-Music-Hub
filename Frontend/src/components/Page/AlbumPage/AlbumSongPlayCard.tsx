@@ -5,6 +5,7 @@ import AlbumPlaysongButton from "./AlbumPlaysongButton";
 import { useDispatch } from "react-redux";
 import { setCurrentIndex, setPlayingFrom, setQueue } from "@/features/song/songSlice";
 import { playSongByIndex } from "@/utils/PlaySongByIndex";
+import type { MinimalSong } from "@/types/song";
 
 const AlbumSongPlayCard = ({album}:{album:Album}) => {
 
@@ -16,14 +17,23 @@ const AlbumSongPlayCard = ({album}:{album:Album}) => {
     const index = album.songs.findIndex(song=>song._id === idx)
     if(index === -1) return;
 
+    const artistName = album.artistId.name ?? 'Unknown Artist'
+
+    const queue:MinimalSong[] = album.songs.map(song =>({
+      _id:song._id,
+      title:song.title,
+      artist:artistName,
+      coverUrl:song.coverUrl ?? undefined
+    }))
+
     if(!album.songs || album.songs.length === 0) return;
      console.log(album)
      console.log(idx)
      console.log(album.songs)
-    dispatch(setQueue(album.songs ));
-    dispatch(setCurrentIndex(0));
+    dispatch(setQueue(queue ));
+    dispatch(setCurrentIndex(index));
     dispatch(setPlayingFrom({type:'album',albumId:album._id}));
-    await playSongByIndex(album.songs,index,dispatch)
+    await playSongByIndex(queue,index,dispatch)
   }
   return (
     <>

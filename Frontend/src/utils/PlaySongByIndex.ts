@@ -21,7 +21,7 @@ export const playSongByIndex = async (
 
             dispatch(setSongDetails({
                 title: song.title ?? null,
-                artist: song.artist?.name ?? null,
+                artist: song.artist ?? null,
                 coverImage: song.coverUrl ?? null 
             }))
             dispatch(setIsPlaying(true));
