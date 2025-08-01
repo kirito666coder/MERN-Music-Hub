@@ -1,12 +1,12 @@
 import { GetSong } from "@/api/SongApi";
 import type { AppDispatch } from "@/app/store";
 import { setIsPlaying, setSong, setSongDetails } from "@/features/song/songSlice";
-import type { SongData } from "@/types/song";
+import type { MinimalSong, SongData } from "@/types/song";
 
 
 
 export const playSongByIndex = async (
-    queue:SongData[],
+    queue:MinimalSong[],
     index:number,
     dispatch:AppDispatch
 )=>{

@@ -4,21 +4,26 @@ import LikeButton from "@/components/icons/LikeButton";
 import AlbumPlaysongButton from "./AlbumPlaysongButton";
 import { useDispatch } from "react-redux";
 import { setCurrentIndex, setPlayingFrom, setQueue } from "@/features/song/songSlice";
-import type { SongData } from "@/types/song";
 import { playSongByIndex } from "@/utils/PlaySongByIndex";
 
 const AlbumSongPlayCard = ({album}:{album:Album}) => {
 
   const dispatch = useDispatch();
 
-  const handlePlayAlbum = async (album:Album)=>{
+  const handlePlayAlbum = async (album:Album,idx:string)=>{
+    if (!album.songs || album.songs.length === 0) return;
+
+    const index = album.songs.findIndex(song=>song._id === idx)
+    if(index === -1) return;
+
     if(!album.songs || album.songs.length === 0) return;
      console.log(album)
+     console.log(idx)
      console.log(album.songs)
     dispatch(setQueue(album.songs ));
     dispatch(setCurrentIndex(0));
     dispatch(setPlayingFrom({type:'album',albumId:album._id}));
-    await playSongByIndex(album.songs,0,dispatch)
+    await playSongByIndex(album.songs,index,dispatch)
   }
   return (
     <>
@@ -46,7 +51,7 @@ const AlbumSongPlayCard = ({album}:{album:Album}) => {
         {/* Optional: play button */}
         <div
          onClick={()=>{
-         handlePlayAlbum(album)
+         handlePlayAlbum(album,song._id)
          }}
          className="p-2 rounded-full hover:bg-gray-200 hover:scale-105 transition">
          <AlbumPlaysongButton/>

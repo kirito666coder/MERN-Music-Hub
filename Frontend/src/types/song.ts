@@ -57,3 +57,9 @@ export interface SongFields {
 }
 
 
+export type MinimalSong = {
+  _id: string;
+  title: string;
+  artist:string;
+  coverUrl?: string;
+};

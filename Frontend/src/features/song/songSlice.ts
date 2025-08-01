@@ -1,4 +1,4 @@
-import type { SongData } from "@/types/song";
+import type { MinimalSong, SongData } from "@/types/song";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 interface songStats {
@@ -11,7 +11,7 @@ interface songStats {
     duration: number;
     volume: number;
 
-    queue: SongData[];
+    queue: MinimalSong[];
     currentIndex: number;
     playingFrom: { type: "album"; albumId: string } | { type: "single" } | null;
 }
@@ -61,7 +61,7 @@ const songSlice = createSlice({
         setDuration: (state, action: PayloadAction<number>) => {
             state.duration = action.payload;
         },
-        setQueue: (state, action: PayloadAction<SongData[]>) => {
+        setQueue: (state, action: PayloadAction<MinimalSong[]>) => {
             state.queue = action.payload;
         },
         setCurrentIndex: (state, action: PayloadAction<number>) => {
