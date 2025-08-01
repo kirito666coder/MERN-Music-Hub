@@ -37,6 +37,8 @@ const AlbumCompo = () => {
      if (!album) {
       return <div className="text-center mt-8">Loading album...</div>;
     }
+
+    console.log(album)
   
     return (
       <div className="p-4 max-w-5xl mx-auto">
