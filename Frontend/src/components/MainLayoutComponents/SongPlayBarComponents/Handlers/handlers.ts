@@ -13,6 +13,7 @@ const usePlayerControls = ()=>{
             const newIndex = currentIndex+1;
             dispatch(nextSong());
             await playSongByIndex(queue,newIndex,dispatch)
+            console.log('next')
         }else{
             console.log('Already at last song')
         }

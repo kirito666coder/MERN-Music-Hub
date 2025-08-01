@@ -30,7 +30,7 @@ const SongPlayBarSongControlers = () => {
       <div className="w-6/8 h-full flex flex-col justify-center items-center  px-4">
         {/* Control Buttons */}
         <div className="flex items-center gap-4">
-          <GradientIconButton onClick={() => console.log(handlePrev)}>
+          <GradientIconButton onClick={() => {handlePrev()}}>
             <FaBackward className="w-6 h-6 fill-white" />
           </GradientIconButton>
 
@@ -42,7 +42,7 @@ const SongPlayBarSongControlers = () => {
             )}
           </GradientIconButton>
 
-          <GradientIconButton onClick={() => console.log(handleNext)}>
+          <GradientIconButton onClick={() => {handleNext()}}>
             <FaForward className="w-6 h-6 fill-white" />
           </GradientIconButton>
         </div>
