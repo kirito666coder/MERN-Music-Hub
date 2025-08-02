@@ -71,3 +71,7 @@ export const GetStreamSongController = async (req,res)=>{
     res.status(500).json({message:"Internal server Error",error})
   }
 }
+
+export const GetSimilarSongController = async(req,res)=>{
+  
+}

@@ -1,4 +1,4 @@
-import type { MinimalSong, SongData } from "@/types/song";
+import type { MinimalSong} from "@/types/song";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 interface songStats {
