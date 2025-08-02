@@ -1,7 +1,8 @@
 import type { RootState } from "@/app/store";
 import { GradientIconButton } from "@/components/Buttons/GradientIconButton";
 import { setCurrentTime, setIsPlaying, setVolume } from "@/features/song/songSlice";
-import { FaPlay, FaPause, FaForward, FaBackward, FaMinus, FaPlus } from "react-icons/fa";
+import { FaPlay, FaPause, FaForward, FaBackward, } from "react-icons/fa";
+import { HiOutlineSpeakerXMark,HiOutlineSpeakerWave } from "react-icons/hi2";
 import { useDispatch, useSelector } from "react-redux";
 import usePlayerControls from "./Handlers/handlers";
 
@@ -98,7 +99,7 @@ const SongPlayBarSongControlers = () => {
 
           {/* Desktop Range and Icons */}
           <div className="hidden md:flex items-center gap-3 text-white">
-            <span className="text-xl">🔈</span>
+          <HiOutlineSpeakerXMark className="w-7 h-7 text-black dark:text-white" />
             <input
               type="range"
               min="0"
@@ -117,7 +118,7 @@ const SongPlayBarSongControlers = () => {
           [&::-webkit-slider-thumb]:shadow 
           [&::-moz-range-thumb]:bg-white"
             />
-            <span className="text-xl">🔊</span>
+            <HiOutlineSpeakerWave className="w-7 h-7 text-black dark:text-white" />
           </div>
 
         </div>
