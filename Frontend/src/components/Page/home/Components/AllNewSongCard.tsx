@@ -10,7 +10,7 @@ const AllNewSongCard = ({ song }: Props) => {
   console.log(song)
   return (
     <div className="relative flex items-center bg-gradient-to-br from-[#ff788f] to-[#70a4f7] dark:from-[#c4213c] dark:to-[#1770ff] rounded-xl p-3 shadow-lg   hover:scale-105 transition-transform overflow-hidden group ">
-      <div className=" ml-2 flex justify-between items-center gap-2  ">
+      <div className=" flex justify-between items-center gap-2  ">
         <img src={`${song.coverUrl}`} alt="" className="h-15 w-15 rounded-xl object-cover " />
         <div className="">
           <h3 className="text-lg font-bold truncate">{song.title}</h3>

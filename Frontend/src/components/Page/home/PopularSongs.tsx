@@ -1,22 +1,50 @@
 import PopularSongsCarForPopularSongsSection from "./Components/PopularSongsCarForPopularSongsSection"
 
+const popularSongsData = [
+  {
+    title: "Circles",
+    artist: "Post Malone",
+    coverUrl: "/assets/image1.jpg"
+  },
+  {
+    title: "Good 4 U",
+    artist: "Olivia Rodrigo",
+    coverUrl: "/assets/image2.jpg"
+  },
+  {
+    title: "Bad Guy",
+    artist: "Billie Eilish",
+    coverUrl: "/assets/image3.jpg"
+  },
+  {
+    title: "Stay",
+    artist: "The Kid LAROI & Justin Bieber",
+    coverUrl: "/assets/image4.jpg"
+  },
+  {
+    title: "Blinding Lights",
+    artist: "The Weeknd",
+    coverUrl: "/assets/image.jpg"
+  }
+];
+
 const PopularSongs = () => {
   return (
-    <div className="h-70  mt-5">
-     <div className="flex justify-between items-center mx-5 my-2">
-      <h3 className="text-2xl font-bold">Popular Songs</h3>
-      <span className="font-semibold opacity-55 cursor-pointer">See All</span>
+    <div className="mt-5">
+      <div className="flex justify-between items-center mx-5 mb-3">
+        <h3 className="text-2xl font-bold">Popular Songs</h3>
+        <span className="font-semibold opacity-60 hover:opacity-100 cursor-pointer transition">See All</span>
       </div>
       
-      <div className="mx-4 h-60 w-[95%] md:w-[98%] overflow-x-scroll overflow-y-hidden flex flex-row gap-3 scroll-smooth  [scrollbar-width:0] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-        <PopularSongsCarForPopularSongsSection/>
-        <PopularSongsCarForPopularSongsSection/>
-        <PopularSongsCarForPopularSongsSection/>
-        <PopularSongsCarForPopularSongsSection/>
-        <PopularSongsCarForPopularSongsSection/>
-        <PopularSongsCarForPopularSongsSection/>
-        <PopularSongsCarForPopularSongsSection/>
-        <PopularSongsCarForPopularSongsSection/>
+      <div className="mx-4  flex gap-4 scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        {popularSongsData.map((song, index) => (
+          <PopularSongsCarForPopularSongsSection 
+            key={index}
+            title={song.title}
+            artist={song.artist}
+            coverUrl={song.coverUrl}
+          />
+        ))}
       </div>
     </div>
   )

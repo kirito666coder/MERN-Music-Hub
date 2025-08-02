@@ -1,20 +1,31 @@
-import PlayButton from "@/components/Buttons/PlayButton"
+import PlayButton from "@/components/Buttons/PlayButton";
 
-const PopularSongsCarForPopularSongsSection = () => {
-  return ( 
-    <div className="  min-h-40 min-w-50 overflow-hidden group ">
-        <div className="relative overflow-hidden">
-      <img src="./assets/image.jpg" alt="" className=" object-cover rounded-sm  h-40 w-50" />
-     
-      <div className=" absolute group-hover:bottom-2.5 right-2 bottom-[-100px] transition-all duration-300 ">
-        <PlayButton/>
-      </div>
+type Props = {
+  title: string;
+  artist: string;
+  coverUrl: string;
+};
+
+const PopularSongsCarForPopularSongsSection = ({ title, artist, coverUrl }: Props) => {
+  return (
+    <div className="min-w-[160px] max-w-[180px] rounded-xl overflow-hidden bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] shadow-lg hover:scale-105 transition-transform duration-300 group relative">
+      <div className="relative">
+        <img src={coverUrl} alt={title} className="w-full h-40 object-cover" />
+
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+        {/* Play button on hover */}
+        <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <PlayButton />
         </div>
-       <div className="bg-accent/70 h-15 rounded-b-lg">
-       <h5 className="text-lg font-semibold p-2">Song name</h5>
-       </div>
+      </div>
+      <div className="p-2 text-white">
+        <h5 className="text-base font-semibold truncate">{title}</h5>
+        <p className="text-xs opacity-80 truncate">{artist}</p>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default PopularSongsCarForPopularSongsSection
+export default PopularSongsCarForPopularSongsSection;
