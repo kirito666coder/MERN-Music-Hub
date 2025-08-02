@@ -5,12 +5,15 @@ import { FaPlay, FaPause, FaForward, FaBackward, FaMinus, FaPlus } from "react-i
 import { useDispatch, useSelector } from "react-redux";
 import usePlayerControls from "./Handlers/handlers";
 
+
+
 const SongPlayBarSongControlers = () => {
 
   const dispatch = useDispatch();
   const { isPlaying, duration, currentTime } = useSelector((state: RootState) => state.song)
   const volume = useSelector((state:RootState)=>state.song.volume)
 
+  const {title,artist} = useSelector((stats:RootState)=>stats.song)
 
   const progress = duration?(currentTime/duration)*100:0;
 
@@ -26,7 +29,7 @@ const SongPlayBarSongControlers = () => {
 
 
   return (
-    <div className="w-full h-full flex justify-center items-center bg-black text-white">
+    <div className="w-full h-full flex justify-center items-center ">
       <div className="w-6/8 h-full flex flex-col justify-center items-center  px-4">
         {/* Control Buttons */}
         <div className="flex items-center gap-4">
@@ -84,34 +87,13 @@ const SongPlayBarSongControlers = () => {
       <div className="w-2/8 h-full flex justify-center items-center">
         <div className="flex flex-col items-center md:flex-row gap-2 md:gap-4">
 
-          {/* Mobile Volume Controls with Icons */}
-          <div className="flex md:hidden items-center gap-2 text-white">
-            {/* Decrease */}
-            <button
-             onClick={() => dispatch(setVolume(Math.max(0, volume - 10)))}
-              className="p-2 rounded-full border-2 border-white 
-               bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] 
-               hover:brightness-110 transition-all duration-300"
-            >
-              <FaMinus className="w-4 h-4 fill-white" />
-            </button>
-
-            {/* Volume Value */}
-            <span className="text-sm font-mono">
-              {volume === 0 ? "00" : volume}%
-            </span>
-
-
-            {/* Increase */}
-            <button
-             onClick={() => dispatch(setVolume(Math.min(100, volume + 10)))}
-              className="p-2 rounded-full border-2 border-white 
-               bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] 
-               hover:brightness-110 transition-all duration-300"
-            >
-              <FaPlus className="w-4 h-4 fill-white" />
-            </button>
-          </div>
+          {/* Mobile*/}
+          <div className="w-full overflow-hidden md:hidden ml-3  ">
+                <h3 className=" w-full text-lg font-bold overflow-hidden text-ellipsis whitespace-nowrap">
+                    {title}
+                </h3>
+                <h3 className=" w-full font-medium overflow-hidden text-ellipsis whitespace-nowrap">{artist}</h3>
+            </div>
 
 
           {/* Desktop Range and Icons */}
