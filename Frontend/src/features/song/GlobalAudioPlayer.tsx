@@ -1,13 +1,14 @@
-import type { RootState } from "@/app/store"
+import { store, type RootState } from "@/app/store"
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { setCurrentTime, setDuration, setIsPlaying } from "./songSlice";
+import { nextSong, setCurrentTime, setDuration, setIsPlaying } from "./songSlice";
+import { playSongByIndex } from "@/utils/PlaySongByIndex";
 
 const GlobalAudioPlayer = () => {
     const {audioFile, isPlaying,volume,currentTime} = useSelector((state:RootState)=> state.song)
     const dispatch = useDispatch();
     const audioRef = useRef<HTMLAudioElement| null>(null);
-     
+   
 
     useEffect(() => {
         console.log("audioFile in Redux:", audioFile)
@@ -48,10 +49,22 @@ const GlobalAudioPlayer = () => {
         const handleTimeUpdate = () => {
           dispatch(setCurrentTime(audio.currentTime))
         }
-        const handleEnded = () => {
+        const handleEnded = async () => {
           console.log("Audio ended");
-          dispatch(setIsPlaying(false))
-        }
+          const state = store.getState(); 
+          const { queue, currentIndex } = state.song;
+        
+          if (currentIndex < queue.length - 1) {
+            const newIndex = currentIndex + 1;
+            dispatch(nextSong());
+            await playSongByIndex(queue, newIndex, dispatch);
+            console.log("Played next song");
+          } else {
+            console.log("Already at last song");
+            dispatch(setIsPlaying(false)); 
+          }
+        };
+        
       
         audio.addEventListener("loadedmetadata", handleLoadedMetadata);
         audio.addEventListener("timeupdate", handleTimeUpdate);
