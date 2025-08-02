@@ -138,6 +138,9 @@ export const genreMododSongSService = async({song,id})=>{
 }
 
 export const artistSongsService = async({song,id})=>{
+
+    console.log("song.artist",song.artist)
+    console.log("song",song)
     const artistsong = await SongModel.find({
         _id:{$ne:id},
         artist:song.artist,

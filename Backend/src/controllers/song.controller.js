@@ -77,7 +77,7 @@ export const GetSimilarSongController = async(req,res)=>{
 
     const {id}= req.params;
 
-    const song = findSong({songId:id})
+    const song = await findSong({songId:id})
 
     const generModod = await genreMododSongSService({song,id})
     const artistSong = await artistSongsService({song,id})
@@ -98,6 +98,11 @@ export const GetSimilarSongController = async(req,res)=>{
       artist:s.artist?.name ?? "Unknown",
       coverUrl:s.coverUrl ?? undefined
     }))
+
+    console.log(similarSongs)
+    console.log('generaModod',generModod)
+    console.log('artistsong',artistSong)
+    console.log('recentsong',recentSong)
 
     res.status(200).json(similarSongs)
     
