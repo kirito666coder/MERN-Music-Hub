@@ -1,6 +1,6 @@
 import { FindArtistWithArtistId } from "../services/artist.service.js";
 import { audioUpload, getSongUrl, imageUpload } from "../services/cloudinaryUpload.service.js";
-import { AddSong, AddsongInAlbum, findSong, getAllSongs } from "../services/songAdd.service.js";
+import { AddSong, AddsongInAlbum, artistSongsService, findSong, genreMododSongSService, getAllSongs, recentSongService } from "../services/songAdd.service.js";
 
 export const AddSongController = async (req, res) => {
      try {
@@ -79,7 +79,22 @@ export const GetSimilarSongController = async(req,res)=>{
 
     const song = findSong({songId:id})
 
-    
+    const generModod = await genreMododSongSService({song,id})
+    const artistSong = await artistSongsService({song,id})
+    const recentSong = await recentSongService({id})
+
+    const combined = [...generModod,...artistSong,...recentSong];
+    const uniqueMap = new Map();
+    combined.forEach(song=>{
+      uniqueMap.set(song._id.toString(),song)
+    })
+
+    const unique = Array.from(uniqueMap.values());
+    const shuffled = unique.sort(()=>0.5-Math.random())
+
+    const similarSongs = shuffled.slice(0,10);
+
+    res.status(200).json(similarSongs)
     
   } catch (error) {
     res.status(500).json({message:"Internal server error",error})
