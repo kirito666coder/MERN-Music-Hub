@@ -20,14 +20,23 @@ const PlayButton = ({song}:Props) => {
 
         const similarSongs:MinimalSong[] = await GetsimilarSongApi({songId:song._id})
 
-        console.log('similarsong',similarSongs)
-
-        const queue: MinimalSong[] = similarSongs?.map(similar => ({
+        
+        const queue: MinimalSong[] =[ 
+          {
+            _id: song._id,
+            title: song.title,
+            artist: song.artist?.name ?? '',   
+          coverUrl: song.coverUrl ?? undefined,
+        },
+        ...similarSongs?.map(similar => ({
           _id: similar._id,
           title: similar.title,
           artist: similar.artist,
           coverUrl: similar.coverUrl ?? undefined,
-        }));
+        }))
+      ];
+      console.log('similarsong',similarSongs)
+      console.log('queue',queue)
 
         dispatch(setQueue(queue));
         dispatch(setCurrentIndex(0));
