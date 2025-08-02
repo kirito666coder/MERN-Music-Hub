@@ -1,4 +1,4 @@
-import type { SongFields, SongData } from "@/types/song";
+import type { SongFields, SongData, MinimalSong } from "@/types/song";
 import api from "./util/Api";
 import type { ApiError } from "@/types/album";
 
@@ -74,12 +74,12 @@ export const GetSong = async ({ songId }: { songId: string }): Promise<SongStrea
 }
 
 
-export const GetsimilarSong = async({ songId }: { songId: string }): Promise<SongData | null> =>{
+export const GetsimilarSongApi = async({ songId }: { songId: string }): Promise<MinimalSong[]> =>{
   try {
-    const res = await api.get<SongData>(`/api/song/${songId}/similar`)
-    return res.data 
+    const res = await api.get<MinimalSong[]>(`/api/song/${songId}/similar`)
+    return res.data ?? []
   } catch (error) {
     console.log("Not Get any song Url", error)
-    return null;
+    return [];
   }
 }

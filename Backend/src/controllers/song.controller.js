@@ -92,7 +92,12 @@ export const GetSimilarSongController = async(req,res)=>{
     const unique = Array.from(uniqueMap.values());
     const shuffled = unique.sort(()=>0.5-Math.random())
 
-    const similarSongs = shuffled.slice(0,10);
+    const similarSongs = shuffled.slice(0,10).map(s=>({
+      _id:s._id,
+      title:s.title,
+      artist:s.artist?.name ?? "Unknown",
+      coverUrl:s.coverUrl ?? undefined
+    }))
 
     res.status(200).json(similarSongs)
     

@@ -1,6 +1,6 @@
-import { GetSong } from "@/api/SongApi"
-import { setIsPlaying, setSong, setSongDetails } from "@/features/song/songSlice"
-import type { SongData } from "@/types/song"
+import { GetsimilarSongApi, GetSong } from "@/api/SongApi"
+import { setCurrentIndex, setIsPlaying, setPlayingFrom, setQueue, setSong, setSongDetails } from "@/features/song/songSlice"
+import type { MinimalSong, SongData } from "@/types/song"
 import { useDispatch } from "react-redux"
 
 type Props ={
@@ -17,17 +17,29 @@ const PlayButton = ({song}:Props) => {
 
      console.log(song)
       if (audioUrl?.songurl) {
-        dispatch(setSong(audioUrl?.songurl));
+
+        const similarSongs:MinimalSong[] = await GetsimilarSongApi({songId:song._id})
+
+        console.log('similarsong',similarSongs)
+
+        const queue: MinimalSong[] = similarSongs?.map(similar => ({
+          _id: similar._id,
+          title: similar.title,
+          artist: similar.artist,
+          coverUrl: similar.coverUrl ?? undefined,
+        }));
+
+        dispatch(setQueue(queue));
+        dispatch(setCurrentIndex(0));
+        dispatch(setPlayingFrom({ type: "single" }));
+       
+        dispatch(setSong(`${audioUrl.songurl}?t=${Date.now()}`));
         dispatch(setSongDetails({
           title: song.title ?? null,
-          artist: song.artist.name ?? null,
-          coverImage: song.coverUrl
-            ? typeof song.coverUrl === "string"
-              ? song.coverUrl
-              : URL.createObjectURL(song.coverUrl)
-            : null
-        }))
-        dispatch(setIsPlaying(true))
+          artist: song.artist?.name ?? null,
+          coverImage: song.coverUrl ?? null
+        }));
+        dispatch(setIsPlaying(true));
       } else {
         console.error("Song URL not found!");
       }

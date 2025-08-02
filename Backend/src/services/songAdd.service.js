@@ -130,6 +130,7 @@ export const genreMododSongSService = async({song,id})=>{
         ],
         isPublic:true
     })
+    .populate("artist", "name")
     .limit(4)
     .lean();
 
@@ -142,6 +143,7 @@ export const artistSongsService = async({song,id})=>{
         artist:song.artist,
         isPublic: true
     })
+    .populate("artist", "name")
     .limit(3)
     .lean();
 
@@ -153,6 +155,7 @@ export const recentSongService = async({id})=>{
         _id:{$ne:id},
         isPublic: true
     })
+    .populate("artist", "name")
     .sort({createdAt:-1})
     .limit(3)
     .lean()
