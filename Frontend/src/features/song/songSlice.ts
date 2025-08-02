@@ -24,7 +24,7 @@ const initialState: songStats = {
     isPlaying: false,
     currentTime: 0,
     duration: 0,
-    volume: 50,
+    volume: 100,
     queue: [],
     currentIndex: 0,
     playingFrom: null,
