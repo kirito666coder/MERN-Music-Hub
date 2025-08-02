@@ -25,7 +25,7 @@ useEffect(() => {
   return (
     <>
     <h2 className="mx-6 my-2 text-2xl font-bold">All NewSongs</h2>
-    <div className="mx-4 my-2 grid md:grid-cols-2 gap-2">
+    <div className="mx-4 my-2 grid md:grid-cols-2 gap-2 md:gap-5">
       {
         AllSongs?.map((song)=>(
           <AllNewSongCard key={song._id} song={song}/>
