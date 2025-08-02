@@ -41,7 +41,7 @@ const likedSongs = [
 
 const LikeSongsCard = () => {
   return (
-    <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-4">
       {likedSongs.length > 0 ? (
         likedSongs.map((song, index) => (
           <div
@@ -78,6 +78,7 @@ const LikeSongsCard = () => {
         <div className="col-span-full text-center text-gray-500 dark:text-gray-400 font-semibold py-8">
           No liked songs yet
         </div>
+
       )}
     </div>
   );
