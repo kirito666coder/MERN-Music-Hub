@@ -136,5 +136,15 @@ export const genreMododSongSService = async({song})=>{
     return FindSong;
 }
 
+export const artistSongsService = async({song})=>{
+    const artistsong = await SongModel.find({
+        _id:{$ne:id},
+        artist:song.artist,
+        isPublic: true
+    })
+    .limit(3)
+    .lean();
 
+    return artistsong;
+}
 
