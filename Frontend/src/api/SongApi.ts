@@ -72,3 +72,14 @@ export const GetSong = async ({ songId }: { songId: string }): Promise<SongStrea
     return null;
   }
 }
+
+
+export const GetsimilarSong = async({ songId }: { songId: string }): Promise<SongData | null> =>{
+  try {
+    const res = await api.get<SongData>(`/api/song/${songId}/similar`)
+    return res.data 
+  } catch (error) {
+    console.log("Not Get any song Url", error)
+    return null;
+  }
+}
