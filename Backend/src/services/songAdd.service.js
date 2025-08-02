@@ -120,3 +120,21 @@ export const findSong = async ({songId})=>{
 
     return song;
 }
+
+export const genreMododSongSService = async({song})=>{
+    const FindSong = await SongModel.find({
+        _id:{$ne:id},
+        $or:[
+            {genre:{$in:song.genre}},
+            {mood:song.mood}
+        ],
+        isPublic:true
+    })
+    .limit(6)
+    .lean();
+
+    return FindSong;
+}
+
+
+

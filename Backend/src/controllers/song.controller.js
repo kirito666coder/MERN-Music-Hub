@@ -73,5 +73,16 @@ export const GetStreamSongController = async (req,res)=>{
 }
 
 export const GetSimilarSongController = async(req,res)=>{
-  
+  try {
+
+    const {id}= req.params;
+
+    const song = findSong({songId:id})
+
+    const 
+
+    
+  } catch (error) {
+    res.status(500).json({message:"Internal server error",error})
+  }
 }
