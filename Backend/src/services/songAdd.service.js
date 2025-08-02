@@ -121,7 +121,7 @@ export const findSong = async ({songId})=>{
     return song;
 }
 
-export const genreMododSongSService = async({song})=>{
+export const genreMododSongSService = async({song,id})=>{
     const FindSong = await SongModel.find({
         _id:{$ne:id},
         $or:[
@@ -130,13 +130,13 @@ export const genreMododSongSService = async({song})=>{
         ],
         isPublic:true
     })
-    .limit(6)
+    .limit(4)
     .lean();
 
     return FindSong;
 }
 
-export const artistSongsService = async({song})=>{
+export const artistSongsService = async({song,id})=>{
     const artistsong = await SongModel.find({
         _id:{$ne:id},
         artist:song.artist,
@@ -148,3 +148,14 @@ export const artistSongsService = async({song})=>{
     return artistsong;
 }
 
+export const recentSongService = async({id})=>{
+    const recentSong = await SongModel.find({
+        _id:{$ne:id},
+        isPublic: true
+    })
+    .sort({createdAt:-1})
+    .limit(3)
+    .lean()
+    
+    return recentSong;
+}
