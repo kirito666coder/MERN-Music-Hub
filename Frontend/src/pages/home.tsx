@@ -9,8 +9,8 @@ const Home = () => {
     <>
       <TrandingNewHits/>
       <PopularArtists/>
-      <PopularSongs/>
       <PopularAlbum/>
+      <PopularSongs/>
       <AllNewSongs/>
     </>
   )
