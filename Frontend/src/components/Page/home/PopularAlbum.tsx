@@ -29,11 +29,16 @@ const albums = [
   
   const PopularAlbum = () => {
     return (
+        <>
+        <div className="flex justify-between items-center mx-5 mb-3 mt-3">
+        <h3 className="text-2xl font-bold">Popular Songs</h3>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-4">
         {albums.map((album, idx) => (
-          <PopularAlbumCard key={idx} album={album} />
+            <PopularAlbumCard key={idx} album={album} />
         ))}
       </div>
+        </>
     );
   };
   
