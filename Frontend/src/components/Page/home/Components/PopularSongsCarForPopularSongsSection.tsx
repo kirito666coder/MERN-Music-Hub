@@ -8,7 +8,7 @@ type Props = {
 
 const PopularSongsCarForPopularSongsSection = ({ title, artist, coverUrl }: Props) => {
   return (
-    <div className="min-w-[160px] max-w-[180px] rounded-xl overflow-hidden bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] shadow-lg hover:scale-105 transition-transform duration-300 group relative">
+    <div className="min-w-[160px] max-w-[100%] rounded-xl overflow-hidden bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] shadow-lg hover:scale-105 transition-transform duration-300 group relative">
       <div className="relative">
         <img src={coverUrl} alt={title} className="w-full h-40 object-cover" />
 

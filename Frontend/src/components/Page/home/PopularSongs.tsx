@@ -22,6 +22,46 @@ const popularSongsData = [
     coverUrl: "/assets/image4.jpg"
   },
   {
+    title: "Circles",
+    artist: "Post Malone",
+    coverUrl: "/assets/image1.jpg"
+  },
+  {
+    title: "Good 4 U",
+    artist: "Olivia Rodrigo",
+    coverUrl: "/assets/image2.jpg"
+  },
+  {
+    title: "Bad Guy",
+    artist: "Billie Eilish",
+    coverUrl: "/assets/image3.jpg"
+  },
+  {
+    title: "Stay",
+    artist: "The Kid LAROI & Justin Bieber",
+    coverUrl: "/assets/image4.jpg"
+  },
+  {
+    title: "Circles",
+    artist: "Post Malone",
+    coverUrl: "/assets/image1.jpg"
+  },
+  {
+    title: "Good 4 U",
+    artist: "Olivia Rodrigo",
+    coverUrl: "/assets/image2.jpg"
+  },
+  {
+    title: "Bad Guy",
+    artist: "Billie Eilish",
+    coverUrl: "/assets/image3.jpg"
+  },
+  {
+    title: "Stay",
+    artist: "The Kid LAROI & Justin Bieber",
+    coverUrl: "/assets/image4.jpg"
+  },
+  {
     title: "Blinding Lights",
     artist: "The Weeknd",
     coverUrl: "/assets/image.jpg"
@@ -36,7 +76,7 @@ const PopularSongs = () => {
         <span className="font-semibold opacity-60 hover:opacity-100 cursor-pointer transition">See All</span>
       </div>
       
-      <div className="mx-4  flex gap-4 scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+      <div className="mx-4 grid grid-cols-2 md:grid-cols-3 lg:flex gap-4 scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {popularSongsData.map((song, index) => (
           <PopularSongsCarForPopularSongsSection 
             key={index}
