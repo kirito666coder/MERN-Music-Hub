@@ -88,13 +88,7 @@ const SongPlayBarSongControlers = () => {
       <div className="w-2/8 h-full flex justify-center items-center">
         <div className="flex flex-col items-center md:flex-row gap-2 md:gap-4">
 
-          {/* Mobile*/}
-          <div className="w-full overflow-hidden md:hidden ml-3  ">
-                <h3 className=" w-full text-lg font-bold overflow-hidden text-ellipsis whitespace-nowrap">
-                    {title}
-                </h3>
-                <h3 className=" w-full font-medium overflow-hidden text-ellipsis whitespace-nowrap">{artist}</h3>
-            </div>
+    
 
 
           {/* Desktop Range and Icons */}

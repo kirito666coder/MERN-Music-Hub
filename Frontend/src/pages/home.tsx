@@ -11,7 +11,6 @@ const Home = () => {
       <PopularAlbum/>
       <PopularSongs/>
       <AllNewSongs/>
-      <PopupSongcompo/>
     </>
   )
 }
