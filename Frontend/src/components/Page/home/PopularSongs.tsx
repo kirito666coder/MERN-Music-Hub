@@ -68,12 +68,12 @@ const popularSongsData = [
   }
 ];
 
+
 const PopularSongs = () => {
   return (
     <div className="mt-5">
       <div className="flex justify-between items-center mx-5 mb-3">
         <h3 className="text-2xl font-bold">Popular Songs</h3>
-        <span className="font-semibold opacity-60 hover:opacity-100 cursor-pointer transition">See All</span>
       </div>
       
       <div className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 overflow-scroll scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
