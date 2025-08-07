@@ -187,3 +187,23 @@ export const FindSongIDinUserLikeSeverice = async({userId,songId})=>{
     return isLiked;
 
 }
+
+export const unlikeSong = async({userId,songId})=>{
+    await User.findByIdAndUpdate(userId, {
+        $pull: { likedSongs: songId }
+      });
+
+      await Song.findByIdAndUpdate(songId, {
+        $inc: { like: -1 }
+      });
+}
+
+export const likeSong = async({userId,songId})=>{
+        await User.findByIdAndUpdate(userId, {
+          $addToSet: { likedSongs: songId }
+        });
+  
+        await Song.findByIdAndUpdate(songId, {
+          $inc: { like: 1 }
+        });
+}

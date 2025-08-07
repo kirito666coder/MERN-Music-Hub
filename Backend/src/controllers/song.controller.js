@@ -1,6 +1,6 @@
 import { FindArtistWithArtistId } from "../services/artist.service.js";
 import { audioUpload, getSongUrl, imageUpload } from "../services/cloudinaryUpload.service.js";
-import { AddSong, AddsongInAlbum, artistSongsService, findSong, FindSongIDinUserLikeSeverice, genreMododSongSService, getAllSongs, recentSongService } from "../services/songAdd.service.js";
+import { AddSong, AddsongInAlbum, artistSongsService, findSong, FindSongIDinUserLikeSeverice, genreMododSongSService, getAllSongs, likeSong, recentSongService, unlikeSong } from "../services/songAdd.service.js";
 
 export const AddSongController = async (req, res) => {
      try {
@@ -122,7 +122,11 @@ export const UpdateLikeController = async(req,res)=>{
 
 
     if(isLiked){
-      
+      unlikeSong({userId:user._id,songId})
+      return res.status(200).json({ message: 'Song unliked' });
+    }else {
+      likeSong({userId:user._id,songId})
+      return res.status(200).json({ message: 'Song liked' });
     }
 
 
