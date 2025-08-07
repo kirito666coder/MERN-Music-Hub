@@ -83,3 +83,13 @@ export const GetsimilarSongApi = async({ songId }: { songId: string }): Promise<
     return [];
   }
 }
+
+
+export const likeButtonApi = async({songId}:{songId:string})=>{
+  try {
+    const res = await api.get(`/api/song/${songId}/like`)
+    return res.data
+  } catch (error) {
+    return [];
+  }
+}
