@@ -165,3 +165,25 @@ export const recentSongService = async({id})=>{
     
     return recentSong;
 }
+
+
+export const FindSongIDinUserLikeSeverice = async({userId,songId})=>{
+    if(!mongoose.Types.ObjectId.isValid(songId)){
+        throw new Error ('Invalid songId')
+    }
+
+    if(!mongoose.Types.ObjectId.isValid(userId)){
+        throw new Error ('Invalid userId')
+    }
+
+    const user = await UserModel.findById(userId)
+
+    if(!user){
+        throw new Error('User not found')
+    }
+
+    const isLiked = user.likeSongs.includes(songId);
+
+    return isLiked;
+
+}

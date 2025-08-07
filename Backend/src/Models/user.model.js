@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose'
+import { model, Schema, Types } from 'mongoose'
 
 const UserSchema = new Schema({
     name:{
@@ -14,6 +14,10 @@ const UserSchema = new Schema({
     isArtist:{
       type:Boolean,
       default:false,
+    },
+    likeSongs: {
+      type:Types.ObjectId,
+      ref:'Songs',
     },
     googleId:{
         type:String,

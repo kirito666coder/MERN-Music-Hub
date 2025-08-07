@@ -1,6 +1,6 @@
 import { useId } from "react";
 
-const LikeButton = ({ Liked }: { Liked?: boolean }) => {
+const LikeButton = ({ Liked,songId }: { Liked?: boolean,songId:string }) => {
   const id = useId(); // unique per render
   const gradientId = `likeGradient-${Liked ? "active" : "inactive"}-${id}`;
 
