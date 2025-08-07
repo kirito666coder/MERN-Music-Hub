@@ -1,11 +1,20 @@
+import { likeButtonApi } from "@/api/SongApi";
 import { useId } from "react";
 
 const LikeButton = ({ Liked,songId }: { Liked?: boolean,songId:string }) => {
   const id = useId(); // unique per render
   const gradientId = `likeGradient-${Liked ? "active" : "inactive"}-${id}`;
 
+const HandelLike = async()=>{
+  await likeButtonApi({songId})
+}
+
   return (
     <svg
+    onClick={(e)=>{
+      HandelLike()
+      e.stopPropagation()
+    }}
       className="cursor-pointer"
       xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
       <defs>

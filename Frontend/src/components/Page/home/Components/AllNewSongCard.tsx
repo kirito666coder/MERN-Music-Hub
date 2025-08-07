@@ -76,7 +76,7 @@ const AllNewSongCard = ({ song,setshowpopup }: Props) => {
             <span>{song.artist.name}</span>
             <span>{song.plays} plays</span>
             <span className="flex items-center">
-              <LikeButton Liked={false} />
+              <LikeButton Liked={false} songId={song._id} />
               {song.likes}
             </span>
           </div>
