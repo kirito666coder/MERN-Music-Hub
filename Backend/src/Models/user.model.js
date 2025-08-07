@@ -15,9 +15,9 @@ const UserSchema = new Schema({
       type:Boolean,
       default:false,
     },
-    likeSongs: {
-      type:Types.ObjectId,
-      ref:'Songs',
+    likeSongs:{
+      type:[String],
+      default:[]
     },
     googleId:{
         type:String,

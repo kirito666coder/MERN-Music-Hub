@@ -167,43 +167,58 @@ export const recentSongService = async({id})=>{
 }
 
 
-export const FindSongIDinUserLikeSeverice = async({userId,songId})=>{
-    if(!mongoose.Types.ObjectId.isValid(songId)){
-        throw new Error ('Invalid songId')
-    }
-
-    if(!mongoose.Types.ObjectId.isValid(userId)){
-        throw new Error ('Invalid userId')
-    }
-
-    const user = await UserModel.findById(userId)
-
-    if(!user){
-        throw new Error('User not found')
-    }
-
-    const isLiked = user.likeSongs.includes(songId);
-
-    return isLiked;
-
-}
-
-export const unlikeSong = async({userId,songId})=>{
-    await User.findByIdAndUpdate(userId, {
-        $pull: { likedSongs: songId }
-      });
-
-      await Song.findByIdAndUpdate(songId, {
-        $inc: { like: -1 }
-      });
-}
-
-export const likeSong = async({userId,songId})=>{
-        await User.findByIdAndUpdate(userId, {
-          $addToSet: { likedSongs: songId }
-        });
+export const FindSongIDinUserLikeSeverice = async ({ userId, songId }) => {
+    console.log(userId, songId);
   
-        await Song.findByIdAndUpdate(songId, {
-          $inc: { like: 1 }
-        });
-}
+    if (!mongoose.Types.ObjectId.isValid(songId)) {
+      throw new Error('Invalid songId');
+    }
+  
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      throw new Error('Invalid userId');
+    }
+  
+    const user = await UserModel.findById(userId);
+  
+    if (!user) {
+      throw new Error('User not found');
+    }
+  
+    const isLiked = user.likeSongs.includes(songId); 
+    return isLiked;
+  };
+  
+
+export const unlikeSong = async ({ userId, songId }) => {
+  if (!userId || !songId) throw new Error('Missing userId or songId');
+
+  await UserModel.findByIdAndUpdate(
+    userId,
+    { $pull: { likeSongs: songId } },
+    { new: true }
+  );
+
+  await SongModel.findByIdAndUpdate(
+    songId,
+    { $inc: { like: -1 } },
+    { new: true }
+  );
+};
+
+export const likeSong = async ({ userId, songId }) => {
+    console.log(userId,songId)
+  if (!userId || !songId) throw new Error('Missing userId or songId');
+
+  await UserModel.findByIdAndUpdate(
+    userId,
+    { $addToSet: { likeSongs: songId } },
+    { new: true }
+  );
+
+  await SongModel.findByIdAndUpdate(
+    songId,
+    { $inc: { like: 1 } },
+    { new: true }
+  );
+};
+  

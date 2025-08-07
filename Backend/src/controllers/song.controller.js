@@ -114,18 +114,18 @@ export const GetSimilarSongController = async(req,res)=>{
 export const UpdateLikeController = async(req,res)=>{
   try {
 
-    const {user} = req.user;
+    const user = req.user;
 
-    const {songId} = req.params;
-
-    const isLiked = await FindSongIDinUserLikeSeverice({userId:user._id,songId})
-
-
+    const {songid} = req.params;
+    
+    const isLiked = await FindSongIDinUserLikeSeverice({userId:user._id,songId:songid})
+    
+    console.log(isLiked)
     if(isLiked){
-      unlikeSong({userId:user._id,songId})
+      unlikeSong({userId:user._id,songId:songid})
       return res.status(200).json({ message: 'Song unliked' });
     }else {
-      likeSong({userId:user._id,songId})
+      likeSong({userId:user._id,songId:songid})
       return res.status(200).json({ message: 'Song liked' });
     }
 
