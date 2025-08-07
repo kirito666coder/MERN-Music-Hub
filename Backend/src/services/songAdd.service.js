@@ -189,21 +189,25 @@ export const FindSongIDinUserLikeSeverice = async ({ userId, songId }) => {
   };
   
 
-export const unlikeSong = async ({ userId, songId }) => {
-  if (!userId || !songId) throw new Error('Missing userId or songId');
-
-  await UserModel.findByIdAndUpdate(
-    userId,
-    { $pull: { likeSongs: songId } },
-    { new: true }
-  );
-
-  await SongModel.findByIdAndUpdate(
-    songId,
-    { $inc: { like: -1 } },
-    { new: true }
-  );
-};
+  export const unlikeSong = async ({ userId, songId }) => {
+    if (!userId || !songId) throw new Error('Missing userId or songId');
+  
+    const user = await UserModel.findById(userId);
+    if (!user.likeSongs.includes(songId)) return;
+  
+    await UserModel.findByIdAndUpdate(
+      userId,
+      { $pull: { likeSongs: songId } },
+      { new: true }
+    );
+  
+    await SongModel.findOneAndUpdate(
+      { _id: songId, likes: { $gt: 0 } }, 
+      { $inc: { likes: -1 } },
+      { new: true }
+    );
+  };
+  
 
 export const likeSong = async ({ userId, songId }) => {
     console.log(userId,songId)
@@ -217,7 +221,7 @@ export const likeSong = async ({ userId, songId }) => {
 
   await SongModel.findByIdAndUpdate(
     songId,
-    { $inc: { like: 1 } },
+    { $inc: { likes: 1 } },
     { new: true }
   );
 };
