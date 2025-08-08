@@ -9,10 +9,10 @@ const TrandingNewHits = () => {
                 <h3 className="font-semibold text-sm pt-2">Billie Eilish</h3>
                   
                   <div className="flex items-center gap-2">
-                <button className=" cursor-pointer px-4 py-0.5 rounded-2xl border-2 border-white mt-2 text-md bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] hover:brightness-110 transition-all duration-300 font-semibold ">
+                <button className=" cursor-pointer px-4 py-0.5 rounded-2xl border-2 border-white mt-2 text-md bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] hover:brightness-110 transition-all duration-300 font-semibold  text-nowrap">
                     Listen Now
                 </button>
-                  <LikeButton Liked={false}/>
+                  
                   </div>
             </div>
 

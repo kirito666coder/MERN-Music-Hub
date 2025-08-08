@@ -72,7 +72,7 @@ const isLiked = user?.likeSongs?.some((id:string)=> id === song._id) ?? false
     setshowpopup(true)
     HandelPlaysong()
   }}
-    className="relative flex items-center bg-gradient-to-br from-[#ff788f] to-[#70a4f7] dark:from-[#c4213c] dark:to-[#1770ff] rounded-xl p-3 shadow-lg   hover:scale-105 transition-transform overflow-hidden group ">
+    className=" text-white relative flex items-center bg-gradient-to-br from-[#ff788f] to-[#70a4f7] dark:from-[#c4213c] dark:to-[#1770ff] rounded-xl p-3 shadow-lg   hover:scale-105 transition-transform overflow-hidden group ">
       <div className=" flex justify-between items-center gap-2  ">
         <img src={`${song.coverUrl}`} alt="" className="h-15 w-15 rounded-xl object-cover " />
         <div className="">

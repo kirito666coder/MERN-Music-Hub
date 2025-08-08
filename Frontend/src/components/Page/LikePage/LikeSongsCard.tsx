@@ -32,12 +32,12 @@ const LikeSongsCard = () => {
           return (
           <div
             key={index}
-            className="relative flex items-center bg-gradient-to-br from-[#ff788f] to-[#70a4f7] 
+            className="text-white relative flex items-center bg-gradient-to-br from-[#ff788f] to-[#70a4f7] 
               dark:from-[#c4213c] dark:to-[#1770ff] rounded-xl p-3 shadow-lg 
               hover:scale-105 transition-transform overflow-hidden group"
           >
             <img
-              src={song.coverUrl}
+              src={song.coverUrl||''}
               alt={song.title}
               className="w-16 h-16 rounded-xl object-cover mr-3"
             />
