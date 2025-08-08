@@ -96,7 +96,7 @@ export const likeButtonApi = async({songId}:{songId:string})=>{
 }
 
 
-export const getLikesongsList = async():Promise<SongData[]|null>=>{
+export const getLikesongsListApi = async():Promise<SongData[]|null>=>{
   try {
 
     const res = await api.get('/api/song/likesong')

@@ -2,15 +2,25 @@ import type { RootState } from "@/app/store";
 import PlayButton from "../../Buttons/PlayButton";
 import LikeButton from "../../icons/LikeButton";
 import { useSelector } from "react-redux";
+import { useState } from "react";
+import type { SongData } from "@/types/song";
+import { getLikesongsListApi } from "@/api/SongApi";
 
 
 const LikeSongsCard = () => {
 
   const {user} = useSelector((state:RootState)=>state.user)
 
+  const [likedSongs, setlikedSongs] = useState<SongData[]|null>(null)
+
+  const GeLike = async()=>{
+    const songs = await getLikesongsListApi()
+    setlikedSongs(songs)
+  }
+
   return (
     <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-4">
-      {likedSongs.length > 0 ? (
+      {likedSongs ? (
         likedSongs.map((song, index) => {
           const isLiked = user?.likeSongs?.some((id:string)=> id === song._id) ?? false
           return (
