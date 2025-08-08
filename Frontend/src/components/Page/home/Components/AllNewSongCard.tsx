@@ -6,7 +6,9 @@ import type { SongData } from "@/types/song"
 import { GetsimilarSongApi, GetSong } from "@/api/SongApi"
 import { setCurrentIndex, setIsPlaying, setPlayingFrom, setQueue, setSong, setSongDetails } from "@/features/song/songSlice"
 import type { MinimalSong } from "@/types/song"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import type { RootState } from "@/app/store"
+import { useEffect } from "react"
 type Props = {
   song: SongData
   setshowpopup:React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,6 +16,8 @@ type Props = {
 
 const AllNewSongCard = ({ song,setshowpopup }: Props) => {
   const dispatch = useDispatch();
+
+  const {user} = useSelector((state:RootState)=>state.user)
 
   const HandelPlaysong = async()=>{
     try {
@@ -61,6 +65,14 @@ const AllNewSongCard = ({ song,setshowpopup }: Props) => {
     }
   }
 
+  const isLike = async ()=>{
+    console.log(user?.likeSongs)
+  }
+
+  useEffect(() => {
+    isLike()
+  }, [])
+  
   return (
     <div
   onClick={()=>{
@@ -75,7 +87,7 @@ const AllNewSongCard = ({ song,setshowpopup }: Props) => {
           <div className="flex flex-wrap items-center gap-2 text-sm font-medium">
             <span>{song.artist.name}</span>
             <span>{song.plays} plays</span>
-            <span className="flex items-center">
+            <span onClick={()=>isLike()} className="flex items-center">
               <LikeButton Liked={false} songId={song._id} />
               {song.likes}
             </span>

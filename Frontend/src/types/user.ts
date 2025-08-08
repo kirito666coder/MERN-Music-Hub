@@ -9,6 +9,7 @@ export type User = {
     facebookId?: string;
     isArtist: boolean;
     isVerified: boolean;
+    likeSongs:[string];
     role: "user" | "artist" | "admin";
     bio: string;
     location: string;
