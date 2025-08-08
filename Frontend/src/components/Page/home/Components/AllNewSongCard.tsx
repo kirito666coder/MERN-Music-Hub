@@ -8,7 +8,6 @@ import { setCurrentIndex, setIsPlaying, setPlayingFrom, setQueue, setSong, setSo
 import type { MinimalSong } from "@/types/song"
 import { useDispatch, useSelector } from "react-redux"
 import type { RootState } from "@/app/store"
-import { useEffect } from "react"
 type Props = {
   song: SongData
   setshowpopup:React.Dispatch<React.SetStateAction<boolean>>;
@@ -65,13 +64,7 @@ const AllNewSongCard = ({ song,setshowpopup }: Props) => {
     }
   }
 
-  const isLike = async ()=>{
-    console.log(user?.likeSongs)
-  }
-
-  useEffect(() => {
-    isLike()
-  }, [])
+const isLiked = user?.likeSongs?.some((id:string)=> id === song._id) ?? false
   
   return (
     <div
@@ -87,8 +80,8 @@ const AllNewSongCard = ({ song,setshowpopup }: Props) => {
           <div className="flex flex-wrap items-center gap-2 text-sm font-medium">
             <span>{song.artist.name}</span>
             <span>{song.plays} plays</span>
-            <span onClick={()=>isLike()} className="flex items-center">
-              <LikeButton Liked={false} songId={song._id} />
+            <span className="flex items-center">
+              <LikeButton Liked={isLiked} songId={song._id} />
               {song.likes}
             </span>
           </div>
