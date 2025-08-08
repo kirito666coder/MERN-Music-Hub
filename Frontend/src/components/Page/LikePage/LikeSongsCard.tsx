@@ -2,7 +2,7 @@ import type { RootState } from "@/app/store";
 import PlayButton from "../../Buttons/PlayButton";
 import LikeButton from "../../icons/LikeButton";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { SongData } from "@/types/song";
 import { getLikesongsListApi } from "@/api/SongApi";
 
@@ -13,10 +13,16 @@ const LikeSongsCard = () => {
 
   const [likedSongs, setlikedSongs] = useState<SongData[]|null>(null)
 
-  const GeLike = async()=>{
+  const GetLike = async()=>{
     const songs = await getLikesongsListApi()
     setlikedSongs(songs)
+    console.log(songs)
   }
+
+  useEffect(() => {
+    GetLike()
+  }, [])
+  
 
   return (
     <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-4">
@@ -39,7 +45,7 @@ const LikeSongsCard = () => {
             <div className="flex-1 overflow-hidden">
               <h3 className="text-lg font-bold truncate">{song.title}</h3>
               <div className="flex flex-wrap items-center gap-2 text-sm font-medium">
-                <span>{song.artist}</span>
+                <span>{song.artist.name}</span>
                 <span>{song.plays} plays</span>
                 <span className="flex items-center">
                   <LikeButton Liked={isLiked} songId={song._id}/>
