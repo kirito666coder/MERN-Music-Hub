@@ -72,5 +72,5 @@ const userSlice = createSlice({
     }
 })
 
-export const {logout,setUser,updateIsArtist} = userSlice.actions
+export const {logout,setUser,updateIsArtist,updateLikedSongs} = userSlice.actions
 export default userSlice.reducer

@@ -82,7 +82,6 @@ const isLiked = user?.likeSongs?.some((id:string)=> id === song._id) ?? false
             <span>{song.plays} plays</span>
             <span className="flex items-center">
               <LikeButton Liked={isLiked} songId={song._id} />
-              {song.likes}
             </span>
           </div>
 

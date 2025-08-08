@@ -1,4 +1,5 @@
 import { likeButtonApi } from "@/api/SongApi";
+import { updateLikedSongs } from "@/features/user/userSlice";
 import { useId } from "react";
 import { useDispatch } from "react-redux";
 
@@ -10,8 +11,9 @@ const LikeButton = ({ Liked,songId }: { Liked?: boolean,songId:string }) => {
 const HandelLike = async()=>{
   try {
     await likeButtonApi({songId})
+    dispatch(updateLikedSongs({songId,Liked:!Liked}))
   } catch (error) {
-    
+    console.log(error)
   }
 }
 
