@@ -142,6 +142,8 @@ export const getLikesongsController = async(req,res)=>{
     const user = req.user;
 
     const getsongs = await getLikesongService({userId:user._id})
+
+    res.status(200).json(getsongs)
     
   } catch (error) {
     res.status(500).json({message:"Internal server Error"})

@@ -238,5 +238,9 @@ export const getLikesongService = async ({userId})=>{
         throw new Error('User not found');
       }
 
-      
+      const likedSongs = await SongModel.find({
+        _id: { $in: user.likeSongs }
+      });
+
+      return likeSong;
 }
