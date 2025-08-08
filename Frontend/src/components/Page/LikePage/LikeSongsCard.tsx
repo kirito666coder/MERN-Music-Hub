@@ -1,49 +1,19 @@
+import type { RootState } from "@/app/store";
 import PlayButton from "../../Buttons/PlayButton";
 import LikeButton from "../../icons/LikeButton";
+import { useSelector } from "react-redux";
 
-const likedSongs = [
-  {
-    title: "Blinding Lights",
-    artist: "The Weeknd",
-    plays: "987M",
-    likes: "23M",
-    coverUrl: "/assets/image.jpg"
-  },
-  {
-    title: "Levitating",
-    artist: "Dua Lipa",
-    plays: "832M",
-    likes: "18M",
-    coverUrl: "/assets/image2.jpg"
-  },
-  {
-    title: "Peaches",
-    artist: "Justin Bieber",
-    plays: "765M",
-    likes: "20M",
-    coverUrl: "/assets/image3.jpg"
-  },
-  {
-    title: "Watermelon Sugar",
-    artist: "Harry Styles",
-    plays: "923M",
-    likes: "21M",
-    coverUrl: "/assets/image2.jpg"
-  },
-  {
-    title: "Save Your Tears",
-    artist: "The Weeknd",
-    plays: "889M",
-    likes: "19M",
-    coverUrl: "/assets/image1.jpg"
-  }
-];
 
 const LikeSongsCard = () => {
+
+  const {user} = useSelector((state:RootState)=>state.user)
+
   return (
     <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-4">
       {likedSongs.length > 0 ? (
-        likedSongs.map((song, index) => (
+        likedSongs.map((song, index) => {
+          const isLiked = user?.likeSongs?.some((id:string)=> id === song._id) ?? false
+          return (
           <div
             key={index}
             className="relative flex items-center bg-gradient-to-br from-[#ff788f] to-[#70a4f7] 
@@ -62,7 +32,7 @@ const LikeSongsCard = () => {
                 <span>{song.artist}</span>
                 <span>{song.plays} plays</span>
                 <span className="flex items-center">
-                  <LikeButton Liked={true} />
+                  <LikeButton Liked={isLiked} songId={song._id}/>
                   {song.likes}
                 </span>
               </div>
@@ -73,7 +43,7 @@ const LikeSongsCard = () => {
               <PlayButton />
             </div>
           </div>
-        ))
+        )})
       ) : (
         <div className="col-span-full text-center text-gray-500 dark:text-gray-400 font-semibold py-8">
           No liked songs yet

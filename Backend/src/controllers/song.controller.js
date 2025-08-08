@@ -135,3 +135,11 @@ export const UpdateLikeController = async(req,res)=>{
     res.status(500).json({message:"Internal Server error"})
   }
 }
+
+export const getLikesongsController = async(req,res)=>{
+  try {
+    
+  } catch (error) {
+    res.status(500).json({message:"Internal server Error"})
+  }
+}
