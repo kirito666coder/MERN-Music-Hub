@@ -240,7 +240,12 @@ export const getLikesongService = async ({userId})=>{
 
       const likedSongs = await SongModel.find({
         _id: { $in: user.likeSongs }
-      });
+      })
+      .populate({
+        path:"artist",
+        select:"name"
+      })
+      .lean();
 
       return likedSongs;
 }
