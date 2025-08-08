@@ -226,3 +226,17 @@ export const likeSong = async ({ userId, songId }) => {
   );
 };
   
+export const getLikesongService = async ({userId})=>{
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+        throw new Error('Invalid userId');
+      }
+    
+      const user = await UserModel.findById(userId);
+    
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      
+}
