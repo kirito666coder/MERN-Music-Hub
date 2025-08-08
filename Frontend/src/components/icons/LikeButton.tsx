@@ -1,12 +1,18 @@
 import { likeButtonApi } from "@/api/SongApi";
 import { useId } from "react";
+import { useDispatch } from "react-redux";
 
 const LikeButton = ({ Liked,songId }: { Liked?: boolean,songId:string }) => {
   const id = useId(); // unique per render
   const gradientId = `likeGradient-${Liked ? "active" : "inactive"}-${id}`;
+  const dispatch = useDispatch();
 
 const HandelLike = async()=>{
-  await likeButtonApi({songId})
+  try {
+    await likeButtonApi({songId})
+  } catch (error) {
+    
+  }
 }
 
   return (

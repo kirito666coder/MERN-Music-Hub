@@ -44,6 +44,16 @@ const userSlice = createSlice({
                 state.user.isArtist = action.payload;
               }
         },
+        updateLikedSongs: (state, action) => {
+            const { songId, Liked } = action.payload;
+            if (!state.user) return
+            if (Liked) {
+              state.user.likeSongs.push(songId);
+            } else {
+              state.user.likeSongs = state.user.likeSongs.filter(id => id !== songId);
+            }
+          }
+          
     },
     extraReducers:(builder) =>{
         builder
