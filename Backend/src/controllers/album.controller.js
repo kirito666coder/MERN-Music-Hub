@@ -13,6 +13,10 @@ export const createAlbumController = async (req, res) => {
 
         const artistId = await FindArtistService({ userId: user._id })
 
+        if(!artistId){
+            res.status(400).json({message:"Please make artist acount"})
+        }
+
         const existingAlbum = await findIsAlbumNameisTaken({ data, artistId })
 
         if (existingAlbum) {
