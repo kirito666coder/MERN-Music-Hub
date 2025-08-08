@@ -242,5 +242,5 @@ export const getLikesongService = async ({userId})=>{
         _id: { $in: user.likeSongs }
       });
 
-      return likeSong;
+      return likedSongs;
 }
