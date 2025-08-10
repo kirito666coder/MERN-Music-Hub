@@ -1,8 +1,9 @@
+import AllNotification from "@/components/Page/NotificationCompo/AllNotification"
 
 const Notification = () => {
   return (
     <div>
-      this is notification page
+     <AllNotification/>
     </div>
   )
 }
