@@ -8,6 +8,7 @@ import { setCurrentIndex, setIsPlaying, setPlayingFrom, setQueue, setSong, setSo
 import type { MinimalSong } from "@/types/song"
 import { useDispatch, useSelector } from "react-redux"
 import type { RootState } from "@/app/store"
+import { FaPlay } from "react-icons/fa"
 type Props = {
   song: SongData
   setshowpopup:React.Dispatch<React.SetStateAction<boolean>>;
@@ -79,7 +80,7 @@ const isLiked = user?.likeSongs?.some((id:string)=> id === song._id) ?? false
           <h3 className="text-lg font-bold truncate">{song.title}</h3>
           <div className="flex flex-wrap items-center gap-2 text-sm font-medium">
             <span>{song.artist.name}</span>
-            <span>{song.plays} plays</span>
+            <span className="flex items-center justify-center gap-1.5"><FaPlay/>{song.plays}</span>
             <span className="flex items-center">
               <LikeButton Liked={isLiked} songId={song._id} />
             </span>

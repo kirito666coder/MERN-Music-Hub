@@ -20,7 +20,7 @@ const PopupSongcompo = ({showpopup,setshowpopup}) => {
           onClick={()=>{
             setshowpopup(false)
           }}
-          className="absolute top-5 right-6 text-3xl text-white hover:text-black/70 transition z-10"
+          className=" cursor-pointer absolute top-5 right-6 text-3xl text-white hover:text-black/70 transition z-10"
         >
           &times;
         </button>

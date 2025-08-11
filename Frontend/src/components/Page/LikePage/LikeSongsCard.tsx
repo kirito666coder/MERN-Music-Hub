@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import type { SongData } from "@/types/song";
 import { getLikesongsListApi } from "@/api/SongApi";
+import { FaPlay } from "react-icons/fa";
 
 
 const LikeSongsCard = () => {
@@ -46,7 +47,7 @@ const LikeSongsCard = () => {
               <h3 className="text-lg font-bold truncate">{song.title}</h3>
               <div className="flex flex-wrap items-center gap-2 text-sm font-medium">
                 <span>{song.artist.name}</span>
-                <span>{song.plays} plays</span>
+                <span className=" flex justify-center items-center gap-1.5"><FaPlay/>{song.plays}</span>
                 <span className="flex items-center">
                   <LikeButton Liked={isLiked} songId={song._id}/>
                   {song.likes}
