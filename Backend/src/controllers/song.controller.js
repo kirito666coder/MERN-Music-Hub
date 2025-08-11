@@ -1,6 +1,6 @@
 import { FindArtistWithArtistId } from "../services/artist.service.js";
 import { audioUpload, getSongUrl, imageUpload } from "../services/cloudinaryUpload.service.js";
-import { AddSong, AddsongInAlbum, artistSongsService, findSong, FindSongIDinUserLikeSeverice, genreMododSongSService, getAllSongs, getLikesongService, likeSong, recentSongService, unlikeSong } from "../services/songAdd.service.js";
+import { AddSong, AddsongInAlbum, artistSongsService, findSong, FindSongIDinUserLikeSeverice, genreMododSongSService, getAllSongs, getLikesongService, likeSong, PlaySongCountUpdateService, recentSongService, unlikeSong } from "../services/songAdd.service.js";
 
 export const AddSongController = async (req, res) => {
      try {
@@ -64,6 +64,8 @@ export const GetStreamSongController = async (req,res)=>{
     if(!songurl){
       return res.status(400).json({message:"not find song url"})
     }
+
+    await PlaySongCountUpdateService({songId})
 
     res.status(200).json({songurl})
     

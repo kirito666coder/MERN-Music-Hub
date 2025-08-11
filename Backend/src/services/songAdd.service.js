@@ -210,7 +210,7 @@ export const FindSongIDinUserLikeSeverice = async ({ userId, songId }) => {
   
 
 export const likeSong = async ({ userId, songId }) => {
-    console.log(userId,songId)
+   
   if (!userId || !songId) throw new Error('Missing userId or songId');
 
   await UserModel.findByIdAndUpdate(
@@ -248,4 +248,19 @@ export const getLikesongService = async ({userId})=>{
       .lean();
 
       return likedSongs;
+}
+
+export const PlaySongCountUpdateService = async ({songId})=>{
+  if (!songId) throw new Error('Missing userId or songId');
+
+  if(!mongoose.Types.ObjectId.isValid(songId)){
+    throw new Error ('Invalid songId')
+}
+
+ await SongModel.findByIdAndUpdate(
+  songId,
+  {$inc:{plays:1}},
+  {new:true}
+ )
+
 }
