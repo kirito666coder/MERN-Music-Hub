@@ -1,0 +1,60 @@
+/* src/styles/loginAnimations.css */
+
+/* Fade In */
+.fadeIn {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Pulse for glow blobs */
+  .pulse {
+    animation: pulse 4s ease-in-out infinite;
+  }
+  .pulse.delay {
+    animation-delay: 1.5s;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.75; }
+    50% { transform: scale(1.06); opacity: 1; }
+  }
+  
+  /* Spin rings */
+  .spin-slow {
+    animation: spin 24s linear infinite;
+  }
+  .spin-slow-reverse {
+    animation: spinReverse 34s linear infinite;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes spinReverse {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+  }
+  
+  /* Bounce logo */
+  .bounce-slow {
+    animation: bounceSlow 3.2s ease-in-out infinite;
+  }
+  @keyframes bounceSlow {
+    0%, 100% { transform: translateY(-6px); }
+    50% { transform: translateY(6px); }
+  }
+  
+  /* Text glow */
+  .text-glow {
+    animation: textGlow 2.2s ease-in-out infinite;
+  }
+  @keyframes textGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(255,255,255,0.7); }
+    50% { text-shadow: 0 0 22px rgba(255,255,255,1); }
+  }
+  
+  /* Helpful debug helper (optional) */
+  /* .debug-border { border: 1px solid lime; } */
+  
