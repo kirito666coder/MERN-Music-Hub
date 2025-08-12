@@ -1,9 +1,10 @@
-import GoogleLoginButton from "@/components/Page/LogInpageComponents/GoogleLoginButton"
+import LoginPageCompo from "@/components/Page/LogInpageComponents/LoginPageCompo"
+
 
 const Login = () => {
   return (
     <div>
-      <GoogleLoginButton/>
+      <LoginPageCompo/>
     </div>
   )
 }
