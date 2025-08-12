@@ -1,9 +1,11 @@
-import React from "react";
 import "./styles/loginAnimatiioins.css";
 
 const GoogleLoginButton = () => {
+  const handleLogin = ()=>{
+    window.location.href = `${import.meta.env.VITE_BACKEND_URL}/api/auth/google`
+}
   return (
-    <button className="google-login-btn">
+    <button className="google-login-btn" onClick={handleLogin}>
       <img
         src="https://www.svgrepo.com/show/475656/google-color.svg"
         alt="Google logo"
