@@ -36,12 +36,12 @@ const AllNewSongCard = ({ song,setshowpopup }: Props) => {
             artist: song.artist?.name ?? '',   
           coverUrl: song.coverUrl ?? undefined,
         },
-        ...similarSongs?.map(similar => ({
+        ...((similarSongs ?? []).map(similar => ({
           _id: similar._id,
           title: similar.title,
           artist: similar.artist,
           coverUrl: similar.coverUrl ?? undefined,
-        }))
+        })))
       ];
       console.log('similarsong',similarSongs)
       console.log('queue',queue)
