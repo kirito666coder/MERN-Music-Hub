@@ -12,6 +12,7 @@ import AddSongPage from "@/pages/AddSongs"
 import Setting from "@/pages/Setting"
 import AlbumPage from "@/pages/AlbumPage"
 import Notification from "@/pages/Notification"
+import NotFoundPage from "@/components/404Page/NotFoundPage"
 
 
 const AppRoutes = () => {
@@ -46,6 +47,10 @@ const AppRoutes = () => {
         <Route path="/notification" element={<Notification/>}/>
         
         </Route>
+
+        
+      {/* Catch-all for 404 */}
+      <Route path="*" element={<NotFoundPage />} />
 
     </Routes>
   )
