@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import PopularSongsCarForPopularSongsSection from "./Components/PopularSongsCarForPopularSongsSection"
 import type { SongData } from "@/types/song";
 import { getPopularSongsapi } from "@/api/SongApi";
+import PopupSongcompo from "./PopupSongcompo";
 
 
 const PopularSongs = () => {
@@ -18,6 +19,7 @@ const PopularSongs = () => {
     GetpopularSongs()
   }, [])
   
+  const [showpopup, setshowpopup] = useState(false)
 
   return (
     <div className="mt-5">
@@ -29,12 +31,13 @@ const PopularSongs = () => {
         {popularSongsData?.map((song, index) => (
           <PopularSongsCarForPopularSongsSection 
             key={index}
-            title={song.title}
-            artist={song.artist.name}
-            coverUrl={song.coverUrl??''}
+            song={song}
+            setshowpopup={setshowpopup}
           />
         ))}
       </div>
+      
+      <PopupSongcompo showpopup={showpopup} setshowpopup={setshowpopup}/>
     </div>
   )
 }
