@@ -267,7 +267,7 @@ export const PlaySongCountUpdateService = async ({songId})=>{
 
 export const GetPopularSongsService = async ()=>{
   
-  const Popularsongs = await SongModel.find().sort({plays:-1}).limit(10)
+  const Popularsongs = await SongModel.find().sort({plays:-1}).populate('artist').limit(10)
 
   return Popularsongs;
 

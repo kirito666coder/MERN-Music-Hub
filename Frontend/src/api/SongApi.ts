@@ -108,7 +108,7 @@ export const getLikesongsListApi = async():Promise<SongData[]|null>=>{
   }
 }
 
-export const getPopularSongs = async ():Promise<SongData[]|null>=>{
+export const getPopularSongsapi = async ():Promise<SongData[]|null>=>{
   try {
     const res = await api.get('api/song/popularsongs')
     return res.data
