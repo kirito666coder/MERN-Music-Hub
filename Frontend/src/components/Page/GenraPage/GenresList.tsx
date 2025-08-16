@@ -1,13 +1,18 @@
 // GenresList.tsx
 import GenresCards from "./GenresCards"
 import MoodCard from "./MoodCard"
+import pop from './assets/genrres/pop.png'
+import rock from './assets/genrres/rock.png'
+import hiphop from './assets/genrres/hip-hop.png'
+import jazz from './assets/genrres/jazz.png'
+import classical from './assets/genrres/classical.png'
 
 const genresData = [
-  { name: "Pop", image: "/assets/genres/pop.jpg" },
-  { name: "Rock", image: "/assets/genres/rock.jpg" },
-  { name: "Hip Hop", image: "/assets/genres/hiphop.jpg" },
-  { name: "Jazz", image: "/assets/genres/jazz.jpg" },
-  { name: "Classical", image: "/assets/genres/classical.jpg" },
+  { name: "Pop", image:pop},
+  { name: "Rock", image:rock},
+  { name: "Hip Hop", image:hiphop},
+  { name: "Jazz", image:jazz},
+  { name: "Classical", image:classical },
 ]
 
 const moodsData = [
