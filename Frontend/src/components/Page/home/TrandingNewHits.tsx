@@ -89,7 +89,7 @@ const TrandingNewHits = () => {
       {/* Content */}
       <div className="relative z-10 flex w-full flex-col justify-between px-8 py-6 text-white">
         <div>
-          <h2 className="text-xs uppercase tracking-[3px] text-cyan-300/80">
+          <h2 className="text-xs uppercase tracking-[3px]">
             Trending New Hit
           </h2>
           <h1 className="mt-1 max-w-[80%] truncate text-3xl font-extrabold drop-shadow-md">
@@ -120,7 +120,7 @@ const TrandingNewHits = () => {
           <div> Listen Now</div>
           </button>
           <span className="flex items-center gap-1 text-sm font-medium text-gray-200/80">
-            <Music2 size={16} className="text-cyan-300" />
+            <Music2 size={16} className="" />
             {trendingSong.plays.toLocaleString()} Plays
           </span>
         </div>
