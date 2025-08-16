@@ -1,72 +1,64 @@
 import { useState } from "react";
-import { Search as SearchIcon } from "lucide-react"; // icon library
+import { Search as SearchIcon } from "lucide-react";
 
 const Search = () => {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState([]);
-
-  // Mock songs list (replace with backend API later)
-  const allSongs = [
-    "Blinding Lights",
+  const [suggestions, setSuggestions] = useState<string[]>([
     "Shape of You",
-    "Believer",
-    "Perfect",
-    "Someone Like You",
-    "Despacito",
+    "Blinding Lights",
+    "Levitating",
     "Stay",
-    "Senorita",
-  ];
+    "Bad Guy",
+    "Happier Than Ever",
+    "Peaches",
+    "Industry Baby",
+    "Heat Waves",
+    "Save Your Tears",
+  ]);
 
-  const handleSearch = (e) => {
-    const value = e.target.value;
-    setQuery(value);
-
-    if (value.trim() === "") {
-      setResults([]);
-      return;
-    }
-
-    // Filter songs
-    const filtered = allSongs.filter((song) =>
-      song.toLowerCase().includes(value.toLowerCase())
-    );
-    setResults(filtered);
+  const handleSearch = () => {
+    console.log("Searching for:", query);
+    // 🔍 Call your API here with query
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black flex flex-col items-center px-4 py-10">
-      <h1 className="text-3xl font-bold text-white mb-6">Search Songs</h1>
-
-      {/* Search Bar */}
-      <div className="relative w-full max-w-lg">
+    <div className="relative flex flex-col items-center w-full max-w-lg mx-auto mt-3">
+      {/* Search Box */}
+      <div className="flex items-center w-full bg-neutral-900 rounded-full shadow-md focus-within:shadow-xl transition-all overflow-hidden">
         <input
           type="text"
+          placeholder="Search songs, artists..."
           value={query}
-          onChange={handleSearch}
-          placeholder="Search for a song..."
-          className="w-full px-5 py-3 rounded-2xl bg-white/10 backdrop-blur-md 
-                     text-white placeholder-gray-400 outline-none border border-white/20 
-                     focus:ring-2 focus:ring-purple-500 shadow-lg"
+          onChange={(e) => setQuery(e.target.value)}
+          className="w-full px-5 py-3 bg-transparent text-gray-200 placeholder-gray-400 focus:outline-none"
         />
-        <SearchIcon className="absolute right-4 top-3.5 text-gray-400" size={22} />
+        <button
+          onClick={handleSearch}
+          className="bg-gradient-to-r from-[#f43f5e] to-[#0062ff] px-4 py-3 flex items-center justify-center hover:opacity-90 transition"
+        >
+          <SearchIcon className="w-5 h-5 text-white" />
+        </button>
       </div>
 
-      {/* Results */}
-      <div className="mt-6 w-full max-w-lg space-y-2">
-        {results.length > 0 ? (
-          results.map((song, index) => (
-            <div
-              key={index}
-              className="p-3 rounded-xl bg-white/10 text-white 
-                         hover:bg-purple-600/40 cursor-pointer transition-all shadow-md"
-            >
-              {song}
-            </div>
-          ))
-        ) : query !== "" ? (
-          <p className="text-gray-400 text-center mt-4">No songs found</p>
-        ) : null}
-      </div>
+      {/* Suggestions */}
+      {query && (
+        <div className="absolute top-full left-0 w-full bg-neutral-800 mt-2 rounded-lg shadow-lg z-40 max-h-60 overflow-y-auto">
+          {suggestions
+            .filter((s) => s.toLowerCase().includes(query.toLowerCase()))
+            .map((s, index) => (
+              <div
+                key={index}
+                onClick={() => {
+                  setQuery(s);
+                  handleSearch();
+                }}
+                className="px-4 py-2 text-gray-200 hover:bg-neutral-700 cursor-pointer transition"
+              >
+                {s}
+              </div>
+            ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -6,6 +6,7 @@ import SearchBar from "../MainLayoutComponents/SearchBar"
 import SettingsLogo from "../MainLayoutComponents/SettingsLogo"
 import { ModeToggle } from "../ui/mode-toggle"
 import ProfileNavBar from "../Page/ProfilePage/ProfileNavBar"
+import Search from "../MainLayoutComponents/Search"
 
 
 const HeaderForBigScreens = () => {
@@ -19,7 +20,8 @@ const HeaderForBigScreens = () => {
         shouldHide ?(
           <ProfileNavBar/>
         ):(
-          <SearchBar/>
+          // <SearchBar/>
+          <Search/>
         )
       }
       <div className="flex justify-center items-center gap-5 lg:gap-8">
