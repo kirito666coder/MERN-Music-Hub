@@ -1,16 +1,28 @@
-
+// GenresCards.tsx
 type Genre = {
-  name: string;
-  image: string;
-};
+  name: string
+  image: string
+}
 
 const GenresCards = ({ genre }: { genre: Genre }) => {
   return (
-    <div className="cursor-pointer flex flex-col items-center rounded-2xl h-64 md:h-65 w-[99%] bg-gradient-to-br from-[#f43f5e] to-[#f6339a]/40">
-      <h3 className="text-2xl font-bold m-3">{genre?.name}</h3>
-      <img src={genre?.image} alt={genre?.name} className="w-[90%] rounded-2xl" />
-    </div>
-  );
-};
+    <div className="relative cursor-pointer rounded-2xl h-60 overflow-hidden group shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105">
+      {/* Background image */}
+      <img 
+        src={genre.image} 
+        alt={genre.name} 
+        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" 
+      />
+      
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
 
-export default GenresCards;
+      {/* Text */}
+      <div className="absolute bottom-4 left-4 text-white">
+        <h3 className="text-2xl font-bold drop-shadow-lg">{genre.name}</h3>
+      </div>
+    </div>
+  )
+}
+
+export default GenresCards
