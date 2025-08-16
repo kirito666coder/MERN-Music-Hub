@@ -87,10 +87,10 @@ bg-white/10 backdrop-blur-lg border border-white/20 shadow-lg"
 
             {/* Info */}
             <div className="p-4">
-              <h2 className="text-lg font-bold text-white truncate">
+              <h2 className="text-lg font-bold truncate">
                 {album.title}
               </h2>
-              <p className="text-sm text-gray-300">{album.artistId.name}</p>
+              <p className="text-sm ">{album.artistId.name}</p>
             </div>
           </motion.div>
         ))
