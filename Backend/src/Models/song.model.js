@@ -82,7 +82,7 @@ const SongSchema = new Schema({
   },
   mood: {
     type: String,
-    enum: ["happy", "sad", "chill", "energetic", "romantic", "angry", "none"],
+    enum: ["happy", "sad", "romantic", "chill", "energetic", "angry", "relaxed", "none"],
     default: "none"
   },
 },{timestamps:true});

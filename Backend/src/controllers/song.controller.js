@@ -163,5 +163,25 @@ try {
 }
 
 export const SearchForSongsController = async (req,res)=>{
-  
+  try {
+    const search = req.query.search;
+    
+    const genres = ["pop", "rock", "hip hop", "jazz", "classical", "edm", "rap"];
+    const moods = ["happy", "sad", "romantic", "chill", "energetic"];
+
+    let SearchType = "song";
+
+    if(genres.some(g=>search.includes(g))){
+      SearchType='genre'
+    }
+
+    if(moods.some(m=>search.includes(m))){
+      SearchType='mood'
+    }
+
+    
+    
+  } catch (error) {
+    res.status(500).json({message:"Internal server Error",error})
+  }
 }

@@ -6,6 +6,9 @@ import rock from './assets/genrres/rock.png'
 import hiphop from './assets/genrres/hip-hop.png'
 import jazz from './assets/genrres/jazz.png'
 import classical from './assets/genrres/classical.png'
+import edm from './assets/genrres/edmimg.png'
+import rap from './assets/genrres/rap.png'
+
 import happy from './assets/moods/happy.png'
 import sad from './assets/moods/sad.png'
 import chill from './assets/moods/chill.png'
@@ -17,7 +20,9 @@ const genresData = [
   { name: "Rock", image:rock},
   { name: "Hip Hop", image:hiphop},
   { name: "Jazz", image:jazz},
-  { name: "Classical", image:classical },
+  { name: "Classical", image:classical},
+  { name: "Edm",image: edm},
+  { name: "Rap",image: rap},
 ]
 
 const moodsData = [
