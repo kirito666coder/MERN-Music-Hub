@@ -161,3 +161,7 @@ try {
   res.status(500).json({message:"Internal server error",error})
 }
 }
+
+export const SearchForSongsController = async (req,res)=>{
+  
+}
