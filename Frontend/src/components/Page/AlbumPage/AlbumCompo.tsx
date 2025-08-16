@@ -7,15 +7,13 @@ const AlbumCompo = () => {
   
     const [album, setalbum] = useState<Album|null>(null)
     const {slugAndId} = useParams();
-    if (!slugAndId) {
-      return <div>Invalid album URL</div>;
-    }
-    const albumId = slugAndId.split('-').splice(-1)[0];
-  
+    const albumId = slugAndId? slugAndId.split('-').splice(-1)[0]:null;
+    
     const GetAlbumData = async () =>{
+      if(!albumId) return;
       try {
         const data = await getAlbumApi({albumId})
-  
+        
         if ('error' in data) {
           console.error(data.message);
           setalbum(null);
@@ -23,15 +21,18 @@ const AlbumCompo = () => {
           setalbum(data);
           console.log(data)
         }
-      } catch (error) {
+      } catch (errr) {
         setalbum(null)
       }
     }
-  
+    
     useEffect(() => {
       GetAlbumData()
     }, [])
     
+    if (!slugAndId) {
+      return <div>Invalid album URL</div>;
+    }
      if (!album) {
       return <div className="text-center mt-8">Loading album...</div>;
     }
