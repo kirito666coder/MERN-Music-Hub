@@ -14,7 +14,6 @@ const SongPlayBarSongControlers = () => {
   const { isPlaying, duration, currentTime } = useSelector((state: RootState) => state.song)
   const volume = useSelector((state:RootState)=>state.song.volume)
 
-  const {title,artist} = useSelector((stats:RootState)=>stats.song)
 
   const progress = duration?(currentTime/duration)*100:0;
 

@@ -22,11 +22,8 @@ const PopularSongs = () => {
       {/* Section header */}
       <div className="flex justify-between items-center mx-6 mb-4">
         <h3 className="text-2xl font-extrabold text-white tracking-tight">
-          🔥 Popular Songs
+          Popular Songs
         </h3>
-        <button className="text-sm font-medium text-cyan-400 hover:underline cursor-pointer">
-          See All
-        </button>
       </div>
 
       {/* Song grid */}
