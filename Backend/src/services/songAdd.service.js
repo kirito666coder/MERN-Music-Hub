@@ -272,3 +272,21 @@ export const GetPopularSongsService = async ()=>{
   return Popularsongs;
 
 }
+
+export const SearchForsongsService = async ({search,searchType})=>{
+
+  if(searchType === 'song'){
+    return await SongModel.find({
+      title:{$regex:search,$options:'i'}
+    }).limit(10);
+  }else if(searchType === 'genre'){
+    return await SongModel.find({
+      genre:{$regex:search,$options:'i'}
+    }).limit(10)
+  } else if (searchType === "mood") {
+    return await SongModel.find({
+      mood: { $regex: search, $options: "i" }
+    }).limit(10);
+  }
+
+}

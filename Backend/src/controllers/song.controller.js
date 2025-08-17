@@ -1,6 +1,6 @@
 import { FindArtistWithArtistId } from "../services/artist.service.js";
 import { audioUpload, getSongUrl, imageUpload } from "../services/cloudinaryUpload.service.js";
-import { AddSong, AddsongInAlbum, artistSongsService, findSong, FindSongIDinUserLikeSeverice, genreMododSongSService, getAllSongs, getLikesongService, GetPopularSongsService, likeSong, PlaySongCountUpdateService, recentSongService, unlikeSong } from "../services/songAdd.service.js";
+import { AddSong, AddsongInAlbum, artistSongsService, findSong, FindSongIDinUserLikeSeverice, genreMododSongSService, getAllSongs, getLikesongService, GetPopularSongsService, likeSong, PlaySongCountUpdateService, recentSongService, SearchForsongsService, unlikeSong } from "../services/songAdd.service.js";
 
 export const AddSongController = async (req, res) => {
      try {
@@ -169,17 +169,18 @@ export const SearchForSongsController = async (req,res)=>{
     const genres = ["pop", "rock", "hip hop", "jazz", "classical", "edm", "rap"];
     const moods = ["happy", "sad", "romantic", "chill", "energetic"];
 
-    let SearchType = "song";
+    let searchType = 'song'
 
-    if(genres.some(g=>search.includes(g))){
-      SearchType='genre'
+    if (genres.some(g => search.includes(g))) {
+      searchType = "genre";
     }
 
-    if(moods.some(m=>search.includes(m))){
-      SearchType='mood'
+    if (moods.some(m => search.includes(m))) {
+      searchType = "mood";
     }
 
-    
+    let suggestioins = await SearchForsongsService({search,searchType})
+
     
   } catch (error) {
     res.status(500).json({message:"Internal server Error",error})
