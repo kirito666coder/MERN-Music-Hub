@@ -181,6 +181,8 @@ export const SearchForSongsController = async (req,res)=>{
 
     let suggestioins = await SearchForsongsService({search,searchType})
 
+    res.json(suggestioins)
+
     
   } catch (error) {
     res.status(500).json({message:"Internal server Error",error})
