@@ -116,3 +116,12 @@ export const getPopularSongsapi = async ():Promise<SongData[]|null>=>{
     return null
   }
 }
+
+export const SearchSongsApi = async (value:string):Promise<SongData[]|null>=>{
+  try {
+    const res = await api.get(`api/song/search?search=${encodeURIComponent(value)}`)
+    return res.data
+  } catch (error) {
+    return null
+  }
+}
