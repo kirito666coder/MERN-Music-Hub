@@ -8,20 +8,6 @@ const Search = () => {
   const [results, setResults] = useState<SongData[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // fallback suggestions (only show if API has no match yet)
-  const fallbackSuggestions = [
-    "Shape of You",
-    "Blinding Lights",
-    "Levitating",
-    "Stay",
-    "Bad Guy",
-    "Happier Than Ever",
-    "Peaches",
-    "Industry Baby",
-    "Heat Waves",
-    "Save Your Tears",
-  ];
-
   const handleSearch = async (value: string) => {
     if (!value.trim()) {
       setResults([]);
@@ -60,7 +46,7 @@ const Search = () => {
         </button>
       </div>
 
-      {/* Suggestions Dropdown */}
+      {/* Results Dropdown */}
       {query && (
         <div className="absolute top-full left-0 w-full bg-neutral-800 mt-2 rounded-lg shadow-lg z-40 max-h-60 overflow-y-auto">
           {loading && (
@@ -73,29 +59,18 @@ const Search = () => {
                 key={song._id}
                 onClick={() => {
                   setQuery(song.title);
-                  // you could also play it or navigate here
+                  // 👉 play song or navigate here
                 }}
                 className="px-4 py-2 text-gray-200 hover:bg-neutral-700 cursor-pointer transition"
               >
-                🎵 {song.title} — <span className="text-gray-400">{song.artist.name}</span>
+                🎵 {song.title} —{" "}
+                <span className="text-gray-400">{song.artist.name}</span>
               </div>
             ))
           ) : (
-            !loading &&
-            fallbackSuggestions
-              .filter((s) => s.toLowerCase().includes(query.toLowerCase()))
-              .map((s, index) => (
-                <div
-                  key={index}
-                  onClick={() => {
-                    setQuery(s);
-                    handleSearch(s);
-                  }}
-                  className="px-4 py-2 text-gray-200 hover:bg-neutral-700 cursor-pointer transition"
-                >
-                  {s}
-                </div>
-              ))
+            !loading && (
+              <div className="px-4 py-2 text-gray-400">No results found</div>
+            )
           )}
         </div>
       )}
