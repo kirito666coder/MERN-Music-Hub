@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Search as SearchIcon } from "lucide-react";
+import type { SongData } from "@/types/song";
+import { SearchSongsApi } from "@/api/SongApi";
 
 const Search = () => {
   const [query, setQuery] = useState("");
-  const [suggestions, setSuggestions] = useState<string[]>([
+  const [results, setResults] = useState<SongData[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  // fallback suggestions (only show if API has no match yet)
+  const fallbackSuggestions = [
     "Shape of You",
     "Blinding Lights",
     "Levitating",
@@ -14,12 +20,26 @@ const Search = () => {
     "Industry Baby",
     "Heat Waves",
     "Save Your Tears",
-  ]);
+  ];
 
-  const handleSearch = () => {
-    console.log("Searching for:", query);
-    // 🔍 Call your API here with query
+  const handleSearch = async (value: string) => {
+    if (!value.trim()) {
+      setResults([]);
+      return;
+    }
+    setLoading(true);
+    const data = await SearchSongsApi(value);
+    setResults(data || []);
+    setLoading(false);
   };
+
+  // 🔍 call API when user types (debounced effect)
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      handleSearch(query);
+    }, 400); // debounce 400ms
+    return () => clearTimeout(timeout);
+  }, [query]);
 
   return (
     <div className="relative flex flex-col items-center w-full max-w-lg mx-auto mt-3">
@@ -33,30 +53,50 @@ const Search = () => {
           className="w-full px-5 py-3 bg-transparent text-gray-200 placeholder-gray-400 focus:outline-none"
         />
         <button
-          onClick={handleSearch}
+          onClick={() => handleSearch(query)}
           className="bg-gradient-to-r from-[#f43f5e] to-[#0062ff] px-4 py-3 flex items-center justify-center hover:opacity-90 transition"
         >
           <SearchIcon className="w-5 h-5 text-white" />
         </button>
       </div>
 
-      {/* Suggestions */}
+      {/* Suggestions Dropdown */}
       {query && (
         <div className="absolute top-full left-0 w-full bg-neutral-800 mt-2 rounded-lg shadow-lg z-40 max-h-60 overflow-y-auto">
-          {suggestions
-            .filter((s) => s.toLowerCase().includes(query.toLowerCase()))
-            .map((s, index) => (
+          {loading && (
+            <div className="px-4 py-2 text-gray-400">Searching...</div>
+          )}
+
+          {!loading && results.length > 0 ? (
+            results.map((song) => (
               <div
-                key={index}
+                key={song._id}
                 onClick={() => {
-                  setQuery(s);
-                  handleSearch();
+                  setQuery(song.title);
+                  // you could also play it or navigate here
                 }}
                 className="px-4 py-2 text-gray-200 hover:bg-neutral-700 cursor-pointer transition"
               >
-                {s}
+                🎵 {song.title} — <span className="text-gray-400">{song.artist.name}</span>
               </div>
-            ))}
+            ))
+          ) : (
+            !loading &&
+            fallbackSuggestions
+              .filter((s) => s.toLowerCase().includes(query.toLowerCase()))
+              .map((s, index) => (
+                <div
+                  key={index}
+                  onClick={() => {
+                    setQuery(s);
+                    handleSearch(s);
+                  }}
+                  className="px-4 py-2 text-gray-200 hover:bg-neutral-700 cursor-pointer transition"
+                >
+                  {s}
+                </div>
+              ))
+          )}
         </div>
       )}
     </div>

@@ -166,7 +166,7 @@ export const SearchForSongsController = async (req,res)=>{
   try {
     const search = req.query.search;
     
-    const genres = ["pop", "rock", "hip hop", "jazz", "classical", "edm", "rap"];
+    const genres = ["pop", "rock", "hiphop", "jazz", "classical", "edm", "rap"];
     const moods = ["happy", "sad", "romantic", "chill", "energetic"];
 
     let searchType = 'song'
