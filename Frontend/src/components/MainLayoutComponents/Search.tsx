@@ -3,13 +3,14 @@ import { Search as SearchIcon } from "lucide-react";
 import type { SongData } from "@/types/song";
 import { SearchSongsApi } from "@/api/SongApi";
 import type { Artist } from "@/types/artist";
+import PlayButton from "../Buttons/PlayButton";
 
 const Search = () => {
   const [query, setQuery] = useState("");
   const [songs, setSongs] = useState<SongData[]>([]);
   const [artists, setArtists] = useState<Artist[]>([]);
   const [loading, setLoading] = useState(false);
-  const [focused, setFocused] = useState(false); // 👈 track input focus
+  const [focused, setFocused] = useState(false); 
 
   const handleSearch = async (value: string) => {
     if (!value.trim()) {
@@ -47,9 +48,8 @@ const Search = () => {
           placeholder="Search songs, artists..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onFocus={() => setFocused(true)}   // 👈 mark active
+          onFocus={() => setFocused(true)}  
           onBlur={() => setTimeout(() => setFocused(false), 150)} 
-          // 👆 small delay so clicks on dropdown still work
           className="w-full px-5 py-3 bg-transparent text-gray-200 placeholder-gray-400 focus:outline-none"
         />
         <button
@@ -108,25 +108,32 @@ const Search = () => {
                         setQuery(song.title);
                         setFocused(false); // close after selection
                       }}
-                      className="flex items-center gap-3 px-3 py-2 text-gray-200 hover:bg-neutral-700 cursor-pointer rounded-md transition"
-                    >
+                      className="flex items-center justify-between px-3 py-2 text-gray-200 hover:bg-neutral-700 cursor-pointer rounded-md transition"
+                    ><div className="flex gap-3">
                       <img
                         src={song.coverUrl || "/placeholder-cover.png"}
                         alt={song.title}
                         className="w-12 h-12 rounded-lg object-cover shadow-md"
-                      />
+                        />
                       <div className="flex flex-col">
                         <span className="font-semibold truncate">{song.title}</span>
                         <div className="flex items-center gap-2 text-sm text-gray-400">
                           {song.artist?.photoUrl && (
                             <img
-                              src={song.artist.photoUrl}
-                              alt={song.artist?.name || "Artist"}
-                              className="w-5 h-5 rounded-full object-cover"
+                            src={song.artist.photoUrl}
+                            alt={song.artist?.name || "Artist"}
+                            className="w-5 h-5 rounded-full object-cover"
                             />
                           )}
                           <span className="truncate">{song.artist?.name || "Unknown Artist"}</span>
                         </div>
+                      </div>
+                          </div>
+                      <div>
+                      <PlayButton song={song} onPlay={()=>{
+                        setQuery('')
+                        setFocused(false)
+                      }}/>
                       </div>
                     </div>
                   ))}
