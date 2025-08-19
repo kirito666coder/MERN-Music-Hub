@@ -1,6 +1,7 @@
 import type { SongFields, SongData, MinimalSong } from "@/types/song";
 import api from "./util/Api";
 import type { ApiError } from "@/types/album";
+import type { Artist } from "@/types/artist";
 
 export const AddSongApi = async (song: SongFields): Promise<SongFields | ApiError> => {
   try {
@@ -117,7 +118,12 @@ export const getPopularSongsapi = async ():Promise<SongData[]|null>=>{
   }
 }
 
-export const SearchSongsApi = async (value:string):Promise<SongData[]|null>=>{
+interface searchInterface {
+  songs:SongData[];
+  artists:Artist[];
+}
+
+export const SearchSongsApi = async (value:string):Promise<searchInterface|null>=>{
   try {
     const res = await api.get(`api/song/search?search=${encodeURIComponent(value)}`)
     return res.data

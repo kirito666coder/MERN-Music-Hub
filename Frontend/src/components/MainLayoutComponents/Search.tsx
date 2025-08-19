@@ -2,21 +2,26 @@ import { useState, useEffect } from "react";
 import { Search as SearchIcon } from "lucide-react";
 import type { SongData } from "@/types/song";
 import { SearchSongsApi } from "@/api/SongApi";
+import type { Artist } from "@/types/artist";
 
 const Search = () => {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<SongData[]>([]);
+  const [songs, setSongs] = useState<SongData[]>([]);
+  const [artists, setArtists] = useState<Artist[]>([]);
   const [loading, setLoading] = useState(false);
+  const [focused, setFocused] = useState(false); // 👈 track input focus
 
   const handleSearch = async (value: string) => {
     if (!value.trim()) {
-      setResults([]);
+      setSongs([]);
+      setArtists([]);
       return;
     }
     setLoading(true);
     try {
       const data = await SearchSongsApi(value);
-      setResults(data || []);
+      setSongs(data?.songs || []);
+      setArtists(data?.artists || []);
       console.log("Search results:", data);
     } catch (error) {
       console.error("Search error:", error);
@@ -42,6 +47,9 @@ const Search = () => {
           placeholder="Search songs, artists..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onFocus={() => setFocused(true)}   // 👈 mark active
+          onBlur={() => setTimeout(() => setFocused(false), 150)} 
+          // 👆 small delay so clicks on dropdown still work
           className="w-full px-5 py-3 bg-transparent text-gray-200 placeholder-gray-400 focus:outline-none"
         />
         <button
@@ -53,49 +61,82 @@ const Search = () => {
       </div>
 
       {/* Results Dropdown */}
-      {query && (
-        <div className="absolute top-full left-0 w-full bg-neutral-800 mt-2 rounded-xl shadow-2xl z-40 max-h-72 overflow-y-auto">
+      {query && focused && ( // 👈 only show when focused
+        <div className="absolute top-full left-0 w-full bg-neutral-800 mt-2 rounded-xl shadow-2xl z-40 max-h-80 overflow-y-auto divide-y divide-neutral-700">
           {loading && (
             <div className="px-4 py-3 text-gray-400 animate-pulse">Searching...</div>
           )}
 
-          {!loading && results.length > 0 ? (
-            results.map((song) => (
-              <div
-                key={song._id}
-                onClick={() => {
-                  setQuery(song.title);
-                  // 👉 add play / navigate logic here
-                }}
-                className="flex items-center gap-3 px-4 py-2 text-gray-200 hover:bg-gradient-to-r hover:from-[#1f1f1f] hover:to-[#2a2a2a] cursor-pointer transition border-b-1 border-b-gray-400 "
-              >
-                {/* Song Cover */}
-                <img
-                  src={song.coverUrl || "/placeholder-cover.png"}
-                  alt={song.title}
-                  className="w-12 h-12 rounded-lg object-cover shadow-md"
-                />
-
-                {/* Song + Artist */}
-                <div className="flex flex-col">
-                  <span className="font-semibold truncate">{song.title}</span>
-                  <div className="flex items-center gap-2 text-sm text-gray-400">
-                    {song.artist?.photoUrl && (
+          {!loading && (
+            <>
+              {/* Artists */}
+              {artists.length > 0 && (
+                <div className="px-2 py-2">
+                  <h3 className="px-2 text-xs uppercase tracking-wide text-gray-400 mb-1">
+                    Artists
+                  </h3>
+                  {artists.map((artist) => (
+                    <div
+                      key={artist._id}
+                      onClick={() => {
+                        setQuery(artist.name);
+                        setFocused(false); // close after selection
+                      }}
+                      className="flex items-center gap-3 px-3 py-2 text-gray-200 hover:bg-neutral-700 cursor-pointer rounded-md transition"
+                    >
                       <img
-                        src={song.artist?.photoUrl}
-                        alt={song.artist?.name || "Artist"}
-                        className="w-5 h-5 rounded-full object-cover"
+                        src={artist.photoUrl || "/placeholder-artist.png"}
+                        alt={artist.name}
+                        className="w-10 h-10 rounded-full object-cover"
                       />
-                    )}
-                    <span className="truncate">{song.artist?.name || "Unknown Artist"}</span>
-                  </div>
+                      <span className="font-medium">{artist.name}</span>
+                    </div>
+                  ))}
                 </div>
-              </div>
-            ))
-          ) : (
-            !loading && (
-              <div className="px-4 py-3 text-gray-400">No results found</div>
-            )
+              )}
+
+              {/* Songs */}
+              {songs.length > 0 && (
+                <div className="px-2 py-2">
+                  <h3 className="px-2 text-xs uppercase tracking-wide text-gray-400 mb-1">
+                    Songs
+                  </h3>
+                  {songs.map((song) => (
+                    <div
+                      key={song._id}
+                      onClick={() => {
+                        setQuery(song.title);
+                        setFocused(false); // close after selection
+                      }}
+                      className="flex items-center gap-3 px-3 py-2 text-gray-200 hover:bg-neutral-700 cursor-pointer rounded-md transition"
+                    >
+                      <img
+                        src={song.coverUrl || "/placeholder-cover.png"}
+                        alt={song.title}
+                        className="w-12 h-12 rounded-lg object-cover shadow-md"
+                      />
+                      <div className="flex flex-col">
+                        <span className="font-semibold truncate">{song.title}</span>
+                        <div className="flex items-center gap-2 text-sm text-gray-400">
+                          {song.artist?.photoUrl && (
+                            <img
+                              src={song.artist.photoUrl}
+                              alt={song.artist?.name || "Artist"}
+                              className="w-5 h-5 rounded-full object-cover"
+                            />
+                          )}
+                          <span className="truncate">{song.artist?.name || "Unknown Artist"}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {songs.length === 0 && artists.length === 0 && (
+                <div className="px-4 py-3 text-gray-400">No results found</div>
+              )}
+            </>
           )}
         </div>
       )}
