@@ -42,7 +42,7 @@ const Search = () => {
   return (
     <div className="relative flex flex-col items-center w-[90%] md:w-[60%] mx-auto mt-3">
       {/* Search Box */}
-      <div className="flex items-center w-full bg-neutral-900 rounded-full shadow-md focus-within:shadow-xl transition-all overflow-hidden">
+      <div className="flex items-center w-full  rounded-full shadow-md focus-within:shadow-xl transition-all overflow-hidden">
         <input
           type="text"
           placeholder="Search songs, artists..."
@@ -50,7 +50,7 @@ const Search = () => {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setFocused(true)}  
           onBlur={() => setTimeout(() => setFocused(false), 150)} 
-          className="w-full px-5 py-3 bg-transparent text-gray-200 placeholder-gray-400 focus:outline-none"
+          className="w-full px-5 py-3 bg-transparent focus:outline-none"
         />
         <button
           onClick={() => handleSearch(query)}
@@ -62,9 +62,9 @@ const Search = () => {
 
       {/* Results Dropdown */}
       {query && focused && ( // 👈 only show when focused
-        <div className="absolute top-full left-0 w-full bg-neutral-800 mt-2 rounded-xl shadow-2xl z-40 max-h-80 overflow-y-auto divide-y divide-neutral-700">
+        <div className="absolute top-full left-0 w-full  mt-2 rounded-xl shadow-2xl z-40 max-h-80 overflow-y-auto divide-y bg-accent">
           {loading && (
-            <div className="px-4 py-3 text-gray-400 animate-pulse">Searching...</div>
+            <div className="px-4 py-3  animate-pulse">Searching...</div>
           )}
 
           {!loading && (
@@ -72,7 +72,7 @@ const Search = () => {
               {/* Artists */}
               {artists.length > 0 && (
                 <div className="px-2 py-2">
-                  <h3 className="px-2 text-xs uppercase tracking-wide text-gray-400 mb-1">
+                  <h3 className="px-2 text-xs uppercase tracking-wide  mb-1">
                     Artists
                   </h3>
                   {artists.map((artist) => (
@@ -82,7 +82,7 @@ const Search = () => {
                         setQuery(artist.name);
                         setFocused(false); // close after selection
                       }}
-                      className="flex items-center gap-3 px-3 py-2 text-gray-200 hover:bg-neutral-700 cursor-pointer rounded-md transition"
+                      className="flex items-center gap-3 px-3 py-2 dark:hover:bg-neutral-700 hover:bg-white/90 cursor-pointer rounded-md transition"
                     >
                       <img
                         src={artist.photoUrl || "/placeholder-artist.png"}
@@ -98,7 +98,7 @@ const Search = () => {
               {/* Songs */}
               {songs.length > 0 && (
                 <div className="px-2 py-2">
-                  <h3 className="px-2 text-xs uppercase tracking-wide text-gray-400 mb-1">
+                  <h3 className="px-2 text-xs uppercase tracking-wide mb-1">
                     Songs
                   </h3>
                   {songs.map((song) => (
@@ -108,7 +108,7 @@ const Search = () => {
                         setQuery(song.title);
                         setFocused(false); // close after selection
                       }}
-                      className="flex items-center justify-between px-3 py-2 text-gray-200 hover:bg-neutral-700 cursor-pointer rounded-md transition"
+                      className="flex items-center justify-between px-3 py-2 dark:hover:bg-neutral-700 hover:bg-white/90 cursor-pointer rounded-md transition"
                     ><div className="flex gap-3">
                       <img
                         src={song.coverUrl || "/placeholder-cover.png"}
@@ -117,7 +117,7 @@ const Search = () => {
                         />
                       <div className="flex flex-col">
                         <span className="font-semibold truncate">{song.title}</span>
-                        <div className="flex items-center gap-2 text-sm text-gray-400">
+                        <div className="flex items-center gap-2 text-sm ">
                           {song.artist?.photoUrl && (
                             <img
                             src={song.artist.photoUrl}
