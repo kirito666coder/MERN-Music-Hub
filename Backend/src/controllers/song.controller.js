@@ -162,29 +162,18 @@ try {
 }
 }
 
-export const SearchForSongsController = async (req,res)=>{
+export const SearchForSongsController = async (req, res) => {
   try {
-    const search = req.query.search;
-    
-    const genres = ["pop", "rock", "hiphop", "jazz", "classical", "edm", "rap"];
-    const moods = ["happy", "sad", "romantic", "chill", "energetic"];
-
-    let searchType = 'song'
-
-    if (genres.some(g => search.includes(g))) {
-      searchType = "genre";
+    const search = req.query.search?.trim();
+    if (!search) {
+      return res.json({ songs: [], artists: [] });
     }
 
-    if (moods.some(m => search.includes(m))) {
-      searchType = "mood";
-    }
+    const results = await SearchForsongsService(search);
 
-    let suggestioins = await SearchForsongsService({search,searchType})
-
-    res.json(suggestioins)
-
-    
+    res.json(results);
   } catch (error) {
-    res.status(500).json({message:"Internal server Error",error})
+    console.error("Search error:", error);
+    res.status(500).json({ message: "Internal Server Error", error });
   }
-}
+};

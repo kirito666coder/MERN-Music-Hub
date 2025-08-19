@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import SongModel from "../Models/song.model.js";
 import UserModel from "../Models/user.model.js"
 import AlbumModel from "../Models/album.model.js"
+import ArtistModel from "../Models/artist.model.js";
 
 export const AddSong = async ({ userId, data, songUrl, imageUrl }) => {
     if (!userId || !data || !songUrl || !imageUrl) {
@@ -273,20 +274,23 @@ export const GetPopularSongsService = async ()=>{
 
 }
 
-export const SearchForsongsService = async ({search,searchType})=>{
+export const SearchForsongsService = async (search) => {
+  // Build regex
+  const regex = new RegExp(search, "i");
 
-  if(searchType === 'song'){
-    return await SongModel.find({
-      title:{$regex:search,$options:'i'}
-    }).limit(10);
-  }else if(searchType === 'genre'){
-    return await SongModel.find({
-      genre:{$regex:search,$options:'i'}
-    }).limit(10)
-  } else if (searchType === "mood") {
-    return await SongModel.find({
-      mood: { $regex: search, $options: "i" }
-    }).limit(10);
-  }
+  const songs = await SongModel.find({
+    $or: [
+      { title: regex },
+      { genre: regex },
+      { mood: regex },
+    ]
+  })
+    .limit(15)
+    .populate("artist");
 
-}
+  const artists = await ArtistModel.find({
+    name: regex,
+  }).limit(10);
+
+  return { songs, artists };
+};

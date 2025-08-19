@@ -14,21 +14,27 @@ const Search = () => {
       return;
     }
     setLoading(true);
-    const data = await SearchSongsApi(value);
-    setResults(data || []);
-    setLoading(false);
+    try {
+      const data = await SearchSongsApi(value);
+      setResults(data || []);
+      console.log("Search results:", data);
+    } catch (error) {
+      console.error("Search error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  // 🔍 call API when user types (debounced effect)
+  // debounce search
   useEffect(() => {
     const timeout = setTimeout(() => {
       handleSearch(query);
-    }, 400); // debounce 400ms
+    }, 400);
     return () => clearTimeout(timeout);
   }, [query]);
 
   return (
-    <div className="relative flex flex-col items-center w-full max-w-lg mx-auto mt-3">
+    <div className="relative flex flex-col items-center w-[90%] md:w-[60%] mx-auto mt-3">
       {/* Search Box */}
       <div className="flex items-center w-full bg-neutral-900 rounded-full shadow-md focus-within:shadow-xl transition-all overflow-hidden">
         <input
@@ -48,9 +54,9 @@ const Search = () => {
 
       {/* Results Dropdown */}
       {query && (
-        <div className="absolute top-full left-0 w-full bg-neutral-800 mt-2 rounded-lg shadow-lg z-40 max-h-60 overflow-y-auto">
+        <div className="absolute top-full left-0 w-full bg-neutral-800 mt-2 rounded-xl shadow-2xl z-40 max-h-72 overflow-y-auto">
           {loading && (
-            <div className="px-4 py-2 text-gray-400">Searching...</div>
+            <div className="px-4 py-3 text-gray-400 animate-pulse">Searching...</div>
           )}
 
           {!loading && results.length > 0 ? (
@@ -59,17 +65,36 @@ const Search = () => {
                 key={song._id}
                 onClick={() => {
                   setQuery(song.title);
-                  // 👉 play song or navigate here
+                  // 👉 add play / navigate logic here
                 }}
-                className="px-4 py-2 text-gray-200 hover:bg-neutral-700 cursor-pointer transition"
+                className="flex items-center gap-3 px-4 py-2 text-gray-200 hover:bg-gradient-to-r hover:from-[#1f1f1f] hover:to-[#2a2a2a] cursor-pointer transition border-b-1 border-b-gray-400 "
               >
-                🎵 {song.title} —{" "}
-                <span className="text-gray-400">{song.artist.name}</span>
+                {/* Song Cover */}
+                <img
+                  src={song.coverUrl || "/placeholder-cover.png"}
+                  alt={song.title}
+                  className="w-12 h-12 rounded-lg object-cover shadow-md"
+                />
+
+                {/* Song + Artist */}
+                <div className="flex flex-col">
+                  <span className="font-semibold truncate">{song.title}</span>
+                  <div className="flex items-center gap-2 text-sm text-gray-400">
+                    {song.artist?.photoUrl && (
+                      <img
+                        src={song.artist?.photoUrl}
+                        alt={song.artist?.name || "Artist"}
+                        className="w-5 h-5 rounded-full object-cover"
+                      />
+                    )}
+                    <span className="truncate">{song.artist?.name || "Unknown Artist"}</span>
+                  </div>
+                </div>
               </div>
             ))
           ) : (
             !loading && (
-              <div className="px-4 py-2 text-gray-400">No results found</div>
+              <div className="px-4 py-3 text-gray-400">No results found</div>
             )
           )}
         </div>

@@ -14,6 +14,7 @@ import sad from './assets/moods/sad.png'
 import chill from './assets/moods/chill.png'
 import energetic from './assets/moods/energetic.png'
 import romantic from './assets/moods/romantic.png'
+import Search from "@/components/MainLayoutComponents/Search"
 
 const genresData = [
   { name: "Pop", image:pop},
@@ -36,6 +37,9 @@ const moodsData = [
 const GenresList = () => {
   return (
     <div className="px-6 py-10">
+      <div className="md:hidden block mb-10">
+      <Search/>
+      </div>
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-pink-500 to-blue-500 bg-clip-text text-transparent">
