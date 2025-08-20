@@ -8,10 +8,10 @@ const SongPlayBar = () => {
        <div className="z-1 absolute top-[-28px] w-full md:hidden overflow-hidden flex justify-center">
 </div>
 
-      <div className="w-2/10 z-10">
+      <div className="w-2/10 z-10 hidden md:block">
       <SongPlayBarSongLogoAndTital/>
       </div>
-      <div className="w-8/10  h-full z-10 ">
+      <div className="md:w-8/10 w-full h-full z-10 ">
        <SongPlayBarSongControlers/>
       </div>
       

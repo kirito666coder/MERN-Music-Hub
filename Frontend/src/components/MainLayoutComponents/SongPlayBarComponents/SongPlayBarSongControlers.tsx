@@ -30,7 +30,7 @@ const SongPlayBarSongControlers = () => {
 
   return (
     <div className="w-full h-full flex justify-center items-center ">
-      <div className="w-6/8 h-full flex flex-col justify-center items-center  px-4">
+      <div className="md:w-6/8 w-full h-full flex flex-col justify-center items-center  px-4">
         {/* Control Buttons */}
         <div className="flex items-center gap-4">
           <GradientIconButton onClick={() => {handlePrev()}}>
@@ -84,7 +84,7 @@ const SongPlayBarSongControlers = () => {
 
 
 
-      <div className="w-2/8 h-full flex justify-center items-center">
+      <div className="md:w-2/8 h-full flex justify-center items-center">
         <div className="flex flex-col items-center md:flex-row gap-2 md:gap-4">
 
     
