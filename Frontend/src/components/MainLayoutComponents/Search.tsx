@@ -4,6 +4,8 @@ import type { SongData } from "@/types/song";
 import { SearchSongsApi } from "@/api/SongApi";
 import type { Artist } from "@/types/artist";
 import PlayButton from "../Buttons/PlayButton";
+import slugify from "slugify";
+import { useNavigate } from "react-router-dom";
 
 const Search = () => {
   const [query, setQuery] = useState("");
@@ -11,6 +13,8 @@ const Search = () => {
   const [artists, setArtists] = useState<Artist[]>([]);
   const [loading, setLoading] = useState(false);
   const [focused, setFocused] = useState(false); 
+
+  const navigate = useNavigate()
 
   const handleSearch = async (value: string) => {
     if (!value.trim()) {
@@ -38,6 +42,11 @@ const Search = () => {
     }, 400);
     return () => clearTimeout(timeout);
   }, [query]);
+
+  const HandleClickArtis = ({artistName,artistId}:{artistName:string,artistId:string})=>{
+   const slug = slugify(artistName,{lower:true})
+   navigate(`/artist/${slug}-${artistId}`)
+  }
 
   return (
     <div className="relative flex flex-col items-center w-[90%] md:w-[60%] mx-auto mt-3">
@@ -79,7 +88,7 @@ const Search = () => {
                     <div
                       key={artist._id}
                       onClick={() => {
-                        setQuery(artist.name);
+                        HandleClickArtis({artistName:artist.name,artistId:artist._id})
                         setFocused(false); // close after selection
                       }}
                       className="flex items-center gap-3 px-3 py-2 dark:hover:bg-neutral-700 hover:bg-white/90 cursor-pointer rounded-md transition"

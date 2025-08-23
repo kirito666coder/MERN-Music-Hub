@@ -47,7 +47,7 @@ const AppRoutes = () => {
         <Route path="/settings" element={<Setting/>}/>
         <Route path="/notification" element={<Notification/>}/>
 
-        <Route path="/artist" element={<Artist/>}/>
+        <Route path="/artist/:slugAndId" element={<Artist/>}/>
         
         </Route>
 
