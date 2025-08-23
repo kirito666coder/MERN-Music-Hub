@@ -17,7 +17,7 @@ const Artist = () => {
 
   const {slugAndId} = useParams()
 
-  const artistId = slugAndId? slugAndId.slice()
+  const artistId = slugAndId? slugAndId.split('-').slice(-1)[0]:null;
 
   const songs = [
     {
