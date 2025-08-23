@@ -63,7 +63,7 @@ const Search = () => {
         />
         <button
           onClick={() => handleSearch(query)}
-          className="bg-gradient-to-r from-[#f43f5e] to-[#0062ff] px-4 py-3 flex items-center justify-center hover:opacity-90 transition"
+          className="bg-gradient-to-r from-[#f43f5e] to-[#0062ff] px-4 py-3 flex items-center justify-center hover:opacity-90 transition cursor-pointer"
         >
           <SearchIcon className="w-5 h-5 text-white" />
         </button>
@@ -89,6 +89,7 @@ const Search = () => {
                       key={artist._id}
                       onClick={() => {
                         HandleClickArtis({artistName:artist.name,artistId:artist._id})
+                        setQuery('')
                         setFocused(false); // close after selection
                       }}
                       className="flex items-center gap-3 px-3 py-2 dark:hover:bg-neutral-700 hover:bg-white/90 cursor-pointer rounded-md transition"

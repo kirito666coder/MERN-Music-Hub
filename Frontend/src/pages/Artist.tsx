@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Play } from "lucide-react"
+import { useParams } from "react-router-dom"
 
 const Artist = () => {
   // Dummy data
@@ -13,6 +14,10 @@ const Artist = () => {
     songs: 56,
     albums: 4,
   }
+
+  const {slugAndId} = useParams()
+
+  const artistId = slugAndId? slugAndId.slice()
 
   const songs = [
     {
