@@ -5,6 +5,7 @@ import { Play, Music2, Pause } from "lucide-react"; // icons
 import { setCurrentIndex, setIsPlaying, setPlayingFrom, setQueue, setSong, setSongDetails } from "@/features/song/songSlice";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "@/app/store";
+import LoadingSkeletionforTrandingNewHitsSectioninHomepage from "@/components/loading/LoadingSkeletionforTrandingNewHitsSectioninHomepage";
 
 const TrandingNewHits = () => {
   const [trendingSong, setTrendingSong] = useState<SongData | null>(null);
@@ -67,11 +68,7 @@ const TrandingNewHits = () => {
   }, []);
 
   if (!trendingSong) {
-    return (
-      <div className="mx-3 mt-4 h-48 flex items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-900 via-cyan-950 to-black text-white shadow-xl animate-pulse">
-        Loading trending hit...
-      </div>
-    );
+    return <LoadingSkeletionforTrandingNewHitsSectioninHomepage/>
   }
 
   return (

@@ -4,7 +4,7 @@ const LoadingSkeletionforPopularsongsSectioninHomepage = () => {
     <div className="mt-8">
    {/* Section header skeleton */}
    <div className="flex justify-between items-center mx-6 mb-4">
-     <div className="h-6 w-40 bg-gray-500 rounded-md animate-pulse" />
+     <div className="h-6 w-40 bg-gray-500 rounded-md " />
    </div>
  
    {/* Song grid skeleton */}
@@ -12,7 +12,7 @@ const LoadingSkeletionforPopularsongsSectioninHomepage = () => {
      {[...Array(6)].map((_, i) => (
        <div
          key={i}
-         className="group relative rounded-2xl overflow-hidden backdrop-blur-md shadow-md bg-gradient-to-br from-gray-700/20 to-gray-800/20 animate-pulse cursor-pointer"
+         className="group relative rounded-2xl overflow-hidden backdrop-blur-md shadow-md bg-gradient-to-br from-gray-700/20 to-gray-800/20 cursor-pointer"
        >
          {/* Cover skeleton */}
          <div className="relative w-full h-48 bg-gray-600/30 rounded-md overflow-hidden" />
