@@ -7,6 +7,7 @@ import type { Artist } from "@/types/artist"
 import { useEffect, useState } from "react"
 import LoadingPageforArtistpage from "@/components/loading/LoadingPageforArtistpage"
 import slugify from "slugify"
+import SongsSection from "./components/SongsSection"
 
 
 const ArtistPagComponents = () => {
@@ -51,6 +52,7 @@ const ArtistPagComponents = () => {
   return (
     <>
       <ArtistHeader artist={artist} songs={songs} album={albums}/>
+      <SongsSection songs={songs}/>
     </>
   )
 }
