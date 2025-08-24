@@ -1,13 +1,13 @@
 import { GetArtistAndArtistDataApi } from "@/api/ArtistApi"
 import ArtistHeader from "./components/ArtistHeader"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import type { SongData } from "@/types/song"
 import type { Album } from "@/types/album"
 import type { Artist } from "@/types/artist"
 import { useEffect, useState } from "react"
 import LoadingPageforArtistpage from "@/components/loading/LoadingPageforArtistpage"
-import slugify from "slugify"
 import SongsSection from "./components/SongsSection"
+import AlbumsSection from "./components/AlbumsSection"
 
 
 const ArtistPagComponents = () => {
@@ -16,7 +16,7 @@ const ArtistPagComponents = () => {
     const [songs, setSongs] = useState<SongData[]>([])
 
     const { slugAndId } = useParams()
-    const navigate = useNavigate();
+  
   
     const artistId = slugAndId ? slugAndId.split("-").slice(-1)[0] : null
   
@@ -38,22 +38,12 @@ const ArtistPagComponents = () => {
   
     if (!artist) return <LoadingPageforArtistpage/>
   
-    const handleClick = ({
-      albumName,
-      albumId,
-    }: {
-      albumName: string;
-      albumId: string;
-    }) => {
-      const slug = slugify(albumName, { lower: true });
-      navigate(`/library/album/${slug}-${albumId}`);
-    };
-  
   return (
-    <>
+    <div className="p-6 space-y-12">
       <ArtistHeader artist={artist} songs={songs} album={albums}/>
       <SongsSection songs={songs}/>
-    </>
+      <AlbumsSection albums={albums}/>
+    </div>
   )
 }
 
