@@ -8,6 +8,7 @@ import type { Artist } from "@/types/artist"
 import type { Album } from "@/types/album"
 import type { SongData } from "@/types/song"
 
+
 const Artist = () => {
   const [artist, setArtist] = useState<Artist | null>(null)
   const [albums, setAlbums] = useState<Album[]>([])
@@ -21,9 +22,12 @@ const Artist = () => {
 
     const data = await GetArtistAndArtistDataApi(artistId)
 
-    setArtist(data?.artist || null)
-    setAlbums(data?.album || [])
-    setSongs(data?.songs || [])
+    setTimeout(() => {
+      
+      setArtist(data?.artist || null)
+      setAlbums(data?.album || [])
+      setSongs(data?.songs || [])
+    }, 10000);
 
     console.log("this is data", data)
   }
@@ -32,7 +36,7 @@ const Artist = () => {
     GetArtist()
   }, [])
 
-  if (!artist) return null
+  if (!artist) return 
 
   return (
     <div className="p-6 space-y-12">
