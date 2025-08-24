@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import type { Artist } from "@/types/artist"
 import type { Album } from "@/types/album"
 import type { SongData } from "@/types/song"
+import LoadingPageforArtistpage from "@/components/loading/LoadingPageforArtistpage"
 
 
 const Artist = () => {
@@ -22,12 +23,9 @@ const Artist = () => {
 
     const data = await GetArtistAndArtistDataApi(artistId)
 
-    setTimeout(() => {
-      
       setArtist(data?.artist || null)
       setAlbums(data?.album || [])
       setSongs(data?.songs || [])
-    }, 10000);
 
     console.log("this is data", data)
   }
@@ -36,7 +34,7 @@ const Artist = () => {
     GetArtist()
   }, [])
 
-  if (!artist) return 
+  if (!artist) return <LoadingPageforArtistpage/>
 
   return (
     <div className="p-6 space-y-12">
