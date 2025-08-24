@@ -1,4 +1,4 @@
-import type { Artist, artistSearch, CreateArtistPayload } from "@/types/artist";
+import type { Artist, ArtistAndArtistData, artistSearch, CreateArtistPayload } from "@/types/artist";
 import api from "./util/Api";
   
   export const SearchArtistApi = async (value:string):Promise<artistSearch[]|null> => {
@@ -6,11 +6,12 @@ import api from "./util/Api";
       const res = await api.get(`/api/artist/search?search=${encodeURIComponent(value)}`)
       return res.data.artists;
     } catch (error) {
+      console.log(error)
       return null;
     }
   }
 
-  export const CreateArtisApi = async (payload: CreateArtistPayload): Promise<Artist | null> => {
+export const CreateArtisApi = async (payload: CreateArtistPayload): Promise<Artist | null> => {
     try {
       const formData = new FormData()
       formData.append('name', payload.name)
@@ -26,3 +27,15 @@ import api from "./util/Api";
       return null
     }
   }
+
+export const GetArtistAndArtistDataApi = async (aritstId:string):Promise<ArtistAndArtistData | null>=>{
+  try {
+    const res = await api.get(`/api/artist/getartist/${aritstId}`)
+
+    return res.data;
+    
+  } catch (error) {
+    console.log(error)
+    return null
+  }
+}

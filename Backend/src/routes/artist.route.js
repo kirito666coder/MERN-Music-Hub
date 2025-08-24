@@ -19,6 +19,6 @@ ArtistRouder.post('/create',
     CreateArtistController
 )
 
-ArtistRouder.get('/getArtist/:id',getArtistController)
+ArtistRouder.get('/getartist/:id',getArtistController)
 
 export default ArtistRouder;

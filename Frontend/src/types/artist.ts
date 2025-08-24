@@ -1,3 +1,6 @@
+import type { Album } from "./album"
+import type { SongData } from "./song"
+
 export type ArtistFormFields = {
   name: string
   bio: string
@@ -35,3 +38,8 @@ export interface CreateArtistPayload {
     photo?: File
   }
   
+export interface ArtistAndArtistData {
+  artist:Artist;
+  album:Album;
+  songs:SongData
+}
