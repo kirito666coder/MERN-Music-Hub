@@ -301,8 +301,9 @@ export const GetSongbyArtistId = async ({artistId})=>{
     throw new Error ('artistId not found please try again')
   }
 
-  const songs = await SongModel.find({artistId}).populate('artist')
+  const songs = await SongModel.find({artist:artistId}).populate('artist')
+  console.log(songs,artistId)
 
   return songs;
-  
+
 }
