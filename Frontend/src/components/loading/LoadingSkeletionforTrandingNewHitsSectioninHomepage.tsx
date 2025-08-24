@@ -12,14 +12,14 @@ const LoadingSkeletionforTrandingNewHitsSectioninHomepage = () => {
     {/* Content Skeleton */}
     <div className="relative z-10 flex w-full flex-col justify-between px-8 py-6 text-white">
       <div className="space-y-2">
-        <div className="h-3 w-32 bg-gray-500 rounded-md" /> {/* Trending New Hit */}
-        <div className="h-6 w-64 bg-gray-500 rounded-md" /> {/* Song Title */}
-        <div className="h-4 w-48 bg-gray-500 rounded-md" /> {/* Artist */}
+        <div className="h-3 w-32 bg-gray-500/30 rounded-md" /> {/* Trending New Hit */}
+        <div className="h-6 w-64 bg-gray-500/30 rounded-md" /> {/* Song Title */}
+        <div className="h-4 w-48 bg-gray-500/30 rounded-md" /> {/* Artist */}
       </div>
 
       <div className="mt-4 flex items-center gap-4">
-        <div className="h-10 w-36 bg-gray-500 rounded-full" /> {/* Button Skeleton */}
-        <div className="h-4 w-24 bg-gray-500 rounded-md" /> {/* Plays Count Skeleton */}
+        <div className="h-10 w-36 bg-gray-500/30 rounded-full" /> {/* Button Skeleton */}
+        <div className="h-4 w-24 bg-gray-500/30 rounded-md" /> {/* Plays Count Skeleton */}
       </div>
     </div>
 
