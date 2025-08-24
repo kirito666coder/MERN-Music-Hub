@@ -67,7 +67,7 @@ const PopularSongsCarForPopularSongsSection = ({ song, setshowpopup }: Props) =>
       setshowpopup(true);
       HandelPlaysong();
     }}
-    className="group relative rounded-2xl overflow-hidden bg-neutral-900/60 backdrop-blur-md shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer"
+    className="group relative rounded-2xl overflow-hidden  backdrop-blur-md shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer"
   >
     {/* Cover with overlay */}
     <div className="relative">
@@ -87,7 +87,7 @@ const PopularSongsCarForPopularSongsSection = ({ song, setshowpopup }: Props) =>
     </div>
   
     {/* Song info */}
-    <div className="p-3 text-white">
+    <div className="p-3 ">
       <h5 className="text-sm font-semibold truncate group-hover:text-rose-400 transition-colors duration-300">
         {song.title}
       </h5>

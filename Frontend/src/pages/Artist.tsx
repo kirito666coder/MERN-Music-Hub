@@ -8,6 +8,7 @@ import type { Artist } from "@/types/artist"
 import type { Album } from "@/types/album"
 import type { SongData } from "@/types/song"
 import LoadingPageforArtistpage from "@/components/loading/LoadingPageforArtistpage"
+import PlayButton from "@/components/Buttons/PlayButton"
 
 
 const Artist = () => {
@@ -68,7 +69,7 @@ const Artist = () => {
               key={song._id}
               className="rounded-2xl overflow-hidden hover:shadow-md transition"
             >
-              <CardContent className="flex items-center justify-between p-4">
+              <CardContent className="flex items-center justify-between ">
                 <div className="flex items-center gap-4">
                   <img
                     src={`${song.coverUrl}`}
@@ -83,8 +84,8 @@ const Artist = () => {
                     </span>
                   </div>
                 </div>
-                <Button size="icon" variant="ghost">
-                  <Play className="w-5 h-5" />
+                <Button size="default" variant="link">
+                  <PlayButton song={song}/>
                 </Button>
               </CardContent>
             </Card>
@@ -104,7 +105,7 @@ const Artist = () => {
               <img
                 src={album.coverUrl}
                 alt={album.title}
-                className="w-full h-48 object-cover"
+                className="w-full h-68 object-cover"
               />
               <CardContent className="p-4">
                 <p className="font-medium">{album.title}</p>

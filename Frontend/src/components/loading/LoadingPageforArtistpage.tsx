@@ -46,7 +46,7 @@ const LoadingPageforArtistpage = () => {
                 key={i}
                 className="rounded-2xl overflow-hidden border shadow-sm bg-card"
               >
-                <div className="w-full h-48 bg-muted" />
+                <div className="w-full h-68 bg-muted" />
                 <div className="p-4">
                   <div className="h-4 bg-muted rounded w-24" />
                 </div>
