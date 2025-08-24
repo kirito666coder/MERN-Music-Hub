@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CreateArtistController, SearchArtistController } from "../controllers/artist.controller.js";
+import { CreateArtistController, getArtistController, SearchArtistController } from "../controllers/artist.controller.js";
 import { searchArtistLimiter } from "../middlewares/rateLimiters.js";
 import multer from "multer";
 
@@ -18,5 +18,7 @@ ArtistRouder.post('/create',
     ]),
     CreateArtistController
 )
+
+ArtistRouder.get('/getArtist/:id',getArtistController)
 
 export default ArtistRouder;

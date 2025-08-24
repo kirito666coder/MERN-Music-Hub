@@ -294,3 +294,15 @@ export const SearchForsongsService = async (search) => {
 
   return { songs, artists };
 };
+
+export const GetSongbyArtistId = async ({artistId})=>{
+
+  if(!artistId){
+    throw new Error ('artistId not found please try again')
+  }
+
+  const songs = await SongModel.find({artistId}).populate('artist')
+
+  return songs;
+  
+}

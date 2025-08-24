@@ -1,6 +1,8 @@
 import ArtistModel from "../Models/artist.model.js";
-import { CreateArtistService, IsArtistTrue } from "../services/artist.service.js";
+import { yourAllAlbumsService } from "../services/album.service.js";
+import { CreateArtistService, FindArtistWithArtistId, IsArtistTrue } from "../services/artist.service.js";
 import { imageUpload } from "../services/cloudinaryUpload.service.js";
+import { GetSongbyArtistId } from "../services/songAdd.service.js";
 
 
 export const SearchArtistController = async (req,res) =>{
@@ -51,5 +53,27 @@ export const CreateArtistController = async (req,res) =>{
     } catch (error) {
         console.error("Error searching artists:", error);
         res.status(500).json({ message: "Server error" });
+    }
+}
+
+export const getArtistController = async (req,res) =>{
+    try {
+
+        const artistId = req.params.id;
+
+        const artist = await FindArtistWithArtistId({artistId});
+
+        if(!artist){
+            res.status(400).json({message:"some thing went wrong"})
+        }
+
+        const album = await yourAllAlbumsService({artistId})
+        const songs = await GetSongbyArtistId({artistId})
+
+        res.status(200).json({artist,album,songs})
+
+        
+    } catch (error) {
+        res.status(500).json({message:"Internal Server error"})
     }
 }

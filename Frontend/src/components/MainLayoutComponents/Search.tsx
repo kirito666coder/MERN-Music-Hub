@@ -87,7 +87,7 @@ const Search = () => {
                   {artists.map((artist) => (
                     <div
                       key={artist._id}
-                      onClick={() => {
+                      onMouseDown={() => {
                         HandleClickArtis({artistName:artist.name,artistId:artist._id})
                         setQuery('')
                         setFocused(false); // close after selection
