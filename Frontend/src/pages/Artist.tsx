@@ -3,89 +3,43 @@ import { Button } from "@/components/ui/button"
 import { Play } from "lucide-react"
 import { useParams } from "react-router-dom"
 import { GetArtistAndArtistDataApi } from "@/api/ArtistApi"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import type { Artist } from "@/types/artist"
+import type { Album } from "@/types/album"
+import type { SongData } from "@/types/song"
 
 const Artist = () => {
-  // Dummy data
-  const artist = {
-    name: "John Doe",
-    image:
-      "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&q=80",
-    bio: "Singer • Songwriter • Performer",
-    followers: "1.2M",
-    songs: 56,
-    albums: 4,
-  }
+  const [artist, setArtist] = useState<Artist | null>(null)
+  const [albums, setAlbums] = useState<Album[]>([])
+  const [songs, setSongs] = useState<SongData[]>([])
 
-  const {slugAndId} = useParams()
+  const { slugAndId } = useParams()
+  const artistId = slugAndId ? slugAndId.split("-").slice(-1)[0] : null
 
-  const artistId = slugAndId? slugAndId.split('-').slice(-1)[0]:null;
-
-  const GetArtist = async ()=>{
-
-    if(!artistId) return
+  const GetArtist = async () => {
+    if (!artistId) return
 
     const data = await GetArtistAndArtistDataApi(artistId)
 
-    console.log("this is data",data)
+    setArtist(data?.artist || null)
+    setAlbums(data?.album || [])
+    setSongs(data?.songs || [])
+
+    console.log("this is data", data)
   }
 
   useEffect(() => {
- GetArtist()
+    GetArtist()
   }, [])
-  
 
-  const songs = [
-    {
-      id: 1,
-      title: "Dreams in Motion",
-      duration: "3:42",
-      cover:
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=200&q=80",
-    },
-    {
-      id: 2,
-      title: "City Lights",
-      duration: "4:10",
-      cover:
-        "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=200&q=80",
-    },
-    {
-      id: 3,
-      title: "Silent Echo",
-      duration: "3:05",
-      cover:
-        "https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?w=200&q=80",
-    },
-  ]
-
-  const albums = [
-    {
-      id: 1,
-      title: "Midnight Stories",
-      cover:
-        "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&q=80",
-    },
-    {
-      id: 2,
-      title: "Golden Days",
-      cover:
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=300&q=80",
-    },
-    {
-      id: 3,
-      title: "Lost & Found",
-      cover:
-        "https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?w=300&q=80",
-    },
-  ]
+  if (!artist) return null
 
   return (
     <div className="p-6 space-y-12">
       {/* Artist Header */}
       <div className="flex flex-col sm:flex-row items-center sm:items-end gap-6">
         <img
-          src={artist.image}
+          src={artist.photoUrl}
           alt={artist.name}
           className="w-40 h-40 rounded-full object-cover shadow-lg"
         />
@@ -93,9 +47,9 @@ const Artist = () => {
           <h1 className="text-4xl font-bold">{artist.name}</h1>
           <p className="text-muted-foreground">{artist.bio}</p>
           <div className="flex gap-6 justify-center sm:justify-start text-sm text-muted-foreground">
-            <span>{artist.followers} Followers</span>
-            <span>{artist.songs} Songs</span>
-            <span>{artist.albums} Albums</span>
+            {/* Future: followers count */}
+            <span>{songs.length} Songs</span>
+            <span>{albums.length} Albums</span>
           </div>
           <Button size="lg" className="mt-2 w-fit self-center sm:self-start">
             <Play className="mr-2 h-5 w-5" /> Play All
@@ -109,20 +63,21 @@ const Artist = () => {
         <div className="space-y-4">
           {songs.map((song) => (
             <Card
-              key={song.id}
+              key={song._id}
               className="rounded-2xl overflow-hidden hover:shadow-md transition"
             >
               <CardContent className="flex items-center justify-between p-4">
                 <div className="flex items-center gap-4">
                   <img
-                    src={song.cover}
+                    src={`${song.coverUrl}`}
                     alt={song.title}
                     className="w-14 h-14 rounded-md object-cover"
                   />
                   <div>
                     <p className="font-medium">{song.title}</p>
                     <span className="text-sm text-muted-foreground">
-                      {song.duration}
+                      {Math.floor(song.duration / 60)}:
+                      {String(song.duration % 60).padStart(2, "0")}
                     </span>
                   </div>
                 </div>
@@ -141,11 +96,11 @@ const Artist = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {albums.map((album) => (
             <Card
-              key={album.id}
+              key={album._id}
               className="rounded-2xl overflow-hidden hover:shadow-md transition"
             >
               <img
-                src={album.cover}
+                src={album.coverUrl}
                 alt={album.title}
                 className="w-full h-48 object-cover"
               />

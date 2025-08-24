@@ -40,6 +40,6 @@ export interface CreateArtistPayload {
   
 export interface ArtistAndArtistData {
   artist:Artist;
-  album:Album;
+  album:Album[];
   songs:SongData[]
 }
