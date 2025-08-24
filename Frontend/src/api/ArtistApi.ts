@@ -28,9 +28,9 @@ export const CreateArtisApi = async (payload: CreateArtistPayload): Promise<Arti
     }
   }
 
-export const GetArtistAndArtistDataApi = async (aritstId:string):Promise<ArtistAndArtistData | null>=>{
+export const GetArtistAndArtistDataApi = async (artistId:string):Promise<ArtistAndArtistData | null>=>{
   try {
-    const res = await api.get(`/api/artist/getartist/${aritstId}`)
+    const res = await api.get(`/api/artist/getartist/${artistId}`)
 
     return res.data;
     

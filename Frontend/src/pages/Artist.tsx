@@ -2,6 +2,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Play } from "lucide-react"
 import { useParams } from "react-router-dom"
+import { GetArtistAndArtistDataApi } from "@/api/ArtistApi"
+import { useEffect } from "react"
 
 const Artist = () => {
   // Dummy data
@@ -18,6 +20,20 @@ const Artist = () => {
   const {slugAndId} = useParams()
 
   const artistId = slugAndId? slugAndId.split('-').slice(-1)[0]:null;
+
+  const GetArtist = async ()=>{
+
+    if(!artistId) return
+
+    const data = await GetArtistAndArtistDataApi(artistId)
+
+    console.log("this is data",data)
+  }
+
+  useEffect(() => {
+ GetArtist()
+  }, [])
+  
 
   const songs = [
     {
