@@ -7,11 +7,14 @@ import type { SongData } from "@/types/song";
 import { getLikesongsListApi } from "@/api/SongApi";
 import { FaPlay } from "react-icons/fa";
 import LoadingPageForLikeSongs from "@/components/loading/LoadingPageForLikeSongs";
+import { useNavigate } from "react-router-dom";
 
 const LikeSongsCard = () => {
   const { user } = useSelector((state: RootState) => state.user);
   const [likedSongs, setLikedSongs] = useState<SongData[] | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate()
 
   const getLike = async () => {
     try {
@@ -30,17 +33,52 @@ const LikeSongsCard = () => {
     getLike();
   }, []);
 
-  // If loading, show skeletons first
+
   if (loading) {
     return <LoadingPageForLikeSongs/>
   }
 
-  // If no liked songs
+
   if (!likedSongs || likedSongs.length === 0) {
     return (
-      <div className="col-span-full text-center text-gray-500 dark:text-gray-400 font-semibold py-8">
-        No liked songs yet
-      </div>
+      <div className="col-span-full flex flex-col items-center justify-center py-12 px-6 bg-gray-800/20 dark:bg-gray-700/20 rounded-2xl shadow-lg space-y-4">
+
+  <svg
+  xmlns="http://www.w3.org/2000/svg"
+  className="w-16 h-16 text-pink-500 animate-bounce"
+  fill="none"
+  viewBox="0 0 24 24"
+  stroke="currentColor"
+  strokeWidth={2}
+>
+  <path
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    d="M9 19V5l12-2v14"
+  />
+  <circle cx="6" cy="18" r="3" />
+  <circle cx="18" cy="16" r="3" />
+</svg>
+
+
+
+  <h2 className="text-2xl font-extrabold text-white">
+    No liked songs yet
+  </h2>
+
+
+  <p className="text-center text-gray-300 max-w-xs">
+    Browse and like your favorite tracks to see them appear here. Start discovering music now!
+  </p>
+
+
+  <button onClick={()=>{
+  navigate('/')
+  }} className="cursor-pointer mt-2 px-6 py-2 bg-gradient-to-br from-pink-500 to-blue-500 text-white font-semibold rounded-full shadow-lg hover:scale-105 transition-transform">
+    Discover Songs
+  </button>
+</div>
+
     );
   }
 
