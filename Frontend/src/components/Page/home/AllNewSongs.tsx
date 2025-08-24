@@ -3,6 +3,7 @@ import AllNewSongCard from "./Components/AllNewSongCard"
 import { useEffect, useState } from "react"
 import type { SongData } from "@/types/song"
 import PopupSongcompo from "./PopupSongcompo" 
+import LoadingSkeletionforAllsongsectioninHomepage from "@/components/loading/LoadingSkeletionforAllsongsectioninHomepage"
 
 const AllNewSongs = () => {
   
@@ -13,16 +14,16 @@ const AllNewSongs = () => {
   setAllSongs(allsongs??[])
 }
 
-useEffect(() => {
-   console.log(AllSongs)
- }, [AllSongs])
- 
-
  useEffect(() => {
    getAllNewSongs()
- }, [])
+  }, [])
+
+  const [showpopup, setshowpopup] = useState(false)
+  
+ if(!AllSongs){
+  return <LoadingSkeletionforAllsongsectioninHomepage/>
+ }
  
- const [showpopup, setshowpopup] = useState(false)
   return (
     <>
     <h2 className="mx-6 my-2 text-2xl font-bold">All NewSongs</h2>
