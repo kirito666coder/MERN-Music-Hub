@@ -17,7 +17,7 @@ const ArtistHeader = ({artist,songs,album}:ArtistAndArtistData) => {
         <span>{songs.length} Songs</span>
         <span>{album.length} Albums</span>
       </div>
-      <PlayAllSongsButton/>
+      <PlayAllSongsButton songs={songs}/>
     </div>
   </div>
   )
