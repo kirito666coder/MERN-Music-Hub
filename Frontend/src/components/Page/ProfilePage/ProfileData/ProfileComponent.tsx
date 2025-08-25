@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
 import { Music, Disc3, Library, PlusCircle, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+import type { Album } from "@/types/album";
+import { useNavigate } from "react-router-dom";
+import { getAllAlbumsApi } from "@/api/AlbumApi";
+import slugify from "slugify";
 
 // Dummy Songs
 const dummySongs = [
@@ -54,54 +59,39 @@ const dummySongs = [
     },
   ];
   
-  // Dummy Albums
-  const dummyAlbums = [
-    {
-      _id: "a1",
-      title: "Dreamscape",
-      coverUrl: "https://images.unsplash.com/photo-1541580622-6c76ad3f7e3a?w=400&h=400&fit=crop",
-    },
-    {
-      _id: "a2",
-      title: "Moonlit Echoes",
-      coverUrl: "https://images.unsplash.com/photo-1497032205916-ac775f0649ae?w=400&h=400&fit=crop",
-    },
-    {
-      _id: "a2",
-      title: "Moonlit Echoes",
-      coverUrl: "https://images.unsplash.com/photo-1497032205916-ac775f0649ae?w=400&h=400&fit=crop",
-    },
-    {
-      _id: "a2",
-      title: "Moonlit Echoes",
-      coverUrl: "https://images.unsplash.com/photo-1497032205916-ac775f0649ae?w=400&h=400&fit=crop",
-    },
-    {
-      _id: "a2",
-      title: "Moonlit Echoes",
-      coverUrl: "https://images.unsplash.com/photo-1497032205916-ac775f0649ae?w=400&h=400&fit=crop",
-    },
-    {
-      _id: "a3",
-      title: "Skyline Stories",
-      coverUrl: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=400&fit=crop",
-    },
-    {
-      _id: "a4",
-      title: "Shadows & Lights",
-      coverUrl: "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=400&h=400&fit=crop",
-    },
-    {
-      _id: "a5",
-      title: "Waves & Dreams",
-      coverUrl: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=400&h=400&fit=crop",
-    },
-  ];
-  
 
 const ProfileComponent = () => {
-  const songs = dummySongs; // replace with API later
-  const albums = dummyAlbums; // replace with API later
+  const songs = dummySongs; 
+  const [albums, setAlbums] = useState<Album[]>([]);
+  const navigate = useNavigate();
+
+  const handleShowAlbums = async () => {
+    try {
+      const res = await getAllAlbumsApi();
+      if (res && "albums" in res && Array.isArray(res.albums)) {
+        setAlbums(res.albums);
+      } else {
+        console.error("API error:", res);
+      }
+    } catch (error) {
+      console.error("Album fetch error:", error);
+    }
+  };
+
+  useEffect(() => {
+    handleShowAlbums();
+  }, []);
+
+  const handleClick = ({
+    albumName,
+    albumId,
+  }: {
+    albumName: string;
+    albumId: string;
+  }) => {
+    const slug = slugify(albumName, { lower: true });
+    navigate(`/library/album/${slug}-${albumId}`);
+  };
 
   return (
     <div className="p-6 space-y-16">
@@ -171,7 +161,7 @@ const ProfileComponent = () => {
           {albums.map((album, index) => (
             <motion.div
               key={album._id}
-              onClick={() => console.log(album)}
+              onClick={() => handleClick({albumId:album._id,albumName:album.title})}
               className="relative cursor-pointer group rounded-2xl overflow-hidden 
                          bg-white/10 backdrop-blur-lg border border-white/20 shadow-lg"
               initial={{ opacity: 0, y: 40 }}
