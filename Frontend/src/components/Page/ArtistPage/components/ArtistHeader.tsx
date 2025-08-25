@@ -1,6 +1,5 @@
-import { Button } from "@/components/ui/button"
+import PlayAllSongsButton from "@/components/Buttons/PlayAllSongsButton"
 import type { ArtistAndArtistData } from "@/types/artist"
-import { Play } from "lucide-react"
 
 const ArtistHeader = ({artist,songs,album}:ArtistAndArtistData) => {
   return (
@@ -18,9 +17,7 @@ const ArtistHeader = ({artist,songs,album}:ArtistAndArtistData) => {
         <span>{songs.length} Songs</span>
         <span>{album.length} Albums</span>
       </div>
-      <Button size="lg" className="mt-2 w-fit self-center sm:self-start">
-        <Play className="mr-2 h-5 w-5" /> Play All
-      </Button>
+      <PlayAllSongsButton/>
     </div>
   </div>
   )
