@@ -78,6 +78,7 @@ const AlbumCompo = () => {
         {/* Description */}
         {album?.description && (
           <div className="mt-6 text-gray-700">{album?.description}</div>
+        
         )}
   
         {/* Songs list */}
