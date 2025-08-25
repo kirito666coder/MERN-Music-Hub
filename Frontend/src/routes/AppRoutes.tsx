@@ -14,6 +14,7 @@ import AlbumPage from "@/pages/AlbumPage"
 import Notification from "@/pages/Notification"
 import NotFoundPage from "@/components/404Page/NotFoundPage"
 import Artist from "@/pages/Artist"
+import ProfileComponent from "@/components/Page/ProfilePage/ProfileData/ProfileComponent"
 
 
 const AppRoutes = () => {
@@ -40,7 +41,7 @@ const AppRoutes = () => {
         <Route path="/liked" element={<LikedSong/>}/>
         
         <Route path="/Profile" element={<Profile/>}>
-        <Route index element={<div>hello</div>}/>
+        <Route index element={<ProfileComponent/>}/>
         <Route path="/Profile/addSongs" element={<AddSongPage/>}/>
         </Route>
 
