@@ -6,64 +6,15 @@ import type { Album } from "@/types/album";
 import { useNavigate } from "react-router-dom";
 import { getAllAlbumsApi } from "@/api/AlbumApi";
 import slugify from "slugify";
+import type { SongData } from "@/types/song";
+import { GetYourSongApi } from "@/api/SongApi";
 
-// Dummy Songs
-const dummySongs = [
-    {
-      _id: "1",
-      title: "Lost in Time",
-      artist: "Cyno",
-      coverUrl: "https://images.unsplash.com/photo-1608889175123-b5d62f2c8951?w=400&h=400&fit=crop",
-    },
-    {
-      _id: "2",
-      title: "Night Drive",
-      artist: "Cyno",
-      coverUrl: "https://images.unsplash.com/photo-1619983081601-5fc16f0a9198?w=400&h=400&fit=crop",
-    },
-    {
-      _id: "3",
-      title: "Eclipse",
-      artist: "Cyno",
-      coverUrl: "https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?w=400&h=400&fit=crop",
-    },
-    {
-      _id: "4",
-      title: "Ocean Breeze",
-      artist: "Cyno",
-      coverUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop",
-    },
-    {
-      _id: "5",
-      title: "City Lights",
-      artist: "Cyno",
-      coverUrl: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&h=400&fit=crop",
-    },
-    {
-      _id: "6",
-      title: "Golden Hour",
-      artist: "Cyno",
-      coverUrl: "https://images.unsplash.com/photo-1473186578172-c141e6798cf4?w=400&h=400&fit=crop",
-    },
-    {
-      _id: "7",
-      title: "Afterglow",
-      artist: "Cyno",
-      coverUrl: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&h=400&fit=crop",
-    },
-    {
-      _id: "8",
-      title: "Dreamcatcher",
-      artist: "Cyno",
-      coverUrl: "https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=400&h=400&fit=crop",
-    },
-  ];
   
 
-const ProfileComponent = () => {
-  const songs = dummySongs; 
-  const [albums, setAlbums] = useState<Album[]>([]);
+const ProfileComponent = () => { 
   const navigate = useNavigate();
+  const [albums, setAlbums] = useState<Album[]>([]);
+   const [songs, setsongs] = useState<SongData[]>([])
 
   const handleShowAlbums = async () => {
     try {
@@ -78,8 +29,16 @@ const ProfileComponent = () => {
     }
   };
 
+  const handleShowSongs = async ()=>{
+    const data = await GetYourSongApi()
+    if(data){
+      setsongs(data)
+    }
+  }
+
   useEffect(() => {
     handleShowAlbums();
+    handleShowSongs();
   }, []);
 
   const handleClick = ({
@@ -117,7 +76,7 @@ const ProfileComponent = () => {
               {/* Cover */}
               <div className="relative h-40">
                 <img
-                  src={song.coverUrl}
+                  src={`${song.coverUrl}`}
                   alt={song.title}
                   className="w-full h-full object-cover"
                 />
@@ -129,7 +88,7 @@ const ProfileComponent = () => {
               {/* Info */}
               <div className="p-4 text-center">
                 <h3 className="font-semibold truncate">{song.title}</h3>
-                <p className="text-sm text-muted-foreground truncate">{song.artist}</p>
+                <p className="text-sm text-muted-foreground truncate">{song.artist.name}</p>
               </div>
             </motion.div>
           ))}
