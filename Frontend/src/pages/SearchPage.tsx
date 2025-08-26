@@ -2,7 +2,7 @@
 const SearchPage = () => {
   return (
     <div>
-      
+      hello
     </div>
   )
 }

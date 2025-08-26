@@ -1,3 +1,6 @@
+import { useNavigate } from "react-router-dom"
+import slugify from "slugify"
+
 // MoodCard.tsx
 type Mood = {
   name: string
@@ -5,8 +8,16 @@ type Mood = {
 }
 
 const MoodCard = ({ mood }: { mood: Mood }) => {
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    const slug = slugify(mood.name, { lower: true });
+    navigate(`/search/${slug}`);
+  };
   return (
-    <div className="relative cursor-pointer rounded-2xl h-60 overflow-hidden group shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105">
+    <div
+    onClick={()=>handleClick()}
+    className="relative cursor-pointer rounded-2xl h-60 overflow-hidden group shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105">
       {/* Background image */}
       <img 
         src={mood.image} 
