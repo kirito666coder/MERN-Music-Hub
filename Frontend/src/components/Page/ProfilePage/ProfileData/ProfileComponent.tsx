@@ -110,7 +110,9 @@ const ProfileComponent = () => {
             <Library className="w-16 h-16 text-gray-400 mb-4" />
             <p className="text-lg font-medium mb-1">No songs yet</p>
             <p className="text-sm mb-6">Start creating and share your vibe 🎶</p>
-            <Button>
+            <Button onClick={()=>{
+              navigate('/profile/addSongs')
+            }}>
               <PlusCircle className="mr-2 h-4 w-4" /> Upload Song
             </Button>
           </motion.div>
@@ -179,7 +181,9 @@ const ProfileComponent = () => {
             <Disc3 className="w-16 h-16 text-gray-400 mb-4" />
             <p className="text-lg font-medium mb-1">No albums yet</p>
             <p className="text-sm mb-6">Create an album and showcase your music 📀</p>
-            <Button>
+            <Button onClick={()=>{
+              navigate('/library')
+            }}>
               <PlusCircle className="mr-2 h-4 w-4" /> Create Album
             </Button>
           </motion.div>
