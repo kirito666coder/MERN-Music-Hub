@@ -3,12 +3,14 @@ import Search from "@/components/MainLayoutComponents/Search";
 import type { Artist } from "@/types/artist";
 import type { SongData } from "@/types/song";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import PlayButton from "@/components/Buttons/PlayButton";
+import slugify from "slugify";
 
 const SearchPage = () => {
     const { slug } = useParams();
+    const navigate = useNavigate()
     const [songs, setSongs] = useState<SongData[]>([]);
     const [artists, setArtists] = useState<Artist[]>([]);
     const [loading, setLoading] = useState(false);
@@ -29,6 +31,11 @@ const SearchPage = () => {
             setLoading(false);
         }
     };
+
+    const HandleClickArtis = ({artistName,artistId}:{artistName:string,artistId:string})=>{
+        const slug = slugify(artistName,{lower:true})
+        navigate(`/artist/${slug}-${artistId}`)
+       }
 
     useEffect(() => {
         handleSearch();
@@ -57,6 +64,7 @@ const SearchPage = () => {
                                 key={artist._id}
                                 className="flex-shrink-0 w-32 cursor-pointer rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700"
                                 whileHover={{ scale: 1.05 }}
+                                onClick={()=> HandleClickArtis({artistName:artist.name,artistId:artist._id})}
                             >
                                 <div className="w-full h-32 relative">
                                     <img
