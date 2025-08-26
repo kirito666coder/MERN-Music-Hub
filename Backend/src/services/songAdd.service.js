@@ -307,3 +307,25 @@ export const GetSongbyArtistId = async ({artistId})=>{
   return songs;
 
 }
+
+export const GetSongByUserId = async ({userId})=>{
+  
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
+    throw new Error('Invalid userId');
+  }
+
+  const user = await UserModel.findById(userId);
+
+  if (!user) {
+    throw new Error('User not found');
+  }
+
+  const Songs = await SongModel.find({userId})
+  .populate({
+    path:"artist",
+    select:"name"
+  })
+  .lean();
+
+  return Songs;
+}
