@@ -1,5 +1,5 @@
 import type {SongFormFields } from "@/types/song";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { renderLabel } from "./HandlerForAddSongForm";
 import { AddSongApi } from "@/api/SongApi";
@@ -8,6 +8,8 @@ import type { artistSearch } from "@/types/artist";
 import { getAllAlbumsApi } from "@/api/AlbumApi";
 import { useNavigate } from "react-router-dom";
 import type { Album } from "@/types/album";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddSongForm = () => {
   const [formData, setFormData] = useState<SongFormFields>({
@@ -30,19 +32,20 @@ const AddSongForm = () => {
   const [duration, setDuration] = useState<number>(0);
 
   const [artistSuggestions, setArtistSuggestions] = useState<artistSearch[]>([]);
-  const [artistName, setartistName] = useState('')
+  const [artistName, setartistName] = useState('');
 
   const [albumSuggestions, setAlbumSuggestions] = useState<Album[]>([]);
-  const [albumName, setalbumName] = useState('')
+  const [albumName, setalbumName] = useState('');
   const [showAlbumOptions, setShowAlbumOptions] = useState(false);
 
-  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
   
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-
     const isCheckbox = (target: EventTarget): target is HTMLInputElement =>
       (target as HTMLInputElement).type === "checkbox";
 
@@ -74,14 +77,12 @@ const AddSongForm = () => {
   const handleArtistChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setFormData((prev) => ({ ...prev, artist: value }));
-    setartistName(value)
+    setartistName(value);
     if (value.length >= 2) {
       try {
-        const res = await SearchArtistApi(value)
+        const res = await SearchArtistApi(value);
         setArtistSuggestions(res ?? []);
-        console.log(res)
-      } catch (error) {
-        console.error("Artist search error:", error);
+      } catch {
         setArtistSuggestions([]);
       }
     } else {
@@ -89,83 +90,73 @@ const AddSongForm = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(artistSuggestions, 'this is data')
-  }, [artistSuggestions])
-
   const handleShowAllAlbums = async () => {
     try {
-      const res = await getAllAlbumsApi()
-
-      if (res && 'albums' in res && Array.isArray(res.albums)) {
-        setAlbumSuggestions(res.albums);
-        console.log(res)
-      } else {
-        console.error("API error:", res);
-        setAlbumSuggestions([]);
-      }
+      const res = await getAllAlbumsApi();
+      if (res && "albums" in res && Array.isArray(res.albums)) setAlbumSuggestions(res.albums);
+      else setAlbumSuggestions([]);
       setShowAlbumOptions(true);
-    } catch (error) {
-      console.error("Album fetch error:", error);
+    } catch {
       setAlbumSuggestions([]);
       setShowAlbumOptions(true);
     }
   };
 
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
     const songData = {
       ...formData,
-      genre: typeof formData.genre === 'string'
-      ? formData.genre.split(',').map(g => g.trim()).filter(Boolean)
-      : formData.genre,
-    tags: typeof formData.tags === 'string'
-      ? formData.tags.split(',').map(t => t.trim()).filter(Boolean)
-      : formData.tags,
+      genre: typeof formData.genre === 'string' ? formData.genre.split(',').map(g => g.trim()).filter(Boolean) : formData.genre,
+      tags: typeof formData.tags === 'string' ? formData.tags.split(',').map(t => t.trim()).filter(Boolean) : formData.tags,
       duration,
       audioUrl,
       coverUrl,
     };
-     
 
-    console.log(songData.tags)
-
-    const song = await AddSongApi(songData)
-
-    console.log("song", song)
-
-    if ('error' in song) {
-      alert(song.message);
-    } else {
-      alert("Song created successfully!");
-
-      setFormData({
-        title: "",
-        artist: "",
-        album: "",
-        genre: [],
-        language: "",
-        releaseDate: "",
-        lyrics: "",
-        description: "",
-        tags: [],
-        isPublic: true,
-        mood: "none",
-      });
-      setaudioUrl(null);
-      setcoverUrl(null);
-      setImagePreview("");
-      setartistName("");
-      setalbumName("");
+    try {
+      const song = await AddSongApi(songData);
+      if ("error" in song) {
+        toast.error(song.message || "Error creating song");
+      } else {
+        toast.success("Song created successfully!");
+        setFormData({
+          title: "",
+          artist: "",
+          album: "",
+          genre: [],
+          language: "",
+          releaseDate: "",
+          lyrics: "",
+          description: "",
+          tags: [],
+          isPublic: true,
+          mood: "none",
+        });
+        setaudioUrl(null);
+        setcoverUrl(null);
+        setImagePreview("");
+        setartistName("");
+        setalbumName("");
+      }
+    } catch  {
+      toast.error("Error creating song");
+    } finally {
+      setLoading(false);
     }
-
   };
 
-
   return (
-    <div className="max-w-4xl mx-auto p-4">
+    <div className="max-w-4xl mx-auto p-4 relative">
+      {/* Loader */}
+      {loading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+          <div className="w-16 h-16 border-4 border-t-pink-500 border-r-blue-500 border-b-pink-500 border-l-blue-500 rounded-full animate-spin"></div>
+        </div>
+      )}
+
+      <ToastContainer position="top-right" autoClose={3000} />
       <h1 className="text-2xl font-bold mb-6">Add New Song</h1>
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Basic Fields */}
