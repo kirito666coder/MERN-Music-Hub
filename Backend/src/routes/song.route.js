@@ -35,6 +35,6 @@ SongRouter.get('/popularsongs',GetPopularSongsController)
 
 SongRouter.get('/search',SearchForSongsController)
 
-SongRouter.get("/song",GetYouSongsController)
+SongRouter.get("/yoursongs",GetYouSongsController)
 
 export default SongRouter;

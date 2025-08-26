@@ -131,3 +131,15 @@ export const SearchSongsApi = async (value:string):Promise<searchInterface|null>
     return null
   }
 }
+
+export const GetYourSongApi = async ():Promise<SongData |null>=>{
+  try {
+    const res = await api.get('/api/song/yoursongs')
+
+    return res.data;
+    
+  } catch (error) {
+    console.log(error)
+    return null;
+  }
+}
