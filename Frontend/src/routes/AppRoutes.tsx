@@ -15,6 +15,7 @@ import Notification from "@/pages/Notification"
 import NotFoundPage from "@/components/404Page/NotFoundPage"
 import Artist from "@/pages/Artist"
 import ProfileComponent from "@/components/Page/ProfilePage/ProfileData/ProfileComponent"
+import SearchPage from "@/pages/SearchPage"
 
 
 const AppRoutes = () => {
@@ -44,6 +45,8 @@ const AppRoutes = () => {
         <Route index element={<ProfileComponent/>}/>
         <Route path="/Profile/addSongs" element={<AddSongPage/>}/>
         </Route>
+
+        <Route path="/search/:slug" element={<SearchPage/>}/>
 
         <Route path="/settings" element={<Setting/>}/>
         <Route path="/notification" element={<Notification/>}/>
