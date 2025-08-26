@@ -48,7 +48,9 @@ const AppRoutes = () => {
 
         <Route path="/search/:slug" element={<SearchPage/>}/>
 
-        <Route path="/settings" element={<Setting/>}/>
+        <Route path="/settings" element={<Setting/>}>
+        
+        </Route>
         <Route path="/notification" element={<Notification/>}/>
 
         <Route path="/artist/:slugAndId" element={<Artist/>}/>

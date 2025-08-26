@@ -1,8 +1,9 @@
+import SettingHeader from "@/components/Page/Settings/HeaderForSetting/SettingHeader"
 
 const Setting = () => {
   return (
     <div>
-      setting
+      <SettingHeader/>
     </div>
   )
 }
