@@ -43,6 +43,13 @@ const Search = () => {
     return () => clearTimeout(timeout);
   }, [query]);
 
+  const handleClick = () => {
+    if(!query.trim()) return;
+    const slug = slugify(query, { lower: true });
+    navigate(`/search/${slug}`);
+    setQuery('')
+  };
+
   const HandleClickArtis = ({artistName,artistId}:{artistName:string,artistId:string})=>{
    const slug = slugify(artistName,{lower:true})
    navigate(`/artist/${slug}-${artistId}`)
@@ -62,7 +69,7 @@ const Search = () => {
           className="w-full px-5 py-3 bg-transparent focus:outline-none"
         />
         <button
-          onClick={() => handleSearch(query)}
+          onMouseDown={() => handleClick()}
           className="bg-gradient-to-r from-[#f43f5e] to-[#0062ff] px-4 py-3 flex items-center justify-center hover:opacity-90 transition cursor-pointer"
         >
           <SearchIcon className="w-5 h-5 text-white" />
