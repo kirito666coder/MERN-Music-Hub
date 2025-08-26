@@ -1,6 +1,6 @@
 import { FindArtistWithArtistId } from "../services/artist.service.js";
 import { audioUpload, getSongUrl, imageUpload } from "../services/cloudinaryUpload.service.js";
-import { AddSong, AddsongInAlbum, artistSongsService, findSong, FindSongIDinUserLikeSeverice, genreMododSongSService, getAllSongs, getLikesongService, GetPopularSongsService, likeSong, PlaySongCountUpdateService, recentSongService, SearchForsongsService, unlikeSong } from "../services/songAdd.service.js";
+import { AddSong, AddsongInAlbum, artistSongsService, findSong, FindSongIDinUserLikeSeverice, genreMododSongSService, getAllSongs, getLikesongService, GetPopularSongsService, GetSongByUserIdService, likeSong, PlaySongCountUpdateService, recentSongService, SearchForsongsService, unlikeSong } from "../services/songAdd.service.js";
 
 export const AddSongController = async (req, res) => {
      try {
@@ -177,3 +177,17 @@ export const SearchForSongsController = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error", error });
   }
 };
+
+export const GetYouSongsController = async (req,res)=>{
+  try {
+
+    const userId = req.user._id;   
+
+    const songs = await GetSongByUserIdService({userId})
+
+    res.status(200).json({songs})
+
+  } catch (error) {
+    res.status(500).json({message:"Internal server Error"})
+  }
+}

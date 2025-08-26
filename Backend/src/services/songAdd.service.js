@@ -308,7 +308,7 @@ export const GetSongbyArtistId = async ({artistId})=>{
 
 }
 
-export const GetSongByUserId = async ({userId})=>{
+export const GetSongByUserIdService = async ({userId})=>{
   
   if (!mongoose.Types.ObjectId.isValid(userId)) {
     throw new Error('Invalid userId');

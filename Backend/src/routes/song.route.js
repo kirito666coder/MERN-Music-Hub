@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { AddSongController, GetAllSongControllere, getLikesongsController, GetPopularSongsController, GetSimilarSongController, GetStreamSongController, SearchForSongsController, UpdateLikeController } from "../controllers/song.controller.js";
+import { AddSongController, GetAllSongControllere, getLikesongsController, GetPopularSongsController, GetSimilarSongController, GetStreamSongController, GetYouSongsController, SearchForSongsController, UpdateLikeController } from "../controllers/song.controller.js";
 import multer from 'multer'
 
 const SongRouter = Router()
@@ -34,5 +34,7 @@ SongRouter.get('/likesong',getLikesongsController)
 SongRouter.get('/popularsongs',GetPopularSongsController)
 
 SongRouter.get('/search',SearchForSongsController)
+
+SongRouter.get("/song",GetYouSongsController)
 
 export default SongRouter;
