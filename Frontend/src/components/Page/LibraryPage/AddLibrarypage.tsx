@@ -1,22 +1,18 @@
 import { CreateAlbumApi } from '@/api/AlbumApi';
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AddLibraryPage() {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    genres: '',
-  });
+  const [formData, setFormData] = useState({ title: '', description: '', genres: '' });
   const [coverFile, setCoverFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [Loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +29,7 @@ function AddLibraryPage() {
     e.preventDefault();
 
     if (!formData.title.trim()) {
-      alert('Title is required');
+      toast.error('Title is required');
       return;
     }
 
@@ -44,13 +40,13 @@ function AddLibraryPage() {
     if (coverFile) data.append('cover', coverFile);
 
     try {
+      setLoading(true);
+      setShowModal(false)
       const res = await CreateAlbumApi(data);
-      console.log(res);
-
       if ('error' in res) {
-        alert(res.message);
+        toast.error(res.message || 'Error creating album');
       } else {
-        alert('Album created!');
+        toast.success('Album created!');
         setShowModal(false);
         setFormData({ title: '', description: '', genres: '' });
         setCoverFile(null);
@@ -58,16 +54,28 @@ function AddLibraryPage() {
       }
     } catch (err) {
       console.error(err);
-      alert('Error creating album');
+      toast.error('Error creating album');
+    } finally {
+      setLoading(false);
     }
-
   };
 
   return (
-    <div className="p-4">
+    <div className="relative p-4">
+      {/* Circular Loader */}
+      {Loading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+          <div className="w-16 h-16 border-4 border-t-pink-500 border-r-blue-500 border-b-pink-500 border-l-blue-500 rounded-full animate-spin"></div>
+        </div>
+      )}
+
+      {/* Toast Container */}
+      <ToastContainer position="top-right" autoClose={3000} />
+
+      {/* Add Album Button */}
       <button
         onClick={() => setShowModal(true)}
-        className="flex flex-col items-center justify-center w-[100%] h-40 rounded-lg bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] text-white hover:opacity-90 transition z-40"
+        className="flex flex-col items-center justify-center w-full h-40 rounded-lg bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] text-white hover:opacity-90 transition z-40"
       >
         <div className="flex flex-col items-center justify-center w-[96%] md:w-[98%] h-34 border-2 border-dashed border-white rounded-lg">
           <span className="text-7xl">+</span>
@@ -75,7 +83,7 @@ function AddLibraryPage() {
         </div>
       </button>
 
-
+      {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center overflow-y-auto z-50 bg-white/30 dark:bg-black/30">
           <div className="relative w-full lg:max-w-[80%] md:max-w-[75%] mx-4 my-8 p-6 rounded-xl shadow-lg dark:shadow-black max-h-[90vh] overflow-y-auto bg-white/70 dark:bg-black/70 backdrop-blur-2xl">
@@ -148,7 +156,12 @@ function AddLibraryPage() {
               </div>
 
               <div>
-                <label className="block mb-1">Cover Image</label>
+                <label className="block mb-1">
+                  Cover Image{' '}
+                  <span className="bg-gradient-to-br from-[#f43f5e] to-[#3b82f6] bg-clip-text text-transparent ml-1">
+                    *
+                  </span>
+                </label>
                 <input
                   type="file"
                   accept="image/*"
@@ -167,7 +180,6 @@ function AddLibraryPage() {
           </div>
         </div>
       )}
-
     </div>
   );
 }
