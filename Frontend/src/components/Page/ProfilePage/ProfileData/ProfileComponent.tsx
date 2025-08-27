@@ -58,7 +58,7 @@ const ProfileComponent = () => {
       {/* Songs Section */}
       <section>
         <h2 className="text-2xl font-bold flex items-center gap-2 mb-6">
-          <Music className="w-6 h-6 text-purple-500" /> Songs
+          <Music className="w-6 h-6 " /> Songs
         </h2>
 
         {songs.length > 0 ? (
@@ -109,7 +109,7 @@ const ProfileComponent = () => {
           >
             <Library className="w-16 h-16 text-gray-400 mb-4" />
             <p className="text-lg font-medium mb-1">No songs yet</p>
-            <p className="text-sm mb-6">Start creating and share your vibe 🎶</p>
+            <p className="text-sm mb-6 flex gap-2">Start creating and share your vibe <Music/></p>
             <Button onClick={()=>{
               navigate('/profile/addSongs')
             }}>
@@ -122,7 +122,7 @@ const ProfileComponent = () => {
       {/* Albums Section (keep the same grid) */}
       <section>
         <h2 className="text-2xl font-bold flex items-center gap-2 mb-6">
-          <Disc3 className="w-6 h-6 text-pink-500" /> Albums
+          <Disc3 className="w-6 h-6" /> Albums
         </h2>
 
         {albums.length > 0 ? (
@@ -180,7 +180,7 @@ const ProfileComponent = () => {
           >
             <Disc3 className="w-16 h-16 text-gray-400 mb-4" />
             <p className="text-lg font-medium mb-1">No albums yet</p>
-            <p className="text-sm mb-6">Create an album and showcase your music 📀</p>
+            <p className="text-sm mb-6 flex gap-2">Create an album and showcase your music <Disc3></Disc3></p>
             <Button onClick={()=>{
               navigate('/library')
             }}>

@@ -16,6 +16,7 @@ import NotFoundPage from "@/components/404Page/NotFoundPage"
 import Artist from "@/pages/Artist"
 import ProfileComponent from "@/components/Page/ProfilePage/ProfileData/ProfileComponent"
 import SearchPage from "@/pages/SearchPage"
+import EditProfile from "@/components/Page/Settings/AcountSettings/EditProfile"
 
 
 const AppRoutes = () => {
@@ -49,6 +50,7 @@ const AppRoutes = () => {
         <Route path="/search/:slug" element={<SearchPage/>}/>
 
         <Route path="/settings" element={<Setting/>}>
+          <Route path="editProfile" element={<EditProfile/>}/>
           <Route path="manageSongs" element={<div>🎵 Manage Songs Page</div>} />
           <Route path="manageAlbums" element={<div>💿 Manage Albums</div>} />
           <Route path="manageArtists" element={<div>🎤 Manage Artists</div>} />
@@ -60,7 +62,6 @@ const AppRoutes = () => {
           <Route path="privacyControls" element={<div>🔒 Privacy Controls</div>} />
           <Route path="connectedDevices" element={<div>📱 Connected Devices</div>} />
           <Route path="logoutDevices" element={<div>🚪 Logged Out Devices</div>} />
-          <Route path="editProfile" element={<div>👤 Edit Profile</div>} />
           <Route path="changePassword" element={<div>🔑 Change Password</div>} />
           <Route path="deleteAccount" element={<div>🗑️ Delete Account</div>} />
         </Route>
