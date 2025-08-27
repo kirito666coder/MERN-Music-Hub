@@ -1,3 +1,36 @@
+import { NavLink } from "react-router-dom";
+
+type SettingLink = {
+  label: string;
+  path: string;
+  danger?: boolean;
+};
+
+const settingsLinks: Record<string, SettingLink[]> = {
+  "Music & Library": [
+    { label: "Manage Songs", path: "manageSongs" },
+    { label: "Manage Albums", path: "manageAlbums" },
+    { label: "Manage Artists", path: "manageArtists" },
+    { label: "Liked Songs", path: "likedSongs" },
+    { label: "Playlists", path: "playlists" },
+  ],
+  "App Preferences": [
+    { label: "Theme", path: "theme" },
+    { label: "Notifications", path: "notifications" },
+    { label: "Language", path: "language" },
+  ],
+  "Privacy & Security": [
+    { label: "Privacy Controls", path: "privacyControls" },
+    { label: "Connected Devices", path: "connectedDevices" },
+    { label: "Log out from all devices", path: "logoutDevices" },
+  ],
+  Account: [
+    { label: "Edit Profile", path: "editProfile" },
+    { label: "Change Password", path: "changePassword", danger: true },
+    { label: "Delete Account", path: "deleteAccount", danger: true },
+  ],
+};
+
 const SettingList = () => {
   return (
     <div className="h-full p-6 space-y-8">
@@ -18,87 +51,34 @@ const SettingList = () => {
         </div>
       </div>
 
-      {/* Settings Sections */}
+      {/* Dynamic Settings Sections */}
       <div className="space-y-6">
-        {/* Music & Library */}
-        <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-3">
-            Music & Library
-          </h3>
-          <ul className="divide-y dark:divide-white/20 border dark:border-white/20 divide-gray-300 border-gray-300 rounded-lg overflow-hidden">
-            <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-white/5 cursor-pointer transition">
-              Manage Songs
-            </li>
-            <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-white/5 cursor cursor-pointer transition">
-              Manage Albums
-            </li>
-            <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-white/5 cursor cursor-pointer transition">
-              Manage Artists
-            </li>
-            <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-white/5 cursor cursor-pointer transition">
-              Liked Songs
-            </li>
-            <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-white/5 cursor cursor-pointer transition">
-              Playlists
-            </li>
-          </ul>
-        </div>
-
-        {/* App Preferences */}
-        <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-3">
-            App Preferences
-          </h3>
-          <ul className="divide-y dark:divide-white/20 border dark:border-white/20 divide-gray-300 border-gray-300  rounded-lg overflow-hidden">
-            <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-white/5 cursor cursor-pointer transition">
-              Theme
-            </li>
-            <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-white/5 cursor cursor-pointer transition">
-              Notifications
-            </li>
-            <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-white/5 cursor cursor-pointer transition">
-              Language
-            </li>
-          </ul>
-        </div>
-
-        {/* Privacy & Security */}
-        <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-3">
-            Privacy & Security
-          </h3>
-          <ul className="divide-y dark:divide-white/20 border dark:border-white/20 divide-gray-300 border-gray-300  rounded-lg overflow-hidden">
-            <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-white/5 cursor cursor-pointer transition">
-              Privacy Controls
-            </li>
-            <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-white/5 cursor cursor-pointer transition">
-              Connected Devices
-            </li>
-            <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-white/5 cursor cursor-pointer transition">
-              Log out from all devices
-            </li>
-          </ul>
-        </div>
+        {Object.entries(settingsLinks).map(([section, links]) => (
+          <div key={section}>
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-3">
+              {section}
+            </h3>
+            <ul className="divide-y dark:divide-white/20 border dark:border-white/20 divide-gray-300 border-gray-300 rounded-lg overflow-hidden">
+              {links.map(({ label, path, danger }) => (
+                <li key={path}>
+                  <NavLink
+                    to={`/settings/${path}`}
+                    className={({ isActive }) =>
+                      `block px-4 py-2 transition cursor-pointer ${
+                        isActive
+                          ? "bg-gray-200 dark:bg-white/10 font-medium"
+                          : "hover:bg-gray-100 dark:hover:bg-white/5"
+                      } ${danger ? "text-red-500" : ""}`
+                    }
+                  >
+                    {label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
-
-
-        {/* Account */}
-        <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-3">
-            Account
-          </h3>
-          <ul className="divide-y dark:divide-white/20 border dark:border-white/20 divide-gray-300 border-gray-300  rounded-lg overflow-hidden">
-            <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-white/5 cursor cursor-pointer transition">
-              Edit Profile
-            </li>
-            <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-white/5 cursor cursor-pointer transition text-red-500/90">
-              Change Password
-            </li>
-            <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-white/5 cursor cursor-pointer transition text-red-500">
-              Delete Account
-            </li>
-          </ul>
-        </div>
     </div>
   );
 };
