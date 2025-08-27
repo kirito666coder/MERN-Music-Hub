@@ -24,6 +24,10 @@ type SettingLink = {
 };
 
 const settingsLinks: Record<string, SettingLink[]> = {
+  Account: [
+    { label: "Edit Profile", path: "editProfile", icon: <User size={18} /> },
+    
+  ],
   "Music & Library": [
     { label: "Manage Songs", path: "manageSongs", icon: <Music size={18} /> },
     { label: "Manage Albums", path: "manageAlbums", icon: <Disc size={18} /> },
@@ -47,14 +51,14 @@ const settingsLinks: Record<string, SettingLink[]> = {
       path: "connectedDevices",
       icon: <Smartphone size={18} />,
     },
+  ],
+  " Danger Zone":[
     {
-      label: "Log out from all devices",
+      label: "Log out ",
       path: "logoutDevices",
       icon: <LogOut size={18} />,
+      danger:true,
     },
-  ],
-  Account: [
-    { label: "Edit Profile", path: "editProfile", icon: <User size={18} /> },
     {
       label: "Change Password",
       path: "changePassword",
@@ -68,6 +72,8 @@ const settingsLinks: Record<string, SettingLink[]> = {
       danger: true,
     },
   ],
+ 
+  
 };
 
 const SettingList = () => {
