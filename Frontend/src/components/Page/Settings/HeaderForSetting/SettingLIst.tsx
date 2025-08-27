@@ -1,33 +1,72 @@
 import { NavLink } from "react-router-dom";
+import {
+  Music,
+  Disc,
+  Mic,
+  Heart,
+  ListMusic,
+  Palette,
+  Bell,
+  Globe,
+  Shield,
+  Smartphone,
+  LogOut,
+  User,
+  Key,
+  Trash2,
+} from "lucide-react";
 
 type SettingLink = {
   label: string;
   path: string;
+  icon: React.ReactNode;
   danger?: boolean;
 };
 
 const settingsLinks: Record<string, SettingLink[]> = {
   "Music & Library": [
-    { label: "Manage Songs", path: "manageSongs" },
-    { label: "Manage Albums", path: "manageAlbums" },
-    { label: "Manage Artists", path: "manageArtists" },
-    { label: "Liked Songs", path: "likedSongs" },
-    { label: "Playlists", path: "playlists" },
+    { label: "Manage Songs", path: "manageSongs", icon: <Music size={18} /> },
+    { label: "Manage Albums", path: "manageAlbums", icon: <Disc size={18} /> },
+    { label: "Manage Artists", path: "manageArtists", icon: <Mic size={18} /> },
+    { label: "Liked Songs", path: "likedSongs", icon: <Heart size={18} /> },
+    { label: "Playlists", path: "playlists", icon: <ListMusic size={18} /> },
   ],
   "App Preferences": [
-    { label: "Theme", path: "theme" },
-    { label: "Notifications", path: "notifications" },
-    { label: "Language", path: "language" },
+    { label: "Theme", path: "theme", icon: <Palette size={18} /> },
+    { label: "Notifications", path: "notifications", icon: <Bell size={18} /> },
+    { label: "Language", path: "language", icon: <Globe size={18} /> },
   ],
   "Privacy & Security": [
-    { label: "Privacy Controls", path: "privacyControls" },
-    { label: "Connected Devices", path: "connectedDevices" },
-    { label: "Log out from all devices", path: "logoutDevices" },
+    {
+      label: "Privacy Controls",
+      path: "privacyControls",
+      icon: <Shield size={18} />,
+    },
+    {
+      label: "Connected Devices",
+      path: "connectedDevices",
+      icon: <Smartphone size={18} />,
+    },
+    {
+      label: "Log out from all devices",
+      path: "logoutDevices",
+      icon: <LogOut size={18} />,
+    },
   ],
   Account: [
-    { label: "Edit Profile", path: "editProfile" },
-    { label: "Change Password", path: "changePassword", danger: true },
-    { label: "Delete Account", path: "deleteAccount", danger: true },
+    { label: "Edit Profile", path: "editProfile", icon: <User size={18} /> },
+    {
+      label: "Change Password",
+      path: "changePassword",
+      icon: <Key size={18} />,
+      danger: true,
+    },
+    {
+      label: "Delete Account",
+      path: "deleteAccount",
+      icon: <Trash2 size={18} />,
+      danger: true,
+    },
   ],
 };
 
@@ -59,19 +98,20 @@ const SettingList = () => {
               {section}
             </h3>
             <ul className="divide-y dark:divide-white/20 border dark:border-white/20 divide-gray-300 border-gray-300 rounded-lg overflow-hidden">
-              {links.map(({ label, path, danger }) => (
+              {links.map(({ label, path, icon, danger }) => (
                 <li key={path}>
                   <NavLink
                     to={`/settings/${path}`}
                     className={({ isActive }) =>
-                      `block px-4 py-2 transition cursor-pointer ${
+                      `flex items-center gap-3 px-4 py-2 transition cursor-pointer ${
                         isActive
                           ? "bg-gray-200 dark:bg-white/10 font-medium"
                           : "hover:bg-gray-100 dark:hover:bg-white/5"
                       } ${danger ? "text-red-500" : ""}`
                     }
                   >
-                    {label}
+                    {icon}
+                    <span>{label}</span>
                   </NavLink>
                 </li>
               ))}
