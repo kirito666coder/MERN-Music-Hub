@@ -15,6 +15,8 @@ import {
   Key,
   Trash2,
 } from "lucide-react";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/app/store";
 
 type SettingLink = {
   label: string;
@@ -77,24 +79,28 @@ const settingsLinks: Record<string, SettingLink[]> = {
 };
 
 const SettingList = () => {
+  const {user} = useSelector((state:RootState)=>state.user)
+  console.log(user)
   return (
     <div className="h-full p-6 space-y-8">
       {/* User Info */}
+      <NavLink to={'/profile'} className={'mb-10 block'}>
       <div className="flex items-center space-x-4">
         <img
-          src="/dummy-user.jpg"
-          alt="User"
+          src={`${user?.image}`}
+          alt={user?.name}
           className="w-16 h-16 rounded-full object-cover border border-white/20"
-        />
+          />
         <div>
           <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-            John Doe
+            {user?.name}
           </h2>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            johndoe@email.com
+            {user?.email}
           </p>
         </div>
       </div>
+          </NavLink>
 
       {/* Dynamic Settings Sections */}
       <div className="space-y-6">

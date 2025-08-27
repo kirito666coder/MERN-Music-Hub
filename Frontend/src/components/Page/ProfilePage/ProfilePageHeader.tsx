@@ -1,5 +1,7 @@
 import type { RootState } from "@/app/store"
+import { User } from "lucide-react";
 import { useSelector } from "react-redux"
+import { NavLink } from "react-router-dom";
 
 const ProfilePageHeader = () => {
   const { user } = useSelector((state: RootState) => state.user)
@@ -23,8 +25,20 @@ const ProfilePageHeader = () => {
           <h3 className="text-sm font-semibold">{user?.email}</h3>
         </div>
       </div>
-      <p className=" h-10 w-[90%] rounded-2xl border-2 mx-auto mt-5 flex items-center px-3 py-1">Bio</p>
-      <button className="h-10 w-[90%] rounded-2xl border-3 mx-auto mt-5 flex items-center justify-center py-5 dark:hover:bg-gray-700 dark:bg-gray-800 cursor-pointer bg-gray-300 hover:bg-gray-200">Edit Profile</button>
+      <NavLink to="/settings/editProfile" className="block">
+      <button
+        className=" cursor-pointer w-[90%] h-12 mx-auto mt-6 flex items-center justify-center gap-2
+                   rounded-xl border border-gray-200 dark:border-gray-700
+                   bg-white/30 dark:bg-black/30 backdrop-blur-md
+                   text-gray-800 dark:text-gray-200 font-medium
+                   shadow-md hover:shadow-lg
+                   transition-all duration-300 ease-in-out transform hover:scale-[1.02]
+                   hover:bg-white/40 dark:hover:bg-black/40"
+      >
+        <User className="w-5 h-5" />
+        Edit Profile
+      </button>
+    </NavLink>
             </div>
     </div>
   )
