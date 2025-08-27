@@ -31,7 +31,7 @@ const HeaderForBigScreens = () => {
         
         <ModeToggle/>
 
-        <Link to={'/settings'}>
+        <Link to={'/settings/editProfile'}>
         <SettingsLogo/>
         </Link>
         

@@ -30,7 +30,7 @@ const ProFileDropDownMenuForSmallScreens = () => {
                         Profile
                     </DropdownMenuItem>
                 </Link>
-                <Link to={'settings'}>
+                <Link to={'settings/editProfile'}>
                 <DropdownMenuItem className="cursor-pointer">Settings</DropdownMenuItem>
                 </Link>
                 <DropdownMenuLabel className="border-b-1 pt-4 text-md">Theme</DropdownMenuLabel>
