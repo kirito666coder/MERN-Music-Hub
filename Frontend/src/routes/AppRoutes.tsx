@@ -49,8 +49,23 @@ const AppRoutes = () => {
         <Route path="/search/:slug" element={<SearchPage/>}/>
 
         <Route path="/settings" element={<Setting/>}>
-        
+          <Route path="manageSongs" element={<div>🎵 Manage Songs Page</div>} />
+          <Route path="manageAlbums" element={<div>💿 Manage Albums</div>} />
+          <Route path="manageArtists" element={<div>🎤 Manage Artists</div>} />
+          <Route path="likedSongs" element={<div>❤️ Liked Songs</div>} />
+          <Route path="playlists" element={<div>📂 Playlists</div>} />
+          <Route path="theme" element={<div>🎨 Theme</div>} />
+          <Route path="notifications" element={<div>🔔 Notifications</div>} />
+          <Route path="language" element={<div>🌍 Language</div>} />
+          <Route path="privacyControls" element={<div>🔒 Privacy Controls</div>} />
+          <Route path="connectedDevices" element={<div>📱 Connected Devices</div>} />
+          <Route path="logoutDevices" element={<div>🚪 Logged Out Devices</div>} />
+          <Route path="editProfile" element={<div>👤 Edit Profile</div>} />
+          <Route path="changePassword" element={<div>🔑 Change Password</div>} />
+          <Route path="deleteAccount" element={<div>🗑️ Delete Account</div>} />
         </Route>
+
+
         <Route path="/notification" element={<Notification/>}/>
 
         <Route path="/artist/:slugAndId" element={<Artist/>}/>
