@@ -19,4 +19,10 @@ AuthRoute.get('/profile',
     profileController
 )
 
+app.get("/logout", (req, res) => {
+    res.clearCookie("jwt"); 
+    res.status(200).json({ message: "Logged out successfully" });
+  });
+  
+
 export default AuthRoute;
