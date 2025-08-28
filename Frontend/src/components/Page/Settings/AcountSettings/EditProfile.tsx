@@ -60,10 +60,10 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="w-full min-h-screen flex items-center justify-center p-6 bg-gray-50 dark:bg-black/90">
+    <div className="w-full flex items-center justify-center p-6 ">
       <ToastContainer />
       <div
-        className="w-full max-w-2xl rounded-2xl mt-20 backdrop-blur-xl 
+        className="w-full max-w-2xl rounded-2xl mt-50 backdrop-blur-xl 
                    border border-gray-200 dark:border-white/20
                    shadow-2xl p-8 flex flex-col gap-8 bg-white/10 dark:bg-black/20"
       >
@@ -107,10 +107,10 @@ const EditProfile = () => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 rounded-xl 
-                           bg-white border border-gray-200 
+                            border border-gray-200 
                            text-black placeholder-gray-400 
                            focus:ring-2 focus:outline-none 
-                           dark:bg-white/5 dark:border-white/20 
+                            dark:border-white/20 
                            dark:text-white dark:placeholder-gray-500"
                 placeholder="Enter your username"
               />
@@ -126,10 +126,10 @@ const EditProfile = () => {
               value={bio}
               onChange={(e) => setBio(e.target.value)}
               className="w-full min-h-[100px] p-4 rounded-xl 
-                         bg-white border border-gray-200 
+                          border border-gray-200 
                          text-black placeholder-gray-400 
                          focus:ring-2 focus:outline-none resize-none
-                         dark:bg-white/5 dark:border-white/20 
+                          dark:border-white/20 
                          dark:text-white dark:placeholder-gray-500"
               placeholder="Tell us about yourself..."
             />

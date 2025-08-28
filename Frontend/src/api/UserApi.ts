@@ -17,3 +17,17 @@ export const GetUserApi = async (): Promise<User | null> => {
         return null;
     }
 }
+interface ChangedData {
+    username?: string;
+    bio?: string;
+    profileImage?: string;
+  }
+export const EditUserApi = async ({changedata}:{changedata:ChangedData}):Promise<User|null>=>{
+    try {
+        const res = await api.put('api/user/edituser',changedata)
+        return res.data
+    } catch (error) {
+        console.log("Error fetching user:", error)
+        return null;
+    }
+}
