@@ -191,3 +191,11 @@ export const GetYouSongsController = async (req,res)=>{
     res.status(500).json({message:"Internal server Error"})
   }
 }
+
+export const EditUserController = async (req,res)=>{
+  try {
+    
+  } catch (error) {
+    res.status(500).json({message:"Internal server Error"})
+  }
+}
