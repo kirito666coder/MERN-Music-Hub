@@ -34,4 +34,19 @@ const createUser = async ({ email, providerName, providerId, profile }) => {
     }
 }
 
+export const editUserService = async ({userId,updateData}) =>{
+
+    if(!userId || !updateData){
+        throw new error("something went wrong")
+    }
+
+   const user = await UserModel.findByIdAndUpdate(
+        userId,
+        { $set: updateData },
+        { new: true }
+      ); 
+
+      return user;
+}
+
 export default createUser;

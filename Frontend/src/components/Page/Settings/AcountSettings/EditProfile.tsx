@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import type { RootState } from "@/app/store";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { EditUserApi } from "@/api/UserApi";
 
 interface ChangedData {
   username?: string;
@@ -50,7 +51,7 @@ const EditProfile = () => {
 
     try {
       // Dummy API call (replace with real backend API)
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+       await EditUserApi({changedData});
       toast.success("Profile updated successfully!");
     } catch {
       toast.error("Failed to save changes");
