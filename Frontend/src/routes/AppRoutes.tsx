@@ -17,6 +17,7 @@ import Artist from "@/pages/Artist"
 import ProfileComponent from "@/components/Page/ProfilePage/ProfileData/ProfileComponent"
 import SearchPage from "@/pages/SearchPage"
 import EditProfile from "@/components/Page/Settings/AcountSettings/EditProfile"
+import Logoutpage from "@/components/Page/ProfilePage/Logoutpage/Logoutpage"
 
 
 const AppRoutes = () => {
@@ -61,7 +62,7 @@ const AppRoutes = () => {
           <Route path="language" element={<div>🌍 Language</div>} />
           <Route path="privacyControls" element={<div>🔒 Privacy Controls</div>} />
           <Route path="connectedDevices" element={<div>📱 Connected Devices</div>} />
-          <Route path="logoutDevices" element={<div>🚪 Logged Out Devices</div>} />
+          <Route path="logoutDevices" element={<Logoutpage/>} />
           <Route path="changePassword" element={<div>🔑 Change Password</div>} />
           <Route path="deleteAccount" element={<div>🗑️ Delete Account</div>} />
         </Route>
