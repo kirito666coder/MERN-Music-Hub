@@ -7,6 +7,8 @@ const userRoute = Router()
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-userRoute.put("/edituser", upload.single("profileImage"),EditUserController)
+userRoute.put("/edituser",upload.fields([
+    { name: "profileImage", maxCount: 1 },
+]),EditUserController)
 
 export default userRoute;

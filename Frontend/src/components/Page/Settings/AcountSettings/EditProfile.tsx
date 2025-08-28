@@ -9,7 +9,7 @@ import { EditUserApi } from "@/api/UserApi";
 interface ChangedData {
   username?: string;
   bio?: string;
-  profileImage?: string;
+  profileImage?: File;
 }
 
 const EditProfile = () => {
@@ -17,7 +17,8 @@ const EditProfile = () => {
 
   const [username, setUsername] = useState(user?.name || "");
   const [bio, setBio] = useState(user?.bio || "");
-  const [profileImage, setProfileImage] = useState(user?.image || "");
+  const [profileFile, setProfileFile] = useState<File | null>(null);
+  const [profilePreview, setProfilePreview] = useState(user?.image || "");
   const [loading, setLoading] = useState(false);
 
   const originalData = {
@@ -26,12 +27,11 @@ const EditProfile = () => {
     profileImage: user?.image,
   };
 
-
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      console.log("Selected profile image:", file);
-      setProfileImage(URL.createObjectURL(file));
+      setProfileFile(file); // store the File object
+      setProfilePreview(URL.createObjectURL(file)); // for preview only
     }
   };
 
@@ -40,7 +40,7 @@ const EditProfile = () => {
 
     if (username !== originalData.username) changedData.username = username;
     if (bio !== originalData.bio) changedData.bio = bio;
-    if (profileImage !== originalData.profileImage) changedData.profileImage = profileImage;
+    if (profileFile) changedData.profileImage = profileFile; // send the actual file
 
     if (Object.keys(changedData).length === 0) {
       toast.info("No changes detected");
@@ -50,8 +50,7 @@ const EditProfile = () => {
     setLoading(true);
 
     try {
-      // Dummy API call (replace with real backend API)
-       await EditUserApi({changedData});
+      await EditUserApi({ changedData });
       toast.success("Profile updated successfully!");
     } catch {
       toast.error("Failed to save changes");
@@ -59,7 +58,6 @@ const EditProfile = () => {
       setLoading(false);
     }
   };
-
   return (
     <div className="w-full flex items-center justify-center p-6 ">
       <ToastContainer />
@@ -72,7 +70,7 @@ const EditProfile = () => {
         <div className="flex flex-col items-center gap-4">
           <div className="relative">
             <img
-              src={profileImage}
+              src={`${profilePreview}`}
               alt="Profile"
               className="w-28 h-28 rounded-full object-cover border-4 border-gray-200 dark:border-white/20 shadow-lg"
             />

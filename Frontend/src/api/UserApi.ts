@@ -21,14 +21,27 @@ export const GetUserApi = async (): Promise<User | null> => {
 interface ChangedData {
     username?: string;
     bio?: string;
-    profileImage?: string;
+    profileImage?: File; // Use File instead of string
   }
-export const EditUserApi = async ({changedData}:{changedData:ChangedData}):Promise<User|null>=>{
+  
+  export const EditUserApi = async ({ changedData }: { changedData: ChangedData }): Promise<User | null> => {
     try {
-        const res = await api.put('api/user/edituser',changedData)
-        return res.data
+      const formData = new FormData();
+  
+      if (changedData.username) formData.append("username", changedData.username);
+      if (changedData.bio) formData.append("bio", changedData.bio);
+      if (changedData.profileImage) formData.append("profileImage", changedData.profileImage);
+      console.log(formData)
+      const res = await api.put("api/user/edituser", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+  
+      return res.data;
     } catch (error) {
-        console.log("Error fetching user:", error)
-        return null;
+      console.log("Error fetching user:", error);
+      return null;
     }
-}
+  };
+  
