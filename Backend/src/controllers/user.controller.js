@@ -18,7 +18,7 @@ export const EditUserController = async (req,res)=>{
 
         if (profileImage) {
           const profileImageUrl = await imageUpload(profileImage);
-          updateData.profileImage = profileImageUrl;
+          updateData.image = profileImageUrl;
           console.log(updateData)
         }
     
