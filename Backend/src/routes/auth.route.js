@@ -19,10 +19,16 @@ AuthRoute.get('/profile',
     profileController
 )
 
-app.get("/logout", (req, res) => {
-    res.clearCookie("jwt"); 
+AuthRoute.get("/logout", (req, res) => {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    });
+    console.log('logout')
     res.status(200).json({ message: "Logged out successfully" });
   });
+  
   
 
 export default AuthRoute;

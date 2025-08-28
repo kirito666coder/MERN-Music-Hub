@@ -18,10 +18,14 @@ export const GetUserApi = async (): Promise<User | null> => {
     }
 }
 
+export const LogOutUserApi = async ()=>{
+  await api.get("/api/auth/logout");
+}
+
 interface ChangedData {
     username?: string;
     bio?: string;
-    profileImage?: File; // Use File instead of string
+    profileImage?: File; 
   }
   
   export const EditUserApi = async ({ changedData }: { changedData: ChangedData }): Promise<User | null> => {
