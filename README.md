@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🎵 Song Play App</h1>
+  <h1> Song Play App</h1>
   <p>A full-stack MERN music streaming platform for listeners and creators.</p>
   <p>
     <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff" />
@@ -22,7 +22,7 @@
 
 ---
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [Overview](#overview)
 - [Key Highlights](#key-highlights)
@@ -42,7 +42,7 @@
 
 Song Play App is a solo-built MERN experience that focuses on functionality: uploading audio, organizing artists/albums, streaming music with a global player, and giving artists full control over their catalog. It ships with a protected React frontend and a RESTful Node/Express backend backed by MongoDB and Cloudinary storage.
 
-### 🔍 Important Callouts
+###  Important Callouts
 
 - You must be logged in to access every page except `/login`.
 - Becoming an artist is mandatory before the Add Song flow unlocks.
@@ -55,14 +55,14 @@ Song Play App is a solo-built MERN experience that focuses on functionality: upl
 
 ## Key Highlights
 
-- 🔐 **Auth-first** – JWT + Passport-secured APIs, `PrivateRoute` protection, and automatic redirects for logged-in users.
-- 🎧 **Global Playback** – `GlobalAudioPlayer` keeps music running even when switching routes; queue state lives in Redux.
-- 🎨 **Genre Discovery** – Visual genre cards/icons plus search to drill into niche sounds instantly.
-- 📚 **Powerful Library** – Create albums, play them, manage songs, and drill into album detail pages.
-- 🧑‍🎤 **Artist Mode** – Create an artist account, upload songs, manage releases, and control visibility (public/private).
-- 🔔 **Notifications & Settings** – Dedicated pages for updates, profile edit, device logout, theme, and more.
-- 🧭 **Full Navigation** – Home, Genre, Library, Search, Liked, Profile, Add Song, Artist, Notifications, Settings, and 404 routes.
-- 📱 **Responsive Layout** – Custom sidebar/header combos for desktop and mobile.
+-  **Auth-first** – JWT + Passport-secured APIs, `PrivateRoute` protection, and automatic redirects for logged-in users.
+-  **Global Playback** – `GlobalAudioPlayer` keeps music running even when switching routes; queue state lives in Redux.
+-  **Genre Discovery** – Visual genre cards/icons plus search to drill into niche sounds instantly.
+-  **Powerful Library** – Create albums, play them, manage songs, and drill into album detail pages.
+-  **Artist Mode** – Create an artist account, upload songs, manage releases, and control visibility (public/private).
+-  **Notifications & Settings** – Dedicated pages for updates, profile edit, device logout, theme, and more.
+-  **Full Navigation** – Home, Genre, Library, Search, Liked, Profile, Add Song, Artist, Notifications, Settings, and 404 routes.
+-  **Responsive Layout** – Custom sidebar/header combos for desktop and mobile.
 
 ---
 
@@ -113,34 +113,40 @@ song-play-app/
 
 ---
 
-## 🖼️ Frontend Screens & Workflows
+##  Frontend Screens & Workflows
 
-All screenshots referenced below should be placed in `img/` folder in the root layout using the filenames listed in the Feature Tour table. They will automatically render in this README once added.
-
-### 🏠 Home Page (`/`)
+###  Home Page (`/`)
 
 <div align="center">
   <img src="./img/home-page.png" alt="Home Page" width="700" />
+  <img src="./img/home-page-light.png" alt="Home Page" width="700" />
+  <img src="./img/home-page-mobile.png" alt="Home Page" width="700" />
 </div>
+
+
 
 - Landing view after authentication with trending songs, recent releases, and featured artists.
 - Quick actions for resuming playback, jumping to genres, and opening the library.
 - Global audio player stays pinned so playback keeps running.
 
-### 🎸 Genre Page (`/genre`)
+### Genre Page (`/genre`)
 
 <div align="center">
   <img src="./img/genre-page.png" alt="Genre Page" width="700" />
+  <img src="./img/genre-page-light.png" alt="Genre Page" width="700" />
+  <img src="./img/genre-page-mobile.png" alt="Genre Page" width="700" />
 </div>
 
 - Search bar lets users filter genres or specific songs instantly.
 - Icon-based genre cards highlight moods/styles; clicking one loads every track in that genre.
 - Genre results can be played immediately or added to the queue.
 
-### 📚 Library Page (`/library`)
+###  Library Page (`/library`)
 
 <div align="center">
   <img src="./img/library-page.png" alt="Library Page" width="700" />
+  <img src="./img/library-page-light.png" alt="Library Page" width="700" />
+  <img src="./img/library-page-mobile.png" alt="Library Page" width="700" />
 </div>
 
 - Displays every album the user owns, plus a CTA to create new albums.
@@ -148,20 +154,29 @@ All screenshots referenced below should be placed in `img/` folder in the root l
 - Clicking an album (`/library/album/:slugAndId`) opens its detail view with the full track list, metadata, and play controls.
 - Use the "Create Album" action to group songs you plan to release later.
 
-### 👤 Profile Page (`/Profile`)
+###  Album Page (`/Album`)
+
+<div align="center">
+  <img src="./img/Album-page.png" alt="Library Page" width="700" />
+  <img src="./img/Album-page-mobile.png" alt="Library Page" width="700" />
+</div>
+
+###  Profile Page (`/Profile`)
 
 <div align="center">
   <img src="./img/profile-page.png" alt="Profile Page" width="700" />
+  <img src="./img/profile-page-light.png" alt="Profile Page" width="700" />
 </div>
 
 - Summarizes the listener/artist profile, including stats, uploaded songs, and albums.
 - Nested routes render profile data and the add-song workflow in the same shell.
 - Central hub for keeping track of owned content and navigating to management tools.
 
-### ➕ Add Song Page (`/Profile/addSongs`)
+###  Add Song Page (`/Profile/addSongs`)
 
 <div align="center">
   <img src="./img/add-song-page.png" alt="Add Song Page" width="700" />
+  <img src="./img/add-song-page-light.png" alt="Add Song Page" width="700" />
 </div>
 
 - **Requires an artist account**—users are redirected to create one if they are not yet an artist.
@@ -174,10 +189,11 @@ All screenshots referenced below should be placed in `img/` folder in the root l
   - Options: lyrics, visibility/public toggle, custom metadata like duration
 - After submission, the track is stored, linked to the album, and instantly playable from Library and Artist pages.
 
-### ⚙️ Settings (`/settings/*`)
+###  Settings (`/settings/*`)
 
 <div align="center">
   <img src="./img/settings-page.png" alt="Settings Page" width="700" />
+  <img src="./img/settings-page-light.png" alt="Settings Page" width="700" />
 </div>
 
 - Multi-section dashboard for editing profile info, changing passwords, managing content, and handling account security.
@@ -193,7 +209,7 @@ All screenshots referenced below should be placed in `img/` folder in the root l
   - `deleteAccount`
 - Theme and language preferences also live here.
 
-### 🔔 Notifications (`/notification`)
+###  Notifications (`/notification`)
 
 <div align="center">
   <img src="./img/notifications-page.png" alt="Notifications Page" width="700" />
@@ -203,7 +219,7 @@ All screenshots referenced below should be placed in `img/` folder in the root l
 - Supports marking notifications as read and provides quick navigation to related content.
 - Ideal for keeping tabs on new album drops, playlist additions, and profile activity.
 
-### 🎤 Artist Page (`/artist/:slugAndId`)
+###  Artist Page (`/artist/:slugAndId`)
 
 <div align="center">
   <img src="./img/artist-page.png" alt="Artist Page" width="700" />
@@ -214,7 +230,7 @@ All screenshots referenced below should be placed in `img/` folder in the root l
 - Ideal for showcasing other artists by slug/id, including follow and play options.
 - If a song/album is private, it stays hidden—only the artist sees it inside Profile/Library.
 
-### 🔍 Search Page (`/search/:slug`)
+###  Search Page (`/search/:slug`)
 
 <div align="center">
   <img src="./img/search-page.png" alt="Search Page" width="700" />
@@ -224,7 +240,7 @@ All screenshots referenced below should be placed in `img/` folder in the root l
 - Live results while typing, with quick buttons to play, like, or open detail pages.
 - Helpful for jumping directly to any resource in the catalog.
 
-### ❤️ Liked Songs (`/liked`)
+###  Liked Songs (`/liked`)
 
 <div align="center">
   <img src="./img/liked-songs-page.png" alt="Liked Songs Page" width="700" />
@@ -234,7 +250,7 @@ All screenshots referenced below should be placed in `img/` folder in the root l
 - Offers Play All, shuffle, and unlike actions without leaving the page.
 - Great for quickly resuming favorite tracks.
 
-### 🔐 Login (`/login`)
+###  Login (`/login`)
 
 <div align="center">
   <img src="./img/login-page.png" alt="Login Page" width="700" />
@@ -243,7 +259,7 @@ All screenshots referenced below should be placed in `img/` folder in the root l
 - Public route guarded by `PublicRoute`; authenticated users are redirected to `/`.
 - Accepts credentials, talks to the backend auth endpoints, and stores tokens in Redux/localStorage.
 
-### 🚫 Not Found (`*`)
+###  Not Found (`*`)
 
 <div align="center">
   <img src="./img/not-found-page.png" alt="404 Not Found Page" width="700" />
@@ -385,4 +401,4 @@ Bug reports, UI polish, and accessibility improvements are especially welcome!
 
 ---
 
-Built solo for learning, shipping, and sharing music. 🎶
+Built solo for learning, shipping, and sharing music. 
