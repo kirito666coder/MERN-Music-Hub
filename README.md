@@ -1,5 +1,6 @@
 <div align="center">
-  <h1> Song Play App</h1>
+  <h1> 
+MERN Music Hub</h1>
   <p>A full-stack MERN music streaming platform for listeners and creators.</p>
   <p>
     <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff" />
@@ -154,12 +155,6 @@ song-play-app/
 - Clicking an album (`/library/album/:slugAndId`) opens its detail view with the full track list, metadata, and play controls.
 - Use the "Create Album" action to group songs you plan to release later.
 
-###  Album Page (`/Album`)
-
-<div align="center">
-  <img src="./img/Album-page.png" alt="Library Page" width="700" />
-  <img src="./img/Album-page-mobile.png" alt="Library Page" width="700" />
-</div>
 
 ###  Profile Page (`/Profile`)
 
